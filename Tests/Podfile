@@ -1,0 +1,38 @@
+# This will tell cocoapods the name of the workspace to generate for us.
+workspace 'IDPKitTests'
+
+# We set the default source for the specs here
+source 'https://github.com/CocoaPods/Specs.git'
+
+# We have to define a default platform. We tell cocoapods where to find
+# the Xcode project and which target to link against. This isn't ideal
+# and someone should file a feature request against cocoapods.
+platform :ios, '7.0'
+xcodeproj 'iOS/iOS.xcodeproj'
+link_with 'iOS'
+ 
+# Here, we define a new target named 'osx'. Cocoapods will generate a
+# separate static library that contains any dependencies listed here
+# and in our default group that only links against our OS X target.
+target :osx do
+  platform :osx, '10.9'
+  xcodeproj 'OSX/OSX.xcodeproj'
+  link_with 'OSX'
+ 
+  target 'OSXTests', exclusive: true do
+    pod 'Kiwi'
+  end
+end
+ 
+# This will generate another library that will link against
+# the iOS target. We don't want to inherit any default pods
+# (since our default library will already link against the
+# iOS target) so we mark it as exclusive.
+target :ios, exclusive: true do
+  xcodeproj 'iOS/iOS.xcodeproj'
+  link_with 'iOS'
+ 
+  target 'iOSTests', exclusive: true do
+    pod 'Kiwi'
+  end
+end
