@@ -17,6 +17,7 @@
 
 static NSString * const kStore  = @"Store";
 
+
 static IDPCoreDataManager *__sharedManager = nil;
 
 @interface IDPCoreDataManager ()
@@ -117,6 +118,14 @@ static IDPCoreDataManager *__sharedManager = nil;
 #pragma mark -
 #pragma mark Initialization
 
+#ifndef IDPApplicationWillTerminate
+    #if TARGET_OS_IPHONE
+        #define IDPApplicationWillTerminateNotification UIApplicationWillTerminateNotification
+    #else
+        #define IDPApplicationWillTerminateNotification NSApplicationWillTerminateNotification
+    #endif
+#endif
+
 - (id)init {
     static dispatch_once_t once;
     
@@ -127,10 +136,10 @@ static IDPCoreDataManager *__sharedManager = nil;
     if (!__sharedManager) {
         result = [super init];
         if (nil != result) {
-#if TARGET_OS_IPHONE
             [result subscribeSelector:@selector(applicationWillTerminate:)
-                 onApplicationEvent:UIApplicationWillTerminateNotification];
-            
+                 onApplicationEvent:IDPApplicationWillTerminateNotification];
+
+#if TARGET_OS_IPHONE
             [result subscribeSelector:@selector(applicationWillTerminate:)
                  onApplicationEvent:UIApplicationDidEnterBackgroundNotification];
 #endif
@@ -142,6 +151,8 @@ static IDPCoreDataManager *__sharedManager = nil;
 
 	return self;
 }
+
+#undef IDPApplicationWillTerminate
 
 #pragma mark -
 #pragma mark UIApplicationDelegateNotifications

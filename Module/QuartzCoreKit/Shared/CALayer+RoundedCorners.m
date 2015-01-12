@@ -17,9 +17,17 @@
                    withBottomRightRadius:(CGFloat)bottomRight {
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate( NULL, rect.size.width, rect.size.height, 8, 0, colorSpace, kCGImageAlphaPremultipliedLast);
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 rect.size.width,
+                                                 rect.size.height,
+                                                 8,
+                                                 0,
+                                                 colorSpace,
+                                                 (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
     
-    if ( context == NULL ) {
+    CGColorSpaceRelease(colorSpace);
+    
+    if (context == NULL) {
         return NULL;
     }
     
@@ -49,6 +57,7 @@
     CALayer *overlayLayerMask = [CALayer layer];
     overlayLayerMask.frame = rect;
     overlayLayerMask.contents = (id)bitmap;
+
     return overlayLayerMask;
 }
 

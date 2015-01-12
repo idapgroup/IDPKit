@@ -9,5 +9,5 @@
 #import "IDPMath.h"
 
 NSInteger IDPRandomNumberInRange(NSInteger min, NSInteger max) {
-    return arc4random_uniform(max - min) + min;
+    return arc4random_uniform((uint32_t)(max - min)) + min;
 }

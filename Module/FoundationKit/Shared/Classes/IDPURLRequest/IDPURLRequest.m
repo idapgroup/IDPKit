@@ -186,7 +186,7 @@ forKeyedSubscript:(id<NSCopying, IDPSerialization>)key
     [request setValue:@"application/x-www-form-urlencoded"
    forHTTPHeaderField:@"Content-Type"];
     
-    [request setValue:[NSString stringWithFormat:@"%d", [parameterString length]]
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[parameterString length]]
    forHTTPHeaderField:@"Content-Length"];
 }
 

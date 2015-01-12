@@ -9,8 +9,6 @@
 #import "IDPSingletonModel.h"
 #import "NSObject+IDPExtensions.h"
 
-static id __sharedObject = nil;
-
 @implementation IDPSingletonModel
 
 #pragma mark -

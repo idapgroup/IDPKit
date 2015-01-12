@@ -42,7 +42,7 @@
 }
 
 - (NSUInteger)randomWithCount:(NSUInteger)count {
-    return arc4random_uniform(count);
+    return arc4random_uniform((uint32_t)count);
 }
 
 @end
