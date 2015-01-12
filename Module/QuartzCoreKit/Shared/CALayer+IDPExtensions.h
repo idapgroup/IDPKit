@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface CALayer (RoundedCorners)
+@interface CALayer (IDPExtensions)
 
 // pass the result of the method to the view's layer's
 // mask and this will round view's corners separately

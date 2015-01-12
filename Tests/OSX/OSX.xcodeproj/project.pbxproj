@@ -103,8 +103,8 @@
 		D7BD7B251A645AE2004E2041 /* IDPWeakArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7A981A645AE1004E2041 /* IDPWeakArray.m */; };
 		D7BD7B261A645AE2004E2041 /* IDPMath.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7A9C1A645AE1004E2041 /* IDPMath.m */; };
 		D7BD7B271A645AE2004E2041 /* IDPMath.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7A9C1A645AE1004E2041 /* IDPMath.m */; };
-		D7BD7B281A645AE2004E2041 /* CALayer+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7AA21A645AE1004E2041 /* CALayer+RoundedCorners.m */; };
-		D7BD7B291A645AE2004E2041 /* CALayer+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7AA21A645AE1004E2041 /* CALayer+RoundedCorners.m */; };
+		D7BD7B281A645AE2004E2041 /* CALayer+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7AA21A645AE1004E2041 /* CALayer+IDPExtensions.m */; };
+		D7BD7B291A645AE2004E2041 /* CALayer+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7AA21A645AE1004E2041 /* CALayer+IDPExtensions.m */; };
 		D7BD7B2A1A645AE2004E2041 /* IDPNetworkReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7AA61A645AE1004E2041 /* IDPNetworkReachability.m */; };
 		D7BD7B2B1A645AE2004E2041 /* IDPNetworkReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7AA61A645AE1004E2041 /* IDPNetworkReachability.m */; };
 /* End PBXBuildFile section */
@@ -234,8 +234,8 @@
 		D7BD7A9C1A645AE1004E2041 /* IDPMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMath.m; sourceTree = "<group>"; };
 		D7BD7A9D1A645AE1004E2041 /* IDPPropertyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPPropertyMacros.h; sourceTree = "<group>"; };
 		D7BD7A9F1A645AE1004E2041 /* QuartzCoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuartzCoreKit.h; sourceTree = "<group>"; };
-		D7BD7AA11A645AE1004E2041 /* CALayer+RoundedCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+RoundedCorners.h"; sourceTree = "<group>"; };
-		D7BD7AA21A645AE1004E2041 /* CALayer+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+RoundedCorners.m"; sourceTree = "<group>"; };
+		D7BD7AA11A645AE1004E2041 /* CALayer+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+IDPExtensions.h"; sourceTree = "<group>"; };
+		D7BD7AA21A645AE1004E2041 /* CALayer+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+IDPExtensions.m"; sourceTree = "<group>"; };
 		D7BD7AA51A645AE1004E2041 /* IDPNetworkReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPNetworkReachability.h; sourceTree = "<group>"; };
 		D7BD7AA61A645AE1004E2041 /* IDPNetworkReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPNetworkReachability.m; sourceTree = "<group>"; };
 		D7BD7AA71A645AE1004E2041 /* SystemConfigKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemConfigKit.h; sourceTree = "<group>"; };
@@ -745,8 +745,8 @@
 		D7BD7AA01A645AE1004E2041 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D7BD7AA11A645AE1004E2041 /* CALayer+RoundedCorners.h */,
-				D7BD7AA21A645AE1004E2041 /* CALayer+RoundedCorners.m */,
+				D7BD7AA11A645AE1004E2041 /* CALayer+IDPExtensions.h */,
+				D7BD7AA21A645AE1004E2041 /* CALayer+IDPExtensions.m */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -936,7 +936,7 @@
 				D7BD7AF81A645AE2004E2041 /* IDPKeyPathObserver.m in Sources */,
 				D7BD7AFC1A645AE2004E2041 /* IDPKVOMutableArray.m in Sources */,
 				D7BD7AEC1A645AE2004E2041 /* NSDateComponents+IDPExtinsions.m in Sources */,
-				D7BD7B281A645AE2004E2041 /* CALayer+RoundedCorners.m in Sources */,
+				D7BD7B281A645AE2004E2041 /* CALayer+IDPExtensions.m in Sources */,
 				D7BD7B101A645AE2004E2041 /* NSObject+IDPOCExtensions.m in Sources */,
 				D7BD7B141A645AE2004E2041 /* IDPObservableObject.m in Sources */,
 				D7BD7AD81A645AE2004E2041 /* NSManagedObject+IDPExtensions.m in Sources */,
@@ -977,7 +977,7 @@
 				D7BD7B071A645AE2004E2041 /* IDPMutableDictionary.m in Sources */,
 				D7BD7AD91A645AE2004E2041 /* NSManagedObject+IDPExtensions.m in Sources */,
 				D7BD7B011A645AE2004E2041 /* IDPModel.m in Sources */,
-				D7BD7B291A645AE2004E2041 /* CALayer+RoundedCorners.m in Sources */,
+				D7BD7B291A645AE2004E2041 /* CALayer+IDPExtensions.m in Sources */,
 				D7BD7B171A645AE2004E2041 /* IDPReference.m in Sources */,
 				D7BD7AE11A645AE2004E2041 /* NSView+IDPExtension.m in Sources */,
 				D7BD7ADD1A645AE2004E2041 /* NSManagedObjectID+IDPExtensions.m in Sources */,

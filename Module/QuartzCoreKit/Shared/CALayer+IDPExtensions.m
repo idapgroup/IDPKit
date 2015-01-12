@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 IDAP Group. All rights reserved.
 //
 
-#import "CALayer+RoundedCorners.h"
+#import "CALayer+IDPExtensions.h"
 
-@implementation CALayer (RoundedCorners)
+@implementation CALayer (IDPExtensions)
 
 + (CALayer *)roundCorneredLayerForBounds:(CGRect)rect
                        withTopLeftRadius:(CGFloat)topLeft
