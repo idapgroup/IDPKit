@@ -11,15 +11,7 @@
 @implementation NSObject (IDPExtensions)
 
 + (id)object {
-    return [[self new] autorelease];
-}
-
-- (void)baseInit {
-    
-}
-
-+ (NSString *)stringOfClass {
-    return NSStringFromClass(self);
+    return [self new];
 }
 
 @end

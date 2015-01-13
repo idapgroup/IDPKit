@@ -10,9 +10,6 @@
 
 @interface NSObject (IDPExtensions)
 
-+ (id)object;
-+ (NSString *)stringOfClass;
-
-- (void)baseInit;
++ (instancetype)object;
 
 @end
