@@ -9,31 +9,29 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    IDPDocumentsDirectoryPath,
-    IDPLibraryDirectoryPath,
-    IDPBundleDirectoryPath,
-    IDPApplicationsDataPath,
-    IDPUndefinedDataPath
-} IDPDirectoryPath;
+    IDPDocumentsDirectoryType,
+    IDPLibraryDirectoryType,
+    IDPBundleDirectoryType,
+    IDPApplicationsDataType,
+    IDPUndefinedDataType
+} IDPDirectoryType;
 
 
 @interface NSFileManager (IDPExtensions)
 
-+ (NSString *)directoryPathForPath:(IDPDirectoryPath)thePath;
++ (NSString *)directoryPathWithType:(IDPDirectoryType)type;
 
 + (NSString *)documentsDirectoryPath;
 + (NSString *)libraryDirectoryPath;
 + (NSString *)bundleDirectoryPath;
 + (NSString *)applicationDataPath;
 
-+ (BOOL)fileNameExistsInDocumentsDirectory:(NSString *)fileName;
-+ (BOOL)fileNameExistsInLibraryDirectory:(NSString *)fileName;
-+ (BOOL)fileNameExistsInBundleDirectory:(NSString *)fileName;
-+ (BOOL)fileNameExistsInApplicationDataPath:(NSString *)fileName;
-
-+ (BOOL)fileName:(NSString *)fileName existsInDirectory:(NSString *)directoryPath;
++ (BOOL)fileName:(NSString *)fileName existsInDirectoryOfType:(IDPDirectoryType)type;
++ (BOOL)fileName:(NSString *)fileName existsInPath:(NSString *)path;
 
 //Return uniquely named temporary directory from template
-+ (NSString *)temporaryFolderInDirectory:(NSString *)directoryPath forTemplate:(NSString *)templateString;
+- (NSString *)uniqueDirectoryInPath:(NSString *)path;
+
+- (BOOL)createDirectoryAtPath:(NSString *)path;
 
 @end
