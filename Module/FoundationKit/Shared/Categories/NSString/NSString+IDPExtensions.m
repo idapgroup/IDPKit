@@ -16,16 +16,11 @@
 
 - (NSString *)urlEncode {
     CFStringRef stringRef = CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                    (CFStringRef)self,
+                                                                    (__bridge CFStringRef)self,
                                                                     NULL,
                                                                     (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                     kCFStringEncodingUTF8);
-    NSString *string = (NSString *)stringRef;
-    [[string retain] autorelease];
-    
-    CFRelease(stringRef);
-    
-    return string;
+    return (NSString *)CFBridgingRelease(stringRef);
 }
 
 - (BOOL)isEqualToStringWithoutWhitespace:(NSString *)aString {
@@ -41,52 +36,38 @@
 
 - (BOOL)isEmpty {
     NSString *empty = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (empty.length == 0) {
-        return YES;
-    }
-    return NO;
+    
+    return empty.length == 0;
 }
 
-- (BOOL)containString: (NSString*) substring {
-    NSRange range = [self rangeOfString : substring];
-    BOOL found = ( range.location != NSNotFound );
-    return found;
+- (BOOL)containsString:(NSString *)substring {
+    NSRange range = [self rangeOfString:substring];
+
+    return range.location != NSNotFound;
 }
 
-- (BOOL)containsStringWithCaseInsensitive:(NSString *)substring {
+- (BOOL)containsCaseInsensitiveString:(NSString *)substring {
     NSString *string = [self lowercaseString];
-    return [string containString:[substring lowercaseString]];
+    return [string containsString:[substring lowercaseString]];
 }
 
-- (NSString *)removeEntryOfStrings:(NSArray *)entries {
-    NSString *result = self;
-    for (NSString *string in entries) {
-        result = [result stringByReplacingOccurrencesOfString:string withString:@""];
-    }
-    return result;
+- (NSString *)removeSubstrings:(NSArray *)substrings {
+    return [self removeSubstrings:substrings
+                          options:NSWidthInsensitiveSearch];
 }
 
-- (BOOL)isAllDigits {
-    NSCharacterSet* nonNumbers = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-    NSRange r = [self rangeOfCharacterFromSet: nonNumbers];
-    return r.location == NSNotFound;
-}
-
-- (BOOL)containWord:(NSString *)word {
-    NSScanner *scanner = [NSScanner scannerWithString:self];
-    scanner.caseSensitive = YES;
-    NSString *string = nil;
-    BOOL contain = NO;
-    
-    while (![scanner isAtEnd]) {
-        if ([scanner scanString:word intoString:&string]) {
-            contain = YES;
-            break;
-        }
-        scanner.scanLocation++;
+- (NSString *)removeSubstrings:(NSArray *)substrings
+                       options:(NSStringCompareOptions)options
+{
+    NSMutableString *result = [NSMutableString stringWithString:self];
+    for (NSString *string in substrings) {
+        [result replaceOccurrencesOfString:string
+                                withString:@""
+                                   options:options
+                                     range:NSMakeRange(0, [result length])];
     }
     
-    return contain;
+    return [result copy];
 }
 
 @end
