@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDateComponents (IDPExtinsions)
+@interface NSDateComponents (IDPExtensions)
 
-- (NSTimeInterval)totalTimeInSeconds;
-- (NSDate *)dateFromComponents;
+- (NSDate *)createDate;
 
 @end
