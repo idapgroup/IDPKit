@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
                   :tag => s.version.to_s }
 
   # Platform setup
-  s.requires_arc          = false  
+  s.requires_arc          = true  
   s.ios.deployment_target = '7.0'
   s.osx.deployment_target = '10.8'
   
