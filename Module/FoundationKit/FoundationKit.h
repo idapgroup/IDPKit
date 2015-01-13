@@ -30,3 +30,4 @@
 #import "IDPURLRequest.h"
 #import "IDPWeakArray.h"
 #import "IDPSingletonModel.h"
+#import "NSPathUtilities+IDPExtensions.h"
