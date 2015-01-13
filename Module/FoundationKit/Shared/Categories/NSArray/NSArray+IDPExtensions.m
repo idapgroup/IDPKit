@@ -8,6 +8,8 @@
 
 #import "NSArray+IDPExtensions.h"
 
+#import "IDPMath.h"
+
 @interface NSArray (IDPPrivateExtensions)
 
 - (NSUInteger)randomWithCount:(NSUInteger)count;
@@ -17,32 +19,29 @@
 @implementation NSArray (IDPExtensions)
 
 - (id)randomObject {
-    if (![self count]) {
+    NSUInteger count = [self count];
+    
+    if (0 == count) {
         return nil;
     }
-     return [self objectAtIndex:[self randomWithCount:[self count]]];
+    
+    return self[IDPRandomNumber(count)];
 }
 
 - (NSArray *)shuffledArray {
+    NSUInteger count = [self count];
+    
     NSMutableArray *array = [NSMutableArray arrayWithArray:self];
-    NSMutableArray *shuffle = [[[NSMutableArray alloc] initWithCapacity:self.count]  autorelease];
-    while ([array count]) {
-        int index = arc4random()%[array count];
-        [shuffle addObject:[array objectAtIndex:index]];
+    NSMutableArray *shuffle = [NSMutableArray arrayWithCapacity:count];
+    
+    while (0 != count) {
+        int index = IDPRandomNumber(count);
+        [shuffle addObject:array[index]];
         [array removeObjectAtIndex:index];
+        count--;
     }
+    
     return  shuffle;
-}
-
-- (id)firstObject {
-    if (self.count) {
-        return [self objectAtIndex:0];
-    }
-    return nil;
-}
-
-- (NSUInteger)randomWithCount:(NSUInteger)count {
-    return arc4random_uniform((uint32_t)count);
 }
 
 @end

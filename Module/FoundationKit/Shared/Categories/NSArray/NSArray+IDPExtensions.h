@@ -24,10 +24,4 @@ typedef void (^IDPArrayObjectsEnumerationBlock)(id obj, NSUInteger idx, BOOL *st
  */
 - (NSArray *)shuffledArray;
 
-/**
- This method return first object from array.
- @return first object or nil if array is empty.
- */
-- (id)firstObject;
-
 @end
