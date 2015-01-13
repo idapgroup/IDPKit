@@ -24,8 +24,6 @@
 
 - (void)dealloc {
     [self cleanup];
-    
-    [super dealloc];
 }
 
 #pragma mark -

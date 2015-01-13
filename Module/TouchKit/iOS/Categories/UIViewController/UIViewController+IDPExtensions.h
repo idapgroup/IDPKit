@@ -10,6 +10,6 @@
 
 @interface UIViewController (IDPExtensions)
 
-@property (nonatomic, retain, readonly) UITableView *tableView;
++ (instancetype)object;
 
 @end

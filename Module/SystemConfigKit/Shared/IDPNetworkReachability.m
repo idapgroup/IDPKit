@@ -104,13 +104,11 @@ const NSInteger     IDPNetworkReachabilityErrorInternetNotReachable             
 @end
 
 static void IDPNetworkReachabilitySatusChangedCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void *info) {
-	NSAutoreleasePool* myPool = [[NSAutoreleasePool alloc] init];
-	
-	IDPNetworkReachability *reachability = (IDPNetworkReachability *)info;
-	// Post a notification to notify the client that the network reachability changed.
-    [reachability updateReachabilityStatusWithFlags:flags];
-	
-	[myPool release];
+    @autoreleasepool {
+        IDPNetworkReachability *reachability = (__bridge IDPNetworkReachability *)info;
+        // Post a notification to notify the client that the network reachability changed.
+        [reachability updateReachabilityStatusWithFlags:flags];
+    }
 }
 
 static NSMutableDictionary  *__reachabilities__ = nil;
@@ -232,8 +230,6 @@ static NSMutableDictionary  *__reachabilities__ = nil;
 - (void)dealloc {
     [self unshedule];
     self.reachability = NULL;
-    
-    [super dealloc];
 }
 
 #pragma mark -
@@ -281,7 +277,7 @@ static NSMutableDictionary  *__reachabilities__ = nil;
     BOOL result = NO;
     
     SCNetworkReachabilityRef reachability = self.reachability;
-	SCNetworkReachabilityContext context = {0, self, NULL, NULL, NULL};
+	SCNetworkReachabilityContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
     
 	if (SCNetworkReachabilitySetCallback(reachability, IDPNetworkReachabilitySatusChangedCallback, &context)) {
 		result = SCNetworkReachabilityScheduleWithRunLoop(reachability, CFRunLoopGetMain(), kCFRunLoopDefaultMode);

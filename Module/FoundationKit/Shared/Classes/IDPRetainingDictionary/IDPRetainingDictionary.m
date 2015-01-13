@@ -23,8 +23,6 @@
 
 - (void)dealloc {
     self.keysCache = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -

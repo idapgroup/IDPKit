@@ -17,24 +17,24 @@ static NSString * const kIDPOCImplementationProperty    = @"kIDPOCImplementation
 
 + (void)setImplementation:(IDPOCImplementation *)object {
     objc_setAssociatedObject(self,
-                             kIDPOCImplementationProperty,
+                             (__bridge const void *)(kIDPOCImplementationProperty),
                              object,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 + (IDPOCImplementation *)implementation {
     return objc_getAssociatedObject(self,
-                                    kIDPOCImplementationProperty);
+                                    (__bridge const void *)(kIDPOCImplementationProperty));
 }
 
 - (IDPOCStack *)stack {
     return objc_getAssociatedObject(self,
-                                    kIDPOCStackProperty);
+                                    (__bridge const void *)(kIDPOCStackProperty));
 }
 
 - (void)setStack:(IDPOCStack *)stack {
     objc_setAssociatedObject(self,
-                             kIDPOCStackProperty,
+                             (__bridge const void *)(kIDPOCStackProperty),
                              stack,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

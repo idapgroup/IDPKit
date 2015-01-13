@@ -80,8 +80,6 @@
     [self didChangeValueForKey:key
 			   withSetMutation:NSKeyValueUnionSetMutation
 				  usingObjects:changedObjects];
-	
-    [changedObjects release];
 }
 
 - (void)removeCustomValue:(id)value inMutableSetForKey:(NSString *)key {
@@ -97,8 +95,6 @@
 	[self didChangeValueForKey:key
 			   withSetMutation:NSKeyValueMinusSetMutation
 				  usingObjects:changedObjects];
-	
-    [changedObjects release];	
 }
 
 - (void)addCustomValues:(NSSet *)values inMutableSetForKey:(NSString *)key {

@@ -25,8 +25,6 @@
 
 - (void)dealloc {
     self.mutableObservers = nil;
-	
-    [super dealloc];
 }
 
 - (id)init {
@@ -42,7 +40,7 @@
 #pragma mark Accessors
 
 - (NSArray *)observers {
-    return [[self.mutableObservers copy] autorelease];
+    return [self.mutableObservers copy];
 }
 
 #pragma mark -

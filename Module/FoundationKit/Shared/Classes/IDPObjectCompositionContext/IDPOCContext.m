@@ -117,8 +117,6 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 - (void)dealloc {
     self.target = nil;
     self.mixin = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -

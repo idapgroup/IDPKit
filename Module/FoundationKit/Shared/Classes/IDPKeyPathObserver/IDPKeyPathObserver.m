@@ -33,8 +33,6 @@
     self.objectToObserve = nil;
 	self.observer = nil;
 	self.observedKeyPathsArray = nil;
-	
-    [super dealloc];
 }
 
 - (id)initWithObservedObject:(NSObject *)object
@@ -58,7 +56,7 @@
 		[self stopObserving];
 	}
 	
-	IDPNonatomicRetainPropertySynthesize(_observedKeyPathsArray, theArray);
+    _observedKeyPathsArray = theArray;
 	
 	if (temp) {
 		[self startObserving];

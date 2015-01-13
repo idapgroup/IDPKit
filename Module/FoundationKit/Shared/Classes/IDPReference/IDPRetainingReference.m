@@ -16,13 +16,4 @@
 
 @synthesize object  = _object;
 
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.object = nil;
-    
-    [super dealloc];
-}
-
 @end

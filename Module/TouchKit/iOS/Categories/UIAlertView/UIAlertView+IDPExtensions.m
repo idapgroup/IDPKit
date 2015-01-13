@@ -34,7 +34,6 @@ static NSString * const kInternetError  = @"Please ensure you have Internet acce
                                           cancelButtonTitle:kOk
                                           otherButtonTitles:nil];
     [alert show];
-    [alert autorelease];
 }
 
 + (BOOL)isAlertViewVisible {

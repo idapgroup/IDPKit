@@ -21,8 +21,6 @@
 
 - (void)dealloc {
     self.dictionary = nil;
-    
-    [super dealloc];
 }
 
 // although docs say, that initWithObjects:forKeys: is the

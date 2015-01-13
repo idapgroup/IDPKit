@@ -14,20 +14,13 @@ static inline double IDPMachTimeToMilliseconds(UInt64 machTime) {
     static mach_timebase_info_data_t s_timebase_info;
     
     if (s_timebase_info.denom == 0) {
-        (void) mach_timebase_info(&s_timebase_info);
+        mach_timebase_info(&s_timebase_info);
     }
     
     // mach_absolute_time() returns billionth of seconds,
     // so divide by one million to get milliseconds
     return (int)((machTime * s_timebase_info.numer) / (double)(kOneMillion * s_timebase_info.denom));
 }
-
-typedef struct PerfTimer {
-    const char *name;
-    uint64_t testCount;
-    uint64_t testSumm;
-    uint64_t enterTime;
-} PerfTimer;
 
 @interface IDPMachTimer ()
 
@@ -45,25 +38,17 @@ typedef struct PerfTimer {
 @synthesize enterTime   = _enterTime;
 @synthesize name        = _name;
 
+#pragma mark -
+#pragma mark Class Methods
+
 + (id)timerWithName:(NSString *)name {
-    IDPMachTimer *timer = [[self new] autorelease];
+    IDPMachTimer *timer = [self new];
     if (timer) {
         timer.name = name;
     }
 
     return timer;
 }
-
-#pragma mark -
-#pragma mark Initialization and Deallocation
-
-- (void)dealloc {
-    self.name = nil;
-    [super dealloc];
-}
-
-#pragma mark -
-#pragma mark Properties
 
 #pragma mark -
 #pragma mark Overriden Methods

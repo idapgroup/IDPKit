@@ -61,8 +61,6 @@ NSString * const kIDPKVOPathArray   = @"array";
 - (void)dealloc {
     self.contexts = nil;    
     self.array = nil;
-    
-    [super dealloc];
 }
 
 - (id)init {
@@ -117,7 +115,7 @@ NSString * const kIDPKVOPathArray   = @"array";
     [super addObserver:self
             forKeyPath:[self swizzleKeyPathForKeyPath:keyPath]
                options:options
-               context:contextObject];
+               context:(__bridge void *)(contextObject)];
 }
 
 - (void)removeObserver:(NSObject *)anObserver
@@ -142,7 +140,7 @@ NSString * const kIDPKVOPathArray   = @"array";
 
     [super removeObserver:self
                forKeyPath:[self swizzleKeyPathForKeyPath:keyPath]
-                  context:contextObject];
+                  context:(__bridge void *)(contextObject)];
     
     [self.contexts removeObject:contextObject];
 }
@@ -160,7 +158,7 @@ NSString * const kIDPKVOPathArray   = @"array";
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-    IDPKVOContext *contextObject = (IDPKVOContext *)context;
+    IDPKVOContext *contextObject = (__bridge IDPKVOContext *)context;
     [contextObject.observer observeValueForKeyPath:contextObject.keyPath
                                           ofObject:self
                                             change:change

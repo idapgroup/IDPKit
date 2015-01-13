@@ -44,7 +44,7 @@
 	
 	for (id object in result) {
 		if ([object isMemberOfClass:theClass]) {
-			return [[object retain] autorelease];
+			return object;
 		}
 	}
 	

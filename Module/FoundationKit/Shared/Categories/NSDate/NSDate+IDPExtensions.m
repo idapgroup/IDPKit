@@ -76,17 +76,16 @@
 
 + (NSString *)weekdayAtDay:(NSInteger)day {
     NSString *weekday = nil;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [NSLocale currentLocale];
     
     weekday = [formatter.weekdaySymbols objectAtIndex:day - 1];
-    
-    [formatter release];
+  
     return weekday;
 }
 
 + (NSInteger)dayOfWeek:(NSString *)day {
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [NSLocale currentLocale];
     
     return [formatter.weekdaySymbols indexOfObject:day] + 1;
@@ -95,8 +94,8 @@
 + (NSDate *)dateFromString:(NSString *)dateString withStringFormate:(NSString *)stringFromate {
     NSDate *date = nil;
     
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-    NSLocale *locate = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB_POSIX"] autorelease];
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    NSLocale *locate = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB_POSIX"];
     
     [formatter setLocale:locate];
     [formatter setDateFormat:stringFromate];
@@ -109,8 +108,8 @@
 }
 
 - (NSString *)dateToStringWithFormat:(NSString *)stringFromate {
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-    NSLocale *locate = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB_POSIX"] autorelease];
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    NSLocale *locate = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB_POSIX"];
     
     [formatter setLocale:locate];
     [formatter setDateFormat:stringFromate];
@@ -147,13 +146,12 @@
 - (NSString *)weekday {
     NSString *weekday = nil;
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [NSLocale currentLocale];
     NSDateComponents *components = [self components:NSWeekdayCalendarUnit];
     
     weekday = [formatter.weekdaySymbols objectAtIndex:(components.weekday-1)];
     
-    [formatter release];
     return weekday;
 }
 

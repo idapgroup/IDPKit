@@ -27,8 +27,9 @@
     }
     
     id<NSObject> object = (id<NSObject>)[self lastObject];
-    [[object retain] autorelease];
-    [self lastObject];
+    if (object) {
+        [self removeObject:object];
+    }
     
     return object;
 }
@@ -38,7 +39,7 @@
         return nil;
     }
     
-    NSArray *objects = [[self copy] autorelease];
+    NSArray *objects = [self copy];
     
     NSUInteger index = [objects indexOfObject:object] + 1;
     NSRange range = NSMakeRange(index, [objects count] - index);

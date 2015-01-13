@@ -35,7 +35,7 @@
 		   prefetchPaths:(NSArray *)prefetchPathes 
 {
     // Create the fetch request for the entity.
-	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest *fetchRequest = [NSFetchRequest new];
 	
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:[self context]];

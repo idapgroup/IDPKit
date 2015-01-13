@@ -22,8 +22,6 @@
 
 - (void)dealloc {
     self.array = nil;
-    
-    [super dealloc];
 }
 
 - (id)init {

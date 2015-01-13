@@ -41,8 +41,6 @@
     self.observer = nil;
     self.keyPath = nil;
     self.context = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -

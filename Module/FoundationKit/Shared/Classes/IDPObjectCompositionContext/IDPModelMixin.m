@@ -30,12 +30,4 @@
     return me;
 }
 
-#pragma mark -
-#pragma mark Initialization and deallocation
-
-- (void)dealloc {
-    self.target = nil;
-    [super dealloc];
-}
-
 @end

@@ -55,7 +55,7 @@
 #pragma mark NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    IDPReference *reference = [[[self class] referenceWithObject:self.object] retain];
+    IDPReference *reference = [[self class] referenceWithObject:self.object];
     
     return reference;
 }

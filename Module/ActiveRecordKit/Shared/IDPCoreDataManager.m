@@ -99,22 +99,6 @@ static IDPCoreDataManager *__sharedManager = nil;
     return self;
 }
 
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (oneway void)release {
-    //do nothing
-}
-
-- (id)autorelease {
-    return self;
-}
-
 #pragma mark -
 #pragma mark Initialization
 

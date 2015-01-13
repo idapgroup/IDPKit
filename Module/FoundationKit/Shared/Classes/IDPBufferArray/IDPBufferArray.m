@@ -22,9 +22,10 @@
         return nil;
     }
     
-    id<NSObject> object = (id<NSObject>)[self objectAtIndex:0];
-    [[object retain] autorelease];
-    [self removeObjectAtIndex:0];
+    id<NSObject> object = (id<NSObject>)[self firstObject];
+    if (object) {
+        [self removeObjectAtIndex:0];
+    }
     
     return object;
 }
