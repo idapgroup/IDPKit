@@ -12,7 +12,7 @@ extern NSString * const kIDPKVOPathCount;
 
 // A proxy object used, when KVO is needed
 // if you want to KVO to work, observe the key @"count",
-// but modify the array only through the methods of IDPMutableArray
+// but modify the array only through the methods of IDPKVOMutableArray
 
 @interface IDPKVOMutableArray : NSObject
 

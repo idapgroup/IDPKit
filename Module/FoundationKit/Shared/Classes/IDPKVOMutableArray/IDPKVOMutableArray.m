@@ -16,8 +16,8 @@ NSString * const kIDPKVOPathCount   = @"count";
 NSString * const kIDPKVOPathArray   = @"array";
 
 @interface IDPKVOMutableArray ()
-@property (nonatomic, retain)   NSMutableArray    *array;
-@property (nonatomic, retain)   NSMutableArray    *contexts;
+@property (nonatomic, strong)   NSMutableArray    *array;
+@property (nonatomic, strong)   NSMutableArray    *contexts;
 @property (nonatomic, readonly) NSMutableArray    *mutableArrayValue;
 
 // This method swizzles the keyPath count with array
@@ -107,14 +107,14 @@ NSString * const kIDPKVOPathArray   = @"array";
             context:(void *)context
 {
     IDPKVOContext *contextObject = [self contextWithObserver:anObserver
-                                               keyPath:keyPath
-                                               context:context];
+                                                     keyPath:keyPath
+                                                     context:context];
     contextObject.options = options;
     
     [super addObserver:self
             forKeyPath:[self swizzleKeyPathForKeyPath:keyPath]
                options:options
-               context:(__bridge void *)(contextObject)];
+               context:(__bridge void *)contextObject];
 }
 
 - (void)removeObserver:(NSObject *)anObserver
@@ -139,7 +139,7 @@ NSString * const kIDPKVOPathArray   = @"array";
 
     [super removeObserver:self
                forKeyPath:[self swizzleKeyPathForKeyPath:keyPath]
-                  context:(__bridge void *)(contextObject)];
+                  context:(__bridge void *)contextObject];
     
     [self.contexts removeObject:contextObject];
 }
