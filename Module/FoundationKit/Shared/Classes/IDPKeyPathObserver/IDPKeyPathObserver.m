@@ -11,9 +11,9 @@
 #import "IDPPropertyMacros.h"
 
 @interface IDPKeyPathObserver ()
-@property (nonatomic, readwrite, assign) NSObject                       *objectToObserve;
-@property (nonatomic, readwrite, assign) id<IDPKeyPathObserverDelegate> observer;
-@property (nonatomic, readwrite, getter = isObserving, assign)  BOOL    observing;
+@property (nonatomic, assign) NSObject                       *objectToObserve;
+@property (nonatomic, assign) id<IDPKeyPathObserverDelegate> observer;
+@property (nonatomic, assign, getter = isObserving)  BOOL    observing;
 
 
 @end

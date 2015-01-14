@@ -9,7 +9,7 @@
 #import "IDPModel.h"
 
 @interface IDPModel ()
-@property (nonatomic, assign, readwrite)    IDPModelState   state;
+@property (nonatomic, assign)    IDPModelState   state;
 
 @end
 
