@@ -12,8 +12,6 @@
 
 @interface NSArray (IDPPrivateExtensions)
 
-- (NSUInteger)randomWithCount:(NSUInteger)count;
-
 @end
 
 @implementation NSArray (IDPExtensions)
