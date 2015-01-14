@@ -20,19 +20,11 @@
 
 @implementation IDPKeyPathObserver
 
-@synthesize objectToObserve			= _objectToObserve;
-@synthesize observer				= _observer;
-@synthesize observedKeyPathsArray	= _observedKeyPathsArray;
-@synthesize observing				= _observing;
-
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
 	[self stopObserving];
-    self.objectToObserve = nil;
-	self.observer = nil;
-	self.observedKeyPathsArray = nil;
 }
 
 - (id)initWithObservedObject:(NSObject *)object
