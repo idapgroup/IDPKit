@@ -56,7 +56,7 @@
 		[self stopObserving];
 	}
 	
-    _observedKeyPathsArray = theArray;
+    _observedKeyPathsArray = [theArray copy];
 	
 	if (temp) {
 		[self startObserving];
