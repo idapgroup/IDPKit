@@ -12,7 +12,6 @@
 @class IDPOCStack;
 
 @interface NSObject (IDPOCExtensionsPrivate)
-
 @property (nonatomic, retain)   IDPOCStack   *stack;
 
 + (void)setImplementation:(IDPOCImplementation *)object;

@@ -65,8 +65,8 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 }
 
 @interface IDPOCContext ()
-@property (nonatomic, retain) id<NSObject>      target;
-@property (nonatomic, retain) id<NSObject>      mixin;
+@property (nonatomic, strong) id<NSObject>      target;
+@property (nonatomic, strong) id<NSObject>      mixin;
 
 - (void)setupNSObjectImplementation;
 
@@ -109,14 +109,6 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 + (NSArray *)extendingObjectsOfObject:(id<NSObject>)target {
     NSObject *object = target;
     return [NSArray arrayWithArray:object.stack];
-}
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.target = nil;
-    self.mixin = nil;
 }
 
 #pragma mark -
