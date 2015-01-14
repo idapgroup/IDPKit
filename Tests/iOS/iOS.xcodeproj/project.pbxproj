@@ -48,8 +48,6 @@
 		D7BD80741A64641F004E2041 /* IDPKVOContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FD81A64641F004E2041 /* IDPKVOContext.m */; };
 		D7BD80751A64641F004E2041 /* IDPKVOMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FDA1A64641F004E2041 /* IDPKVOMutableArray.m */; };
 		D7BD80761A64641F004E2041 /* IDPKVOMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FDA1A64641F004E2041 /* IDPKVOMutableArray.m */; };
-		D7BD80771A64641F004E2041 /* IDPMachTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FDD1A64641F004E2041 /* IDPMachTimer.m */; };
-		D7BD80781A64641F004E2041 /* IDPMachTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FDD1A64641F004E2041 /* IDPMachTimer.m */; };
 		D7BD80791A64641F004E2041 /* IDPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FE01A64641F004E2041 /* IDPModel.m */; };
 		D7BD807A1A64641F004E2041 /* IDPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FE01A64641F004E2041 /* IDPModel.m */; };
 		D7BD807D1A64641F004E2041 /* IDPMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FE71A64641F004E2041 /* IDPMutableArray.m */; };
@@ -108,6 +106,8 @@
 		D7BD80B81A64641F004E2041 /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD80411A64641F004E2041 /* UIViewController+IDPExtensions.m */; };
 		D7BD80BF1A64641F004E2041 /* IDPView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD804D1A64641F004E2041 /* IDPView.m */; };
 		D7BD80C01A64641F004E2041 /* IDPView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD804D1A64641F004E2041 /* IDPView.m */; };
+		D7D779E21A66C59F00B91549 /* IDPMachTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D779E11A66C59F00B91549 /* IDPMachTimer.m */; };
+		D7D779E31A66C59F00B91549 /* IDPMachTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D779E11A66C59F00B91549 /* IDPMachTimer.m */; };
 		D7FF6EE71A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF6EE61A6552A50049286B /* NSPathUtilities+IDPExtensions.m */; };
 		D7FF6EE81A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF6EE61A6552A50049286B /* NSPathUtilities+IDPExtensions.m */; };
 		D7FF6EEC1A6574F40049286B /* IDPDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF6EEB1A6574F40049286B /* IDPDispatch.m */; };
@@ -176,8 +176,6 @@
 		D7BD7FD81A64641F004E2041 /* IDPKVOContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOContext.m; sourceTree = "<group>"; };
 		D7BD7FD91A64641F004E2041 /* IDPKVOMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOMutableArray.h; sourceTree = "<group>"; };
 		D7BD7FDA1A64641F004E2041 /* IDPKVOMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOMutableArray.m; sourceTree = "<group>"; };
-		D7BD7FDC1A64641F004E2041 /* IDPMachTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMachTimer.h; sourceTree = "<group>"; };
-		D7BD7FDD1A64641F004E2041 /* IDPMachTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMachTimer.m; sourceTree = "<group>"; };
 		D7BD7FDF1A64641F004E2041 /* IDPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModel.h; sourceTree = "<group>"; };
 		D7BD7FE01A64641F004E2041 /* IDPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModel.m; sourceTree = "<group>"; };
 		D7BD7FE11A64641F004E2041 /* IDPModelObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelObserver.h; sourceTree = "<group>"; };
@@ -242,6 +240,8 @@
 		D7BD804C1A64641F004E2041 /* IDPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPView.h; sourceTree = "<group>"; };
 		D7BD804D1A64641F004E2041 /* IDPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPView.m; sourceTree = "<group>"; };
 		D7BD804E1A64641F004E2041 /* TouchKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchKit.h; sourceTree = "<group>"; };
+		D7D779E01A66C59F00B91549 /* IDPMachTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMachTimer.h; sourceTree = "<group>"; };
+		D7D779E11A66C59F00B91549 /* IDPMachTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMachTimer.m; sourceTree = "<group>"; };
 		D7FF6EE51A6552A50049286B /* NSPathUtilities+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPathUtilities+IDPExtensions.h"; sourceTree = "<group>"; };
 		D7FF6EE61A6552A50049286B /* NSPathUtilities+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPathUtilities+IDPExtensions.m"; sourceTree = "<group>"; };
 		D7FF6EEA1A6574F40049286B /* IDPDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPDispatch.h; sourceTree = "<group>"; };
@@ -492,7 +492,6 @@
 				D7FF6EE91A6574F40049286B /* IDPDispatch */,
 				D7BD7FD31A64641F004E2041 /* IDPKeyPathObserver */,
 				D7BD7FD61A64641F004E2041 /* IDPKVOMutableArray */,
-				D7BD7FDB1A64641F004E2041 /* IDPMachTimer */,
 				D7BD7FDE1A64641F004E2041 /* IDPModels */,
 				D7BD7FE51A64641F004E2041 /* IDPMutableArray */,
 				D7BD7FE81A64641F004E2041 /* IDPMutableDictionary */,
@@ -523,15 +522,6 @@
 				D7BD7FDA1A64641F004E2041 /* IDPKVOMutableArray.m */,
 			);
 			path = IDPKVOMutableArray;
-			sourceTree = "<group>";
-		};
-		D7BD7FDB1A64641F004E2041 /* IDPMachTimer */ = {
-			isa = PBXGroup;
-			children = (
-				D7BD7FDC1A64641F004E2041 /* IDPMachTimer.h */,
-				D7BD7FDD1A64641F004E2041 /* IDPMachTimer.m */,
-			);
-			path = IDPMachTimer;
 			sourceTree = "<group>";
 		};
 		D7BD7FDE1A64641F004E2041 /* IDPModels */ = {
@@ -625,6 +615,7 @@
 		D7BD80121A64641F004E2041 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D7D779DF1A66C59F00B91549 /* IDPMachTimer */,
 				D7BD80131A64641F004E2041 /* IDPMath */,
 				D7BD80161A64641F004E2041 /* IDPPropertyMacros.h */,
 			);
@@ -818,6 +809,15 @@
 			path = IDPView;
 			sourceTree = "<group>";
 		};
+		D7D779DF1A66C59F00B91549 /* IDPMachTimer */ = {
+			isa = PBXGroup;
+			children = (
+				D7D779E01A66C59F00B91549 /* IDPMachTimer.h */,
+				D7D779E11A66C59F00B91549 /* IDPMachTimer.m */,
+			);
+			path = IDPMachTimer;
+			sourceTree = "<group>";
+		};
 		D7FF6EE41A65527A0049286B /* NSPathUtilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -969,7 +969,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7BD80771A64641F004E2041 /* IDPMachTimer.m in Sources */,
+				D7D779E21A66C59F00B91549 /* IDPMachTimer.m in Sources */,
 				D7BD80811A64641F004E2041 /* IDPModelMixin.m in Sources */,
 				D7BD80631A64641F004E2041 /* NSDate+IDPExtensions.m in Sources */,
 				D7BD80751A64641F004E2041 /* IDPKVOMutableArray.m in Sources */,
@@ -1026,6 +1026,7 @@
 				D7BD80621A64641F004E2041 /* NSArray+IDPExtensions.m in Sources */,
 				D7BD80A41A64641F004E2041 /* IDPNetworkReachability.m in Sources */,
 				D7BD808C1A64641F004E2041 /* NSObject+IDPOCExtensionsPrivate.m in Sources */,
+				D7D779E31A66C59F00B91549 /* IDPMachTimer.m in Sources */,
 				D7BD80761A64641F004E2041 /* IDPKVOMutableArray.m in Sources */,
 				D7BD80A81A64641F004E2041 /* UIAlertView+IDPExtensions.m in Sources */,
 				D7BD80841A64641F004E2041 /* IDPOCContext.m in Sources */,
@@ -1035,7 +1036,6 @@
 				D7BD80A21A64641F004E2041 /* CALayer+IDPExtensions.m in Sources */,
 				D7BD808E1A64641F004E2041 /* IDPObservableObject.m in Sources */,
 				D7FF6EED1A6574F40049286B /* IDPDispatch.m in Sources */,
-				D7BD80781A64641F004E2041 /* IDPMachTimer.m in Sources */,
 				D7BD80921A64641F004E2041 /* IDPRetainingReference.m in Sources */,
 				D7BD80C01A64641F004E2041 /* IDPView.m in Sources */,
 				D7BD80641A64641F004E2041 /* NSDate+IDPExtensions.m in Sources */,

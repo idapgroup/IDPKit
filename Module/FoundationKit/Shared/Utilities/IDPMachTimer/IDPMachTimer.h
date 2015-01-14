@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface IDPMachTimer : NSObject
+@property (nonatomic, readonly) long double duration;
 
-+ (id)timerWithName:(NSString *)name;
+@property (nonatomic, readonly, getter = isMeasuring)   BOOL measuring;
 
 - (void)start;
 - (void)stop;
