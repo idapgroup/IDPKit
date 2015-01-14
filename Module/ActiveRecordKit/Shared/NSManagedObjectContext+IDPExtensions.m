@@ -10,7 +10,7 @@
 
 #import "IDPCoreDataManager.h"
 
-#import "NSObject+IDPExtensions.h"
+
 
 @interface NSManagedObjectContext (IDPExtensionsPrivate)
 + (NSManagedObjectContext *)context;

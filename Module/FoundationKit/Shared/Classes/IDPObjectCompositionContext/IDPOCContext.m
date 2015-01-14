@@ -14,7 +14,7 @@
 #import <objc/runtime.h>
 
 #import "NSObject+IDPOCExtensionsPrivate.h"
-#import "NSObject+IDPExtensions.h"
+
 
 static id IDPForwardingTargetForSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector) {
     NSObject *object = (NSObject *)_self;
@@ -87,7 +87,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 + (void)extendObject:(id<NSObject>)target
           withObject:(id<NSObject>)mixin
 {
-    IDPOCContext *context = [self object];
+    IDPOCContext *context = [self new];
     context.target = target;
     context.mixin = mixin;
     
@@ -126,7 +126,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
     NSObject *target = self.target;
     
     if (nil == target.stack) {
-        target.stack = [IDPOCStack object];
+        target.stack = [IDPOCStack new];
         [self setupNSObjectImplementation];
     }
     
@@ -139,7 +139,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 - (void)setupNSObjectImplementation {
     Class theClass = [NSObject class];
     if (nil == [theClass implementation]) {
-        IDPOCImplementation *implementation = [IDPOCImplementation object];
+        IDPOCImplementation *implementation = [IDPOCImplementation new];
         
         IMP imp = [self setImplementation:(IMP)IDPForwardingTargetForSelectorMixinMethod
                               forSelector:@selector(forwardingTargetForSelector:)

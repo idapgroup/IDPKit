@@ -10,7 +10,6 @@
 
 #import "IDPKVOContext.h"
 
-#import "NSObject+IDPExtensions.h"
 #import "NSArray+IDPExtensions.h"
 
 NSString * const kIDPKVOPathCount   = @"count";
@@ -47,7 +46,7 @@ NSString * const kIDPKVOPathArray   = @"array";
     return [self arrayWithArray:nil];
 }
 + (NSMutableArray *)arrayWithArray:(NSArray *)array {
-    IDPKVOMutableArray *result = [self object];
+    IDPKVOMutableArray *result = [self new];
     if (nil != array) {
         result.array = [NSMutableArray arrayWithArray:array];
     }

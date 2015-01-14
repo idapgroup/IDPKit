@@ -8,8 +8,6 @@
 
 #import "IDPKVOContext.h"
 
-#import "NSObject+IDPExtensions.h"
-
 @implementation IDPKVOContext
 
 @synthesize observer    = _observer;
@@ -25,7 +23,7 @@
                   options:(NSKeyValueObservingOptions)options
                   context:(void *)context
 {
-    IDPKVOContext *result = [IDPKVOContext object];
+    IDPKVOContext *result = [IDPKVOContext new];
     result.observer = observer;
     result.keyPath = keyPath;
     result.options = options;

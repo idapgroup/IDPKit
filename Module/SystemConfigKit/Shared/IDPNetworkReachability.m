@@ -8,7 +8,7 @@
 
 #import "IDPNetworkReachability.h"
 
-#import "NSObject+IDPExtensions.h"
+
 
 #import "IDPPropertyMacros.h"
 
@@ -38,7 +38,7 @@ const NSInteger     IDPNetworkReachabilityErrorInternetNotReachable             
 #pragma mark Class Methods
 
 + (id)keyForAddress:(const struct sockaddr_in *)address {
-    _IDPNetworkReachabilityAddressKey *key = [self object];
+    _IDPNetworkReachabilityAddressKey *key = [self new];
     key.address = *address;
     
     return key;
@@ -202,7 +202,7 @@ static NSMutableDictionary  *__reachabilities__ = nil;
     IDPNetworkReachability *result = NULL;
     
     if (NULL != reachability) {
-		result = [self object];
+		result = [self new];
         
 		result.reachability = reachability;
         result.type = type;

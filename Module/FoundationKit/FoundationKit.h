@@ -6,7 +6,6 @@
 #import "NSDate+IDPExtensions.h"
 #import "NSDateComponents+IDPExtinsions.h"
 #import "NSFileManager+IDPExtensions.h"
-#import "NSObject+IDPExtensions.h"
 #import "NSObject+IDPOCExtensions.h"
 #import "NSString+IDPExtensions.h"
 #import "IDPMath.h"

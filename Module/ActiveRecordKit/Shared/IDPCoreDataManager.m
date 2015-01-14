@@ -13,7 +13,7 @@
 #import "IDPCoreDataManager.h"
 
 #import "NSFileManager+IDPExtensions.h"
-#import "NSObject+IDPExtensions.h"
+
 
 static NSString * const kStore  = @"Store";
 
