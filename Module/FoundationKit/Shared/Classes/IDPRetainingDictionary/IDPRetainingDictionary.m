@@ -8,7 +8,7 @@
 
 #import "IDPRetainingDictionary.h"
 
-#import "IDPRetainingReference.h"
+#import "IDPStrongReference.h"
 
 @interface IDPRetainingDictionary ()
 @property (nonatomic, retain) NSMutableArray    *keysCache;
@@ -31,7 +31,7 @@
 - (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys {
     NSMutableArray *references = [NSMutableArray arrayWithCapacity:[keys count]];
     for (id<NSObject> key in keys) {
-        [references addObject:[IDPRetainingReference referenceWithObject:key]];
+        [references addObject:[IDPStrongReference referenceWithObject:key]];
     }
     
     self = [super initWithObjects:objects forKeys:references];
@@ -42,7 +42,7 @@
 }
 
 - (id)objectForKey:(id)aKey {
-    IDPRetainingReference *reference = [IDPRetainingReference referenceWithObject:aKey];
+    IDPStrongReference *reference = [IDPStrongReference referenceWithObject:aKey];
     return [super objectForKey:reference];
 }
 
@@ -64,14 +64,14 @@
 
 - (void)setObject:(id)anObject forKey:(id<NSCopying>)aKey {
     self.keysCache = nil;
-    IDPRetainingReference *reference = [IDPRetainingReference referenceWithObject:aKey];
+    IDPStrongReference *reference = [IDPStrongReference referenceWithObject:aKey];
     
     [super setObject:anObject forKey:reference];
 }
 
 - (void)removeObjectForKey:(id)aKey {
     self.keysCache = nil;
-    IDPRetainingReference *reference = [IDPRetainingReference referenceWithObject:aKey];
+    IDPStrongReference *reference = [IDPStrongReference referenceWithObject:aKey];
     
     [super removeObjectForKey:reference];
 }

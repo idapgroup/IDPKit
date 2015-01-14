@@ -9,20 +9,14 @@
 #import "IDPMutableArray.h"
 
 @interface IDPMutableArray ()
-@property (nonatomic, retain)   NSMutableArray      *array;
+@property (nonatomic, strong)   NSMutableArray      *array;
 
 @end
 
 @implementation IDPMutableArray
 
-@synthesize array           = _array;
-
 #pragma mark -
 #pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.array = nil;
-}
 
 - (id)init {
     return [self initWithCapacity:1];

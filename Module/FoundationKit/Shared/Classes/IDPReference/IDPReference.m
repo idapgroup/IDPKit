@@ -8,8 +8,6 @@
 
 #import "IDPReference.h"
 
-
-
 @interface IDPReference ()
 @property (nonatomic, readwrite) id object;
 @end

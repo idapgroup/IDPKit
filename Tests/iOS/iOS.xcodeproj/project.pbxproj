@@ -70,8 +70,8 @@
 		D7BD808E1A64641F004E2041 /* IDPObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FFA1A64641F004E2041 /* IDPObservableObject.m */; };
 		D7BD808F1A64641F004E2041 /* IDPReference.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FFD1A64641F004E2041 /* IDPReference.m */; };
 		D7BD80901A64641F004E2041 /* IDPReference.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FFD1A64641F004E2041 /* IDPReference.m */; };
-		D7BD80911A64641F004E2041 /* IDPRetainingReference.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FFF1A64641F004E2041 /* IDPRetainingReference.m */; };
-		D7BD80921A64641F004E2041 /* IDPRetainingReference.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FFF1A64641F004E2041 /* IDPRetainingReference.m */; };
+		D7BD80911A64641F004E2041 /* IDPStrongReference.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FFF1A64641F004E2041 /* IDPStrongReference.m */; };
+		D7BD80921A64641F004E2041 /* IDPStrongReference.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FFF1A64641F004E2041 /* IDPStrongReference.m */; };
 		D7BD80931A64641F004E2041 /* IDPWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD80011A64641F004E2041 /* IDPWeakReference.m */; };
 		D7BD80941A64641F004E2041 /* IDPWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD80011A64641F004E2041 /* IDPWeakReference.m */; };
 		D7BD80951A64641F004E2041 /* IDPRetainingDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD80041A64641F004E2041 /* IDPRetainingDictionary.m */; };
@@ -200,8 +200,8 @@
 		D7BD7FFA1A64641F004E2041 /* IDPObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableObject.m; sourceTree = "<group>"; };
 		D7BD7FFC1A64641F004E2041 /* IDPReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPReference.h; sourceTree = "<group>"; };
 		D7BD7FFD1A64641F004E2041 /* IDPReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPReference.m; sourceTree = "<group>"; };
-		D7BD7FFE1A64641F004E2041 /* IDPRetainingReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPRetainingReference.h; sourceTree = "<group>"; };
-		D7BD7FFF1A64641F004E2041 /* IDPRetainingReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPRetainingReference.m; sourceTree = "<group>"; };
+		D7BD7FFE1A64641F004E2041 /* IDPStrongReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPStrongReference.h; sourceTree = "<group>"; };
+		D7BD7FFF1A64641F004E2041 /* IDPStrongReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPStrongReference.m; sourceTree = "<group>"; };
 		D7BD80001A64641F004E2041 /* IDPWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPWeakReference.h; sourceTree = "<group>"; };
 		D7BD80011A64641F004E2041 /* IDPWeakReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPWeakReference.m; sourceTree = "<group>"; };
 		D7BD80031A64641F004E2041 /* IDPRetainingDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPRetainingDictionary.h; sourceTree = "<group>"; };
@@ -586,8 +586,8 @@
 			children = (
 				D7BD7FFC1A64641F004E2041 /* IDPReference.h */,
 				D7BD7FFD1A64641F004E2041 /* IDPReference.m */,
-				D7BD7FFE1A64641F004E2041 /* IDPRetainingReference.h */,
-				D7BD7FFF1A64641F004E2041 /* IDPRetainingReference.m */,
+				D7BD7FFE1A64641F004E2041 /* IDPStrongReference.h */,
+				D7BD7FFF1A64641F004E2041 /* IDPStrongReference.m */,
 				D7BD80001A64641F004E2041 /* IDPWeakReference.h */,
 				D7BD80011A64641F004E2041 /* IDPWeakReference.m */,
 			);
@@ -999,7 +999,7 @@
 				D7BD80931A64641F004E2041 /* IDPWeakReference.m in Sources */,
 				D7BD80511A64641F004E2041 /* NSManagedObject+IDPExtensions.m in Sources */,
 				D7BD80AD1A64641F004E2041 /* UIImage+IDPExtensions.m in Sources */,
-				D7BD80911A64641F004E2041 /* IDPRetainingReference.m in Sources */,
+				D7BD80911A64641F004E2041 /* IDPStrongReference.m in Sources */,
 				D7BD808F1A64641F004E2041 /* IDPReference.m in Sources */,
 				D7BD80A11A64641F004E2041 /* CALayer+IDPExtensions.m in Sources */,
 				D7BD80791A64641F004E2041 /* IDPModel.m in Sources */,
@@ -1036,7 +1036,7 @@
 				D7BD80A21A64641F004E2041 /* CALayer+IDPExtensions.m in Sources */,
 				D7BD808E1A64641F004E2041 /* IDPObservableObject.m in Sources */,
 				D7FF6EED1A6574F40049286B /* IDPDispatch.m in Sources */,
-				D7BD80921A64641F004E2041 /* IDPRetainingReference.m in Sources */,
+				D7BD80921A64641F004E2041 /* IDPStrongReference.m in Sources */,
 				D7BD80C01A64641F004E2041 /* IDPView.m in Sources */,
 				D7BD80641A64641F004E2041 /* NSDate+IDPExtensions.m in Sources */,
 				D7BD80A61A64641F004E2041 /* NSBundle+IDPExtensions.m in Sources */,
