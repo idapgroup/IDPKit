@@ -11,30 +11,20 @@
 #import "IDPPropertyMacros.h"
 
 @interface IDPKeyPathObserver ()
-@property (nonatomic, readwrite, assign) NSObject                       *objectToObserve;
-@property (nonatomic, readwrite, assign) id<IDPKeyPathObserverDelegate> observer;
-@property (nonatomic, readwrite, getter = isObserving, assign)  BOOL    observing;
+@property (nonatomic, assign) NSObject                       *objectToObserve;
+@property (nonatomic, assign) id<IDPKeyPathObserverDelegate> observer;
+@property (nonatomic, assign, getter = isObserving)  BOOL    observing;
 
 
 @end
 
 @implementation IDPKeyPathObserver
 
-@synthesize objectToObserve			= _objectToObserve;
-@synthesize observer				= _observer;
-@synthesize observedKeyPathsArray	= _observedKeyPathsArray;
-@synthesize observing				= _observing;
-
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
 	[self stopObserving];
-    self.objectToObserve = nil;
-	self.observer = nil;
-	self.observedKeyPathsArray = nil;
-	
-    [super dealloc];
 }
 
 - (id)initWithObservedObject:(NSObject *)object
@@ -58,7 +48,7 @@
 		[self stopObserving];
 	}
 	
-	IDPNonatomicRetainPropertySynthesize(_observedKeyPathsArray, theArray);
+    _observedKeyPathsArray = [theArray copy];
 	
 	if (temp) {
 		[self startObserving];

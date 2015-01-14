@@ -34,22 +34,21 @@ typedef enum {
 } IDPNetworkReachabilityType;
 
 @interface IDPNetworkReachability: NSObject
-
 // observable
-@property (nonatomic, assign, readonly) IDPNetworkStatus            status;
-@property (nonatomic, assign, readonly) IDPNetworkReachabilityType  type;
-@property (nonatomic, assign, readonly) SCNetworkReachabilityRef    reachability;
+@property (nonatomic, readonly) IDPNetworkStatus            status;
+@property (nonatomic, readonly) IDPNetworkReachabilityType  type;
+@property (nonatomic, readonly) SCNetworkReachabilityRef    reachability;
 
 // count of objects, who scheduled the reachability
-@property (nonatomic, assign, readonly) NSUInteger                  scheduleCount;
+@property (nonatomic, readonly) NSUInteger                  scheduleCount;
 
 // Depends on the reachability kind
 // WWAN may be available, but not active until a connection has been established.
 // WiFi may require a connection for VPN on Demand.
-@property (nonatomic, assign, readonly, getter = isConnectionRequired)  BOOL     connectionRequired;
-@property (nonatomic, assign, readonly, getter = isScheduled)           BOOL     scheduled;
+@property (nonatomic, readonly, getter = isConnectionRequired)  BOOL     connectionRequired;
+@property (nonatomic, readonly, getter = isScheduled)           BOOL     scheduled;
 
-@property (nonatomic, readonly, getter = isReachable)                   BOOL     reachable;
+@property (nonatomic, readonly, getter = isReachable)           BOOL     reachable;
 
 // default reachability for internet conenction
 + (id)reachability;

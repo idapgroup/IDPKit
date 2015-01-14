@@ -10,11 +10,8 @@
 
 @implementation UIViewController (IDPExtensions)
 
-- (UITableView *)tableView {
-    if ([self.view respondsToSelector:@selector(tableView)]) {
-        return [self.view performSelector:@selector(tableView)];
-    }
-    return nil;
++ (instancetype)object {
+    return [self new];
 }
 
 @end

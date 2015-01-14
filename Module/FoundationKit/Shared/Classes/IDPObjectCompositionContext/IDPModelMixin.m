@@ -8,8 +8,6 @@
 
 #import "IDPModelMixin.h"
 
-#import "NSObject+IDPExtensions.h"
-
 @interface IDPModelMixin ()
 @property (nonatomic, assign)   id<IDPModel> target;
 @end
@@ -22,20 +20,12 @@
 #pragma mark Class methods
 
 + (instancetype)modelWithTarget:(id<IDPModel>)target {
-    IDPModelMixin *me = [self object];
+    IDPModelMixin *me = [self new];
     if (me) {
         me.target = target;
     }
     
     return me;
-}
-
-#pragma mark -
-#pragma mark Initialization and deallocation
-
-- (void)dealloc {
-    self.target = nil;
-    [super dealloc];
 }
 
 @end

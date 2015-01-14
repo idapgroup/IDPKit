@@ -8,7 +8,7 @@
 
 #import "IDPNetworkReachability.h"
 
-#import "NSObject+IDPExtensions.h"
+
 
 #import "IDPPropertyMacros.h"
 
@@ -32,13 +32,11 @@ const NSInteger     IDPNetworkReachabilityErrorInternetNotReachable             
 
 @implementation _IDPNetworkReachabilityAddressKey
 
-@synthesize address     = _address;
-
 #pragma mark-
 #pragma mark Class Methods
 
 + (id)keyForAddress:(const struct sockaddr_in *)address {
-    _IDPNetworkReachabilityAddressKey *key = [self object];
+    _IDPNetworkReachabilityAddressKey *key = [self new];
     key.address = *address;
     
     return key;
@@ -85,14 +83,14 @@ const NSInteger     IDPNetworkReachabilityErrorInternetNotReachable             
 #pragma mark -
 
 @interface IDPNetworkReachability ()
-@property (nonatomic, assign, readwrite) IDPNetworkStatus               status;
-@property (nonatomic, assign, readwrite) IDPNetworkReachabilityType     type;
+@property (nonatomic, assign) IDPNetworkStatus               status;
+@property (nonatomic, assign) IDPNetworkReachabilityType     type;
 
 // assign is here, 'cause properties for core data can't be retain synthesized
 // still, the property is a retained one
-@property (nonatomic, assign, readwrite) SCNetworkReachabilityRef       reachability;
+@property (nonatomic, assign) SCNetworkReachabilityRef       reachability;
 
-@property (nonatomic, assign, readwrite) NSUInteger                     scheduleCount;
+@property (nonatomic, assign) NSUInteger                     scheduleCount;
 
 + (id)reachabilityForKey:(id)key;
 + (void)setReachability:(IDPNetworkReachability *)reachability forKey:(id)key;
@@ -104,13 +102,11 @@ const NSInteger     IDPNetworkReachabilityErrorInternetNotReachable             
 @end
 
 static void IDPNetworkReachabilitySatusChangedCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void *info) {
-	NSAutoreleasePool* myPool = [[NSAutoreleasePool alloc] init];
-	
-	IDPNetworkReachability *reachability = (IDPNetworkReachability *)info;
-	// Post a notification to notify the client that the network reachability changed.
-    [reachability updateReachabilityStatusWithFlags:flags];
-	
-	[myPool release];
+    @autoreleasepool {
+        IDPNetworkReachability *reachability = (__bridge IDPNetworkReachability *)info;
+        // Post a notification to notify the client that the network reachability changed.
+        [reachability updateReachabilityStatusWithFlags:flags];
+    }
 }
 
 static NSMutableDictionary  *__reachabilities__ = nil;
@@ -119,11 +115,6 @@ static NSMutableDictionary  *__reachabilities__ = nil;
 #pragma mark -
 
 @implementation IDPNetworkReachability
-
-@synthesize status                  = _status;
-@synthesize type                    = _type;
-@synthesize reachability            = _reachability;
-@synthesize scheduleCount           = _scheduleCount;
 
 @dynamic connectionRequired;
 @dynamic scheduled;
@@ -204,7 +195,7 @@ static NSMutableDictionary  *__reachabilities__ = nil;
     IDPNetworkReachability *result = NULL;
     
     if (NULL != reachability) {
-		result = [self object];
+		result = [self new];
         
 		result.reachability = reachability;
         result.type = type;
@@ -232,8 +223,6 @@ static NSMutableDictionary  *__reachabilities__ = nil;
 - (void)dealloc {
     [self unshedule];
     self.reachability = NULL;
-    
-    [super dealloc];
 }
 
 #pragma mark -
@@ -281,7 +270,7 @@ static NSMutableDictionary  *__reachabilities__ = nil;
     BOOL result = NO;
     
     SCNetworkReachabilityRef reachability = self.reachability;
-	SCNetworkReachabilityContext context = {0, self, NULL, NULL, NULL};
+	SCNetworkReachabilityContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
     
 	if (SCNetworkReachabilitySetCallback(reachability, IDPNetworkReachabilitySatusChangedCallback, &context)) {
 		result = SCNetworkReachabilityScheduleWithRunLoop(reachability, CFRunLoopGetMain(), kCFRunLoopDefaultMode);

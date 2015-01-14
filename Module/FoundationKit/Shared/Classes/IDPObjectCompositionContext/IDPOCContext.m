@@ -14,7 +14,7 @@
 #import <objc/runtime.h>
 
 #import "NSObject+IDPOCExtensionsPrivate.h"
-#import "NSObject+IDPExtensions.h"
+
 
 static id IDPForwardingTargetForSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector) {
     NSObject *object = (NSObject *)_self;
@@ -65,8 +65,8 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 }
 
 @interface IDPOCContext ()
-@property (nonatomic, retain) id<NSObject>      target;
-@property (nonatomic, retain) id<NSObject>      mixin;
+@property (nonatomic, strong) id<NSObject>      target;
+@property (nonatomic, strong) id<NSObject>      mixin;
 
 - (void)setupNSObjectImplementation;
 
@@ -87,7 +87,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 + (void)extendObject:(id<NSObject>)target
           withObject:(id<NSObject>)mixin
 {
-    IDPOCContext *context = [self object];
+    IDPOCContext *context = [self new];
     context.target = target;
     context.mixin = mixin;
     
@@ -112,23 +112,13 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 }
 
 #pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.target = nil;
-    self.mixin = nil;
-    
-    [super dealloc];
-}
-
-#pragma mark -
 #pragma mark Public
 
 - (void)invoke {
     NSObject *target = self.target;
     
     if (nil == target.stack) {
-        target.stack = [IDPOCStack object];
+        target.stack = [IDPOCStack new];
         [self setupNSObjectImplementation];
     }
     
@@ -141,7 +131,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 - (void)setupNSObjectImplementation {
     Class theClass = [NSObject class];
     if (nil == [theClass implementation]) {
-        IDPOCImplementation *implementation = [IDPOCImplementation object];
+        IDPOCImplementation *implementation = [IDPOCImplementation new];
         
         IMP imp = [self setImplementation:(IMP)IDPForwardingTargetForSelectorMixinMethod
                               forSelector:@selector(forwardingTargetForSelector:)

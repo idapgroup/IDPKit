@@ -8,20 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
-#import "IDPSerialization.h"
-
-@interface NSString (IDPExtensions) <IDPSerialization>
+@interface NSString (IDPExtensions)
 
 - (NSString *)urlEncode;
 
-- (BOOL)isEqualToStringWithoutWhitespace:(NSString *)aString;
 - (BOOL)isEmpty;
-- (BOOL)containString:(NSString *)substring;
-- (BOOL)containsStringWithCaseInsensitive:(NSString *)substring;
+- (BOOL)containsString:(NSString *)substring;
+- (BOOL)containsCaseInsensitiveString:(NSString *)substring;
 
-- (NSString *)removeEntryOfStrings:(NSArray *)entries;
-- (BOOL)isAllDigits;
+/**
+ *	Removes substrings from strings using case sensitive search ignoring width differences in characters that have full-width and half-width forms.
+ *
+ *	@param substrings Array of substrings to remove.
+ *
+ *	@return String without substrings.
+ */
+- (NSString *)removeSubstrings:(NSArray *)substrings;
 
-- (BOOL)containWord:(NSString *)word;
+/**
+ *	Removes substrings from strings.
+ *
+ *	@param substrings Array of substrings to remove.
+ *	@param options    A mask specifying substring search options.
+ *
+ *	@return String without substrings.
+ */
+- (NSString *)removeSubstrings:(NSArray *)substrings
+                       options:(NSStringCompareOptions)options;
 
 @end

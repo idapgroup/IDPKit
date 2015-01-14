@@ -8,15 +8,15 @@
 
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
 #endif
 
 #import "IDPCoreDataManager.h"
 
 #import "NSFileManager+IDPExtensions.h"
-#import "NSObject+IDPExtensions.h"
 
 static NSString * const kStore  = @"Store";
-
 
 static IDPCoreDataManager *__sharedManager = nil;
 
@@ -25,18 +25,14 @@ static IDPCoreDataManager *__sharedManager = nil;
 @property (nonatomic, copy) NSString *momName;
 @property (nonatomic, copy) NSString *storeType;
 
+@property (nonatomic, strong) NSManagedObjectContext		*managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectModel			*managedObjectModel;
+@property (nonatomic, strong) NSPersistentStoreCoordinator	*persistentStoreCoordinator;
+
 - (void)applicationWillTerminate:(NSNotification *)notification;
 @end
 
 @implementation IDPCoreDataManager
-
-@synthesize storeName	= _storeName;
-@synthesize momName		= _momName;
-@synthesize storeType	= _storeType;
-
-@dynamic managedObjectContext;
-@dynamic managedObjectModel;
-@dynamic persistentStoreCoordinator;
 
 #pragma mark -
 #pragma mark Singleton
@@ -96,22 +92,6 @@ static IDPCoreDataManager *__sharedManager = nil;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (oneway void)release {
-    //do nothing
-}
-
-- (id)autorelease {
     return self;
 }
 
@@ -183,14 +163,13 @@ static IDPCoreDataManager *__sharedManager = nil;
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
 - (NSManagedObjectContext *)managedObjectContext {
-    
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        self.managedObjectContext = [[NSManagedObjectContext alloc] init];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return _managedObjectContext;
@@ -202,7 +181,6 @@ static IDPCoreDataManager *__sharedManager = nil;
  If the model doesn't already exist, it is created from the application's model.
  */
 - (NSManagedObjectModel *)managedObjectModel {
-    
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
@@ -217,7 +195,7 @@ static IDPCoreDataManager *__sharedManager = nil;
 			abort();
 		}
 		NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
-		_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+		self.managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 	} else {
 		NSLog(@"momd name was not specified");
 		abort();
@@ -247,7 +225,7 @@ static IDPCoreDataManager *__sharedManager = nil;
 											   stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", self.storeName, @".sqlite"]]];
     
     NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    self.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 	NSString *storeType = ((nil == self.storeType)?NSSQLiteStoreType:self.storeType);
     if (![_persistentStoreCoordinator addPersistentStoreWithType:storeType 
 												   configuration:nil 

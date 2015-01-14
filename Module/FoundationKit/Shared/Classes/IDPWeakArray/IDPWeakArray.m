@@ -8,11 +8,6 @@
 
 #import "IDPWeakArray.h"
 
-#import "NSObject+IDPExtensions.h"
-
-#pragma mark -
-#pragma mark IDPMutableWeakArray
-
 @interface IDPMutableWeakArray ()
 
 @end

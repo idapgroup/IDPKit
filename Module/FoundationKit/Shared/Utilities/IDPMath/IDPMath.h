@@ -12,6 +12,16 @@
 #define DEGREES_TO_RADIANS(degrees) ((degrees) * (M_PI / 180))
 
 /**
+ Generate a random number.
+ @param range
+ The min digit in range.
+
+ @return Digit in range from 0 to (range-1).
+ */
+extern
+NSInteger IDPRandomNumber(NSInteger range);
+
+/**
  Generate a random number in range min and max - 1.
  @param min
         The min digit in range.
@@ -19,4 +29,5 @@
         The max digit in range.
  @return Digit in range from min to (max-1).
  */
+extern
 NSInteger IDPRandomNumberInRange(NSInteger min, NSInteger max);

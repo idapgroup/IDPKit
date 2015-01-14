@@ -52,11 +52,9 @@
     CGImageRef bitmap = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
     
-    CGImageRelease(bitmap);
-    
     CALayer *overlayLayerMask = [CALayer layer];
     overlayLayerMask.frame = rect;
-    overlayLayerMask.contents = (id)bitmap;
+    overlayLayerMask.contents = (id)CFBridgingRelease(bitmap);
 
     return overlayLayerMask;
 }

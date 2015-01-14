@@ -9,7 +9,7 @@
 #import "IDPModel.h"
 
 @interface IDPModel ()
-@property (nonatomic, assign, readwrite)    IDPModelState   state;
+@property (nonatomic, assign)    IDPModelState   state;
 
 @end
 
@@ -24,8 +24,6 @@
 
 - (void)dealloc {
     [self cleanup];
-    
-    [super dealloc];
 }
 
 #pragma mark -

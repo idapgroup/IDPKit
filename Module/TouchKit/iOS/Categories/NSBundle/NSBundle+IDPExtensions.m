@@ -42,7 +42,7 @@
 	
 	for (id object in nibArray) {
 		if ([object isMemberOfClass:theClass]) {
-			return [[object retain] autorelease];
+			return object;
 		}
 	}
 	return nil;

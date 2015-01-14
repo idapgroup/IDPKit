@@ -8,70 +8,59 @@
 
 #import "NSFileManager+IDPExtensions.h"
 
-#import "NSArray+IDPExtensions.h"
+#import "NSPathUtilities+IDPExtensions.h"
 
+static NSString * const kIDPUniqueFileNameFormat    = @"XXXXXX";
+static NSString * const kIDPApplicationData         = @"IDPApplicationData";
 
 @implementation NSFileManager (IDPExtensions)
 
-+ (NSString *)directoryPathForPath:(IDPDirectoryPath)thePath {
-    NSString *result = nil;
-    
-    switch (thePath) {
-        case IDPApplicationsDataPath:
-            result = [self applicationDataPath];
-            break;
++ (NSString *)directoryPathWithType:(IDPDirectoryType)type {
+    switch (type) {
+        case IDPApplicationsDataType:
+            return [self applicationDataPath];
             
-        case IDPDocumentsDirectoryPath:
-            result = [self documentsDirectoryPath];
-            break;
+        case IDPDocumentsDirectoryType:
+            return [self documentsDirectoryPath];
             
-        case IDPLibraryDirectoryPath:
-            result = [self bundleDirectoryPath];
-            break;
+        case IDPLibraryDirectoryType:
+            return [self libraryDirectoryPath];
             
-        case IDPBundleDirectoryPath:
-            result = [self applicationDataPath];
-            break;
+        case IDPBundleDirectoryType:
+            return [self bundleDirectoryPath];
             
         default:
             break;
     }
     
-    return result;
+    return nil;
 }
 
-+ (NSString *)pathForAppFolder:(NSString *)appFolderPath inDirectory:(IDPDirectoryPath)directoryPath {
-    NSString *result = [self directoryPathForPath:directoryPath];
++ (NSString *)pathForDirectoryName:(NSString *)name
+                     directoryType:(IDPDirectoryType)type
+{
+    NSString *result = [self directoryPathWithType:type];
     
-    result = [result stringByAppendingPathComponent:appFolderPath];
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:result]) {
-        [manager createDirectoryAtPath:result
-           withIntermediateDirectories:YES
-                            attributes:nil
-                                 error:NULL];
-    }
-    
-    return result;
+    return [result stringByAppendingPathComponent:name];
 }
+
+#define IDPCacheAndReturnPath(var, directory) \
+    do { \
+        static __strong NSString *var = nil; \
+        static dispatch_once_t onceToken; \
+        dispatch_once(&onceToken, ^{ \
+            var = NSSearchPathForDirectory(directory); \
+        }); \
+        return var; \
+    } \
+    while (0);
 
 + (NSString *)documentsDirectoryPath {
-	static NSString *__docsDirectory = nil;
-	
-	if (nil == __docsDirectory) {
-		__docsDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] retain];
-	}
-	return __docsDirectory;
+    IDPCacheAndReturnPath(__docsDirectory, NSDocumentDirectory);
 }
 
 + (NSString *)libraryDirectoryPath {
-	static NSString *__libraryDirectory = nil;
-	
-	if (nil == __libraryDirectory) {
-		__libraryDirectory = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject] retain];
-	}
-	return __libraryDirectory;
+    IDPCacheAndReturnPath(__libraryDirectory, NSLibraryDirectory);
 }
 
 + (NSString *)bundleDirectoryPath {
@@ -79,59 +68,69 @@
 }
 
 + (NSString *)applicationDataPath {
-	static NSString *__applicationDataDirectory = nil;
-	
-	if (nil == __applicationDataDirectory) {
-		__applicationDataDirectory = [[NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) firstObject] retain];
-	}
+    static __strong NSString *__applicationDataDirectory = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __applicationDataDirectory = [self pathForDirectoryName:kIDPApplicationData
+                                                  directoryType:IDPLibraryDirectoryType];
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:__applicationDataDirectory];
+    });
     
-    NSFileManager *manager = [NSFileManager defaultManager];
-    [manager createDirectoryAtPath:__applicationDataDirectory
-       withIntermediateDirectories:YES
-                        attributes:nil
-                             error:NULL];
-    
-	return __applicationDataDirectory;
+    return __applicationDataDirectory;
 }
 
-+ (BOOL)fileNameExistsInDocumentsDirectory:(NSString *)fileName {
-	return [self fileName:fileName existsInDirectory:[self documentsDirectoryPath]];
-}
+#undef IDPCacheAndReturnPath
 
-+ (BOOL)fileNameExistsInLibraryDirectory:(NSString *)fileName {
-	return [self fileName:fileName existsInDirectory:[self libraryDirectoryPath]];
-}
-
-+ (BOOL)fileNameExistsInBundleDirectory:(NSString *)fileName {
-	return [self fileName:fileName existsInDirectory:[self bundleDirectoryPath]];
-}
-
-+ (BOOL)fileNameExistsInApplicationDataPath:(NSString *)fileName {
-	return [self fileName:fileName existsInDirectory:[self applicationDataPath]];
-}
-
-+ (BOOL)fileName:(NSString *)fileName existsInDirectory:(NSString *)directoryPath {
-	return [[NSFileManager defaultManager] fileExistsAtPath:[directoryPath stringByAppendingPathComponent:fileName]];
-}
-
-+ (NSString *)temporaryFolderInDirectory:(NSString *)directoryPath forTemplate:(NSString *)templateString {
-    NSString *tempDirectoryTemplate = [directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.XXXXXX", templateString]];
++ (BOOL)fileName:(NSString *)fileName existsInDirectoryOfType:(IDPDirectoryType)type {
+    NSString *path = [self directoryPathWithType:type];
     
-    const char *tempDirectoryTemplateCString = [tempDirectoryTemplate fileSystemRepresentation];
+	return [self fileName:fileName existsInPath:path];
+}
+
++ (BOOL)fileName:(NSString *)fileName existsInPath:(NSString *)path {
+    path = [path stringByAppendingPathComponent:fileName];
     
-    char *tempDirectoryNameCString = (char *)malloc(strlen(tempDirectoryTemplateCString) + 1);
+	return [[self defaultManager] fileExistsAtPath:path];
+}
+
+- (NSString *)uniqueDirectoryInPath:(NSString *)path {
+    path = [path stringByAppendingPathComponent:kIDPUniqueFileNameFormat];
     
-    strcpy(tempDirectoryNameCString, tempDirectoryTemplateCString);
+    const char *pathCString = [path fileSystemRepresentation];
     
-    char *result = mkdtemp(tempDirectoryNameCString);
-    if (!result)
-    {
-        // handle directory creation failure
+    char *resultCString = (char *)malloc(strlen(pathCString) + 1);
+    strcpy(resultCString, pathCString);
+    
+    if (mkdtemp(resultCString)) {
+        NSString *result = [self stringWithFileSystemRepresentation:resultCString
+                                                             length:strlen(resultCString)];
+        
+        free(resultCString);
+        
+        return result;
     }
     
-    NSString *tempDirectoryPath = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempDirectoryNameCString length:strlen(result)];
-    free(tempDirectoryNameCString);
-    return tempDirectoryPath;
+    return nil;
+}
+
+- (BOOL)createDirectoryAtPath:(NSString *)path {
+    NSFileManager *manager = self;
+    
+    if (![manager fileExistsAtPath:path]) {
+        NSError *error = nil;
+        
+        BOOL success = [manager createDirectoryAtPath:path
+                          withIntermediateDirectories:YES
+                                           attributes:nil
+                                                error:&error];
+        
+        if (error || !success) {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 @end

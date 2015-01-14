@@ -26,7 +26,7 @@
 // if new keyPath array is set while observing, 
 // observer stops observing the old keypaths
 // and starts observing the new ones
-@property (nonatomic, retain)	NSArray					*observedKeyPathsArray;
+@property (nonatomic, copy)     NSArray                         *observedKeyPathsArray;
 
 @property (nonatomic, readonly, getter = isObserving) BOOL observing;
 

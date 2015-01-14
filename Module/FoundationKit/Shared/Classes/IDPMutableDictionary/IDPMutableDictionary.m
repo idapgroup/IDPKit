@@ -9,21 +9,14 @@
 #import "IDPMutableDictionary.h"
 
 @interface IDPMutableDictionary ()
-@property (nonatomic, retain) NSMutableDictionary   *dictionary;
+@property (nonatomic, strong) NSMutableDictionary   *dictionary;
+
 @end
 
 @implementation IDPMutableDictionary
 
-@synthesize dictionary      = _dictionary;
-
 #pragma mark -
 #pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.dictionary = nil;
-    
-    [super dealloc];
-}
 
 // although docs say, that initWithObjects:forKeys: is the
 // designated initializer, it actually fails without this method

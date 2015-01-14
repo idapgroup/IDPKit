@@ -8,21 +8,10 @@
 
 #import <CoreData/CoreData.h>
 
-@interface IDPCoreDataManager : NSObject {
-@private
-	
-	NSString *_storeName;
-	NSString *_momName;
-	NSString *_storeType;
-	
-    NSManagedObjectContext			*_managedObjectContext;
-    NSManagedObjectModel			*_managedObjectModel;
-    NSPersistentStoreCoordinator	*_persistentStoreCoordinator;
-}
-
-@property (nonatomic, retain, readonly) NSManagedObjectContext			*managedObjectContext;
-@property (nonatomic, retain, readonly) NSManagedObjectModel			*managedObjectModel;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator	*persistentStoreCoordinator;
+@interface IDPCoreDataManager : NSObject
+@property (nonatomic, readonly) NSManagedObjectContext			*managedObjectContext;
+@property (nonatomic, readonly) NSManagedObjectModel			*managedObjectModel;
+@property (nonatomic, readonly) NSPersistentStoreCoordinator	*persistentStoreCoordinator;
 
 + (id)sharedManager;
 

@@ -8,10 +8,8 @@
 
 #import "IDPReference.h"
 
-#import "NSObject+IDPExtensions.h"
-
 @interface IDPReference ()
-@property (nonatomic, readwrite) id object;
+@property (nonatomic, assign) id object;
 @end
 
 @implementation IDPReference
@@ -22,7 +20,7 @@
 #pragma mark Class Methods
 
 + (id)referenceWithObject:(id)theObject {
-    IDPReference *reference = [self object];
+    IDPReference *reference = [self new];
     reference.object = theObject;
     
     return reference;
@@ -55,7 +53,7 @@
 #pragma mark NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    IDPReference *reference = [[[self class] referenceWithObject:self.object] retain];
+    IDPReference *reference = [[self class] referenceWithObject:self.object];
     
     return reference;
 }

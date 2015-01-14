@@ -1,5 +1,5 @@
 //
-//  IDPRetainingReference.h
+//  IDPStrongReference.h
 //  IDPKit
 //
 //  Created by Oleksa 'trimm' Korin on 5/25/13.
@@ -10,6 +10,6 @@
 
 #import "IDPReference.h"
 
-@interface IDPRetainingReference : IDPReference
+@interface IDPStrongReference : IDPReference
 
 @end
