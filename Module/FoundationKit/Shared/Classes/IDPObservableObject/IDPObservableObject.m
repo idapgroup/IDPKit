@@ -11,7 +11,7 @@
 #import "IDPWeakArray.h"
 
 @interface IDPObservableObject ()
-@property (nonatomic, retain)	NSMutableArray	*mutableObservers;
+@property (nonatomic, strong)	NSMutableArray	*mutableObservers;
 
 @end
 
@@ -70,6 +70,9 @@
 #pragma mark -
 #pragma mark Private
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
 - (void)notifyObserversWithSelector:(SEL)selector {
     for (id <NSObject> observer in self.observers) {
         if ([observer respondsToSelector:selector]) {
@@ -81,9 +84,11 @@
 - (void)notifyObserversWithSelector:(SEL)selector userInfo:(id)info {
     for (id<NSObject> observer in self.observers) {
         if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:info];
+            [observer performSelector:selector withObject:self.target withObject:info];
         }
     }
 }
+
+#pragma clang diagnostic pop
 
 @end
