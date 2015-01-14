@@ -34,9 +34,6 @@ NSString * const kIDPKVOPathArray   = @"array";
 
 @implementation IDPKVOMutableArray
 
-@synthesize array               = _array;
-@synthesize contexts            = _contexts;
-
 @dynamic mutableArrayValue;
 
 #pragma mark -
@@ -56,11 +53,6 @@ NSString * const kIDPKVOPathArray   = @"array";
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.contexts = nil;    
-    self.array = nil;
-}
 
 - (id)init {
     self = [super init];

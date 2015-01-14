@@ -10,11 +10,6 @@
 
 @implementation IDPKVOContext
 
-@synthesize observer    = _observer;
-@synthesize keyPath     = _keyPath;
-@synthesize options     = _options;
-@synthesize context     = _context;
-
 #pragma mark -
 #pragma mark Class Methods
 
@@ -30,15 +25,6 @@
     result.context = context;
     
     return result;
-}
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.observer = nil;
-    self.keyPath = nil;
-    self.context = nil;
 }
 
 #pragma mark -
