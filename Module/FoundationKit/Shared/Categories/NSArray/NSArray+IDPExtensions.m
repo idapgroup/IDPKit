@@ -33,7 +33,7 @@
     NSMutableArray *shuffle = [NSMutableArray arrayWithCapacity:count];
     
     while (0 != count) {
-        int index = IDPRandomNumber(count);
+        NSInteger index = IDPRandomNumber(count);
         [shuffle addObject:array[index]];
         [array removeObjectAtIndex:index];
         count--;
