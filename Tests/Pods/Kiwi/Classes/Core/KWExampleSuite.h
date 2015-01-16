@@ -12,18 +12,12 @@
 @class KWContextNode;
 @class KWExample;
 
-@interface KWExampleSuite : NSObject <KWExampleNodeVisitor, NSFastEnumeration>
+@interface KWExampleSuite : NSObject <KWExampleNodeVisitor>
 
 - (id)initWithRootNode:(KWContextNode *)contextNode;
 - (void)addExample:(KWExample *)example;
 - (void)markLastExampleAsLastInContext:(KWContextNode *)context;
-
-@property (nonatomic, readonly) NSMutableArray *examples;
-
-#pragma mark - Example selector names
-
-- (NSString *)nextUniqueSelectorName:(NSString *)name;
-
+- (NSArray *)invocationsForTestCase;
 @end
 
 @interface NSInvocation (KWExampleGroup)

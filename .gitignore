@@ -16,7 +16,13 @@
 *.swp
 *.lock
 profile
- 
+
+#####
+# CocoaPods
+
+!Podfile.lock
+!Manifest.lock
+
 ####
 # Xcode temporary files that should never be committed
 # 
