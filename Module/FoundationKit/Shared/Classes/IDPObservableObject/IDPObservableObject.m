@@ -74,7 +74,7 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 - (void)notifyObserversWithSelector:(SEL)selector {
-    for (id <NSObject> observer in self.observers) {
+    for (id<NSObject> observer in self.observers) {
         if ([observer respondsToSelector:selector]) {
             [observer performSelector:selector withObject:self.target];
         }

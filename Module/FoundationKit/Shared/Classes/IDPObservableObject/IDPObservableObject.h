@@ -13,7 +13,7 @@
 
 // Target is the object, that would be notified.
 // Returns self by default.
-@property (nonatomic, readonly) id <NSObject>   target;
+@property (nonatomic, readonly) id<NSObject>    target;
 
 // Observable object maintains weak links to its observers
 // you are responsible to remove yourself as an observer,
