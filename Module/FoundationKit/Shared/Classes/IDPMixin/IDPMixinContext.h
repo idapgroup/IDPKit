@@ -26,8 +26,5 @@
 @interface IDPMixinContext : NSObject
 
 + (void)extendObject:(id<NSObject>)target withObject:(id<NSObject>)mixin;
-+ (void)relinquishExtensionOfObject:(id<NSObject>)target withObject:(id<NSObject>)mixin;
-+ (BOOL)isObject:(id<NSObject>)target extendedByObject:(id<NSObject>)mixin;
-+ (NSArray *)extendingObjectsOfObject:(id<NSObject>)targer;
 
 @end

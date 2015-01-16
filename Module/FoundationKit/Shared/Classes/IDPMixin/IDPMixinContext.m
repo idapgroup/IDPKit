@@ -96,22 +96,8 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
     [context invoke];
 }
 
-+ (void)relinquishExtensionOfObject:(NSObject *)target
-                         withObject:(id<NSObject>)mixin
-{
-    [target.stack removeObject:mixin];
-}
-
-+ (BOOL)isObject:(NSObject *)target extendedByObject:(id<NSObject>)mixin {
-    return [target.stack containsObject:mixin];
-}
-
-+ (NSArray *)extendingObjectsOfObject:(NSObject *)target {
-    return [target.stack copy];
-}
-
 #pragma mark -
-#pragma mark Public
+#pragma mark Private
 
 - (void)invoke {
     NSObject *target = self.target;
@@ -124,9 +110,6 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
     
     [stack addObject:self.mixin];
 }
-
-#pragma mark -
-#pragma mark Private
 
 - (void)setupNSObjectImplementation {
     Class theClass = [NSObject class];

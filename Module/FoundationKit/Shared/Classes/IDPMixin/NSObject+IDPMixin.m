@@ -9,6 +9,9 @@
 #import "NSObject+IDPMixin.h"
 
 #import "IDPMixinContext.h"
+#import "IDPMixinStack.h"
+
+#import "NSObject+IDPMixinPrivate.h"
 
 @implementation NSObject (IDPMixin)
 
@@ -17,15 +20,15 @@
 }
 
 - (void)relinquishExtensionWithObject:(id<NSObject>)mixin {
-    [IDPMixinContext relinquishExtensionOfObject:self withObject:mixin];
+    [self.stack removeObject:mixin];
 }
 
 - (BOOL)isExtendedByObject:(id<NSObject>)mixin {
-    return [IDPMixinContext isObject:self extendedByObject:mixin];
+    return [self.stack containsObject:mixin];
 }
 
 - (NSArray *)extendingObjects {
-    return [IDPMixinContext extendingObjectsOfObject:self];
+    return self.stack.mixins;
 }
 
 @end
