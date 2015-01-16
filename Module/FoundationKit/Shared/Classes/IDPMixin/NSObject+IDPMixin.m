@@ -15,6 +15,8 @@
 
 @implementation NSObject (IDPMixin)
 
+@dynamic mixins;
+
 - (void)extendWithObject:(id<NSObject>)object {
     [IDPMixinContext extendObject:self withObject:object];
 }
@@ -27,7 +29,7 @@
     return [self.stack containsObject:mixin];
 }
 
-- (NSArray *)extendingObjects {
+- (NSArray *)mixins {
     return self.stack.mixins;
 }
 
