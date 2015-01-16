@@ -28,22 +28,22 @@ describe(@"IDPMixinStack", ^{
         });
     });
     
-    context(@"when adding object", ^{
-        __block NSObject *object = nil;
+    context(@"when adding target object", ^{
+        __block NSObject *target = nil;
         
         beforeAll(^{
             stack = [IDPMixinStack new];
-            object = [NSObject new];
+            target = [NSObject new];
             
-            [stack addObject:object];
+            [stack addObject:target];
         });
         
         it(@"its count should be 1", ^{
             [[stack should] haveCountOf:1];
         });
         
-        it(@"it should contain that object", ^{
-            [[[stack.mixins firstObject] should] equal:object];
+        it(@"it should contain target", ^{
+            [[[stack.mixins firstObject] should] equal:target];
         });
         
         context(@"after adding another object", ^{
@@ -51,25 +51,38 @@ describe(@"IDPMixinStack", ^{
                 [stack addObject:[NSObject new]];
             });
             
-            context(@"after readding object at index 0", ^{
+            context(@"after readding target", ^{
                 beforeAll(^{
-                    object = stack.mixins[0];
-                    [stack addObject:object];
+                    [stack addObject:target];
                 });
                 
                 it(@"its count should be 2", ^{
                     [[stack should] haveCountOf:2];
                 });
                 
-                it(@"it should move object at index 0 to the last index", ^{
-                    [[[stack.mixins lastObject] should] equal:object];
+                it(@"it should move object target to the last index", ^{
+                    [[[stack.mixins lastObject] should] equal:target];
+                });
+                
+                context(@"after removing object at index 0", ^{
+                    beforeAll(^{
+                        [stack removeObject:[stack.mixins firstObject]];
+                    });
+                    
+                    it(@"its count should be 1", ^{
+                        [[stack should] haveCountOf:1];
+                    });
+                    
+                    it(@"it should contain the target", ^{
+                        [[[stack.mixins lastObject] should] equal:target];
+                    });
                 });
             });
         });
     });
     
     context(@"when working in multithreaded environment", ^{
-        const NSUInteger taskCount = 100;
+        const NSUInteger taskCount = 10;
 
         beforeAll(^{
             stack = [IDPMixinStack new];
