@@ -55,7 +55,7 @@
     }
 }
 
-- (BOOL)containsObject:(id <NSObject>)anObject {
+- (BOOL)containsObject:(id<NSObject>)anObject {
     @synchronized(self) {
         return [self.mixins containsObject:anObject];
     }
