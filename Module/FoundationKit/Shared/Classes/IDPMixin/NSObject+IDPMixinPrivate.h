@@ -14,7 +14,7 @@
 @interface NSObject (IDPMixinPrivate)
 @property (nonatomic, retain)   IDPMixinStack   *stack;
 
-+ (void)setImplementation:(IDPMixinIMP *)object;
-+ (IDPMixinIMP *)implementation;
++ (void)setMixinIMP:(IDPMixinIMP *)object;
++ (IDPMixinIMP *)mixinIMP;
 
 @end

@@ -10,21 +10,29 @@
 
 #import <objc/runtime.h>
 
-static NSString * const kIDPMixinStackProperty             = @"kIDPMixinStackProperty";
-static NSString * const kIDPMixinIMPProperty    = @"kIDPMixinIMPProperty";
+static NSString * const kIDPMixinStackProperty      = @"kIDPMixinStackProperty";
+static NSString * const kIDPMixinIMPProperty        = @"kIDPMixinIMPProperty";
 
 @implementation NSObject (IDPMixinPrivate)
 
-+ (void)setImplementation:(IDPMixinIMP *)object {
-    objc_setAssociatedObject(self,
-                             (__bridge const void *)(kIDPMixinIMPProperty),
-                             object,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++ (IDPMixinIMP *)mixinIMP {
+    Class theClass = [NSObject class];
+    
+    @synchronized (theClass) {
+        return objc_getAssociatedObject(theClass,
+                                        (__bridge const void *)(kIDPMixinIMPProperty));
+    }
 }
 
-+ (IDPMixinIMP *)implementation {
-    return objc_getAssociatedObject(self,
-                                    (__bridge const void *)(kIDPMixinIMPProperty));
++ (void)setMixinIMP:(IDPMixinIMP *)object {
+    Class theClass = [NSObject class];
+    
+    @synchronized (theClass) {
+        objc_setAssociatedObject(theClass,
+                                 (__bridge const void *)(kIDPMixinIMPProperty),
+                                 object,
+                                 OBJC_ASSOCIATION_RETAIN);
+    }
 }
 
 - (IDPMixinStack *)stack {
@@ -36,7 +44,7 @@ static NSString * const kIDPMixinIMPProperty    = @"kIDPMixinIMPProperty";
     objc_setAssociatedObject(self,
                              (__bridge const void *)(kIDPMixinStackProperty),
                              stack,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                             OBJC_ASSOCIATION_RETAIN);
 }
 
 @end

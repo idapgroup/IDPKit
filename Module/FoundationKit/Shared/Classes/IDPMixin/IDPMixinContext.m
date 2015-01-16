@@ -18,8 +18,9 @@
 
 static id IDPForwardingTargetForSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector) {
     NSObject *object = (NSObject *)_self;
-    IDPMixinStack *stack = object.stack;
-    IDPMixinIMP *implementation = [NSObject implementation];
+    
+    IDPMixinIMP *implementation = [NSObject mixinIMP];
+    NSArray *stack = object.stack.mixins;
     
     __block id result = nil;
     
@@ -42,8 +43,9 @@ static id IDPForwardingTargetForSelectorMixinMethod(id _self, SEL __cmd, SEL aSe
 
 static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector) {
     NSObject *object = (NSObject *)_self;
-    IDPMixinStack *stack = object.stack;
-    IDPMixinIMP *implementation = [NSObject implementation];
+
+    IDPMixinIMP *implementation = [NSObject mixinIMP];
+    NSArray *stack = object.stack.mixins;
     
     __block BOOL result = NO;
     
@@ -94,21 +96,18 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
     [context invoke];
 }
 
-+ (void)relinquishExtensionOfObject:(id<NSObject>)target
++ (void)relinquishExtensionOfObject:(NSObject *)target
                          withObject:(id<NSObject>)mixin
 {
-    NSObject *object = target;
-    [object.stack removeObject:mixin];
+    [target.stack removeObject:mixin];
 }
 
-+ (BOOL)isObject:(id<NSObject>)target extendedByObject:(id<NSObject>)mixin {
-    NSObject *object = target;
-    return [object.stack containsObject:mixin];
++ (BOOL)isObject:(NSObject *)target extendedByObject:(id<NSObject>)mixin {
+    return [target.stack containsObject:mixin];
 }
 
-+ (NSArray *)extendingObjectsOfObject:(id<NSObject>)target {
-    NSObject *object = target;
-    return [NSArray arrayWithArray:object.stack];
++ (NSArray *)extendingObjectsOfObject:(NSObject *)target {
+    return [target.stack copy];
 }
 
 #pragma mark -
@@ -130,20 +129,22 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 
 - (void)setupNSObjectImplementation {
     Class theClass = [NSObject class];
-    if (nil == [theClass implementation]) {
-        IDPMixinIMP *implementation = [IDPMixinIMP new];
-        
-        IMP imp = [self setImplementation:(IMP)IDPForwardingTargetForSelectorMixinMethod
-                              forSelector:@selector(forwardingTargetForSelector:)
+    @synchronized (theClass) {
+        if (nil == [theClass mixinIMP]) {
+            IDPMixinIMP *implementation = [IDPMixinIMP new];
+            
+            IMP imp = [self setImplementation:(IMP)IDPForwardingTargetForSelectorMixinMethod
+                                  forSelector:@selector(forwardingTargetForSelector:)
+                                      inClass:theClass];
+            implementation.forwardingInvocationForSelectorIMP = imp;
+            
+            imp = [self setImplementation:(IMP)IDPRespondsToSelectorMixinMethod
+                              forSelector:@selector(respondsToSelector:)
                                   inClass:theClass];
-        implementation.forwardingInvocationForSelectorIMP = imp;
-        
-        imp = [self setImplementation:(IMP)IDPRespondsToSelectorMixinMethod
-                          forSelector:@selector(respondsToSelector:)
-                              inClass:theClass];
-        implementation.respondsToSelectorIMP = imp;
-        
-        [theClass setImplementation:implementation];
+            implementation.respondsToSelectorIMP = imp;
+            
+            [theClass setMixinIMP:implementation];
+        }
     }
 }
 
