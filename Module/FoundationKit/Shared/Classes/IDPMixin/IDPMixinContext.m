@@ -101,14 +101,13 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 
 - (void)invoke {
     NSObject *target = self.target;
-    IDPMixinStack *stack = target.stack;
     
-    if (nil == stack) {
+    if (nil == target.stack) {
         target.stack = [IDPMixinStack new];
         [self setupNSObjectImplementation];
     }
     
-    [stack addObject:self.mixin];
+    [target.stack addObject:self.mixin];
 }
 
 - (void)setupNSObjectImplementation {
