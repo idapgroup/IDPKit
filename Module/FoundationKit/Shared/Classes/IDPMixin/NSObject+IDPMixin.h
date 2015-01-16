@@ -6,10 +6,6 @@
 //  Copyright (c) 2013 IDAP Group. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import "IDPMixinContext.h"
-
 @interface NSObject (IDPMixin)
 
 // convenience methods wrapping around the

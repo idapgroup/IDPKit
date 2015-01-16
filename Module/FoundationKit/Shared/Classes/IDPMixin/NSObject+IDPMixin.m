@@ -8,6 +8,8 @@
 
 #import "NSObject+IDPMixin.h"
 
+#import "IDPMixinContext.h"
+
 @implementation NSObject (IDPMixin)
 
 - (void)extendWithObject:(id<NSObject>)object {
