@@ -13,6 +13,7 @@
 
 #import <objc/runtime.h>
 
+#import "NSObject+IDPMixin.h"
 #import "NSObject+IDPMixinPrivate.h"
 
 
@@ -20,7 +21,7 @@ static id IDPForwardingTargetForSelectorMixinMethod(id _self, SEL __cmd, SEL aSe
     NSObject *object = (NSObject *)_self;
     
     IDPMixinIMP *implementation = [NSObject mixinIMP];
-    NSArray *stack = object.stack.mixins;
+    NSArray *stack = object.mixins;
     
     __block id result = nil;
     
@@ -45,7 +46,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
     NSObject *object = (NSObject *)_self;
 
     IDPMixinIMP *implementation = [NSObject mixinIMP];
-    NSArray *stack = object.stack.mixins;
+    NSArray *stack = object.mixins;
     
     __block BOOL result = NO;
     
