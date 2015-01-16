@@ -1,5 +1,5 @@
 //
-//  NSObject+IDPOCExtensions.h
+//  NSObject+IDPMixin.h
 //  PatiencePad
 //
 //  Created by Oleksa 'trimm' Korin on 4/25/13.
@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "IDPOCContext.h"
+#import "IDPMixinContext.h"
 
-@interface NSObject (IDPOCExtensions)
+@interface NSObject (IDPMixin)
 
 // convenience methods wrapping around the
-// IDPOCContext
+// IDPMixinContext
 
 - (void)extendWithObject:(id<NSObject>)object;
 - (void)relinquishExtensionWithObject:(id<NSObject>)mixin;

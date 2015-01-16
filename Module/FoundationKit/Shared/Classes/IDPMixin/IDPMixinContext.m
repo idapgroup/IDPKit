@@ -6,20 +6,20 @@
 //  Copyright (c) 2013 IDAP Group. All rights reserved.
 //
 
-#import "IDPOCContext.h"
+#import "IDPMixinContext.h"
 
-#import "IDPOCStack.h"
-#import "IDPOCImplementation.h"
+#import "IDPMixinStack.h"
+#import "IDPMixinIMP.h"
 
 #import <objc/runtime.h>
 
-#import "NSObject+IDPOCExtensionsPrivate.h"
+#import "NSObject+IDPMixinPrivate.h"
 
 
 static id IDPForwardingTargetForSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector) {
     NSObject *object = (NSObject *)_self;
-    IDPOCStack *stack = object.stack;
-    IDPOCImplementation *implementation = [NSObject implementation];
+    IDPMixinStack *stack = object.stack;
+    IDPMixinIMP *implementation = [NSObject implementation];
     
     __block id result = nil;
     
@@ -42,8 +42,8 @@ static id IDPForwardingTargetForSelectorMixinMethod(id _self, SEL __cmd, SEL aSe
 
 static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector) {
     NSObject *object = (NSObject *)_self;
-    IDPOCStack *stack = object.stack;
-    IDPOCImplementation *implementation = [NSObject implementation];
+    IDPMixinStack *stack = object.stack;
+    IDPMixinIMP *implementation = [NSObject implementation];
     
     __block BOOL result = NO;
     
@@ -64,7 +64,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
     return ((BOOL (*)(id, SEL, SEL))(originalImplementation))(_self, __cmd, aSelector);
 }
 
-@interface IDPOCContext ()
+@interface IDPMixinContext ()
 @property (nonatomic, strong) id<NSObject>      target;
 @property (nonatomic, strong) id<NSObject>      mixin;
 
@@ -79,7 +79,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 
 @end
 
-@implementation IDPOCContext
+@implementation IDPMixinContext
 
 #pragma mark -
 #pragma mark Class Methods
@@ -87,7 +87,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 + (void)extendObject:(id<NSObject>)target
           withObject:(id<NSObject>)mixin
 {
-    IDPOCContext *context = [self new];
+    IDPMixinContext *context = [self new];
     context.target = target;
     context.mixin = mixin;
     
@@ -118,7 +118,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
     NSObject *target = self.target;
     
     if (nil == target.stack) {
-        target.stack = [IDPOCStack new];
+        target.stack = [IDPMixinStack new];
         [self setupNSObjectImplementation];
     }
     
@@ -131,7 +131,7 @@ static BOOL IDPRespondsToSelectorMixinMethod(id _self, SEL __cmd, SEL aSelector)
 - (void)setupNSObjectImplementation {
     Class theClass = [NSObject class];
     if (nil == [theClass implementation]) {
-        IDPOCImplementation *implementation = [IDPOCImplementation new];
+        IDPMixinIMP *implementation = [IDPMixinIMP new];
         
         IMP imp = [self setImplementation:(IMP)IDPForwardingTargetForSelectorMixinMethod
                               forSelector:@selector(forwardingTargetForSelector:)

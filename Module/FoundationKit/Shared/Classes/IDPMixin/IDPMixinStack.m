@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 IDAP Group. All rights reserved.
 //
 
-#import "IDPOCStack.h"
+#import "IDPMixinStack.h"
 
-@implementation IDPOCStack
+@implementation IDPMixinStack
 
 #pragma mark -
 #pragma mark Public

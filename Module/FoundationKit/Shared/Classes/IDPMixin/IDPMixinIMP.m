@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 IDAP Group. All rights reserved.
 //
 
-#import "IDPOCImplementation.h"
+#import "IDPMixinIMP.h"
 
-@implementation IDPOCImplementation
+@implementation IDPMixinIMP
 
 @synthesize forwardingInvocationForSelectorIMP  = _forwardingInvocationForSelectorIMP;
 @synthesize respondsToSelectorIMP               = _respondsToSelectorIMP;

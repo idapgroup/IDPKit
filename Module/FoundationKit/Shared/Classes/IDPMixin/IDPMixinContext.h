@@ -23,7 +23,7 @@
 // thumb is to compose the object with of different
 // inheritance hierarchies
 
-@interface IDPOCContext : NSObject
+@interface IDPMixinContext : NSObject
 
 + (void)extendObject:(id<NSObject>)target withObject:(id<NSObject>)mixin;
 + (void)relinquishExtensionOfObject:(id<NSObject>)target withObject:(id<NSObject>)mixin;

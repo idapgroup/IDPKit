@@ -1,5 +1,5 @@
 //
-//  IDPOCStack.h
+//  IDPMixinStack.h
 //  PatiencePad
 //
 //  Created by Oleksa 'trimm' Korin on 4/14/13.
@@ -12,7 +12,7 @@
 
 // contains only unique entries
 
-@interface IDPOCStack : IDPMutableArray
+@interface IDPMixinStack : IDPMutableArray
 
 // adds the object to the end of an array
 // if the object is alreaady in the stack,
