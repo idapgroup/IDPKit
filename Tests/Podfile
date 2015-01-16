@@ -20,7 +20,7 @@ target :osx do
   link_with 'OSX'
  
   target 'OSXTests', exclusive: true do
-    pod 'Kiwi'
+    pod 'Kiwi', '~>2.3'
   end
 end
  
@@ -33,6 +33,6 @@ target :ios, exclusive: true do
   link_with 'iOS'
  
   target 'iOSTests', exclusive: true do
-    pod 'Kiwi'
+    pod 'Kiwi', '~>2.3'
   end
 end
