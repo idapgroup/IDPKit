@@ -57,7 +57,7 @@
 
 - (BOOL)containsObject:(id<NSObject>)anObject {
     @synchronized(self) {
-        return [self.mixins containsObject:anObject];
+        return [self.mutableMixins containsObject:anObject];
     }
 }
 

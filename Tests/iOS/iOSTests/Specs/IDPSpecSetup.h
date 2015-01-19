@@ -13,9 +13,7 @@
 #define IDPLongMultithreadedSpecTest    1
 
 #if IDPMultithreadedSpecTestEnabled == 1 && IDPLongMultithreadedSpecTest == 1
-    static const NSUInteger IDPMultithreadedSpecIterationCount     = 1000;
-    static const NSUInteger IDPMultithreadedWaitTime               = 30;
+    static const NSUInteger IDPMultithreadedSpecIterationCount     = 10000;
 #elif IDPMultithreadedSpecTestEnabled == 1 && IDPLongMultithreadedSpecTest == 0
-    static const NSUInteger IDPMultithreadedSpecIterationCount     = 10;
-    static const NSUInteger IDPMultithreadedWaitTime               = 1;
+    static const NSUInteger IDPMultithreadedSpecIterationCount     = 100;
 #endif

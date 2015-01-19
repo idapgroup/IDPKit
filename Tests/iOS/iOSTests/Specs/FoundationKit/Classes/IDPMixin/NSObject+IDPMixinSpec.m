@@ -10,9 +10,13 @@
 
 #import "FoundationKit.h"
 
+#import "IDPBlockAsyncRaiseIterativeMatcher.h"
 #import "IDPSpecSetup.h"
 
 SPEC_BEGIN(NSObject_IDPMixin)
+
+registerMatchers(@"IDP");
+registerMatchers(@"KW");
 
 describe(@"NSObject+IDPMixin", ^{
     context(@"when not extended", ^{
@@ -142,61 +146,37 @@ describe(@"NSObject+IDPMixin", ^{
 #if IDPMultithreadedSpecTestEnabled == 1
     context(@"when working in multithreaded environment", ^{
         const NSUInteger taskCount = IDPMultithreadedSpecIterationCount;
-        const NSUInteger timeout = IDPMultithreadedWaitTime;
         __block NSObject *target = nil;
         
         beforeAll(^{
             target = [NSObject new];
+            
+            for (int i = 0; i < 10; ++i) {
+                [target extendWithObject:[NSString new]];
+            }
         });
         
         
         context(@"after performing operations simultaneously", ^{
             it(@"it shouldn't raise", ^{
-                dispatch_group_t group = dispatch_group_create();
-                
-                void (^test)(void (^)(void)) = ^void ((void (^operation)(void))) {
-                    @autoreleasepool {
-                        operation = [operation copy];
-                        dispatch_group_async(group, IDPDispatchGetQueue(IDPDispatchQueueBackground), ^{
-                            @autoreleasepool {
-                                [[expectFutureValue(theBlock(operation)) shouldNotEventuallyBeforeTimingOutAfter(timeout)] raise];
-                            }
-                        });
-                    }
-                };
-                
-                for (int i = 0; i < taskCount; ++i) {
+                [[theBlock(^{
                     [target extendWithObject:[NSString new]];
-                }
-                
-                for (int i = 0; i < taskCount; ++i) {
-                    @autoreleasepool {
-                        test(^{[target extendWithObject:[NSString new]];});
-                        
-                        test(^{
-                            NSObject *object = [target.mixins randomObject];
-                            if (object) {
-                                [target extendWithObject:[NSString new]];
-                            }
-                        });
-                        
-                        test(^{
-                            NSObject *object = [target.mixins randomObject];
-                            if (object) {
-                                [target isExtendedByObject:object];
-                            }
-                        });
-                        
-                        test(^{
-                            NSObject *object = [target.mixins randomObject];
-                            if (object) {
-                                [target relinquishExtensionWithObject:object];
-                            }
-                        });
+                    
+                    NSObject *object = [target.mixins randomObject];
+                    if (object) {
+                        [target extendWithObject:[NSString new]];
                     }
-                }
-                
-                dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+                    
+                    object = [target.mixins randomObject];
+                    if (object) {
+                        [target isExtendedByObject:object];
+                    }
+                    
+                    object = [target.mixins randomObject];
+                    if (object) {
+                        [target relinquishExtensionWithObject:object];
+                    }
+                }) shouldNot] raiseWithIterationCount:taskCount];
             });
         });
     });

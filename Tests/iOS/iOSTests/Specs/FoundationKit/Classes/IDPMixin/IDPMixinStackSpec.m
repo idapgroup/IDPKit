@@ -12,9 +12,13 @@
 
 #import "FoundationKit.h"
 
+#import "IDPBlockAsyncRaiseIterativeMatcher.h"
 #import "IDPSpecSetup.h"
 
 SPEC_BEGIN(IDPMixinStackSpec)
+
+registerMatchers(@"IDP");
+registerMatchers(@"KW");
 
 describe(@"IDPMixinStack", ^{
     __block IDPMixinStack *stack = nil;
@@ -85,62 +89,38 @@ describe(@"IDPMixinStack", ^{
 #if IDPMultithreadedSpecTestEnabled == 1
     context(@"when working in multithreaded environment", ^{
         const NSUInteger taskCount = IDPMultithreadedSpecIterationCount;
-        const NSUInteger timeout = IDPMultithreadedWaitTime;
 
         beforeAll(^{
             stack = [IDPMixinStack new];
+            
+            for (int i = 0; i < 10; ++i) {
+                [stack addObject:[NSObject new]];
+            }
         });
         
         
         context(@"when performing operations simultaneously", ^{
             it(@"it shouldn't raise", ^{
-                dispatch_group_t group = dispatch_group_create();
-                
-                void (^test)(void (^)(void)) = ^void ((void (^operation)(void))) {
-                    @autoreleasepool {
-                        operation = [operation copy];
-                        dispatch_group_async(group, IDPDispatchGetQueue(IDPDispatchQueueBackground), ^{
-                            @autoreleasepool {
-                                [[expectFutureValue(theBlock(operation)) shouldNotEventuallyBeforeTimingOutAfter(timeout)] raise];
-                            }
-                        });
-                    }
-                };
-                
-                for (int i = 0; i < taskCount; ++i) {
+                [[theBlock(^{
                     [stack addObject:[NSObject new]];
-                }
-                
-                for (int i = 0; i < taskCount; ++i) {
-                    @autoreleasepool {
-                        test(^{[stack addObject:[NSObject new]];});
-                        
-                        test(^{
-                            NSObject *object = [stack.mixins randomObject];
-                            if (object) {
-                                [stack addObject:object];
-                            }
-                        });
-                        
-                        test(^{
-                            NSObject *object = [stack.mixins randomObject];
-                            if (object) {
-                                [stack containsObject:object];
-                            }
-                        });
-                        
-                        test(^{
-                            NSObject *object = [stack.mixins randomObject];
-                            if (object) {
-                                [stack removeObject:object];
-                            }
-                        });
-                        
-                        test(^{[stack count];});
+
+                    NSObject *object = [stack.mixins randomObject];
+                    if (object) {
+                        [stack addObject:object];
                     }
-                }
-                
-                dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+                    
+                    object = [stack.mixins randomObject];
+                    if (object) {
+                        [stack containsObject:object];
+                    }
+                    
+                    object = [stack.mixins randomObject];
+                    if (object) {
+                        [stack removeObject:object];
+                    }
+                    
+                    [stack count];
+                }) shouldNot] raiseWithIterationCount:taskCount];
             });
         });
     });
