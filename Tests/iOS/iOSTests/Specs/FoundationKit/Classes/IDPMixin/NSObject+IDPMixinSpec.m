@@ -10,6 +10,8 @@
 
 #import "FoundationKit.h"
 
+#import "IDPSpecSetup.h"
+
 SPEC_BEGIN(NSObject_IDPMixin)
 
 describe(@"NSObject+IDPMixin", ^{
@@ -25,7 +27,7 @@ describe(@"NSObject+IDPMixin", ^{
         });
     });
     
-    context(@"when extending NSObject with NSString @\"response\" mixin", ^{
+    context(@"after extending NSObject with NSString @\"response\" mixin", ^{
         __block NSString *target = nil;
         __block NSString *mixin = nil;
         NSString * const response = @"response";
@@ -45,100 +47,160 @@ describe(@"NSObject+IDPMixin", ^{
             [[target.mixins should] haveCountOf:1];
         });
         
-        it(@"it should contain mixin", ^{
+        it(@"it should be extended by mixin", ^{
             [[theValue([target isExtendedByObject:mixin]) should] beYes];
         });
         
         it(@"it should respond to length", ^{
-            [target respondsToSelector:@selector(length)];
+            [[target should] respondToSelector:@selector(length)];
         });
         
         it(@"it should be equal to response string", ^{
             [[theValue([target isEqualToString:response]) should] beYes];
         });
         
-//        context(@"after adding another object", ^{
-//            beforeAll(^{
-//                [stack addObject:[NSObject new]];
-//            });
-//            
-//            context(@"after readding object at index 0", ^{
-//                beforeAll(^{
-//                    object = stack.mixins[0];
-//                    [stack addObject:object];
-//                });
-//                
-//                it(@"its count should be 2", ^{
-//                    [[stack should] haveCountOf:2];
-//                });
-//                
-//                it(@"it should move object at index 0 to the last index", ^{
-//                    [[[stack.mixins lastObject] should] equal:object];
-//                });
-//            });
-//        });
+        context(@"after relinqushing extension with NSString mixin", ^{
+            beforeAll(^{
+                [target relinquishExtensionWithObject:mixin];
+            });
+            
+            it(@"its mixin count should be 0", ^{
+                [[target.mixins should] haveCountOf:0];
+            });
+            
+            it(@"it shouldn't be extended by mixin", ^{
+                [[theValue([target isExtendedByObject:mixin]) should] beNo];
+            });
+
+            it(@"it shouldn't respond to length", ^{
+                [[target shouldNot] respondToSelector:@selector(length)];
+            });
+        });
     });
     
-//    context(@"when working in multithreaded environment", ^{
-//        const NSUInteger taskCount = 100;
-//        
-//        beforeAll(^{
-//            stack = [IDPMixinStack new];
-//        });
-//        
-//        
-//        context(@"when performing operations simultaneously", ^{
-//            it(@"it shouldn't raise", ^{
-//                dispatch_group_t group = dispatch_group_create();
-//                
-//                void (^test)(void (^)(void)) = ^void ((void (^operation)(void))) {
-//                    @autoreleasepool {
-//                        operation = [operation copy];
-//                        dispatch_group_async(group, IDPDispatchGetQueue(IDPDispatchQueueBackground), ^{
-//                            @autoreleasepool {
-//                                [[expectFutureValue(theBlock(operation)) shouldNotEventually] raise];
-//                            }
-//                        });
-//                    }
-//                };
-//                
-//                for (int i = 0; i < taskCount; ++i) {
-//                    [stack addObject:[NSObject new]];
-//                }
-//                
-//                for (int i = 0; i < taskCount; ++i) {
-//                    @autoreleasepool {
-//                        test(^{[stack addObject:[NSObject new]];});
-//                        
-//                        test(^{
-//                            NSObject *object = [stack.mixins randomObject];
-//                            if (object) {
-//                                [stack addObject:object];
-//                            }
-//                        });
-//                        
-//                        test(^{
-//                            NSObject *object = [stack.mixins randomObject];
-//                            if (object) {
-//                                [stack containsObject:object];
-//                            }
-//                        });
-//                        
-//                        test(^{
-//                            NSObject *object = [stack.mixins randomObject];
-//                            if (object) {
-//                                [stack removeObject:object];
-//                            }
-//                        });
-//                        
-//                        test(^{[stack count];});
-//                    }
-//                }
-//                
-//                dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-//            });
-//        });
-//    });
+    context(@"after extending NSObject with NSMutableArray then NSArray containing @\"response\"", ^{
+        __block NSMutableArray *target = nil;
+        __block NSArray *array = nil;
+        __block NSMutableArray *mutableArray = nil;
+        NSString * const response = @"response";
+        
+        beforeAll(^{
+            target = (NSMutableArray *)[NSObject new];
+            
+            array = [NSArray arrayWithObject:response];
+            mutableArray = [NSMutableArray new];
+            
+            [target extendWithObject:mutableArray];
+            [target extendWithObject:array];
+        });
+        
+        it(@"it should respond to count", ^{
+            [[theValue([target respondsToSelector:@selector(count)]) should] beYes];
+        });
+        
+        it(@"its count should be 1", ^{
+            [[target should] haveCountOf:1];
+        });
+        
+        it(@"its first object should be @\"response\"", ^{
+            [[[target firstObject] should] equal:response];
+        });
+        
+        context(@"after adding object to target", ^{
+            NSObject *object = [NSObject new];
+            
+            beforeAll(^{
+                [target addObject:object];
+            });
+            
+            it(@"its count should be 1", ^{
+                [[target should] haveCountOf:1];
+            });
+            
+            it(@"its first object should be @\"response\"", ^{
+                [[[target firstObject] should] equal:response];
+            });
+            
+            context(@"after putting NSMutableArray mixin on top of the mixin chain", ^{
+                beforeAll(^{
+                    [target extendWithObject:mutableArray];
+                });
+                
+                it(@"its count should be 1", ^{
+                    [[target should] haveCountOf:1];
+                });
+                
+                it(@"its first object should be object", ^{
+                    [[[target firstObject] should] equal:object];
+                });
+            });
+        });
+        
+
+    });
+    
+#if IDPMultithreadedSpecTestEnabled == 1
+    context(@"when working in multithreaded environment", ^{
+        const NSUInteger taskCount = IDPMultithreadedSpecIterationCount;
+        const NSUInteger timeout = IDPMultithreadedWaitTime;
+        __block NSObject *target = nil;
+        
+        beforeAll(^{
+            target = [NSObject new];
+        });
+        
+        
+        context(@"after performing operations simultaneously", ^{
+            it(@"it shouldn't raise", ^{
+                dispatch_group_t group = dispatch_group_create();
+                
+                void (^test)(void (^)(void)) = ^void ((void (^operation)(void))) {
+                    @autoreleasepool {
+                        operation = [operation copy];
+                        dispatch_group_async(group, IDPDispatchGetQueue(IDPDispatchQueueBackground), ^{
+                            @autoreleasepool {
+                                [[expectFutureValue(theBlock(operation)) shouldNotEventuallyBeforeTimingOutAfter(timeout)] raise];
+                            }
+                        });
+                    }
+                };
+                
+                for (int i = 0; i < taskCount; ++i) {
+                    [target extendWithObject:[NSString new]];
+                }
+                
+                for (int i = 0; i < taskCount; ++i) {
+                    @autoreleasepool {
+                        test(^{[target extendWithObject:[NSString new]];});
+                        
+                        test(^{
+                            NSObject *object = [target.mixins randomObject];
+                            if (object) {
+                                [target extendWithObject:[NSString new]];
+                            }
+                        });
+                        
+                        test(^{
+                            NSObject *object = [target.mixins randomObject];
+                            if (object) {
+                                [target isExtendedByObject:object];
+                            }
+                        });
+                        
+                        test(^{
+                            NSObject *object = [target.mixins randomObject];
+                            if (object) {
+                                [target relinquishExtensionWithObject:object];
+                            }
+                        });
+                    }
+                }
+                
+                dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+            });
+        });
+    });
+#endif
 });
 
 SPEC_END
