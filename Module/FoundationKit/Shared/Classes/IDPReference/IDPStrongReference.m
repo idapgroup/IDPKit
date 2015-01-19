@@ -9,7 +9,8 @@
 #import "IDPStrongReference.h"
 
 @interface IDPStrongReference ()
-@property (nonatomic, strong) id object;
+@property (nonatomic, strong) id<NSObject> object;
+
 @end
 
 @implementation IDPStrongReference

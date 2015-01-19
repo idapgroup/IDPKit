@@ -15,8 +15,8 @@
 
 // this property is dynamic and both setter and getter
 // should be created in the subclasses
-@property (nonatomic, readonly) id object;
+@property (nonatomic, readonly) id<NSObject> object;
 
-+ (id)referenceWithObject:(id)theObject;
++ (id)referenceWithObject:(id<NSObject>)theObject;
 
 @end

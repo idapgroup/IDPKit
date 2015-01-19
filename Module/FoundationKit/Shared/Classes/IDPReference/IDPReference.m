@@ -9,7 +9,8 @@
 #import "IDPReference.h"
 
 @interface IDPReference ()
-@property (nonatomic, assign) id object;
+@property (nonatomic, assign) id<NSObject> object;
+
 @end
 
 @implementation IDPReference
@@ -19,7 +20,7 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (id)referenceWithObject:(id)theObject {
++ (id)referenceWithObject:(id<NSObject>)theObject {
     IDPReference *reference = [self new];
     reference.object = theObject;
     

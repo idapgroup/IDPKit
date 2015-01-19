@@ -9,7 +9,8 @@
 #import "IDPWeakReference.h"
 
 @interface IDPWeakReference ()
-@property (nonatomic, weak) id object;
+@property (nonatomic, weak) id<NSObject> object;
+
 @end
 
 @implementation IDPWeakReference
