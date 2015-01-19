@@ -12,6 +12,7 @@
 
 #import "FoundationKit.h"
 
+#import "IDPSpecSetup.h"
 
 SPEC_BEGIN(IDPMixinStackSpec)
 
@@ -81,8 +82,10 @@ describe(@"IDPMixinStack", ^{
         });
     });
     
+#if IDPMultithreadedSpecTestEnabled == 1
     context(@"when working in multithreaded environment", ^{
-        const NSUInteger taskCount = 10;
+        const NSUInteger taskCount = IDPMultithreadedSpecIterationCount;
+        const NSUInteger timeout = IDPMultithreadedWaitTime;
 
         beforeAll(^{
             stack = [IDPMixinStack new];
@@ -98,7 +101,7 @@ describe(@"IDPMixinStack", ^{
                         operation = [operation copy];
                         dispatch_group_async(group, IDPDispatchGetQueue(IDPDispatchQueueBackground), ^{
                             @autoreleasepool {
-                                [[expectFutureValue(theBlock(operation)) shouldNotEventually] raise];
+                                [[expectFutureValue(theBlock(operation)) shouldNotEventuallyBeforeTimingOutAfter(timeout)] raise];
                             }
                         });
                     }
@@ -141,6 +144,7 @@ describe(@"IDPMixinStack", ^{
             });
         });
     });
+#endif
 });
 
 SPEC_END
