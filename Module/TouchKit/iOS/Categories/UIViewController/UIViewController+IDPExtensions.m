@@ -10,8 +10,8 @@
 
 @implementation UIViewController (IDPExtensions)
 
-+ (instancetype)object {
-    return [self new];
++ (instancetype)controller {
+    return [[self alloc] initWithNibName:nil bundle:nil];
 }
 
 @end

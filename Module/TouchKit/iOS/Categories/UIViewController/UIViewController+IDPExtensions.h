@@ -10,6 +10,6 @@
 
 @interface UIViewController (IDPExtensions)
 
-+ (instancetype)object;
++ (instancetype)controller;
 
 @end
