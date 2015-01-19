@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IDPOCImplementation : NSObject
+@interface IDPMixinIMP : NSObject
 @property (nonatomic, assign)   IMP forwardingInvocationForSelectorIMP;
 @property (nonatomic, assign)   IMP respondsToSelectorIMP;
 

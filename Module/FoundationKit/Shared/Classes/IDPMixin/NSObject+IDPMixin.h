@@ -1,23 +1,19 @@
 //
-//  NSObject+IDPOCExtensions.h
+//  NSObject+IDPMixin.h
 //  PatiencePad
 //
 //  Created by Oleksa 'trimm' Korin on 4/25/13.
 //  Copyright (c) 2013 IDAP Group. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import "IDPOCContext.h"
-
-@interface NSObject (IDPOCExtensions)
+@interface NSObject (IDPMixin)
+@property (nonatomic, readonly)     NSArray     *mixins;
 
 // convenience methods wrapping around the
-// IDPOCContext
+// IDPMixinContext
 
 - (void)extendWithObject:(id<NSObject>)object;
 - (void)relinquishExtensionWithObject:(id<NSObject>)mixin;
 - (BOOL)isExtendedByObject:(id<NSObject>)mixin;
-- (NSArray *)extendingObjects;
 
 @end
