@@ -10,10 +10,6 @@
 
 @implementation NSString (IDPExtensions)
 
-- (NSString *)serialize {
-    return self;
-}
-
 - (NSString *)urlEncode {
     CFStringRef stringRef = CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                     (__bridge CFStringRef)self,
@@ -23,21 +19,16 @@
     return (NSString *)CFBridgingRelease(stringRef);
 }
 
-- (BOOL)isEqualToStringWithoutWhitespace:(NSString *)aString {
-    BOOL isEqual = NO;
+- (NSString *)symbolicString {
+    NSCharacterSet *characterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     
-    NSString *selfWithoutWhitespace = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *aStringWithoutWhitespace = [aString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    isEqual = [selfWithoutWhitespace isEqualToString:aStringWithoutWhitespace];
-    
-    return isEqual;
+    return [self stringByTrimmingCharactersInSet:characterSet];
 }
 
 - (BOOL)isEmpty {
-    NSString *empty = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *string = [self symbolicString];
     
-    return empty.length == 0;
+    return string.length == 0;
 }
 
 - (BOOL)containsString:(NSString *)substring {

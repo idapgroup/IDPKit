@@ -14,7 +14,6 @@
 // Array subclasses, that contain the IDPWeakReferenced objects
 
 @interface IDPMutableWeakArray : IDPMutableArray
-
 @property (nonatomic, readonly) NSArray *weakReferences;
 
 @end

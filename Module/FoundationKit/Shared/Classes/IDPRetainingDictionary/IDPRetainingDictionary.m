@@ -62,7 +62,7 @@
 #pragma mark -
 #pragma mark NSMutableDictionary
 
-- (void)setObject:(id)anObject forKey:(id<NSCopying>)aKey {
+- (void)setObject:(id)anObject forKey:(id<NSObject, NSCopying>)aKey {
     self.keysCache = nil;
     IDPStrongReference *reference = [IDPStrongReference referenceWithObject:aKey];
     

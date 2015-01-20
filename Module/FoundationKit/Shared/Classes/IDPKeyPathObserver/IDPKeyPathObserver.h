@@ -19,7 +19,6 @@
 @end
 
 @interface IDPKeyPathObserver : NSObject
-
 @property (nonatomic, readonly)	NSObject                        *objectToObserve;
 @property (nonatomic, readonly)	id<IDPKeyPathObserverDelegate>	observer;
 

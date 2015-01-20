@@ -10,7 +10,7 @@
 #define IDPMultithreadedSpecTestEnabled 1
 
 // Set this value to 1 to enable thorough multithreading tests with a lot of iterations
-#define IDPLongMultithreadedSpecTest    1
+#define IDPLongMultithreadedSpecTest    0
 
 #if IDPMultithreadedSpecTestEnabled == 1 && IDPLongMultithreadedSpecTest == 1
     static const NSUInteger IDPMultithreadedSpecIterationCount     = 10000;

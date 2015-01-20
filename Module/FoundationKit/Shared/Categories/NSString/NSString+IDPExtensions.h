@@ -17,6 +17,13 @@
 - (BOOL)containsCaseInsensitiveString:(NSString *)substring;
 
 /**
+ *	Returns the string containing symbolic characters.
+ *
+ *	@return String without whitespaces and new line characters
+ */
+- (NSString *)symbolicString;
+
+/**
  *	Removes substrings from strings using case sensitive search ignoring width differences in characters that have full-width and half-width forms.
  *
  *	@param substrings Array of substrings to remove.

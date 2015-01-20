@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface IDPKVOContext : NSObject
-
 @property (nonatomic, assign)   NSObject                    *observer;
 @property (nonatomic, copy)     NSString                    *keyPath;
 @property (nonatomic, assign)   NSKeyValueObservingOptions  options;
