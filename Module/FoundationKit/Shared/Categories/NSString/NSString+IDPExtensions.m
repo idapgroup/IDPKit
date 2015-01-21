@@ -10,7 +10,7 @@
 
 @implementation NSString (IDPExtensions)
 
-- (NSString *)urlEncode {
+- (NSString *)urlEncodedString {
     CFStringRef stringRef = CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                     (__bridge CFStringRef)self,
                                                                     NULL,

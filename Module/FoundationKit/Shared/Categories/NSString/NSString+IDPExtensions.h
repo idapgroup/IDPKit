@@ -10,7 +10,7 @@
 
 @interface NSString (IDPExtensions)
 
-- (NSString *)urlEncode;
+- (NSString *)urlEncodedString;
 
 - (BOOL)isEmpty;
 - (BOOL)containsString:(NSString *)substring;
