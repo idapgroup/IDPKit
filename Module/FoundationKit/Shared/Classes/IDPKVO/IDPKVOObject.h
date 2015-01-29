@@ -1,5 +1,5 @@
 //
-//  IDPKeyPathObserver.h
+//  IDPKVOObject.h
 //  BudgetJar
 //
 //  Created by Oleksa Korin on 5/2/12.
@@ -8,19 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@class IDPKeyPathObserver;
+@class IDPKVOObject;
+@class IDPKVONotification;
 
-@protocol IDPKeyPathObserverDelegate<NSObject>
+typedef void(^IDPKVONotificationBlock)(IDPKVONotification *notification);
+
+@protocol IDPKVOObjectDelegate<NSObject>
 @required
-- (void)keyPathObserver:(IDPKeyPathObserver *)observer
+- (void)keyPathObserver:(IDPKVOObject *)observer
 		didCatchChanges:(NSDictionary *)changes
 			  inKeyPath:(NSString *)keyPath
 			   ofObject:(id<NSObject>)observedObject;
 @end
 
-@interface IDPKeyPathObserver : NSObject
+@interface IDPKVOObject : NSObject
 @property (nonatomic, readonly)	NSObject                        *objectToObserve;
-@property (nonatomic, readonly)	id<IDPKeyPathObserverDelegate>	observer;
+@property (nonatomic, readonly)	id<IDPKVOObjectDelegate>	observer;
 
 // if new keyPath array is set while observing, 
 // observer stops observing the old keypaths
@@ -33,7 +36,7 @@
 // class user is expected to guarantee, that they both exist
 // while the class isntance is alive
 - (id)initWithObservedObject:(NSObject *)object
-			  observerObject:(id<IDPKeyPathObserverDelegate>)observer;
+			  observerObject:(id<IDPKVOObjectDelegate>)observer;
 
 - (BOOL)isKeyPathInObservedArray:(NSString *)keyPath;
 

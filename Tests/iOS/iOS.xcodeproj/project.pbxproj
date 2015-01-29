@@ -47,8 +47,6 @@
 		D7BD80681A64641F004E2041 /* NSFileManager+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FC51A64641F004E2041 /* NSFileManager+IDPExtensions.m */; };
 		D7BD806B1A64641F004E2041 /* NSString+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FCB1A64641F004E2041 /* NSString+IDPExtensions.m */; };
 		D7BD806C1A64641F004E2041 /* NSString+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FCB1A64641F004E2041 /* NSString+IDPExtensions.m */; };
-		D7BD80711A64641F004E2041 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FD51A64641F004E2041 /* IDPKeyPathObserver.m */; };
-		D7BD80721A64641F004E2041 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FD51A64641F004E2041 /* IDPKeyPathObserver.m */; };
 		D7BD80731A64641F004E2041 /* IDPKVOContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FD81A64641F004E2041 /* IDPKVOContext.m */; };
 		D7BD80741A64641F004E2041 /* IDPKVOContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FD81A64641F004E2041 /* IDPKVOContext.m */; };
 		D7BD80751A64641F004E2041 /* IDPKVOMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD7FDA1A64641F004E2041 /* IDPKVOMutableArray.m */; };
@@ -115,6 +113,10 @@
 		D7E49DE31A694ACF00C9C38D /* NSObject+IDPMixinPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E49DD81A694ACF00C9C38D /* NSObject+IDPMixinPrivate.m */; };
 		D7E49DE41A694ACF00C9C38D /* NSObject+IDPMixinPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E49DD81A694ACF00C9C38D /* NSObject+IDPMixinPrivate.m */; };
 		D7E49DF11A69518000C9C38D /* IDPMixinStackSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E49DF01A69518000C9C38D /* IDPMixinStackSpec.m */; };
+		D7E7BB3E1A7A709200B104BB /* IDPKVONotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E7BB3B1A7A709200B104BB /* IDPKVONotification.m */; };
+		D7E7BB3F1A7A709200B104BB /* IDPKVONotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E7BB3B1A7A709200B104BB /* IDPKVONotification.m */; };
+		D7E7BB401A7A709200B104BB /* IDPKVOObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E7BB3D1A7A709200B104BB /* IDPKVOObject.m */; };
+		D7E7BB411A7A709200B104BB /* IDPKVOObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E7BB3D1A7A709200B104BB /* IDPKVOObject.m */; };
 		D7FF6EE71A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF6EE61A6552A50049286B /* NSPathUtilities+IDPExtensions.m */; };
 		D7FF6EE81A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF6EE61A6552A50049286B /* NSPathUtilities+IDPExtensions.m */; };
 		D7FF6EEC1A6574F40049286B /* IDPDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF6EEB1A6574F40049286B /* IDPDispatch.m */; };
@@ -184,8 +186,6 @@
 		D7BD7FC51A64641F004E2041 /* NSFileManager+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+IDPExtensions.m"; sourceTree = "<group>"; };
 		D7BD7FCA1A64641F004E2041 /* NSString+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IDPExtensions.h"; sourceTree = "<group>"; };
 		D7BD7FCB1A64641F004E2041 /* NSString+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IDPExtensions.m"; sourceTree = "<group>"; };
-		D7BD7FD41A64641F004E2041 /* IDPKeyPathObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKeyPathObserver.h; sourceTree = "<group>"; };
-		D7BD7FD51A64641F004E2041 /* IDPKeyPathObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKeyPathObserver.m; sourceTree = "<group>"; };
 		D7BD7FD71A64641F004E2041 /* IDPKVOContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOContext.h; sourceTree = "<group>"; };
 		D7BD7FD81A64641F004E2041 /* IDPKVOContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOContext.m; sourceTree = "<group>"; };
 		D7BD7FD91A64641F004E2041 /* IDPKVOMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOMutableArray.h; sourceTree = "<group>"; };
@@ -258,6 +258,10 @@
 		D7E49DD71A694ACF00C9C38D /* NSObject+IDPMixinPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPMixinPrivate.h"; sourceTree = "<group>"; };
 		D7E49DD81A694ACF00C9C38D /* NSObject+IDPMixinPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPMixinPrivate.m"; sourceTree = "<group>"; };
 		D7E49DF01A69518000C9C38D /* IDPMixinStackSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMixinStackSpec.m; sourceTree = "<group>"; };
+		D7E7BB3A1A7A709200B104BB /* IDPKVONotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVONotification.h; sourceTree = "<group>"; };
+		D7E7BB3B1A7A709200B104BB /* IDPKVONotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVONotification.m; sourceTree = "<group>"; };
+		D7E7BB3C1A7A709200B104BB /* IDPKVOObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOObject.h; sourceTree = "<group>"; };
+		D7E7BB3D1A7A709200B104BB /* IDPKVOObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOObject.m; sourceTree = "<group>"; };
 		D7FF6EE51A6552A50049286B /* NSPathUtilities+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPathUtilities+IDPExtensions.h"; sourceTree = "<group>"; };
 		D7FF6EE61A6552A50049286B /* NSPathUtilities+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPathUtilities+IDPExtensions.m"; sourceTree = "<group>"; };
 		D7FF6EEA1A6574F40049286B /* IDPDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPDispatch.h; sourceTree = "<group>"; };
@@ -518,7 +522,7 @@
 			children = (
 				D7E49DCC1A694ACF00C9C38D /* IDPMixin */,
 				D7FF6EE91A6574F40049286B /* IDPDispatch */,
-				D7BD7FD31A64641F004E2041 /* IDPKeyPathObserver */,
+				D7E7BB391A7A709200B104BB /* IDPKVO */,
 				D7BD7FD61A64641F004E2041 /* IDPKVOMutableArray */,
 				D7BD7FDE1A64641F004E2041 /* IDPModels */,
 				D7BD7FE51A64641F004E2041 /* IDPMutableArray */,
@@ -529,15 +533,6 @@
 				D7BD800F1A64641F004E2041 /* IDPWeakArray */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		D7BD7FD31A64641F004E2041 /* IDPKeyPathObserver */ = {
-			isa = PBXGroup;
-			children = (
-				D7BD7FD41A64641F004E2041 /* IDPKeyPathObserver.h */,
-				D7BD7FD51A64641F004E2041 /* IDPKeyPathObserver.m */,
-			);
-			path = IDPKeyPathObserver;
 			sourceTree = "<group>";
 		};
 		D7BD7FD61A64641F004E2041 /* IDPKVOMutableArray */ = {
@@ -883,6 +878,17 @@
 			path = IDPMixin;
 			sourceTree = "<group>";
 		};
+		D7E7BB391A7A709200B104BB /* IDPKVO */ = {
+			isa = PBXGroup;
+			children = (
+				D7E7BB3A1A7A709200B104BB /* IDPKVONotification.h */,
+				D7E7BB3B1A7A709200B104BB /* IDPKVONotification.m */,
+				D7E7BB3C1A7A709200B104BB /* IDPKVOObject.h */,
+				D7E7BB3D1A7A709200B104BB /* IDPKVOObject.m */,
+			);
+			path = IDPKVO;
+			sourceTree = "<group>";
+		};
 		D7FF6EE41A65527A0049286B /* NSPathUtilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1041,11 +1047,11 @@
 				D7A6B0FD1A6084A800159A8C /* IDPAppDelegate.m in Sources */,
 				D7FF6EE71A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */,
 				D7B035C51A6D701000116747 /* IDPUnsafeReference.m in Sources */,
-				D7BD80711A64641F004E2041 /* IDPKeyPathObserver.m in Sources */,
 				D7BD80B71A64641F004E2041 /* UIViewController+IDPExtensions.m in Sources */,
 				D7E49DE31A694ACF00C9C38D /* NSObject+IDPMixinPrivate.m in Sources */,
 				D7BD808D1A64641F004E2041 /* IDPObservableObject.m in Sources */,
 				D7BD809D1A64641F004E2041 /* IDPWeakArray.m in Sources */,
+				D7E7BB401A7A709200B104BB /* IDPKVOObject.m in Sources */,
 				D7A6B0F91A6084A800159A8C /* main.m in Sources */,
 				D7FF6EEC1A6574F40049286B /* IDPDispatch.m in Sources */,
 				D7BD80571A64641F004E2041 /* CGGeometry+IDPExtensions.m in Sources */,
@@ -1060,6 +1066,7 @@
 				D7BD80A91A64641F004E2041 /* UIColor+IDPExtensions.m in Sources */,
 				D7BD80611A64641F004E2041 /* NSArray+IDPExtensions.m in Sources */,
 				D7BD80671A64641F004E2041 /* NSFileManager+IDPExtensions.m in Sources */,
+				D7E7BB3E1A7A709200B104BB /* IDPKVONotification.m in Sources */,
 				D7BD80931A64641F004E2041 /* IDPWeakReference.m in Sources */,
 				D7BD80511A64641F004E2041 /* NSManagedObject+IDPExtensions.m in Sources */,
 				D7BD80AD1A64641F004E2041 /* UIImage+IDPExtensions.m in Sources */,
@@ -1101,6 +1108,7 @@
 				D7E49DE21A694ACF00C9C38D /* NSObject+IDPMixin.m in Sources */,
 				D7BD806C1A64641F004E2041 /* NSString+IDPExtensions.m in Sources */,
 				D7BD80A21A64641F004E2041 /* CALayer+IDPExtensions.m in Sources */,
+				D7E7BB411A7A709200B104BB /* IDPKVOObject.m in Sources */,
 				D7BD808E1A64641F004E2041 /* IDPObservableObject.m in Sources */,
 				D7FF6EED1A6574F40049286B /* IDPDispatch.m in Sources */,
 				D7BD80921A64641F004E2041 /* IDPStrongReference.m in Sources */,
@@ -1115,6 +1123,7 @@
 				D7B035C21A6D6E6000116747 /* IDPCopyReference.m in Sources */,
 				D7BD80901A64641F004E2041 /* IDPReference.m in Sources */,
 				D7BD807E1A64641F004E2041 /* IDPMutableArray.m in Sources */,
+				D7E7BB3F1A7A709200B104BB /* IDPKVONotification.m in Sources */,
 				D7FF6EE81A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */,
 				D7B035BE1A6D5E0A00116747 /* IDPBlockAsyncRaiseIterativeMatcher.m in Sources */,
 				D7BD80801A64641F004E2041 /* IDPMutableDictionary.m in Sources */,
@@ -1132,7 +1141,6 @@
 				D7BD80541A64641F004E2041 /* NSManagedObjectContext+IDPExtensions.m in Sources */,
 				D7BD80B61A64641F004E2041 /* UIView+IDPExtensions.m in Sources */,
 				D7BD80681A64641F004E2041 /* NSFileManager+IDPExtensions.m in Sources */,
-				D7BD80721A64641F004E2041 /* IDPKeyPathObserver.m in Sources */,
 				D7BD80AE1A64641F004E2041 /* UIImage+IDPExtensions.m in Sources */,
 				D7BD80AC1A64641F004E2041 /* UIEvent+IDPExtensions.m in Sources */,
 				D7BD809E1A64641F004E2041 /* IDPWeakArray.m in Sources */,

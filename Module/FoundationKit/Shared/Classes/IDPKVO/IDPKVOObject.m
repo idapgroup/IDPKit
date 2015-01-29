@@ -1,24 +1,24 @@
 //
-//  IDPKeyPathObserver.m
+//  IDPKVOObject.m
 //  BudgetJar
 //
 //  Created by Oleksa Korin on 5/2/12.
 //  Copyright (c) 2012 RedShiftLab. All rights reserved.
 //
 
-#import "IDPKeyPathObserver.h"
+#import "IDPKVOObject.h"
 
 #import "IDPPropertyMacros.h"
 
-@interface IDPKeyPathObserver ()
+@interface IDPKVOObject ()
 @property (nonatomic, assign) NSObject                       *objectToObserve;
-@property (nonatomic, assign) id<IDPKeyPathObserverDelegate> observer;
+@property (nonatomic, assign) id<IDPKVOObjectDelegate> observer;
 @property (nonatomic, assign, getter = isObserving)  BOOL    observing;
 
 
 @end
 
-@implementation IDPKeyPathObserver
+@implementation IDPKVOObject
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -28,7 +28,7 @@
 }
 
 - (id)initWithObservedObject:(NSObject *)object
-			  observerObject:(id<IDPKeyPathObserverDelegate>)observer 
+			  observerObject:(id<IDPKVOObjectDelegate>)observer 
 {
     self = [super init];
     if (self) {

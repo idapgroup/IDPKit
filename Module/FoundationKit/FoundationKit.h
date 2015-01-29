@@ -9,7 +9,7 @@
 #import "IDPMath.h"
 #import "IDPKVOContext.h"
 #import "IDPKVOMutableArray.h"
-#import "IDPKeyPathObserver.h"
+#import "IDPKVOObject.h"
 #import "IDPMachTimer.h"
 #import "IDPMutableArray.h"
 #import "IDPMutableDictionary.h"
