@@ -10,9 +10,9 @@
 
 @interface IDPKVONotification : NSObject
 @property (nonatomic, weak, readonly)   id<NSObject>        object;
-@property (nonatomic, readonly)         NSString            *keyPath;
+@property (nonatomic, copy, readonly)   NSString            *keyPath;
 @property (nonatomic, readonly)         NSKeyValueChange    changeType;
-@property (nonatomic, readonly)         id<NSObject>        newValue;
+@property (nonatomic, readonly)         id<NSObject>        value;
 @property (nonatomic, readonly)         id<NSObject>        oldValue;
 
 + (instancetype)notificationWithObject:(id<NSObject>)observedObject

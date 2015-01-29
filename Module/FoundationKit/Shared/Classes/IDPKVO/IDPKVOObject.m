@@ -8,17 +8,31 @@
 
 #import "IDPKVOObject.h"
 
-#import "IDPPropertyMacros.h"
+#import "IDPKVONotification.h"
 
 @interface IDPKVOObject ()
-@property (nonatomic, assign) NSObject                       *objectToObserve;
-@property (nonatomic, assign) id<IDPKVOObjectDelegate> observer;
-@property (nonatomic, assign, getter = isObserving)  BOOL    observing;
-
+@property (nonatomic, weak)     NSObject                    *object;
+@property (nonatomic, copy)     NSArray                     *keyPaths;
+@property (nonatomic, copy)     IDPKVONotificationBlock     handler;
+@property (nonatomic, assign)   NSKeyValueObservingOptions  options;
 
 @end
 
 @implementation IDPKVOObject
+
+@synthesize observing   = _observing;
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)objectWithObject:(NSObject *)object
+                        keyPaths:(NSArray *)keyPaths
+                         handler:(IDPKVONotificationBlock)handler
+{
+    return [[self alloc] initWithObject:object
+                               keyPaths:keyPaths
+                                handler:handler];
+}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -27,94 +41,110 @@
 	[self stopObserving];
 }
 
-- (id)initWithObservedObject:(NSObject *)object
-			  observerObject:(id<IDPKVOObjectDelegate>)observer 
+- (instancetype)init {
+    return [self initWithObject:nil
+                       keyPaths:nil
+                        handler:nil
+                        options:0];
+}
+
+- (instancetype)initWithObject:(NSObject *)object
+                      keyPaths:(NSArray *)keyPaths
+                       handler:(IDPKVONotificationBlock)handler
+{
+    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew
+                                            | NSKeyValueObservingOptionOld
+                                            | NSKeyValueObservingOptionInitial;
+    
+    return [self initWithObject:object
+                       keyPaths:keyPaths
+                        handler:handler
+                        options:options];
+}
+
+- (instancetype)initWithObject:(NSObject *)object
+                      keyPaths:(NSArray *)keyPaths
+                       handler:(IDPKVONotificationBlock)handler
+                       options:(NSKeyValueObservingOptions)options
 {
     self = [super init];
     if (self) {
-        self.objectToObserve = object;
-		self.observer = observer;
+        self.object = object;
+		self.keyPaths = keyPaths;
+        self.handler = handler;
+        self.options = options;
     }
+    
+    if (!self.object
+        || !self.keyPaths
+        || 0 == [self.keyPaths count]
+        || !self.handler
+        || 0 == self.options)
+    {
+        return nil;
+    }
+    
     return self;
 }
 
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setObservedKeyPathsArray:(NSArray *)theArray {
-	BOOL temp = self.observing;
-	
-	if (self.observing) {
-		[self stopObserving];
-	}
-	
-    _observedKeyPathsArray = [theArray copy];
-	
-	if (temp) {
-		[self startObserving];
-	}
+- (BOOL)isObserving {
+    @synchronized (self) {
+        return _observing;
+    }
+}
+
+- (void)setObserving:(BOOL)observing {
+    @synchronized (self) {
+        if (_observing != observing) {
+            if (observing) {
+                [self startObserving];
+            } else {
+                [self stopObserving];
+            }
+            
+            _observing = observing;
+        }
+    }
 }
 
 #pragma mark -
-#pragma mark Public
-
-- (BOOL)isKeyPathInObservedArray:(NSString *)keyPath {
-	for (NSString *arrayKeyPath in [self observedKeyPathsArray]) {
-		if ([keyPath isEqualToString:arrayKeyPath]) {
-			return YES;
-		}
-	}
-	
-	return NO;
-}
+#pragma mark Private
 
 - (void)startObserving {
-	[self startObservingWithOptions:NSKeyValueObservingOptionNew];
-}
-
-- (void)startObservingWithOptions:(NSKeyValueObservingOptions)options {
-	[self startObservingWithOptions:options context:NULL];
-}
-
-- (void)startObservingWithOptions:(NSKeyValueObservingOptions)options context:(void *)context {
-    if (self.observing == YES) {
-        return;
-    }
+    NSKeyValueObservingOptions options = self.options;
     
-	self.observing = YES;
-	
-	for (NSString *propertyKey in [self observedKeyPathsArray]) {
-		[self.objectToObserve addObserver:self
-                               forKeyPath:propertyKey
-                                  options:options
-                                  context:context];
+	for (NSString *keyPath in self.keyPaths) {
+		[self.object addObserver:self
+                      forKeyPath:keyPath
+                         options:options
+                         context:NULL];
 	}
 }
 
 - (void)stopObserving {
-    if (self.observing == NO) {
-        return;
-    }
-    
-	self.observing = NO;
-	
-	for (NSString *keyPath in [self observedKeyPathsArray]) {
-		[self.objectToObserve removeObserver:self
-                                  forKeyPath:keyPath];
+	for (NSString *keyPath in self.keyPaths) {
+		[self.object removeObserver:self
+                         forKeyPath:keyPath];
 	}
 }
+
+#pragma mark -
+#pragma mark NSKeyValueObserving
 
 - (void)observeValueForKeyPath:(NSString *)keyPath 
 					  ofObject:(id)object 
 						change:(NSDictionary *)change 
 					   context:(void *)context
 {
-	if (object == self.objectToObserve && [self isKeyPathInObservedArray:keyPath]) {
-		[self.observer keyPathObserver:self 
-					   didCatchChanges:change 
-							 inKeyPath:keyPath 
-							  ofObject:self.objectToObserve];
-	}
+    IDPKVONotification *notification = [IDPKVONotification notificationWithObject:self.object
+                                                                          keyPath:keyPath
+                                                                changesDictionary:change];
+    
+    IDPKVONotificationBlock handler = self.handler;
+    handler(notification);
 }
 
 

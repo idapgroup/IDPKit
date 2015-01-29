@@ -12,7 +12,7 @@
 @property (nonatomic, weak)     id<NSObject>        object;
 @property (nonatomic, copy)     NSString            *keyPath;
 @property (nonatomic, assign)   NSKeyValueChange    changeType;
-@property (nonatomic, strong)   id<NSObject>        newValue;
+@property (nonatomic, strong)   id<NSObject>        value;
 @property (nonatomic, strong)   id<NSObject>        oldValue;
 
 - (void)fillWithChangesDictionary:(NSDictionary *)dictionary;
@@ -55,7 +55,11 @@
 #pragma mark Public
 
 - (NSUInteger)hash {
-    return [self.object hash] ^ [self.keyPath hash] ^ self.changeType ^ [self.newValue hash] ^ [self.oldValue hash];
+    return [self.object hash]
+            ^ [self.keyPath hash]
+            ^ self.changeType
+            ^ [self.value hash]
+            ^ [self.oldValue hash];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -80,7 +84,7 @@
     return [self.object isEqual:notification.object]
             && [self.keyPath isEqual:notification.keyPath]
             && self.changeType == notification.changeType
-            && [self.newValue isEqual:notification.newValue]
+            && [self.value isEqual:notification.value]
             && [self.oldValue isEqual:notification.oldValue];
 }
 
@@ -91,7 +95,7 @@
     NSNumber *changeType = dictionary[NSKeyValueChangeKindKey];
     self.changeType = [changeType unsignedIntegerValue];
 
-    self.newValue = dictionary[NSKeyValueChangeNewKey];
+    self.value = dictionary[NSKeyValueChangeNewKey];
     self.oldValue = dictionary[NSKeyValueChangeOldKey];
 }
 
