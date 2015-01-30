@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface IDPKVONotification : NSObject
-@property (nonatomic, weak, readonly)   id<NSObject>        object;
+@property (nonatomic, weak, readonly)   id                  object;
 @property (nonatomic, copy, readonly)   NSString            *keyPath;
 @property (nonatomic, readonly)         NSKeyValueChange    changeType;
-@property (nonatomic, readonly)         id<NSObject>        value;
-@property (nonatomic, readonly)         id<NSObject>        oldValue;
+@property (nonatomic, readonly)         id                  value;
+@property (nonatomic, readonly)         id                  oldValue;
 
 + (instancetype)notificationWithObject:(id<NSObject>)observedObject
                                keyPath:(NSString *)keyPath

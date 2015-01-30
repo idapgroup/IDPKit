@@ -6,10 +6,9 @@
 //  Copyright (c) 2012 RedShiftLab. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "IDPKVONotification.h"
 
 @class IDPKVOObject;
-@class IDPKVONotification;
 
 typedef void(^IDPKVONotificationBlock)(IDPKVONotification *notification);
 

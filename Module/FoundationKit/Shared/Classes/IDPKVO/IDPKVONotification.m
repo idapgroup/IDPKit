@@ -9,11 +9,11 @@
 #import "IDPKVONotification.h"
 
 @interface IDPKVONotification ()
-@property (nonatomic, weak)     id<NSObject>        object;
+@property (nonatomic, weak)     id                  object;
 @property (nonatomic, copy)     NSString            *keyPath;
 @property (nonatomic, assign)   NSKeyValueChange    changeType;
-@property (nonatomic, strong)   id<NSObject>        value;
-@property (nonatomic, strong)   id<NSObject>        oldValue;
+@property (nonatomic, strong)   id                  value;
+@property (nonatomic, strong)   id                  oldValue;
 
 - (void)fillWithChangesDictionary:(NSDictionary *)dictionary;
 

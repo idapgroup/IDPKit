@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EB0E7824A84819FDD9337AA /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */; };
+		D70D2CEA1A7BBFBE00D88BD8 /* IDPKVOObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D2CE91A7BBFBE00D88BD8 /* IDPKVOObjectSpec.m */; };
 		D7A6B0ED1A6084A800159A8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EC1A6084A800159A8C /* Foundation.framework */; };
 		D7A6B0EF1A6084A800159A8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */; };
 		D7A6B0F11A6084A800159A8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0F01A6084A800159A8C /* UIKit.framework */; };
@@ -138,6 +139,8 @@
 		9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F7B5CDBDB18B157BC098B7 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70BC6AE1A6D3B260053EA92 /* IDPSpecSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSpecSetup.h; sourceTree = "<group>"; };
+		D70D2CE91A7BBFBE00D88BD8 /* IDPKVOObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOObjectSpec.m; sourceTree = "<group>"; };
+		D70D2CEC1A7BC93E00D88BD8 /* IDPObjCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObjCRuntime.h; sourceTree = "<group>"; };
 		D7A6B0E91A6084A800159A8C /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A6B0EC1A6084A800159A8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -212,7 +215,7 @@
 		D7BD80111A64641F004E2041 /* IDPWeakArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPWeakArray.m; sourceTree = "<group>"; };
 		D7BD80141A64641F004E2041 /* IDPMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMath.h; sourceTree = "<group>"; };
 		D7BD80151A64641F004E2041 /* IDPMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMath.m; sourceTree = "<group>"; };
-		D7BD80161A64641F004E2041 /* IDPPropertyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPPropertyMacros.h; sourceTree = "<group>"; };
+		D7BD80161A64641F004E2041 /* IDPUtilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUtilityMacros.h; sourceTree = "<group>"; };
 		D7BD80181A64641F004E2041 /* QuartzCoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuartzCoreKit.h; sourceTree = "<group>"; };
 		D7BD801A1A64641F004E2041 /* CALayer+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+IDPExtensions.h"; sourceTree = "<group>"; };
 		D7BD801B1A64641F004E2041 /* CALayer+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+IDPExtensions.m"; sourceTree = "<group>"; };
@@ -303,6 +306,22 @@
 				451B88EF011FADEE69B665C9 /* Pods-iOSTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D70D2CE81A7BBF5400D88BD8 /* IDPKVO */ = {
+			isa = PBXGroup;
+			children = (
+				D70D2CE91A7BBFBE00D88BD8 /* IDPKVOObjectSpec.m */,
+			);
+			path = IDPKVO;
+			sourceTree = "<group>";
+		};
+		D70D2CEB1A7BC90500D88BD8 /* IDPObjCRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				D70D2CEC1A7BC93E00D88BD8 /* IDPObjCRuntime.h */,
+			);
+			path = IDPObjCRuntime;
 			sourceTree = "<group>";
 		};
 		D7A6B0E01A6084A800159A8C = {
@@ -622,9 +641,10 @@
 		D7BD80121A64641F004E2041 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D70D2CEB1A7BC90500D88BD8 /* IDPObjCRuntime */,
 				D7D779DF1A66C59F00B91549 /* IDPMachTimer */,
 				D7BD80131A64641F004E2041 /* IDPMath */,
-				D7BD80161A64641F004E2041 /* IDPPropertyMacros.h */,
+				D7BD80161A64641F004E2041 /* IDPUtilityMacros.h */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -864,6 +884,7 @@
 		D7E49DEE1A69518000C9C38D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D70D2CE81A7BBF5400D88BD8 /* IDPKVO */,
 				D7E49DEF1A69518000C9C38D /* IDPMixin */,
 			);
 			path = Classes;
@@ -1113,6 +1134,7 @@
 				D7FF6EED1A6574F40049286B /* IDPDispatch.m in Sources */,
 				D7BD80921A64641F004E2041 /* IDPStrongReference.m in Sources */,
 				D7BD80C01A64641F004E2041 /* IDPView.m in Sources */,
+				D70D2CEA1A7BBFBE00D88BD8 /* IDPKVOObjectSpec.m in Sources */,
 				D7BD80641A64641F004E2041 /* NSDate+IDPExtensions.m in Sources */,
 				D7BD80A61A64641F004E2041 /* NSBundle+IDPExtensions.m in Sources */,
 				D7BD80501A64641F004E2041 /* IDPCoreDataManager.m in Sources */,

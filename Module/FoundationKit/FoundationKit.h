@@ -1,5 +1,5 @@
 #import "CGGeometry+IDPExtensions.h"
-#import "IDPPropertyMacros.h"
+#import "IDPUtilityMacros.h"
 #import "NSArray+IDPExtensions.h"
 #import "NSBundle+IDPExtensions.h"
 #import "NSDate+IDPExtensions.h"
