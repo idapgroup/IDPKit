@@ -73,8 +73,16 @@ describe(@"Apple KVO", ^{
             [[[object isa] should] equal:NSClassFromString(className)];
         });
         
+        it(@"its -isa superclass should be IDPKVOTestObject", ^{
+            [[[[object isa] superclass] should] equal:[IDPKVOTestObject class]];
+        });
+        
         context(@"after adding another observed keypath -object", ^{
+            __block Class isa = Nil;
+            
             beforeAll(^{
+                isa = [object isa];
+                
                 [object addObserver:observer
                          forKeyPath:IDPStringFromSEL(object)
                             options:NSKeyValueObservingOptionNew
@@ -86,8 +94,23 @@ describe(@"Apple KVO", ^{
                             forKeyPath:IDPStringFromSEL(object)];
             });
             
-            it(@"", ^{
-                [[object should] beNonNil];
+            it(@"its -class should return IDPKVOTestObject", ^{
+                [[[object class] should] equal:[IDPKVOTestObject class]];
+            });
+            
+            it(@"its -isa should be NSKVONotifying_IDPKVOTestObject", ^{
+                NSString *className = [NSString stringWithFormat:@"NSKVONotifying_%@",
+                                       NSStringFromClass([IDPKVOTestObject class])];
+                
+                [[[object isa] should] equal:NSClassFromString(className)];
+            });
+            
+            it(@"its -isa superclass should be IDPKVOTestObject", ^{
+                [[[[object isa] superclass] should] equal:[IDPKVOTestObject class]];
+            });
+            
+            it(@"its -isa pointer after adding should equal isa before adding", ^{
+                [[theValue([object isa]) should] equal:theValue(isa)];
             });
         });
     });
