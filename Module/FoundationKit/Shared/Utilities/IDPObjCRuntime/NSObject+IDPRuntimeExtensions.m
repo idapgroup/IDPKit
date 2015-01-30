@@ -10,10 +10,22 @@
 
 #import <objc/runtime.h>
 
+#import "IDPObjCRuntime.h"
+
 @implementation NSObject (IDPRuntimeExtensions)
+
++ (Class)KVOClass {
+    NSString *className = IDPKVOClassNameWithClass(self);
+    
+    return NSClassFromString(className);
+}
 
 - (Class)isa {
     return object_getClass(self);
+}
+
+- (Class)KVOClass {
+    return [[self class] KVOClass];
 }
 
 @end

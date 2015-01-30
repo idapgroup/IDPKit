@@ -54,14 +54,6 @@ describe(@"Apple KVO", ^{
                         context:NULL];
         });
         
-        afterAll(^{
-            [object removeObserver:observer
-                        forKeyPath:IDPStringFromSEL(value)];
-            
-            observer = nil;
-            object = nil;
-        });
-        
         it(@"its -class should return IDPKVOTestObject", ^{
             [[[object class] should] equal:[IDPKVOTestObject class]];
         });
@@ -111,6 +103,26 @@ describe(@"Apple KVO", ^{
             
             it(@"its -isa pointer after adding should equal isa before adding", ^{
                 [[theValue([object isa]) should] equal:theValue(isa)];
+            });
+        });
+        
+        context(@"after removing all observers", ^{
+            beforeAll(^{
+                [object removeObserver:observer
+                            forKeyPath:IDPStringFromSEL(value)];
+            });
+            
+            it(@"its -isa should equal its -class", ^{
+                [[[object isa] should] equal:[object class]];
+            });
+            
+            it(@"its -isa should be IDPKVOTestObject", ^{
+                [[[object isa] should] equal:[IDPKVOTestObject class]];
+            });
+            
+            it(@"its KVO class counterpart shouldn't be destroyed", ^{
+                Class isa = [object KVOClass];
+                [[theValue(isa) shouldNot] equal:theValue(nil)];
             });
         });
     });

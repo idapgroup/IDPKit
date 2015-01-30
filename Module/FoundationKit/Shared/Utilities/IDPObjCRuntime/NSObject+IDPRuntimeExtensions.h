@@ -10,6 +10,9 @@
 
 @interface NSObject (IDPRuntimeExtensions)
 
++ (Class)KVOClass;
+
 - (Class)isa;
+- (Class)KVOClass;
 
 @end
