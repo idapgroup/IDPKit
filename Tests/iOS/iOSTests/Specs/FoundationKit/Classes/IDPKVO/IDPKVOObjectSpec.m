@@ -11,14 +11,7 @@
 #import "IDPKVOObject.h"
 #import "IDPObjCRuntime.h"
 
-@interface IDPKVOTestObject : NSObject
-@property (nonatomic, assign)   NSUInteger  value;
-
-@end
-
-@implementation IDPKVOTestObject
-
-@end
+#import "IDPKVOTestObject.h"
 
 SPEC_BEGIN(IDPKVOObjectSpec)
 
