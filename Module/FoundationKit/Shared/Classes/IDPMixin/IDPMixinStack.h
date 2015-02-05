@@ -12,7 +12,7 @@
 
 // contains only unique entries
 
-@interface IDPMixinStack : IDPMutableArray
+@interface IDPMixinStack : NSObject
 @property (nonatomic, readonly)     NSArray *mixins;
 
 // adds the object to the end of an array
