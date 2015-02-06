@@ -11,12 +11,17 @@
 #import <objc/runtime.h>
 
 #import "IDPObjCRuntime.h"
+#import "IDPKVOObject.h"
+
+static NSString * const IDPKVOObjectProperty    = @"IDPKVOObjectProperty";
 
 NSString *IDPKVONameOfClass(Class cls) {
     return [NSString stringWithFormat:@"NSKVONotifying_%@", NSStringFromClass(cls)];
 }
 
 @implementation NSObject (IDPKVOPrivate)
+
+@dynamic KVOObjects;
 
 + (Class)KVOClass {
     NSString *className = IDPKVONameOfClass(self);
@@ -34,6 +39,46 @@ NSString *IDPKVONameOfClass(Class cls) {
 
 - (BOOL)isKVOClassObject {
     return [self isa] == [self KVOClass];
+}
+
+- (NSMutableArray *)KVOObjects {
+    return objc_getAssociatedObject(self,
+                                    (__bridge const void *)(IDPKVOObjectProperty));
+}
+
+- (void)setKVOObjects:(NSMutableArray *)KVOObjects {
+    objc_setAssociatedObject(self,
+                             (__bridge const void *)(IDPKVOObjectProperty),
+                             KVOObjects,
+                             OBJC_ASSOCIATION_RETAIN);
+}
+
+- (void)addKVOObject:(IDPKVOObject *)object {
+    NSMutableArray *objects = self.KVOObjects;
+    @synchronized (objects) {
+        [objects addObject:object];
+    }
+}
+
+- (void)removeKVOObject:(IDPKVOObject *)object {
+    NSMutableArray *objects = self.KVOObjects;
+    @synchronized (objects) {
+        [objects removeObject:object];
+    }
+}
+
+- (NSUInteger)KVOObjectsCount {
+    NSMutableArray *objects = self.KVOObjects;
+    @synchronized (objects) {
+        return [objects count];
+    }
+}
+
+- (NSArray *)copyKVOObjects {
+    NSMutableArray *objects = self.KVOObjects;
+    @synchronized (objects) {
+        return [objects copy];
+    }
 }
 
 @end

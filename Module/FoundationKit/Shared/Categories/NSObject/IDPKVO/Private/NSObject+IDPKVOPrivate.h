@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class IDPKVOObject;
+
 extern
 NSString *IDPKVONameOfClass(Class cls);
 
 @interface NSObject (IDPKVOPrivate)
+@property (atomic, retain)  NSMutableArray  *KVOObjects;
 
 + (Class)KVOClass;
 
@@ -19,5 +22,11 @@ NSString *IDPKVONameOfClass(Class cls);
 - (Class)KVOClass;
 
 - (BOOL)isKVOClassObject;
+
+// Thread safe methods for accessing KVOObjects
+- (void)addKVOObject:(IDPKVOObject *)object;
+- (void)removeKVOObject:(IDPKVOObject *)object;
+- (NSUInteger)KVOObjectsCount;
+- (NSArray *)copyKVOObjects;
 
 @end
