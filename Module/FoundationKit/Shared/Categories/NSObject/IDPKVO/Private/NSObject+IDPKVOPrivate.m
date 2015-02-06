@@ -12,14 +12,14 @@
 
 #import "IDPObjCRuntime.h"
 
-NSString *IDPKVOClassNameWithClass(Class cls) {
+NSString *IDPKVONameOfClass(Class cls) {
     return [NSString stringWithFormat:@"NSKVONotifying_%@", NSStringFromClass(cls)];
 }
 
 @implementation NSObject (IDPKVOPrivate)
 
 + (Class)KVOClass {
-    NSString *className = IDPKVOClassNameWithClass(self);
+    NSString *className = IDPKVONameOfClass(self);
     
     return NSClassFromString(className);
 }

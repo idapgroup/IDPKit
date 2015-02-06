@@ -35,9 +35,17 @@
 SPEC_BEGIN(NSObject_IDPKVOPrivateSpec)
 
 describe(@"Apple KVO", ^{
+    context(@"IDPKVONameOfClass", ^{
+        it(@"it should return @\"NSKVONotifying_NSObject\" for NSObject", ^{
+            [[IDPKVONameOfClass([NSObject class]) should] equal:@"NSKVONotifying_NSObject"];
+        });
+    });
+    
     context(@"when observing the object", ^{
         __block IDPKVOTestObject *object = nil;
         __block IDPKVOObserver *observer = nil;
+        
+        NSString *className = @"NSKVONotifying_IDPKVOTestObject";
         
         beforeAll(^{
             object = [IDPKVOTestObject new];
@@ -53,16 +61,10 @@ describe(@"Apple KVO", ^{
         });
 
         it(@"its +KVOClass should return NSKVONotifying_IDPKVOTestObject", ^{
-            NSString *className = [NSString stringWithFormat:@"NSKVONotifying_%@",
-                                   NSStringFromClass([IDPKVOTestObject class])];
-            
             [[[[object class] KVOClass] should] equal:NSClassFromString(className)];
         });
         
         it(@"its -KVOClass should return NSKVONotifying_IDPKVOTestObject", ^{
-            NSString *className = [NSString stringWithFormat:@"NSKVONotifying_%@",
-                                   NSStringFromClass([IDPKVOTestObject class])];
-            
             [[[object KVOClass] should] equal:NSClassFromString(className)];
         });
         
@@ -104,9 +106,6 @@ describe(@"Apple KVO", ^{
             });
             
             it(@"its -isa should be NSKVONotifying_IDPKVOTestObject", ^{
-                NSString *className = [NSString stringWithFormat:@"NSKVONotifying_%@",
-                                       NSStringFromClass([IDPKVOTestObject class])];
-                
                 [[[object isa] should] equal:NSClassFromString(className)];
             });
             

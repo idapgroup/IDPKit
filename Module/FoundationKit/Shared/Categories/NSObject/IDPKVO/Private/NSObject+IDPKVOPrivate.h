@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern
-NSString *IDPKVOClassNameWithClass(Class cls);
+NSString *IDPKVONameOfClass(Class cls);
 
 @interface NSObject (IDPKVOPrivate)
 
