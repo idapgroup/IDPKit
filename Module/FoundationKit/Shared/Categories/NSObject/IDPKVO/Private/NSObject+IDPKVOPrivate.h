@@ -14,7 +14,7 @@ extern
 NSString *IDPKVONameOfClass(Class cls);
 
 @interface NSObject (IDPKVOPrivate)
-@property (atomic, retain)  NSMutableArray  *KVOObjects;
+@property (atomic, retain)  NSMutableSet  *KVOObjectsSet;
 
 + (Class)KVOClass;
 
@@ -27,6 +27,6 @@ NSString *IDPKVONameOfClass(Class cls);
 - (void)addKVOObject:(IDPKVOObject *)object;
 - (void)removeKVOObject:(IDPKVOObject *)object;
 - (NSUInteger)KVOObjectsCount;
-- (NSArray *)copyKVOObjects;
+- (NSSet *)copyKVOObjectsSet;
 
 @end

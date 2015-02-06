@@ -12,6 +12,8 @@
 
 #import "IDPSafeKVOContext.h"
 
+#import "NSObject+IDPKVOPrivate.h"
+
 @interface IDPKVOObject ()
 @property (nonatomic, weak)     NSObject                    *object;
 @property (nonatomic, copy)     NSArray                     *keyPaths;
@@ -41,6 +43,8 @@
 
 - (void)dealloc {
 	[self stopObserving];
+
+    self.object = nil;
 }
 
 - (instancetype)init {
@@ -78,8 +82,6 @@
         return nil;
     }
     
-    
-    
     self = [super init];
     if (self) {
         self.object = object;
@@ -114,11 +116,28 @@
     }
 }
 
+- (void)setObject:(NSObject *)object {
+    if (object != _object) {
+        if (_object) {
+            [_object removeKVOObject:self];
+        }
+        
+        _object = object;
+        
+        if (_object) {
+            [_object addKVOObject:self];
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark Private
 
 - (void)startObserving {
     NSObject *object = self.object;
+    if (!object) {
+        return;
+    }
 
     NSKeyValueObservingOptions options = self.options;
     
@@ -134,6 +153,10 @@
 
 - (void)stopObserving {
     NSObject *object = self.object;
+    if (!object) {
+        return;
+    }
+    
     for (NSString *keyPath in self.keyPaths) {
         [object removeObserver:self
                     forKeyPath:keyPath];
