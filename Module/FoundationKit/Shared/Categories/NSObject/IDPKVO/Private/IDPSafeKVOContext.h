@@ -8,6 +8,6 @@
 
 @interface IDPSafeKVOContext : NSObject
 
-+ (void)makeKVOObjectSafe:(NSObject *)object;
++ (void)makeObjectSafe:(NSObject *)object;
 
 @end
