@@ -1,5 +1,5 @@
 //
-//  NSObject+IDPKVOPrivateExtensions.h
+//  NSObject+IDPKVOPrivate.h
 //  iOS
 //
 //  Created by Oleksa Korin on 30/1/15.

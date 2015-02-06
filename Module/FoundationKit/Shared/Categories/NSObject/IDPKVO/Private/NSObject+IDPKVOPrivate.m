@@ -1,12 +1,12 @@
 //
-//  NSObject+IDPKVOPrivateExtensions.m
+//  NSObject+IDPKVOPrivate.m
 //  iOS
 //
 //  Created by Oleksa Korin on 30/1/15.
 //  Copyright (c) 2015 IDAP Group. All rights reserved.
 //
 
-#import "NSObject+IDPKVOPrivateExtensions.h"
+#import "NSObject+IDPKVOPrivate.h"
 
 #import <objc/runtime.h>
 
@@ -16,7 +16,7 @@ NSString *IDPKVOClassNameWithClass(Class cls) {
     return [NSString stringWithFormat:@"NSKVONotifying_%@", NSStringFromClass(cls)];
 }
 
-@implementation NSObject (IDPKVOPrivateExtensions)
+@implementation NSObject (IDPKVOPrivate)
 
 + (Class)KVOClass {
     NSString *className = IDPKVOClassNameWithClass(self);

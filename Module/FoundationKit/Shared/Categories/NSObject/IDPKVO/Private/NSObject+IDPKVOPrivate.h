@@ -1,5 +1,5 @@
 //
-//  NSObject+IDPKVOPrivateExtensions.h
+//  NSObject+IDPKVOPrivate.h
 //  iOS
 //
 //  Created by Oleksa Korin on 30/1/15.
@@ -11,7 +11,7 @@
 extern
 NSString *IDPKVOClassNameWithClass(Class cls);
 
-@interface NSObject (IDPKVOPrivateExtensions)
+@interface NSObject (IDPKVOPrivate)
 
 + (Class)KVOClass;
 
