@@ -13,13 +13,14 @@
 typedef void(^IDPKVONotificationBlock)(IDPKVONotification *notification);
 
 @interface IDPKVOObject : NSObject
-@property (nonatomic, weak, readonly)   NSObject    *object;
+@property (nonatomic, assign, readonly) NSObject    *object;
 @property (nonatomic, copy, readonly)   NSArray     *keyPaths;
 
 @property (nonatomic, readonly)         NSKeyValueObservingOptions      options;
 @property (nonatomic, copy, readonly)	IDPKVONotificationBlock         handler;
 
-@property (atomic, assign, getter = isObserving)     BOOL    observing;
+@property (atomic, assign, getter = isObserving)    BOOL    observing;
+@property (nonatomic, readonly, getter = isValid)   BOOL    valid;
 
 + (instancetype)objectWithObject:(NSObject *)object
                         keyPaths:(NSArray *)keyPaths
@@ -31,7 +32,12 @@ typedef void(^IDPKVONotificationBlock)(IDPKVONotification *notification);
 
 - (instancetype)initWithObject:(NSObject *)object
                       keyPaths:(NSArray *)keyPaths
-                       handler:(IDPKVONotificationBlock)handler
-                       options:(NSKeyValueObservingOptions)options;
+                       options:(NSKeyValueObservingOptions)options
+                       handler:(IDPKVONotificationBlock)handler;
+
+/**
+ *	Invalidates the object. It is unusable after invalidation.
+ */
+- (void)invalidate;
 
 @end

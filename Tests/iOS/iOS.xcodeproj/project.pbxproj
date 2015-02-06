@@ -115,6 +115,8 @@
 		D7E1DB131A84CF9800E929C4 /* IDPObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DB111A84CF9800E929C4 /* IDPObjCRuntime.m */; };
 		D7E1DB261A84EE8C00E929C4 /* IDPTSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DB251A84EE8C00E929C4 /* IDPTSProxy.m */; };
 		D7E1DB271A84EE8C00E929C4 /* IDPTSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DB251A84EE8C00E929C4 /* IDPTSProxy.m */; };
+		D7E229A91A851A5A0058309E /* NSObject+IDPKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E229A81A851A5A0058309E /* NSObject+IDPKVO.m */; };
+		D7E229AA1A851A5A0058309E /* NSObject+IDPKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E229A81A851A5A0058309E /* NSObject+IDPKVO.m */; };
 		D7E49DD91A694ACF00C9C38D /* IDPModelMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E49DCE1A694ACF00C9C38D /* IDPModelMixin.m */; };
 		D7E49DDA1A694ACF00C9C38D /* IDPModelMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E49DCE1A694ACF00C9C38D /* IDPModelMixin.m */; };
 		D7E49DDB1A694ACF00C9C38D /* IDPMixinContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E49DD01A694ACF00C9C38D /* IDPMixinContext.m */; };
@@ -272,6 +274,8 @@
 		D7E1DB111A84CF9800E929C4 /* IDPObjCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObjCRuntime.m; sourceTree = "<group>"; };
 		D7E1DB241A84EE8C00E929C4 /* IDPTSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPTSProxy.h; sourceTree = "<group>"; };
 		D7E1DB251A84EE8C00E929C4 /* IDPTSProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTSProxy.m; sourceTree = "<group>"; };
+		D7E229A71A851A5A0058309E /* NSObject+IDPKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPKVO.h"; sourceTree = "<group>"; };
+		D7E229A81A851A5A0058309E /* NSObject+IDPKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPKVO.m"; sourceTree = "<group>"; };
 		D7E49DCD1A694ACF00C9C38D /* IDPModelMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelMixin.h; sourceTree = "<group>"; };
 		D7E49DCE1A694ACF00C9C38D /* IDPModelMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelMixin.m; sourceTree = "<group>"; };
 		D7E49DCF1A694ACF00C9C38D /* IDPMixinContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMixinContext.h; sourceTree = "<group>"; };
@@ -896,11 +900,13 @@
 		D7E1DAF91A84CF3800E929C4 /* IDPKVO */ = {
 			isa = PBXGroup;
 			children = (
+				D7E1DAFE1A84CF3800E929C4 /* Private */,
 				D7E1DAFA1A84CF3800E929C4 /* IDPKVONotification.h */,
 				D7E1DAFB1A84CF3800E929C4 /* IDPKVONotification.m */,
 				D7E1DAFC1A84CF3800E929C4 /* IDPKVOObject.h */,
 				D7E1DAFD1A84CF3800E929C4 /* IDPKVOObject.m */,
-				D7E1DAFE1A84CF3800E929C4 /* Private */,
+				D7E229A71A851A5A0058309E /* NSObject+IDPKVO.h */,
+				D7E229A81A851A5A0058309E /* NSObject+IDPKVO.m */,
 			);
 			path = IDPKVO;
 			sourceTree = "<group>";
@@ -1177,6 +1183,7 @@
 				D7BD80A11A64641F004E2041 /* CALayer+IDPExtensions.m in Sources */,
 				D7BD80791A64641F004E2041 /* IDPModel.m in Sources */,
 				D7E49DDD1A694ACF00C9C38D /* IDPMixinIMP.m in Sources */,
+				D7E229A91A851A5A0058309E /* NSObject+IDPKVO.m in Sources */,
 				D7BD80731A64641F004E2041 /* IDPKVOContext.m in Sources */,
 				D7BD809F1A64641F004E2041 /* IDPMath.m in Sources */,
 				D7BD80B31A64641F004E2041 /* UITableView+IDPCellLoading.m in Sources */,
@@ -1248,6 +1255,7 @@
 				D7C83FE71A69B6C00054AA73 /* NSObject+IDPMixinSpec.m in Sources */,
 				D7E49DF11A69518000C9C38D /* IDPMixinStackSpec.m in Sources */,
 				D7BD80541A64641F004E2041 /* NSManagedObjectContext+IDPExtensions.m in Sources */,
+				D7E229AA1A851A5A0058309E /* NSObject+IDPKVO.m in Sources */,
 				D7BD80B61A64641F004E2041 /* UIView+IDPExtensions.m in Sources */,
 				D7BD80681A64641F004E2041 /* NSFileManager+IDPExtensions.m in Sources */,
 				D7BD80AE1A64641F004E2041 /* UIImage+IDPExtensions.m in Sources */,

@@ -27,8 +27,8 @@ describe(@"IDPKVOObject", ^{
             it(@"it should return nil", ^{
                 id object = [[IDPKVOObject alloc] initWithObject:nil
                                                         keyPaths:nil
-                                                         handler:nil
-                                                         options:0];
+                                                         options:0
+                                                         handler:nil];
 
                 [[object should] beNil];
             });

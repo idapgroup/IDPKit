@@ -15,10 +15,12 @@
 #import "NSObject+IDPKVOPrivate.h"
 
 @interface IDPKVOObject ()
-@property (nonatomic, weak)     NSObject                    *object;
+@property (nonatomic, assign)   NSObject                    *object;
 @property (nonatomic, copy)     NSArray                     *keyPaths;
 @property (nonatomic, copy)     IDPKVONotificationBlock     handler;
 @property (nonatomic, assign)   NSKeyValueObservingOptions  options;
+
+@property (nonatomic, assign, getter = isValid) BOOL        valid;
 
 @end
 
@@ -42,16 +44,14 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	[self stopObserving];
-
-    self.object = nil;
+    [self invalidate];
 }
 
 - (instancetype)init {
     return [self initWithObject:nil
                        keyPaths:nil
-                        handler:nil
-                        options:0];
+                        options:0
+                        handler:nil];
 }
 
 - (instancetype)initWithObject:(NSObject *)object
@@ -64,14 +64,14 @@
     
     return [self initWithObject:object
                        keyPaths:keyPaths
-                        handler:handler
-                        options:options];
+                        options:options
+                        handler:handler];
 }
 
 - (instancetype)initWithObject:(NSObject *)object
                       keyPaths:(NSArray *)keyPaths
-                       handler:(IDPKVONotificationBlock)handler
                        options:(NSKeyValueObservingOptions)options
+                       handler:(IDPKVONotificationBlock)handler
 {
     if (!object
         || !keyPaths
@@ -88,6 +88,7 @@
 		self.keyPaths = keyPaths;
         self.handler = handler;
         self.options = options;
+        self.valid = YES;
     }
     
     return self;
@@ -98,14 +99,14 @@
 
 - (BOOL)isObserving {
     @synchronized (self) {
-        return _observing;
+        return self.valid && _observing;
     }
 }
 
 - (void)setObserving:(BOOL)observing {
     @synchronized (self) {
         if (_observing != observing) {
-            if (observing) {
+            if (observing && self.valid) {
                 [self startObserving];
             } else {
                 [self stopObserving];
@@ -127,6 +128,19 @@
         if (_object) {
             [_object addKVOObject:self];
         }
+    }
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)invalidate {
+    @synchronized (self) {
+        self.valid = NO;
+        
+        [self stopObserving];
+        
+        self.object = nil;
     }
 }
 
