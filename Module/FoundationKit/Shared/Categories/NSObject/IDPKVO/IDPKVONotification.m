@@ -15,6 +15,8 @@
 @property (nonatomic, strong)   id                  value;
 @property (nonatomic, strong)   id                  oldValue;
 
+@property (nonatomic, assign, getter = isPrior)   BOOL  prior;
+
 - (void)fillWithChangesDictionary:(NSDictionary *)dictionary;
 
 @end
@@ -59,7 +61,8 @@
             ^ [self.keyPath hash]
             ^ self.changeType
             ^ [self.value hash]
-            ^ [self.oldValue hash];
+            ^ [self.oldValue hash]
+            ^ [self isPrior];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -85,7 +88,8 @@
             && [self.keyPath isEqual:notification.keyPath]
             && self.changeType == notification.changeType
             && [self.value isEqual:notification.value]
-            && [self.oldValue isEqual:notification.oldValue];
+            && [self.oldValue isEqual:notification.oldValue]
+            && self.prior == notification.prior;
 }
 
 #pragma mark -
@@ -97,6 +101,7 @@
 
     self.value = dictionary[NSKeyValueChangeNewKey];
     self.oldValue = dictionary[NSKeyValueChangeOldKey];
+    self.prior = [dictionary[NSKeyValueChangeNotificationIsPriorKey] boolValue];
 }
 
 @end
