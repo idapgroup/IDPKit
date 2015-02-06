@@ -10,8 +10,6 @@
 
 #import <objc/runtime.h>
 
-#import "IDPSafeKVOContext.h"
-
 #import "IDPObjCRuntime.h"
 #import "IDPKVOTestObject.h"
 
@@ -34,7 +32,7 @@
 
 
 
-SPEC_BEGIN(IDPSafeKVOContextSpec)
+SPEC_BEGIN(NSObject_IDPKVOPrivateSpec)
 
 describe(@"Apple KVO", ^{
     context(@"when observing the object", ^{
@@ -53,20 +51,35 @@ describe(@"Apple KVO", ^{
                         options:NSKeyValueObservingOptionNew
                         context:NULL];
         });
+
+        it(@"its +KVOClass should return NSKVONotifying_IDPKVOTestObject", ^{
+            NSString *className = [NSString stringWithFormat:@"NSKVONotifying_%@",
+                                   NSStringFromClass([IDPKVOTestObject class])];
+            
+            [[[[object class] KVOClass] should] equal:NSClassFromString(className)];
+        });
+        
+        it(@"its -KVOClass should return NSKVONotifying_IDPKVOTestObject", ^{
+            NSString *className = [NSString stringWithFormat:@"NSKVONotifying_%@",
+                                   NSStringFromClass([IDPKVOTestObject class])];
+            
+            [[[object KVOClass] should] equal:NSClassFromString(className)];
+        });
         
         it(@"its -class should return IDPKVOTestObject", ^{
             [[[object class] should] equal:[IDPKVOTestObject class]];
         });
         
-        it(@"its -isa should be NSKVONotifying_IDPKVOTestObject", ^{
-            NSString *className = [NSString stringWithFormat:@"NSKVONotifying_%@",
-                                   NSStringFromClass([IDPKVOTestObject class])];
-            
-            [[[object isa] should] equal:NSClassFromString(className)];
+        it(@"its -isa should equal its KVOClass", ^{
+            [[[object isa] should] equal:[object KVOClass]];
         });
         
         it(@"its -isa superclass should be IDPKVOTestObject", ^{
             [[[[object isa] superclass] should] equal:[IDPKVOTestObject class]];
+        });
+        
+        it(@"its -isKVOClassObject should return YES", ^{
+            [[theValue([object isKVOClassObject]) should] beYes];
         });
         
         context(@"after adding another observed keypath -object", ^{
@@ -124,12 +137,12 @@ describe(@"Apple KVO", ^{
                 Class isa = [object KVOClass];
                 [[theValue(isa) shouldNot] equal:theValue(nil)];
             });
+            
+            it(@"its -isKVOClassObject should return NO", ^{
+                [[theValue([object isKVOClassObject]) should] beNo];
+            });
         });
     });
-});
-
-describe(@"IDPSafeKVOContext", ^{
-    
 });
 
 SPEC_END
