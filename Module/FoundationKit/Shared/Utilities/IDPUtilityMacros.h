@@ -1,10 +1,13 @@
 //
-//  IDPPropertyMacros.h
+//  IDPUtilityMacros.h
 //  PatternShots
 //
 //  Created by Oleksa 'trimm' Korin on 2/20/13.
 //  Copyright (c) 2012 RedShiftLab. All rights reserved.
 //
+
+#define IDPStringify(variable) #variable
+#define IDPStringifyExpansion(variable) IDPStringify(variable)
 
 #define IDPNonatomicRetainPropertySynthesize(ivar, newObj) do{if(ivar!=newObj){[ivar release];ivar=[newObj retain];}}while(0)
 #define IDPNonatomicCopyPropertySynthesize(ivar, newObj) do{if(ivar!=newObj){[ivar release];ivar=[newObj copy];}}while(0)

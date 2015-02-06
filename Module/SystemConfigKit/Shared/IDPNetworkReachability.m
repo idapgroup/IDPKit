@@ -10,7 +10,7 @@
 
 
 
-#import "IDPPropertyMacros.h"
+#import "IDPUtilityMacros.h"
 
 NSString * const    IDPNetworkReachabilityErrorDomain                           = @"IDPNetworkReachabilityErrorDomain";
 NSString * const    IDPNetworkReachabilityErrorInternetNotReachableDescription	= @"Internet connection is absent at the moment. Please, try later.";
