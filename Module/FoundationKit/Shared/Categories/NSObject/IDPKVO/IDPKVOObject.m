@@ -67,21 +67,23 @@
                        handler:(IDPKVONotificationBlock)handler
                        options:(NSKeyValueObservingOptions)options
 {
+    if (!object
+        || !keyPaths
+        || 0 == [keyPaths count]
+        || !handler
+        || 0 == options)
+    {
+        return nil;
+    }
+    
+    
+    
     self = [super init];
     if (self) {
         self.object = object;
 		self.keyPaths = keyPaths;
         self.handler = handler;
         self.options = options;
-    }
-    
-    if (!self.object
-        || !self.keyPaths
-        || 0 == [self.keyPaths count]
-        || !self.handler
-        || 0 == self.options)
-    {
-        return nil;
     }
     
     return self;
