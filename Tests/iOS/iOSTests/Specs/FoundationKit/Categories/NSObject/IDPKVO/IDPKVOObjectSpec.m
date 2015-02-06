@@ -13,6 +13,8 @@
 
 #import "IDPKVOTestObject.h"
 
+#import "NSObject+IDPKVOPrivate.h"
+
 SPEC_BEGIN(IDPKVOObjectSpec)
 
 describe(@"IDPKVOObject", ^{
@@ -51,6 +53,18 @@ describe(@"IDPKVOObject", ^{
                                               }];
             
             observer.observing = YES;
+        });
+        
+        it(@"it should be valid", ^{
+            [[theValue(observer.valid) should] beYes];
+        });
+        
+        it(@"its observed objects KVObjectsSet should contain 1 object", ^{
+            [[theValue([object.KVOObjectsSet count]) should] equal:theValue(1)];
+        });
+        
+        it(@"it should be contained in KVObjectsSet of observer", ^{
+            [[[object.KVOObjectsSet anyObject] should] equal:observer];
         });
 
         context(@"when setting -value=2", ^{
@@ -120,6 +134,24 @@ describe(@"IDPKVOObject", ^{
             
             it(@"it should safely remove observation", ^{
                 [[theValue(observer.observing) should] beNo];
+            });
+            
+            it(@"it shouldn't be valid", ^{
+                [[theValue(observer.valid) should] beNo];
+            });
+            
+            context(@"when the object is invalid and oberving is set to YES", ^{
+                beforeAll(^{
+                    observer.observing = YES;
+                });
+                
+                it(@"it shouldn't be invalid ", ^{
+                    [[theValue(observer.valid) should] beNo];
+                });
+                
+                it(@"its observing value should be NO", ^{
+                    [[theValue(observer.observing) should] beNo];
+                });
             });
         });
     });
