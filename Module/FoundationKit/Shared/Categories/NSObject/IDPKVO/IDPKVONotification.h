@@ -14,6 +14,7 @@
 @property (nonatomic, readonly)         NSKeyValueChange    changeType;
 @property (nonatomic, readonly)         id                  value;
 @property (nonatomic, readonly)         id                  oldValue;
+@property (nonatomic, readonly, getter = isPrior)   BOOL    prior;
 
 + (instancetype)notificationWithObject:(id<NSObject>)observedObject
                                keyPath:(NSString *)keyPath
