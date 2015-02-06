@@ -1,5 +1,5 @@
 //
-//  NSObject+IDPRuntimeExtensions.h
+//  NSObject+IDPKVOPrivateExtensions.h
 //  iOS
 //
 //  Created by Oleksa Korin on 30/1/15.
@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (IDPRuntimeExtensions)
+extern
+NSString *IDPKVOClassNameWithClass(Class cls);
+
+@interface NSObject (IDPKVOPrivateExtensions)
 
 + (Class)KVOClass;
 
 - (Class)isa;
 - (Class)KVOClass;
+
+- (BOOL)isKVOClassObject;
 
 @end

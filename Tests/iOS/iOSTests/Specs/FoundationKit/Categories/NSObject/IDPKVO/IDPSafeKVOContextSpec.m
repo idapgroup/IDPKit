@@ -15,7 +15,7 @@
 #import "IDPObjCRuntime.h"
 #import "IDPKVOTestObject.h"
 
-#import "NSObject+IDPRuntimeExtensions.h"
+#import "NSObject+IDPKVOPrivateExtensions.h"
 
 @interface IDPKVOObserver : NSObject
 @end

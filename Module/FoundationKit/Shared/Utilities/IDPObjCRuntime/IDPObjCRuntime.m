@@ -1,5 +1,5 @@
 //
-//  NSObject+IDPRuntimeExtensions.h
+//  NSObject+IDPKVOPrivateExtensions.h
 //  iOS
 //
 //  Created by Oleksa Korin on 30/1/15.
@@ -8,6 +8,4 @@
 
 #import "IDPObjCRuntime.h"
 
-NSString *IDPKVOClassNameWithClass(Class cls) {
-    return [NSString stringWithFormat:@"NSKVONotifying_%@", NSStringFromClass(cls)];
-}
+
