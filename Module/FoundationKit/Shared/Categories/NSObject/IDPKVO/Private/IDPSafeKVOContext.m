@@ -124,9 +124,9 @@
         
         void (^deallocBlock)(__assign NSObject *object) = ^(__assign NSObject *object) {
             @autoreleasepool {
-                NSSet *objects = [object copyKVOObjectsSet];
+                NSSet *objects = object.KVOObjectsSet;
                 for (IDPKVOObject *object in objects) {
-                    object.observing = NO;
+                    [object invalidate];
                 }
             }
             

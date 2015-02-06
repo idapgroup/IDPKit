@@ -21,6 +21,7 @@ NSString *IDPKVONameOfClass(Class cls) {
 
 @implementation NSObject (IDPKVOPrivate)
 
+@dynamic mutableKVOObjectsSet;
 @dynamic KVOObjectsSet;
 
 + (Class)KVOClass {
@@ -41,43 +42,55 @@ NSString *IDPKVONameOfClass(Class cls) {
     return [self isa] == [self KVOClass];
 }
 
-- (NSMutableArray *)KVOObjectsSet {
-    return objc_getAssociatedObject(self,
-                                    (__bridge const void *)(IDPKVOObjectProperty));
+- (NSMutableSet *)mutableKVOObjectsSet {
+    const void *key = (__bridge const void *)IDPKVOObjectProperty;
+    
+    volatile NSMutableSet *objects = objc_getAssociatedObject(self, key);
+    if (!objects) {
+        @synchronized (self) {
+            if (!objects) {
+                objects = [NSMutableSet new];
+                self.mutableKVOObjectsSet = (NSMutableSet *)objects;
+            }
+        }
+    }
+    
+    return (NSMutableSet *)objects;
 }
 
-- (void)setKVOObjectsSet:(NSMutableSet *)KVOObjects {
+- (void)setMutableKVOObjectsSet:(NSMutableSet *)objects {
+    const void *key = (__bridge const void *)IDPKVOObjectProperty;
     objc_setAssociatedObject(self,
-                             (__bridge const void *)(IDPKVOObjectProperty),
-                             KVOObjects,
+                             key,
+                             objects,
                              OBJC_ASSOCIATION_RETAIN);
 }
 
+- (NSSet *)KVOObjectsSet {
+    NSMutableSet *objects = self.mutableKVOObjectsSet;
+    @synchronized (objects) {
+        return [objects copy];
+    }
+}
+
 - (void)addKVOObject:(IDPKVOObject *)object {
-    NSMutableSet *objects = self.KVOObjectsSet;
+    NSMutableSet *objects = self.mutableKVOObjectsSet;
     @synchronized (objects) {
         [objects addObject:object];
     }
 }
 
 - (void)removeKVOObject:(IDPKVOObject *)object {
-    NSMutableSet *objects = self.KVOObjectsSet;
+    NSMutableSet *objects = self.mutableKVOObjectsSet;
     @synchronized (objects) {
         [objects removeObject:object];
     }
 }
 
 - (NSUInteger)KVOObjectsCount {
-    NSMutableSet *objects = self.KVOObjectsSet;
+    NSMutableSet *objects = self.mutableKVOObjectsSet;
     @synchronized (objects) {
         return [objects count];
-    }
-}
-
-- (NSSet *)copyKVOObjectsSet {
-    NSMutableSet *objects = self.KVOObjectsSet;
-    @synchronized (objects) {
-        return [objects copy];
     }
 }
 
