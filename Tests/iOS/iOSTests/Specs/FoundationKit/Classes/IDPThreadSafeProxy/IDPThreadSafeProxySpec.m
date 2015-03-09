@@ -15,53 +15,50 @@
 #import "IDPBlockAsyncRaiseIterativeMatcher.h"
 #import "IDPSpecSetup.h"
 
-SPEC_BEGIN(IDPMixinStackSpec)
+#import "IDPThreadUnsafeObject.h"
+
+SPEC_BEGIN(IDPThreadSafeProxySpec)
 
 registerMatchers(@"IDP");
 registerMatchers(@"KW");
 
-describe(@"IDPMixinStack", ^{
-    __block IDPMixinStack *stack = nil;
-    
 #if IDPMultithreadedSpecTestEnabled == 1
-    context(@"when working in multithreaded environment", ^{
-        const NSUInteger taskCount = IDPMultithreadedSpecIterationCount;
-        
-        beforeAll(^{
-            stack = [IDPMixinStack new];
-            
-            for (int i = 0; i < 10; ++i) {
-                [stack addObject:[NSObject new]];
-            }
+
+__block IDPThreadUnsafeObject *object = nil;
+static const NSUInteger taskCount = IDPMultithreadedSpecIterationCount;
+
+describe(@"IDPThreadUnsafeObject", ^{
+    beforeEach(^{
+        object = [IDPThreadUnsafeObject new];
+    });
+    
+    afterEach(^{
+        object = nil;
+    });
+    
+    context(@"when mutating from different threads", ^{
+        it(@"it should raise", ^{
+            [[theBlock(^{
+                object.value = arc4random();
+                object.object = [NSObject new];
+            }) should] raiseWithIterationCount:taskCount];
         });
-        
-        
+    });
+});
+
+describe(@"IDPThreadSafeProxy", ^{
+    context(@"when shadowing IDPThreadUnsafeObject", ^{
         context(@"when performing operations simultaneously", ^{
             it(@"it shouldn't raise", ^{
                 [[theBlock(^{
-                    [stack addObject:[NSObject new]];
-                    
-                    NSObject *object = [stack.mixins randomObject];
-                    if (object) {
-                        [stack addObject:object];
-                    }
-                    
-                    object = [stack.mixins randomObject];
-                    if (object) {
-                        [stack containsObject:object];
-                    }
-                    
-                    object = [stack.mixins randomObject];
-                    if (object) {
-                        [stack removeObject:object];
-                    }
-                    
-                    [stack count];
+                    object.value = arc4random();
+                    object.object = [NSObject new];
                 }) shouldNot] raiseWithIterationCount:taskCount];
             });
         });
     });
-#endif
 });
+
+#endif // IDPMultithreadedSpecTestEnabled == 1
 
 SPEC_END
