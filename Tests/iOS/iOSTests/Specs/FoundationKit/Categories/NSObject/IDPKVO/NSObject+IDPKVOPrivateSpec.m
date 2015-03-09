@@ -11,26 +11,10 @@
 #import <objc/runtime.h>
 
 #import "IDPObjCRuntime.h"
-#import "IDPKVOTestObject.h"
+#import "IDPTestObject.h"
+#import "IDPKVOObserver.h"
 
 #import "NSObject+IDPKVOPrivate.h"
-
-@interface IDPKVOObserver : NSObject
-@end
-
-@implementation IDPKVOObserver
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context
-{
-    
-}
-
-@end
-
-
 
 SPEC_BEGIN(NSObject_IDPKVOPrivateSpec)
 
@@ -42,13 +26,13 @@ describe(@"Apple KVO", ^{
     });
     
     context(@"when observing the object", ^{
-        __block IDPKVOTestObject *object = nil;
+        __block IDPTestObject *object = nil;
         __block IDPKVOObserver *observer = nil;
         
-        NSString *className = @"NSKVONotifying_IDPKVOTestObject";
+        NSString *className = @"NSKVONotifying_IDPTestObject";
         
         beforeAll(^{
-            object = [IDPKVOTestObject new];
+            object = [IDPTestObject new];
             object.value = 1;
             object.object = [NSObject new];
             
@@ -60,24 +44,24 @@ describe(@"Apple KVO", ^{
                         context:NULL];
         });
 
-        it(@"its +KVOClass should return NSKVONotifying_IDPKVOTestObject", ^{
+        it(@"its +KVOClass should return NSKVONotifying_IDPTestObject", ^{
             [[[[object class] KVOClass] should] equal:NSClassFromString(className)];
         });
         
-        it(@"its -KVOClass should return NSKVONotifying_IDPKVOTestObject", ^{
+        it(@"its -KVOClass should return NSKVONotifying_IDPTestObject", ^{
             [[[object KVOClass] should] equal:NSClassFromString(className)];
         });
         
-        it(@"its -class should return IDPKVOTestObject", ^{
-            [[[object class] should] equal:[IDPKVOTestObject class]];
+        it(@"its -class should return IDPTestObject", ^{
+            [[[object class] should] equal:[IDPTestObject class]];
         });
         
         it(@"its -isa should equal its KVOClass", ^{
             [[[object isa] should] equal:[object KVOClass]];
         });
         
-        it(@"its -isa superclass should be IDPKVOTestObject", ^{
-            [[[[object isa] superclass] should] equal:[IDPKVOTestObject class]];
+        it(@"its -isa superclass should be IDPTestObject", ^{
+            [[[[object isa] superclass] should] equal:[IDPTestObject class]];
         });
         
         it(@"its -isKVOClassObject should return YES", ^{
@@ -101,16 +85,16 @@ describe(@"Apple KVO", ^{
                             forKeyPath:IDPStringFromSEL(object)];
             });
             
-            it(@"its -class should return IDPKVOTestObject", ^{
-                [[[object class] should] equal:[IDPKVOTestObject class]];
+            it(@"its -class should return IDPTestObject", ^{
+                [[[object class] should] equal:[IDPTestObject class]];
             });
             
-            it(@"its -isa should be NSKVONotifying_IDPKVOTestObject", ^{
+            it(@"its -isa should be NSKVONotifying_IDPTestObject", ^{
                 [[[object isa] should] equal:NSClassFromString(className)];
             });
             
-            it(@"its -isa superclass should be IDPKVOTestObject", ^{
-                [[[[object isa] superclass] should] equal:[IDPKVOTestObject class]];
+            it(@"its -isa superclass should be IDPTestObject", ^{
+                [[[[object isa] superclass] should] equal:[IDPTestObject class]];
             });
             
             it(@"its -isa pointer after adding should equal isa before adding", ^{
@@ -128,8 +112,8 @@ describe(@"Apple KVO", ^{
                 [[[object isa] should] equal:[object class]];
             });
             
-            it(@"its -isa should be IDPKVOTestObject", ^{
-                [[[object isa] should] equal:[IDPKVOTestObject class]];
+            it(@"its -isa should be IDPTestObject", ^{
+                [[[object isa] should] equal:[IDPTestObject class]];
             });
             
             it(@"its KVO class counterpart shouldn't be destroyed", ^{
