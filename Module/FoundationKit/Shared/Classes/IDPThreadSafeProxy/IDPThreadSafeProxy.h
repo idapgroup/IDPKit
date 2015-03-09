@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 IDAP Group. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "IDPProxy.h"
 
-@interface IDPThreadSafeProxy : NSProxy
+@interface IDPThreadSafeProxy : IDPProxy
 
 @end

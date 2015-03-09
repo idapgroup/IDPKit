@@ -48,6 +48,14 @@ describe(@"IDPThreadUnsafeObject", ^{
 
 describe(@"IDPThreadSafeProxy", ^{
     context(@"when shadowing IDPThreadUnsafeObject", ^{
+        beforeEach(^{
+            object = [IDPThreadSafeProxy proxyWithTarget:[IDPThreadUnsafeObject new]];
+        });
+        
+        afterEach(^{
+            object = nil;
+        });
+        
         context(@"when performing operations simultaneously", ^{
             it(@"it shouldn't raise", ^{
                 [[theBlock(^{
