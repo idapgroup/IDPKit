@@ -104,6 +104,8 @@
 		D7D4AE3C1AADEB8600ABDF05 /* IDPThreadSafeProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D4AE3A1AADEB8600ABDF05 /* IDPThreadSafeProxy.m */; };
 		D7D4AE401AADEC5700ABDF05 /* IDPKVOObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D4AE3E1AADEC5700ABDF05 /* IDPKVOObserver.m */; };
 		D7D4AE431AADED0C00ABDF05 /* IDPThreadUnsafeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D4AE421AADED0C00ABDF05 /* IDPThreadUnsafeObject.m */; };
+		D7D4AE471AADFD3300ABDF05 /* IDPProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D4AE461AADFD3300ABDF05 /* IDPProxy.m */; };
+		D7D4AE481AADFD3300ABDF05 /* IDPProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D4AE461AADFD3300ABDF05 /* IDPProxy.m */; };
 		D7D779E21A66C59F00B91549 /* IDPMachTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D779E11A66C59F00B91549 /* IDPMachTimer.m */; };
 		D7D779E31A66C59F00B91549 /* IDPMachTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D779E11A66C59F00B91549 /* IDPMachTimer.m */; };
 		D7E1DAF71A84CE0F00E929C4 /* IDPKVOObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DAF51A84CE0F00E929C4 /* IDPKVOObjectSpec.m */; };
@@ -268,6 +270,8 @@
 		D7D4AE3E1AADEC5700ABDF05 /* IDPKVOObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOObserver.m; sourceTree = "<group>"; };
 		D7D4AE411AADED0C00ABDF05 /* IDPThreadUnsafeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPThreadUnsafeObject.h; sourceTree = "<group>"; };
 		D7D4AE421AADED0C00ABDF05 /* IDPThreadUnsafeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPThreadUnsafeObject.m; sourceTree = "<group>"; };
+		D7D4AE451AADFD3300ABDF05 /* IDPProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPProxy.h; sourceTree = "<group>"; };
+		D7D4AE461AADFD3300ABDF05 /* IDPProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPProxy.m; sourceTree = "<group>"; };
 		D7D779E01A66C59F00B91549 /* IDPMachTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMachTimer.h; sourceTree = "<group>"; };
 		D7D779E11A66C59F00B91549 /* IDPMachTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMachTimer.m; sourceTree = "<group>"; };
 		D7E1DAF51A84CE0F00E929C4 /* IDPKVOObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOObjectSpec.m; sourceTree = "<group>"; };
@@ -570,6 +574,7 @@
 		D7BD7FCC1A64641F004E2041 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D7D4AE441AADFD3300ABDF05 /* IDPProxy */,
 				D7D4AE361AADEB3500ABDF05 /* IDPThreadSafeProxy */,
 				D7E49DCC1A694ACF00C9C38D /* IDPMixin */,
 				D7FF6EE91A6574F40049286B /* IDPDispatch */,
@@ -882,6 +887,15 @@
 				D7D4AE3A1AADEB8600ABDF05 /* IDPThreadSafeProxy.m */,
 			);
 			path = IDPThreadSafeProxy;
+			sourceTree = "<group>";
+		};
+		D7D4AE441AADFD3300ABDF05 /* IDPProxy */ = {
+			isa = PBXGroup;
+			children = (
+				D7D4AE451AADFD3300ABDF05 /* IDPProxy.h */,
+				D7D4AE461AADFD3300ABDF05 /* IDPProxy.m */,
+			);
+			path = IDPProxy;
 			sourceTree = "<group>";
 		};
 		D7D779DF1A66C59F00B91549 /* IDPMachTimer */ = {
@@ -1202,6 +1216,7 @@
 				D7BD80911A64641F004E2041 /* IDPStrongReference.m in Sources */,
 				D7BD808F1A64641F004E2041 /* IDPReference.m in Sources */,
 				D7BD80A11A64641F004E2041 /* CALayer+IDPExtensions.m in Sources */,
+				D7D4AE471AADFD3300ABDF05 /* IDPProxy.m in Sources */,
 				D7BD80791A64641F004E2041 /* IDPModel.m in Sources */,
 				D7E49DDD1A694ACF00C9C38D /* IDPMixinIMP.m in Sources */,
 				D7E229A91A851A5A0058309E /* NSObject+IDPKVO.m in Sources */,
@@ -1228,6 +1243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7D4AE481AADFD3300ABDF05 /* IDPProxy.m in Sources */,
 				D7E49DE01A694ACF00C9C38D /* IDPMixinStack.m in Sources */,
 				D7BD80621A64641F004E2041 /* NSArray+IDPExtensions.m in Sources */,
 				D7BD80A41A64641F004E2041 /* IDPNetworkReachability.m in Sources */,
