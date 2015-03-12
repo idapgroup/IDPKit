@@ -105,9 +105,13 @@
         return;
     }
     
-    // Only add the implementation, if it wasn't added previously
-    if (![self containsClassInSafeClasses:[object class]]) {
-        [self setupDeallocImplementation];
+    Class class = [object class];
+    
+    @synchronized (class) {
+        // Only add the implementation, if it wasn't added previously
+        if (![self containsClassInSafeClasses:class]) {
+            [self setupDeallocImplementation];
+        }
     }
 }
 
@@ -117,31 +121,30 @@
     NSObject *target = self.object;
     Class class = [target class];
     
-    @synchronized (class) {
-        SEL	deallocSEL = NSSelectorFromString(@"dealloc");
-        Method dealloc = class_getInstanceMethod(class, deallocSEL);
-        IMP	previousIMP = method_getImplementation(dealloc);
-        
-        void (^deallocBlock)(__assign NSObject *object) = ^(__assign NSObject *object) {
-            @autoreleasepool {
-                NSSet *objects = object.KVOControllersSet;
-                for (IDPKVOController *object in objects) {
-                    [object invalidate];
-                }
+    SEL	deallocSEL = NSSelectorFromString(@"dealloc");
+    Method dealloc = class_getInstanceMethod(class, deallocSEL);
+    IMP	previousIMP = method_getImplementation(dealloc);
+    
+    void (^deallocBlock)(__assign NSObject *object) = ^(__assign NSObject *object) {
+        @autoreleasepool {
+            NSSet *objects = object.KVOControllersSet;
+            for (IDPKVOController *object in objects) {
+                [object invalidate];
             }
-            
-            ((void (*)(__assign NSObject *, SEL))previousIMP)(object, deallocSEL);
-        };
+        }
         
-        IMP implementation = imp_implementationWithBlock(deallocBlock);
-        
-        class_replaceMethod(class,
-                            deallocSEL,
-                            implementation,
-                            method_getTypeEncoding(dealloc));
-        
-        [self addClassToSafeClasses:class];
-    }
+        ((void (*)(__assign NSObject *, SEL))previousIMP)(object, deallocSEL);
+    };
+    
+    IMP implementation = imp_implementationWithBlock(deallocBlock);
+    
+    class_replaceMethod(class,
+                        deallocSEL,
+                        implementation,
+                        method_getTypeEncoding(dealloc));
+    
+    [self addClassToSafeClasses:class];
+
 }
 
 #undef __assign
