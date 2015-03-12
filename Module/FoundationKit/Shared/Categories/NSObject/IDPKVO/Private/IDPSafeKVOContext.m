@@ -124,7 +124,7 @@
         
         void (^deallocBlock)(__assign NSObject *object) = ^(__assign NSObject *object) {
             @autoreleasepool {
-                NSSet *objects = object.KVOObjectsSet;
+                NSSet *objects = object.KVOControllersSet;
                 for (IDPKVOController *object in objects) {
                     [object invalidate];
                 }

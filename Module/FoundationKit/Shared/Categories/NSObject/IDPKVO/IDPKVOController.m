@@ -120,13 +120,13 @@
 - (void)setObject:(NSObject *)object {
     if (object != _object) {
         if (_object) {
-            [_object removeKVOObject:self];
+            [_object removeKVOController:self];
         }
         
         _object = object;
         
         if (_object) {
-            [_object addKVOObject:self];
+            [_object addKVOController:self];
         }
     }
 }

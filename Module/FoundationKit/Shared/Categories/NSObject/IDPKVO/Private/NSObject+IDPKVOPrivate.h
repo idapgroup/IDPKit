@@ -14,8 +14,8 @@ extern
 NSString *IDPKVONameOfClass(Class cls);
 
 @interface NSObject (IDPKVOPrivate)
-@property (atomic, strong)      NSMutableSet  *mutableKVOObjectsSet;
-@property (atomic, readonly)    NSSet         *KVOObjectsSet;
+@property (atomic, strong)      NSMutableSet  *mutableKVOControllersSet;
+@property (atomic, readonly)    NSSet         *KVOControllersSet;
 
 + (Class)KVOClass;
 
@@ -24,9 +24,9 @@ NSString *IDPKVONameOfClass(Class cls);
 
 - (BOOL)isKVOClassObject;
 
-// Thread safe methods for accessing KVOObjects
-- (void)addKVOObject:(IDPKVOController *)object;
-- (void)removeKVOObject:(IDPKVOController *)object;
-- (NSUInteger)KVOObjectsCount;
+// Thread safe methods for accessing KVOControllers
+- (void)addKVOController:(IDPKVOController *)object;
+- (void)removeKVOController:(IDPKVOController *)object;
+- (NSUInteger)KVOControllersCount;
 
 @end

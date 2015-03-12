@@ -60,11 +60,11 @@ describe(@"IDPKVOController", ^{
         });
         
         it(@"its observed objects KVObjectsSet should contain 1 object", ^{
-            [[theValue([object.KVOObjectsSet count]) should] equal:theValue(1)];
+            [[theValue([object.KVOControllersSet count]) should] equal:theValue(1)];
         });
         
         it(@"it should be contained in KVObjectsSet of observer", ^{
-            [[[object.KVOObjectsSet anyObject] should] equal:observer];
+            [[[object.KVOControllersSet anyObject] should] equal:observer];
         });
 
         context(@"when setting -value=2", ^{

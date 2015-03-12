@@ -21,8 +21,8 @@ NSString *IDPKVONameOfClass(Class cls) {
 
 @implementation NSObject (IDPKVOPrivate)
 
-@dynamic mutableKVOObjectsSet;
-@dynamic KVOObjectsSet;
+@dynamic mutableKVOControllersSet;
+@dynamic KVOControllersSet;
 
 + (Class)KVOClass {
     NSString *className = IDPKVONameOfClass(self);
@@ -42,7 +42,7 @@ NSString *IDPKVONameOfClass(Class cls) {
     return [self isa] == [self KVOClass];
 }
 
-- (NSMutableSet *)mutableKVOObjectsSet {
+- (NSMutableSet *)mutableKVOControllersSet {
     const void *key = (__bridge const void *)IDPKVOControllerProperty;
     
     volatile NSMutableSet *objects = objc_getAssociatedObject(self, key);
@@ -50,7 +50,7 @@ NSString *IDPKVONameOfClass(Class cls) {
         @synchronized (self) {
             if (!objects) {
                 objects = [NSMutableSet new];
-                self.mutableKVOObjectsSet = (NSMutableSet *)objects;
+                self.mutableKVOControllersSet = (NSMutableSet *)objects;
             }
         }
     }
@@ -58,7 +58,7 @@ NSString *IDPKVONameOfClass(Class cls) {
     return (NSMutableSet *)objects;
 }
 
-- (void)setMutableKVOObjectsSet:(NSMutableSet *)objects {
+- (void)setMutableKVOControllersSet:(NSMutableSet *)objects {
     const void *key = (__bridge const void *)IDPKVOControllerProperty;
     objc_setAssociatedObject(self,
                              key,
@@ -66,29 +66,29 @@ NSString *IDPKVONameOfClass(Class cls) {
                              OBJC_ASSOCIATION_RETAIN);
 }
 
-- (NSSet *)KVOObjectsSet {
-    NSMutableSet *objects = self.mutableKVOObjectsSet;
+- (NSSet *)KVOControllersSet {
+    NSMutableSet *objects = self.mutableKVOControllersSet;
     @synchronized (objects) {
         return [objects copy];
     }
 }
 
-- (void)addKVOObject:(IDPKVOController *)object {
-    NSMutableSet *objects = self.mutableKVOObjectsSet;
+- (void)addKVOController:(IDPKVOController *)object {
+    NSMutableSet *objects = self.mutableKVOControllersSet;
     @synchronized (objects) {
         [objects addObject:object];
     }
 }
 
-- (void)removeKVOObject:(IDPKVOController *)object {
-    NSMutableSet *objects = self.mutableKVOObjectsSet;
+- (void)removeKVOController:(IDPKVOController *)object {
+    NSMutableSet *objects = self.mutableKVOControllersSet;
     @synchronized (objects) {
         [objects removeObject:object];
     }
 }
 
-- (NSUInteger)KVOObjectsCount {
-    NSMutableSet *objects = self.mutableKVOObjectsSet;
+- (NSUInteger)KVOControllersCount {
+    NSMutableSet *objects = self.mutableKVOControllersSet;
     @synchronized (objects) {
         return [objects count];
     }
