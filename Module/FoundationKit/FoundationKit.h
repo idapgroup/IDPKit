@@ -8,7 +8,7 @@
 #import "NSString+IDPExtensions.h"
 #import "IDPMath.h"
 #import "IDPKVOMutableArray.h"
-#import "IDPKVOObject.h"
+#import "IDPKVOController.h"
 #import "IDPMachTimer.h"
 #import "IDPMutableArray.h"
 #import "IDPMutableDictionary.h"

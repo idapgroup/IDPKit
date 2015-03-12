@@ -105,8 +105,8 @@
 		D7E1DAF81A84CE0F00E929C4 /* NSObject+IDPKVOPrivateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DAF61A84CE0F00E929C4 /* NSObject+IDPKVOPrivateSpec.m */; };
 		D7E1DB051A84CF3800E929C4 /* IDPKVONotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DAFB1A84CF3800E929C4 /* IDPKVONotification.m */; };
 		D7E1DB061A84CF3800E929C4 /* IDPKVONotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DAFB1A84CF3800E929C4 /* IDPKVONotification.m */; };
-		D7E1DB071A84CF3800E929C4 /* IDPKVOObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DAFD1A84CF3800E929C4 /* IDPKVOObject.m */; };
-		D7E1DB081A84CF3800E929C4 /* IDPKVOObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DAFD1A84CF3800E929C4 /* IDPKVOObject.m */; };
+		D7E1DB071A84CF3800E929C4 /* IDPKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DAFD1A84CF3800E929C4 /* IDPKVOController.m */; };
+		D7E1DB081A84CF3800E929C4 /* IDPKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DAFD1A84CF3800E929C4 /* IDPKVOController.m */; };
 		D7E1DB0B1A84CF3800E929C4 /* IDPSafeKVOContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DB021A84CF3800E929C4 /* IDPSafeKVOContext.m */; };
 		D7E1DB0C1A84CF3800E929C4 /* IDPSafeKVOContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DB021A84CF3800E929C4 /* IDPSafeKVOContext.m */; };
 		D7E1DB0D1A84CF3800E929C4 /* NSObject+IDPKVOPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1DB041A84CF3800E929C4 /* NSObject+IDPKVOPrivate.m */; };
@@ -264,8 +264,8 @@
 		D7E1DAF61A84CE0F00E929C4 /* NSObject+IDPKVOPrivateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPKVOPrivateSpec.m"; sourceTree = "<group>"; };
 		D7E1DAFA1A84CF3800E929C4 /* IDPKVONotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVONotification.h; sourceTree = "<group>"; };
 		D7E1DAFB1A84CF3800E929C4 /* IDPKVONotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVONotification.m; sourceTree = "<group>"; };
-		D7E1DAFC1A84CF3800E929C4 /* IDPKVOObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOObject.h; sourceTree = "<group>"; };
-		D7E1DAFD1A84CF3800E929C4 /* IDPKVOObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOObject.m; sourceTree = "<group>"; };
+		D7E1DAFC1A84CF3800E929C4 /* IDPKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOController.h; sourceTree = "<group>"; };
+		D7E1DAFD1A84CF3800E929C4 /* IDPKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOController.m; sourceTree = "<group>"; };
 		D7E1DB011A84CF3800E929C4 /* IDPSafeKVOContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSafeKVOContext.h; sourceTree = "<group>"; };
 		D7E1DB021A84CF3800E929C4 /* IDPSafeKVOContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSafeKVOContext.m; sourceTree = "<group>"; };
 		D7E1DB031A84CF3800E929C4 /* NSObject+IDPKVOPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPKVOPrivate.h"; sourceTree = "<group>"; };
@@ -903,8 +903,8 @@
 				D7E1DAFE1A84CF3800E929C4 /* Private */,
 				D7E1DAFA1A84CF3800E929C4 /* IDPKVONotification.h */,
 				D7E1DAFB1A84CF3800E929C4 /* IDPKVONotification.m */,
-				D7E1DAFC1A84CF3800E929C4 /* IDPKVOObject.h */,
-				D7E1DAFD1A84CF3800E929C4 /* IDPKVOObject.m */,
+				D7E1DAFC1A84CF3800E929C4 /* IDPKVOController.h */,
+				D7E1DAFD1A84CF3800E929C4 /* IDPKVOController.m */,
 				D7E229A71A851A5A0058309E /* NSObject+IDPKVO.h */,
 				D7E229A81A851A5A0058309E /* NSObject+IDPKVO.m */,
 			);
@@ -1157,7 +1157,7 @@
 				D7E49DE31A694ACF00C9C38D /* NSObject+IDPMixinPrivate.m in Sources */,
 				D7BD808D1A64641F004E2041 /* IDPObservableObject.m in Sources */,
 				D7BD809D1A64641F004E2041 /* IDPWeakArray.m in Sources */,
-				D7E1DB071A84CF3800E929C4 /* IDPKVOObject.m in Sources */,
+				D7E1DB071A84CF3800E929C4 /* IDPKVOController.m in Sources */,
 				D7A6B0F91A6084A800159A8C /* main.m in Sources */,
 				D7FF6EEC1A6574F40049286B /* IDPDispatch.m in Sources */,
 				D7E1DB0B1A84CF3800E929C4 /* IDPSafeKVOContext.m in Sources */,
@@ -1259,7 +1259,7 @@
 				D7BD80B61A64641F004E2041 /* UIView+IDPExtensions.m in Sources */,
 				D7BD80681A64641F004E2041 /* NSFileManager+IDPExtensions.m in Sources */,
 				D7BD80AE1A64641F004E2041 /* UIImage+IDPExtensions.m in Sources */,
-				D7E1DB081A84CF3800E929C4 /* IDPKVOObject.m in Sources */,
+				D7E1DB081A84CF3800E929C4 /* IDPKVOController.m in Sources */,
 				D7BD80AC1A64641F004E2041 /* UIEvent+IDPExtensions.m in Sources */,
 				D7BD809E1A64641F004E2041 /* IDPWeakArray.m in Sources */,
 				D7E49DDC1A694ACF00C9C38D /* IDPMixinContext.m in Sources */,

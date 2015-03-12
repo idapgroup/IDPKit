@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class IDPKVOObject;
+@class IDPKVOController;
 
 extern
 NSString *IDPKVONameOfClass(Class cls);
@@ -25,8 +25,8 @@ NSString *IDPKVONameOfClass(Class cls);
 - (BOOL)isKVOClassObject;
 
 // Thread safe methods for accessing KVOObjects
-- (void)addKVOObject:(IDPKVOObject *)object;
-- (void)removeKVOObject:(IDPKVOObject *)object;
+- (void)addKVOObject:(IDPKVOController *)object;
+- (void)removeKVOObject:(IDPKVOController *)object;
 - (NSUInteger)KVOObjectsCount;
 
 @end

@@ -8,21 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-#import "IDPKVOObject.h"
+#import "IDPKVOController.h"
 
 @interface NSObject (IDPKVO)
 
-- (IDPKVOObject *)observeKeyPath:(NSString *)keyPath
+- (IDPKVOController *)observeKeyPath:(NSString *)keyPath
                          handler:(IDPKVONotificationBlock)block;
 
-- (IDPKVOObject *)observeKeyPath:(NSString *)keyPath
+- (IDPKVOController *)observeKeyPath:(NSString *)keyPath
                          options:(NSKeyValueObservingOptions)options
                          handler:(IDPKVONotificationBlock)block;
 
-- (IDPKVOObject *)observeKeyPaths:(NSArray *)keyPaths
+- (IDPKVOController *)observeKeyPaths:(NSArray *)keyPaths
                           handler:(IDPKVONotificationBlock)block;
 
-- (IDPKVOObject *)observeKeyPaths:(NSArray *)keyPaths
+- (IDPKVOController *)observeKeyPaths:(NSArray *)keyPaths
                           options:(NSKeyValueObservingOptions)options
                           handler:(IDPKVONotificationBlock)block;
 

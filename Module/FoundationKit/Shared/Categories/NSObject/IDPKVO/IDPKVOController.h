@@ -1,5 +1,5 @@
 //
-//  IDPKVOObject.h
+//  IDPKVOController.h
 //  BudgetJar
 //
 //  Created by Oleksa Korin on 5/2/12.
@@ -8,11 +8,11 @@
 
 #import "IDPKVONotification.h"
 
-@class IDPKVOObject;
+@class IDPKVOController;
 
 typedef void(^IDPKVONotificationBlock)(IDPKVONotification *notification);
 
-@interface IDPKVOObject : NSObject
+@interface IDPKVOController : NSObject
 @property (nonatomic, assign, readonly) NSObject    *object;
 @property (nonatomic, copy, readonly)   NSArray     *keyPaths;
 

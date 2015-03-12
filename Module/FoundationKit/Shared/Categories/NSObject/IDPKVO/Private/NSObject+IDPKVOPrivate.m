@@ -11,9 +11,9 @@
 #import <objc/runtime.h>
 
 #import "IDPObjCRuntime.h"
-#import "IDPKVOObject.h"
+#import "IDPKVOController.h"
 
-static NSString * const IDPKVOObjectProperty    = @"IDPKVOObjectProperty";
+static NSString * const IDPKVOControllerProperty    = @"IDPKVOControllerProperty";
 
 NSString *IDPKVONameOfClass(Class cls) {
     return [NSString stringWithFormat:@"NSKVONotifying_%@", NSStringFromClass(cls)];
@@ -43,7 +43,7 @@ NSString *IDPKVONameOfClass(Class cls) {
 }
 
 - (NSMutableSet *)mutableKVOObjectsSet {
-    const void *key = (__bridge const void *)IDPKVOObjectProperty;
+    const void *key = (__bridge const void *)IDPKVOControllerProperty;
     
     volatile NSMutableSet *objects = objc_getAssociatedObject(self, key);
     if (!objects) {
@@ -59,7 +59,7 @@ NSString *IDPKVONameOfClass(Class cls) {
 }
 
 - (void)setMutableKVOObjectsSet:(NSMutableSet *)objects {
-    const void *key = (__bridge const void *)IDPKVOObjectProperty;
+    const void *key = (__bridge const void *)IDPKVOControllerProperty;
     objc_setAssociatedObject(self,
                              key,
                              objects,
@@ -73,14 +73,14 @@ NSString *IDPKVONameOfClass(Class cls) {
     }
 }
 
-- (void)addKVOObject:(IDPKVOObject *)object {
+- (void)addKVOObject:(IDPKVOController *)object {
     NSMutableSet *objects = self.mutableKVOObjectsSet;
     @synchronized (objects) {
         [objects addObject:object];
     }
 }
 
-- (void)removeKVOObject:(IDPKVOObject *)object {
+- (void)removeKVOObject:(IDPKVOController *)object {
     NSMutableSet *objects = self.mutableKVOObjectsSet;
     @synchronized (objects) {
         [objects removeObject:object];

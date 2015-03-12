@@ -10,14 +10,14 @@
 
 @implementation NSObject (IDPKVO)
 
-- (IDPKVOObject *)observeKeyPath:(NSString *)keyPath
+- (IDPKVOController *)observeKeyPath:(NSString *)keyPath
                          handler:(IDPKVONotificationBlock)block
 {
     return [self observeKeyPaths:@[keyPath]
                          handler:block];
 }
 
-- (IDPKVOObject *)observeKeyPath:(NSString *)keyPath
+- (IDPKVOController *)observeKeyPath:(NSString *)keyPath
                          options:(NSKeyValueObservingOptions)options
                          handler:(IDPKVONotificationBlock)block
 {
@@ -26,7 +26,7 @@
                          handler:block];
 }
 
-- (IDPKVOObject *)observeKeyPaths:(NSArray *)keyPaths
+- (IDPKVOController *)observeKeyPaths:(NSArray *)keyPaths
                           handler:(IDPKVONotificationBlock)block
 {
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew
@@ -38,11 +38,11 @@
                          handler:block];
 }
 
-- (IDPKVOObject *)observeKeyPaths:(NSArray *)keyPaths
+- (IDPKVOController *)observeKeyPaths:(NSArray *)keyPaths
                           options:(NSKeyValueObservingOptions)options
                           handler:(IDPKVONotificationBlock)block
 {
-    IDPKVOObject *result = [[IDPKVOObject alloc] initWithObject:self
+    IDPKVOController *result = [[IDPKVOController alloc] initWithObject:self
                                                        keyPaths:keyPaths
                                                         options:options
                                                         handler:block];

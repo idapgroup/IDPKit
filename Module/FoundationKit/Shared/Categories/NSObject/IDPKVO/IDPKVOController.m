@@ -1,12 +1,12 @@
 //
-//  IDPKVOObject.m
+//  IDPKVOController.m
 //  BudgetJar
 //
 //  Created by Oleksa Korin on 5/2/12.
 //  Copyright (c) 2012 RedShiftLab. All rights reserved.
 //
 
-#import "IDPKVOObject.h"
+#import "IDPKVOController.h"
 
 #import "IDPKVONotification.h"
 
@@ -14,7 +14,7 @@
 
 #import "NSObject+IDPKVOPrivate.h"
 
-@interface IDPKVOObject ()
+@interface IDPKVOController ()
 @property (nonatomic, assign)   NSObject                    *object;
 @property (nonatomic, copy)     NSArray                     *keyPaths;
 @property (nonatomic, copy)     IDPKVONotificationBlock     handler;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation IDPKVOObject
+@implementation IDPKVOController
 
 @synthesize observing   = _observing;
 

@@ -8,7 +8,7 @@
 
 #import "IDPSafeKVOContext.h"
 
-#import "IDPKVOObject.h"
+#import "IDPKVOController.h"
 
 #import "NSObject+IDPKVOPrivate.h"
 
@@ -125,7 +125,7 @@
         void (^deallocBlock)(__assign NSObject *object) = ^(__assign NSObject *object) {
             @autoreleasepool {
                 NSSet *objects = object.KVOObjectsSet;
-                for (IDPKVOObject *object in objects) {
+                for (IDPKVOController *object in objects) {
                     [object invalidate];
                 }
             }

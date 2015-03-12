@@ -1,5 +1,5 @@
 //
-//  IDPKVOObject.m
+//  IDPKVOController.m
 //  iOS
 //
 //  Created by Oleksa Korin on 30/1/15.
@@ -8,26 +8,26 @@
 
 #import "Kiwi.h"
 
-#import "IDPKVOObject.h"
+#import "IDPKVOController.h"
 #import "IDPObjCRuntime.h"
 
 #import "IDPKVOTestObject.h"
 
 #import "NSObject+IDPKVOPrivate.h"
 
-SPEC_BEGIN(IDPKVOObjectSpec)
+SPEC_BEGIN(IDPKVOControllerSpec)
 
-describe(@"IDPKVOObject", ^{
+describe(@"IDPKVOController", ^{
     context(@"when initializing with improper parameters", ^{
         context(@"using -init", ^{
             it(@"it should return nil", ^{
-                [[[[IDPKVOObject alloc] init] should] beNil];
+                [[[[IDPKVOController alloc] init] should] beNil];
             });
         });
         
         context(@"using -initWithObject:keyPaths:handler:options:", ^{
             it(@"it should return nil", ^{
-                id object = [[IDPKVOObject alloc] initWithObject:nil
+                id object = [[IDPKVOController alloc] initWithObject:nil
                                                         keyPaths:nil
                                                          options:0
                                                          handler:nil];
@@ -39,14 +39,14 @@ describe(@"IDPKVOObject", ^{
     
     context(@"when observing -value of IDPKVOTestObject object with -value = 1", ^{
         __block IDPKVOTestObject *object = nil;
-        __block IDPKVOObject *observer = nil;
+        __block IDPKVOController *observer = nil;
         __block IDPKVONotification *notification = nil;
         
         beforeAll(^{
             object = [IDPKVOTestObject new];
             object.value = 1;
             
-            observer = [IDPKVOObject objectWithObject:object
+            observer = [IDPKVOController objectWithObject:object
                                              keyPaths:@[IDPStringFromSEL(value)]
                                               handler:^(IDPKVONotification *input) {
                                                   notification = input;
