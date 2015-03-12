@@ -46,11 +46,11 @@ describe(@"IDPKVOController", ^{
             object = [IDPKVOTestObject new];
             object.value = 1;
             
-            observer = [IDPKVOController objectWithObject:object
-                                             keyPaths:@[IDPStringFromSEL(value)]
-                                              handler:^(IDPKVONotification *input) {
-                                                  notification = input;
-                                              }];
+            observer = [IDPKVOController controllerWithObject:object
+                                                     keyPaths:@[IDPStringFromSEL(value)]
+                                                      handler:^(IDPKVONotification *input) {
+                                                          notification = input;
+                                                      }];
             
             observer.observing = YES;
         });

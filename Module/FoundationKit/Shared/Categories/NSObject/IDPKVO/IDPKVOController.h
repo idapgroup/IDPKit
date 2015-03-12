@@ -22,9 +22,9 @@ typedef void(^IDPKVONotificationBlock)(IDPKVONotification *notification);
 @property (atomic, assign, getter = isObserving)    BOOL    observing;
 @property (nonatomic, readonly, getter = isValid)   BOOL    valid;
 
-+ (instancetype)objectWithObject:(NSObject *)object
-                        keyPaths:(NSArray *)keyPaths
-                         handler:(IDPKVONotificationBlock)handler;
++ (instancetype)controllerWithObject:(NSObject *)object
+                            keyPaths:(NSArray *)keyPaths
+                             handler:(IDPKVONotificationBlock)handler;
 
 - (instancetype)initWithObject:(NSObject *)object
                       keyPaths:(NSArray *)keyPaths

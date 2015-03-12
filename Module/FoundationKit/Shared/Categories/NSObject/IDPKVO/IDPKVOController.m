@@ -31,9 +31,9 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)objectWithObject:(NSObject *)object
-                        keyPaths:(NSArray *)keyPaths
-                         handler:(IDPKVONotificationBlock)handler
++ (instancetype)controllerWithObject:(NSObject *)object
+                            keyPaths:(NSArray *)keyPaths
+                             handler:(IDPKVONotificationBlock)handler
 {
     return [[self alloc] initWithObject:object
                                keyPaths:keyPaths
