@@ -98,13 +98,13 @@
 #pragma mark Accessors
 
 - (BOOL)isObserving {
-    @synchronized (self) {
+    @synchronized (self.object) {
         return self.valid && _observing;
     }
 }
 
 - (void)setObserving:(BOOL)observing {
-    @synchronized (self) {
+    @synchronized (self.object) {
         if (_observing != observing) {
             if (observing && self.valid) {
                 [self startObserving];
@@ -135,7 +135,7 @@
 #pragma mark Public
 
 - (void)invalidate {
-    @synchronized (self) {
+    @synchronized (self.object) {
         self.valid = NO;
         
         [self stopObserving];
