@@ -83,13 +83,11 @@
 }
 
 - (BOOL)isEqual:(id)object {
-    id target = object;
-    
     if ([object isKindOfClass:[IDPProxy class]]) {
-        target = [object target];
+        object = [object target];
     }
     
-    return [target isEqual:object];
+    return [self.target isEqual:object];
 }
 
 #pragma mark -

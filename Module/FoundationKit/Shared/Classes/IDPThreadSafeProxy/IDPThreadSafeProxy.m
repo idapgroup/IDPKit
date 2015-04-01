@@ -18,11 +18,8 @@
 #pragma mark Forwarding
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
-    id target = self.target;
-    
-    @synchronized (target) {
-        [invocation setTarget:target];
-        [invocation invoke];
+    @synchronized(self.target) {
+        [super forwardInvocation:invocation];
     }
 }
 
