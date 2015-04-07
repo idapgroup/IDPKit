@@ -75,6 +75,10 @@
             self.target];
 }
 
+- (Class)class {
+    return [self.target class];
+}
+
 #pragma mark -
 #pragma mark Comparison
 

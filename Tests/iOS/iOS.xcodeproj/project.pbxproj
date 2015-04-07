@@ -99,6 +99,9 @@
 		D7BD80BF1A64641F004E2041 /* IDPView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD804D1A64641F004E2041 /* IDPView.m */; };
 		D7BD80C01A64641F004E2041 /* IDPView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BD804D1A64641F004E2041 /* IDPView.m */; };
 		D7C83FE71A69B6C00054AA73 /* NSObject+IDPMixinSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C83FE61A69B6C00054AA73 /* NSObject+IDPMixinSpec.m */; };
+		D7CA45141AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CA45131AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.m */; };
+		D7CA45151AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CA45131AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.m */; };
+		D7CA45171AD3EEED00006404 /* IDPEnumerationThreadSafeProxySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CA45161AD3EEED00006404 /* IDPEnumerationThreadSafeProxySpec.m */; };
 		D7D4AE381AADEB6700ABDF05 /* IDPThreadSafeProxySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D4AE371AADEB6700ABDF05 /* IDPThreadSafeProxySpec.m */; };
 		D7D4AE3B1AADEB8600ABDF05 /* IDPThreadSafeProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D4AE3A1AADEB8600ABDF05 /* IDPThreadSafeProxy.m */; };
 		D7D4AE3C1AADEB8600ABDF05 /* IDPThreadSafeProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D4AE3A1AADEB8600ABDF05 /* IDPThreadSafeProxy.m */; };
@@ -263,6 +266,9 @@
 		D7BD804D1A64641F004E2041 /* IDPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPView.m; sourceTree = "<group>"; };
 		D7BD804E1A64641F004E2041 /* TouchKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchKit.h; sourceTree = "<group>"; };
 		D7C83FE61A69B6C00054AA73 /* NSObject+IDPMixinSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPMixinSpec.m"; sourceTree = "<group>"; };
+		D7CA45121AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPEnumerationThreadSafeProxy.h; sourceTree = "<group>"; };
+		D7CA45131AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPEnumerationThreadSafeProxy.m; sourceTree = "<group>"; };
+		D7CA45161AD3EEED00006404 /* IDPEnumerationThreadSafeProxySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPEnumerationThreadSafeProxySpec.m; sourceTree = "<group>"; };
 		D7D4AE371AADEB6700ABDF05 /* IDPThreadSafeProxySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPThreadSafeProxySpec.m; sourceTree = "<group>"; };
 		D7D4AE391AADEB8600ABDF05 /* IDPThreadSafeProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPThreadSafeProxy.h; sourceTree = "<group>"; };
 		D7D4AE3A1AADEB8600ABDF05 /* IDPThreadSafeProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPThreadSafeProxy.m; sourceTree = "<group>"; };
@@ -876,6 +882,7 @@
 			isa = PBXGroup;
 			children = (
 				D7D4AE371AADEB6700ABDF05 /* IDPThreadSafeProxySpec.m */,
+				D7CA45161AD3EEED00006404 /* IDPEnumerationThreadSafeProxySpec.m */,
 			);
 			path = IDPThreadSafeProxy;
 			sourceTree = "<group>";
@@ -885,6 +892,8 @@
 			children = (
 				D7D4AE391AADEB8600ABDF05 /* IDPThreadSafeProxy.h */,
 				D7D4AE3A1AADEB8600ABDF05 /* IDPThreadSafeProxy.m */,
+				D7CA45121AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.h */,
+				D7CA45131AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.m */,
 			);
 			path = IDPThreadSafeProxy;
 			sourceTree = "<group>";
@@ -1224,6 +1233,7 @@
 				D7BD809F1A64641F004E2041 /* IDPMath.m in Sources */,
 				D7BD80B31A64641F004E2041 /* UITableView+IDPCellLoading.m in Sources */,
 				D7E49DDF1A694ACF00C9C38D /* IDPMixinStack.m in Sources */,
+				D7CA45141AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.m in Sources */,
 				D7BD80AB1A64641F004E2041 /* UIEvent+IDPExtensions.m in Sources */,
 				D7BD80BF1A64641F004E2041 /* IDPView.m in Sources */,
 				D7E1DB121A84CF9800E929C4 /* IDPObjCRuntime.m in Sources */,
@@ -1263,7 +1273,9 @@
 				D7D4AE3C1AADEB8600ABDF05 /* IDPThreadSafeProxy.m in Sources */,
 				D7E1DB0E1A84CF3800E929C4 /* NSObject+IDPKVOPrivate.m in Sources */,
 				D7FF6EED1A6574F40049286B /* IDPDispatch.m in Sources */,
+				D7CA45151AD3ECA700006404 /* IDPEnumerationThreadSafeProxy.m in Sources */,
 				D7BD80921A64641F004E2041 /* IDPStrongReference.m in Sources */,
+				D7CA45171AD3EEED00006404 /* IDPEnumerationThreadSafeProxySpec.m in Sources */,
 				D7BD80C01A64641F004E2041 /* IDPView.m in Sources */,
 				D7BD80641A64641F004E2041 /* NSDate+IDPExtensions.m in Sources */,
 				D7BD80A61A64641F004E2041 /* NSBundle+IDPExtensions.m in Sources */,

@@ -39,7 +39,7 @@
         count--;
     }
     
-    return  shuffle;
+    return shuffle;
 }
 
 @end
