@@ -41,8 +41,7 @@
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
-    [invocation setTarget:self.target];
-    [invocation invoke];
+    [invocation invokeWithTarget:self.target];
 }
 
 #pragma mark -

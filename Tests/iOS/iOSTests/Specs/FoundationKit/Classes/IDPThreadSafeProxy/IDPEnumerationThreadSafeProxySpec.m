@@ -26,7 +26,6 @@ static const NSUInteger taskCount = IDPMultithreadedSpecIterationCount;
 
 __block id objects = nil;
 __block id proxy = nil;
-__block id object = nil;
 
 describe(@"NSMutableArray", ^{
     beforeEach(^{
@@ -44,11 +43,10 @@ describe(@"NSMutableArray", ^{
         context(@"when using from different threads", ^{
             it(@"it should raise", ^{
                 [[theBlock(^{
-                    [objects addObject:[NSObject new]];
+                    id object = [NSObject new];
+                    [objects addObject:object];
                     
-                    object = [objects randomObject];
-                    if (object) {
-                        [objects containsObject:object];
+                    if (object && [objects containsObject:object]) {
                         [objects removeObject:object];
                     }
                     
@@ -67,7 +65,20 @@ describe(@"NSMutableArray", ^{
                 
                 [[weakObjects shouldNot] beNil];
                 
-                while ([enumerator nextObject]) {}
+                [enumerator nextObject];
+            });
+            
+            context(@"after mutation", ^{
+                it(@"it should raise", ^{
+                    [[theBlock(^{
+                        NSEnumerator *enumerator = [objects objectEnumerator];
+                        [enumerator nextObject];
+                        
+                        [objects addObject:[NSObject new]];
+                        
+                        [enumerator nextObject];
+                    }) should] raise];
+                });
             });
         });
     });
@@ -84,23 +95,33 @@ describe(@"NSMutableArray", ^{
         context(@"when using from different threads", ^{
             it(@"it shouldn't raise", ^{
                 [[theBlock(^{
-                    [proxy addObject:[NSObject new]];
+                    id object = [NSObject new];
+                    [proxy addObject:object];
                     
-                    object = [proxy randomObject];
-                    if (object) {
-                        [proxy containsObject:object];
+                    if (object && [proxy containsObject:object]) {
                         [proxy removeObject:object];
                     }
                     
                     [proxy count];
-                    
-                    NSEnumerator *enumerator = [proxy objectEnumerator];
-                    while ((object = [enumerator nextObject])) {
-                        [object description];
-                    }
                 }) shouldNot] raiseWithIterationCount:taskCount];
             });
         });
+        
+        context(@"when enumerating and after mutation", ^{
+            context(@"after mutation", ^{
+                it(@"it shouldn't raise", ^{
+                    [[theBlock(^{
+                        NSEnumerator *enumerator = [proxy objectEnumerator];
+                        [enumerator nextObject];
+                        
+                        [objects addObject:[NSObject new]];
+                        
+                        [enumerator nextObject];
+                    }) shouldNot] raise];
+                });
+            });
+        });
+
     });
 });
 

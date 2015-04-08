@@ -10,10 +10,6 @@
 
 #import "KWBlock.h"
 
-@interface KWBlockRaiseMatcher()
-
-@end
-
 @interface IDPBlockAsyncRaiseIterativeMatcher ()
 @property (nonatomic, assign)   NSUInteger          iterationCount;
 @property (nonatomic, strong)   dispatch_group_t    dispatchGroup;

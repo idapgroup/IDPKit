@@ -8,6 +8,8 @@
 
 #import "IDPEnumerationThreadSafeProxy.h"
 
+#import "NSString+IDPExtensions.h"
+
 static NSString * const IDPEnumeratorSubstring     = @"enumerator";
 
 @implementation IDPEnumerationThreadSafeProxy
@@ -19,12 +21,12 @@ static NSString * const IDPEnumeratorSubstring     = @"enumerator";
     id target = self.target;
     
     NSString *selector = NSStringFromSelector(invocation.selector);
-    if ([[selector lowercaseString] containsString:IDPEnumeratorSubstring]
+    if ([selector containsCaseInsensitiveString:IDPEnumeratorSubstring]
         && [target respondsToSelector:@selector(copy)])
     {
         @synchronized(target) {
-            [invocation setTarget:[target copy]];
-            [invocation invoke];
+            target = [target copy];
+            [invocation invokeWithTarget:target];
         }
     } else {
         [super forwardInvocation:invocation];
