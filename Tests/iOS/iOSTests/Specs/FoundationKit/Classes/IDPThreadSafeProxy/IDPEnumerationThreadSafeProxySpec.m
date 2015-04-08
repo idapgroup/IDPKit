@@ -103,6 +103,9 @@ describe(@"NSMutableArray", ^{
                     }
                     
                     [proxy count];
+                    
+                    NSEnumerator *enumerator = [proxy objectEnumerator];
+                    while ([enumerator nextObject]) {}
                 }) shouldNot] raiseWithIterationCount:taskCount];
             });
         });
