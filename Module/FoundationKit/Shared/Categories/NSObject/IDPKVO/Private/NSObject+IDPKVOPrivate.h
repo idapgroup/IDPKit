@@ -17,13 +17,6 @@ NSString *IDPKVONameOfClass(Class cls);
 @property (atomic, strong)      NSMutableSet  *mutableKVOObjectsSet;
 @property (atomic, readonly)    NSSet         *KVOObjectsSet;
 
-+ (Class)KVOClass;
-
-- (Class)isa;
-- (Class)KVOClass;
-
-- (BOOL)isKVOClassObject;
-
 // Thread safe methods for accessing KVOObjects
 - (void)addKVOObject:(IDPKVOObject *)object;
 - (void)removeKVOObject:(IDPKVOObject *)object;

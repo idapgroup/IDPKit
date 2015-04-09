@@ -14,7 +14,9 @@
 #import "IDPTestObject.h"
 #import "IDPKVOObserver.h"
 
+#import "NSObject+IDPKVO.h"
 #import "NSObject+IDPKVOPrivate.h"
+#import "NSObject+IDPRuntime.h"
 
 SPEC_BEGIN(NSObject_IDPKVOPrivateSpec)
 

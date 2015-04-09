@@ -10,37 +10,14 @@
 
 #import <objc/runtime.h>
 
-#import "IDPObjCRuntime.h"
 #import "IDPKVOObject.h"
 
 static NSString * const IDPKVOObjectProperty    = @"IDPKVOObjectProperty";
-
-NSString *IDPKVONameOfClass(Class cls) {
-    return [NSString stringWithFormat:@"NSKVONotifying_%@", NSStringFromClass(cls)];
-}
 
 @implementation NSObject (IDPKVOPrivate)
 
 @dynamic mutableKVOObjectsSet;
 @dynamic KVOObjectsSet;
-
-+ (Class)KVOClass {
-    NSString *className = IDPKVONameOfClass(self);
-    
-    return NSClassFromString(className);
-}
-
-- (Class)isa {
-    return object_getClass(self);
-}
-
-- (Class)KVOClass {
-    return [[self class] KVOClass];
-}
-
-- (BOOL)isKVOClassObject {
-    return [self isa] == [self KVOClass];
-}
 
 - (NSMutableSet *)mutableKVOObjectsSet {
     const void *key = (__bridge const void *)IDPKVOObjectProperty;

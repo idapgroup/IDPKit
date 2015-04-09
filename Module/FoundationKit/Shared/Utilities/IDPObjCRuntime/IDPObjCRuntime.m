@@ -8,4 +8,6 @@
 
 #import "IDPObjCRuntime.h"
 
-
+NSString *IDPKVONameOfClass(Class cls) {
+    return [NSString stringWithFormat:@"NSKVONotifying_%@", NSStringFromClass(cls)];
+}

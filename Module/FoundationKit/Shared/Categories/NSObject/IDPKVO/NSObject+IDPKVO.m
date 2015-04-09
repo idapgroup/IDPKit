@@ -8,7 +8,25 @@
 
 #import "NSObject+IDPKVO.h"
 
+#import "IDPObjCRuntime.h"
+
+#import "NSObject+IDPRuntime.h"
+
 @implementation NSObject (IDPKVO)
+
++ (Class)KVOClass {
+    NSString *className = IDPKVONameOfClass(self);
+    
+    return NSClassFromString(className);
+}
+
+- (Class)KVOClass {
+    return [[self class] KVOClass];
+}
+
+- (BOOL)isKVOClassObject {
+    return [self isa] == [self KVOClass];
+}
 
 - (IDPKVOObject *)observeKeyPath:(NSString *)keyPath
                          handler:(IDPKVONotificationBlock)block

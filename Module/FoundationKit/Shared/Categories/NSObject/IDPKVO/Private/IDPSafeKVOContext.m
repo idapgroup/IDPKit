@@ -8,11 +8,12 @@
 
 #import "IDPSafeKVOContext.h"
 
+#import <objc/runtime.h>
+
 #import "IDPKVOObject.h"
 
+#import "NSObject+IDPKVO.h"
 #import "NSObject+IDPKVOPrivate.h"
-
-#import <objc/runtime.h>
 
 @interface IDPSafeKVOContext ()
 @property (nonatomic, strong)   NSObject    *object;

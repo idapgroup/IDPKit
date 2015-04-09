@@ -7,3 +7,6 @@
 //
 
 #define IDPStringFromSEL(value) NSStringFromSelector(@selector(value))
+
+extern
+NSString *IDPKVONameOfClass(Class cls);
