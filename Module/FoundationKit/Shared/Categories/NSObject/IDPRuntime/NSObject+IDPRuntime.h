@@ -10,6 +10,8 @@
 
 @interface NSObject (IDPRuntime)
 
++ (NSSet *)subclasses;
+
 - (Class)isa;
 
 @end

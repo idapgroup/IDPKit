@@ -11,6 +11,7 @@
 #import <objc/runtime.h>
 
 #import "IDPKVOObject.h"
+#import "IDPObjCRuntime.h"
 
 #import "NSObject+IDPKVO.h"
 #import "NSObject+IDPKVOPrivate.h"
@@ -112,8 +113,6 @@
     }
 }
 
-#define __assign __unsafe_unretained
-
 - (void)setupDeallocImplementation {
     NSObject *target = self.object;
     Class class = [target class];
@@ -144,7 +143,5 @@
         [self addClassToSafeClasses:class];
     }
 }
-
-#undef __assign
 
 @end

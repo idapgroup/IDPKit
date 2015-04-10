@@ -14,6 +14,10 @@
 
 @implementation NSObject (IDPRuntime)
 
++ (NSSet *)subclasses {
+    return IDPSubclassesOfClassSet(self);
+}
+
 - (Class)isa {
     return object_getClass(self);
 }
