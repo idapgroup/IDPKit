@@ -13,8 +13,6 @@ static NSString * const IDPGenericFormat    = @"Object %@ was mutated while bein
 
 static const NSUInteger IDPUSecondsWaitTime = 10000;
 
-typedef void (^IDPUnsafeOperation)(void);
-
 @interface IDPThreadUnsafeObject ()
 
 @end
