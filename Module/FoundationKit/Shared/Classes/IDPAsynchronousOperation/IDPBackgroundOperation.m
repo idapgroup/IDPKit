@@ -1,17 +1,17 @@
 //
-//  IDPAsynchronousOperation.m
+//  IDPBackgroundOperation.m
 //  iOS
 //
 //  Created by Alexander Kradenkov on 4/19/15.
 //  Copyright (c) 2015 IDAP Group. All rights reserved.
 //
 
-#import "IDPAsynchronousOperation.h"
+#import "IDPBackgroundOperation.h"
 
-static NSString * const kIDPAsynchronousOperationIsExecutingKey = @"isExecuting";
-static NSString * const kIDPAsynchronousOperationIsFinishedKey  = @"isFinished";
+static NSString * const kIDPBackgroundOperationIsExecutingKey   = @"isExecuting";
+static NSString * const kIDPBackgroundOperationIsFinishedKey    = @"isFinished";
 
-@interface IDPAsynchronousOperation ()
+@interface IDPBackgroundOperation ()
 @property (nonatomic, readwrite, getter = isExecuting)  BOOL    executing;
 @property (nonatomic, readwrite, getter = isFinished)   BOOL    finished;
 
@@ -21,7 +21,7 @@ static NSString * const kIDPAsynchronousOperationIsFinishedKey  = @"isFinished";
 @end
 
 
-@implementation IDPAsynchronousOperation
+@implementation IDPBackgroundOperation
 
 @dynamic asynchronous;
 
@@ -44,17 +44,17 @@ static NSString * const kIDPAsynchronousOperationIsFinishedKey  = @"isFinished";
 
 - (void)setExecuting:(BOOL)executing {
     if (_executing != executing) {
-        [self willChangeValueForKey:kIDPAsynchronousOperationIsExecutingKey];
+        [self willChangeValueForKey:kIDPBackgroundOperationIsExecutingKey];
         _executing = executing;
-        [self didChangeValueForKey:kIDPAsynchronousOperationIsExecutingKey];
+        [self didChangeValueForKey:kIDPBackgroundOperationIsExecutingKey];
     }
 }
 
 - (void)setFinished:(BOOL)finished {
     if (_finished != finished) {
-        [self willChangeValueForKey:kIDPAsynchronousOperationIsFinishedKey];
+        [self willChangeValueForKey:kIDPBackgroundOperationIsFinishedKey];
         _finished = finished;
-        [self didChangeValueForKey:kIDPAsynchronousOperationIsFinishedKey];
+        [self didChangeValueForKey:kIDPBackgroundOperationIsFinishedKey];
     }
 }
 

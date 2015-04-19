@@ -1,5 +1,5 @@
 //
-//  IDPAsynchronousOperation.h
+//  IDPBackgroundOperation.h
 //  iOS
 //
 //  Created by Alexander Kradenkov on 4/19/15.
@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 /**
- * @brief The IDPAsynchronousOperation class is an abstract subclass of NSOperation you use to encapsulate the code and data associated with a single asynchronous task.
- * @discussion The IDPAsynchronousOperation class implementation extends NSOperation to perform \c main on background and finish the operation by calling \c complete method inside.
+ * @brief The IDPBackgroundOperation class is an abstract subclass of NSOperation you use to encapsulate the code and data associated with a single asynchronous task.
+ * @discussion The IDPBackgroundOperation class implementation extends NSOperation to perform \c main on background and finish the operation by calling \c complete method inside.
  * @note In general, you should override |main| and/or |complete| methods in your sublasses. The implementation of |main| just calls |complete| method.
  */
-@interface IDPAsynchronousOperation : NSOperation
+@interface IDPBackgroundOperation : NSOperation
 
 /**
  * @brief Completes the operation.

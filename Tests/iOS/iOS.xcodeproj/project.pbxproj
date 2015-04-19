@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EB0E7824A84819FDD9337AA /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */; };
-		5AD62F8C1AE3EA6200491F7D /* IDPAsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD62F8B1AE3EA6200491F7D /* IDPAsynchronousOperation.m */; };
+		5AD62F8C1AE3EA6200491F7D /* IDPBackgroundOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD62F8B1AE3EA6200491F7D /* IDPBackgroundOperation.m */; };
 		D71F66AA1A7BFA3E007EC1CF /* IDPKVOTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */; };
 		D7A6B0ED1A6084A800159A8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EC1A6084A800159A8C /* Foundation.framework */; };
 		D7A6B0EF1A6084A800159A8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */; };
@@ -149,8 +149,8 @@
 
 /* Begin PBXFileReference section */
 		451B88EF011FADEE69B665C9 /* Pods-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		5AD62F8A1AE3EA6200491F7D /* IDPAsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPAsynchronousOperation.h; sourceTree = "<group>"; };
-		5AD62F8B1AE3EA6200491F7D /* IDPAsynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPAsynchronousOperation.m; sourceTree = "<group>"; };
+		5AD62F8A1AE3EA6200491F7D /* IDPBackgroundOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPBackgroundOperation.h; sourceTree = "<group>"; };
+		5AD62F8B1AE3EA6200491F7D /* IDPBackgroundOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBackgroundOperation.m; sourceTree = "<group>"; };
 		9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F7B5CDBDB18B157BC098B7 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70BC6AE1A6D3B260053EA92 /* IDPSpecSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSpecSetup.h; sourceTree = "<group>"; };
@@ -326,12 +326,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5AD62F891AE3EA1A00491F7D /* IDPAsynchronousOperation */ = {
+		5AD62F891AE3EA1A00491F7D /* IDPBackgroundOperation */ = {
 			isa = PBXGroup;
 			children = (
-				5AD62F8A1AE3EA6200491F7D /* IDPAsynchronousOperation.h */,
-				5AD62F8B1AE3EA6200491F7D /* IDPAsynchronousOperation.m */,
+				5AD62F8A1AE3EA6200491F7D /* IDPBackgroundOperation.h */,
+				5AD62F8B1AE3EA6200491F7D /* IDPBackgroundOperation.m */,
 			);
+			name = IDPBackgroundOperation;
 			path = IDPAsynchronousOperation;
 			sourceTree = "<group>";
 		};
@@ -570,7 +571,7 @@
 		D7BD7FCC1A64641F004E2041 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5AD62F891AE3EA1A00491F7D /* IDPAsynchronousOperation */,
+				5AD62F891AE3EA1A00491F7D /* IDPBackgroundOperation */,
 				D7E1DB231A84EE8C00E929C4 /* IDPTSProxy */,
 				D7E49DCC1A694ACF00C9C38D /* IDPMixin */,
 				D7FF6EE91A6574F40049286B /* IDPDispatch */,
@@ -1165,7 +1166,7 @@
 				D7A6B0FD1A6084A800159A8C /* IDPAppDelegate.m in Sources */,
 				D7FF6EE71A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */,
 				D7B035C51A6D701000116747 /* IDPUnsafeReference.m in Sources */,
-				5AD62F8C1AE3EA6200491F7D /* IDPAsynchronousOperation.m in Sources */,
+				5AD62F8C1AE3EA6200491F7D /* IDPBackgroundOperation.m in Sources */,
 				D7E1DB0D1A84CF3800E929C4 /* NSObject+IDPKVOPrivate.m in Sources */,
 				D7BD80B71A64641F004E2041 /* UIViewController+IDPExtensions.m in Sources */,
 				D7E49DE31A694ACF00C9C38D /* NSObject+IDPMixinPrivate.m in Sources */,
