@@ -152,11 +152,13 @@ describe(@"IDPBackgroundOperation", ^{
                     [queue cancelAllOperations];
                 });
                 
-                it(@"should not receive @selector(main) after queue was resumed", ^{
-                    [[operation shouldNot] receive:@selector(main)];
-                    [[operation shouldNotEventually] receive:@selector(main)];
-                    
-                    queue.suspended = NO;
+                context(@"after queue was resumed", ^{
+                    it(@"should not receive @selector(main)", ^{
+                        [[operation shouldNot] receive:@selector(main)];
+                        [[operation shouldNotEventually] receive:@selector(main)];
+                        
+                        queue.suspended = NO;
+                    });
                 });
             });
         });
