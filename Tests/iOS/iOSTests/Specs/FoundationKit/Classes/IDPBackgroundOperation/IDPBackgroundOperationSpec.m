@@ -124,11 +124,10 @@ describe(@"IDPBackgroundOperation", ^{
                 [queue addOperation:operation];
             });
             
-            context(@"after queue cancellation", ^{
+            context(@"after queue was canceled", ^{
                 it(@"should receive cancel selector", ^{
                     [[operation should] receive:@selector(cancel)];
                     [queue cancelAllOperations];
-                    queue.suspended = NO;
                 });
             });
         });
@@ -153,7 +152,7 @@ describe(@"IDPBackgroundOperation", ^{
                     [queue cancelAllOperations];
                 });
                 
-                it(@"should not receive @selector(main)", ^{
+                it(@"should not receive @selector(main) after queue was resumed", ^{
                     [[operation shouldNot] receive:@selector(main)];
                     [[operation shouldNotEventually] receive:@selector(main)];
                     
