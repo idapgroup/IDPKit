@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0EB0E7824A84819FDD9337AA /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */; };
 		5AD62F8C1AE3EA6200491F7D /* IDPBackgroundOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD62F8B1AE3EA6200491F7D /* IDPBackgroundOperation.m */; };
+		5AE676D21AEC06A400089323 /* IDPBackgroundOperationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE676D11AEC06A400089323 /* IDPBackgroundOperationSpec.m */; };
 		D71F66AA1A7BFA3E007EC1CF /* IDPKVOTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */; };
 		D7A6B0ED1A6084A800159A8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EC1A6084A800159A8C /* Foundation.framework */; };
 		D7A6B0EF1A6084A800159A8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */; };
@@ -151,6 +152,7 @@
 		451B88EF011FADEE69B665C9 /* Pods-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5AD62F8A1AE3EA6200491F7D /* IDPBackgroundOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPBackgroundOperation.h; sourceTree = "<group>"; };
 		5AD62F8B1AE3EA6200491F7D /* IDPBackgroundOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBackgroundOperation.m; sourceTree = "<group>"; };
+		5AE676D11AEC06A400089323 /* IDPBackgroundOperationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBackgroundOperationSpec.m; sourceTree = "<group>"; };
 		9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F7B5CDBDB18B157BC098B7 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70BC6AE1A6D3B260053EA92 /* IDPSpecSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSpecSetup.h; sourceTree = "<group>"; };
@@ -334,6 +336,14 @@
 			);
 			name = IDPBackgroundOperation;
 			path = IDPAsynchronousOperation;
+			sourceTree = "<group>";
+		};
+		5AE676D01AEC063100089323 /* IDPBackgroundOperation */ = {
+			isa = PBXGroup;
+			children = (
+				5AE676D11AEC06A400089323 /* IDPBackgroundOperationSpec.m */,
+			);
+			path = IDPBackgroundOperation;
 			sourceTree = "<group>";
 		};
 		94E168D3924A7F7FA27E9473 /* Pods */ = {
@@ -994,6 +1004,7 @@
 		D7E49DEE1A69518000C9C38D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5AE676D01AEC063100089323 /* IDPBackgroundOperation */,
 				D7E49DEF1A69518000C9C38D /* IDPMixin */,
 			);
 			path = Classes;
@@ -1250,6 +1261,7 @@
 				D7B035C21A6D6E6000116747 /* IDPCopyReference.m in Sources */,
 				D7BD80901A64641F004E2041 /* IDPReference.m in Sources */,
 				D7BD807E1A64641F004E2041 /* IDPMutableArray.m in Sources */,
+				5AE676D21AEC06A400089323 /* IDPBackgroundOperationSpec.m in Sources */,
 				D7FF6EE81A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */,
 				D7B035BE1A6D5E0A00116747 /* IDPBlockAsyncRaiseIterativeMatcher.m in Sources */,
 				D7BD80801A64641F004E2041 /* IDPMutableDictionary.m in Sources */,
