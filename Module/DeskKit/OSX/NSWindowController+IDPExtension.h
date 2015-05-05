@@ -8,12 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define IDPWindowControllerWindowOfClassGetterSynthesize(theClass, getterName) \
+- (theClass *)getterName { \
+    if ([self.window isKindOfClass:[theClass class]]) {\
+        return (theClass *)self.window;\
+    }\
+    return nil;\
+}
+
 @interface NSWindowController (IDPExtension)
 
 /**
  This method call initWithWindowNibName: based on window controller class name.
  @return Return new autorelease window controller.
  */
-+ (id)controllerWithDefaultNib;
++ (instancetype)controllerWithDefaultNib;
 
 @end

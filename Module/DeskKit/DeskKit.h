@@ -2,3 +2,4 @@
 #import "NSViewController+IDPExtension.h"
 #import "NSWindowController+IDPExtension.h"
 #import "NSView+IDPExtension.h"
+#import "NSColor+IDPExtension.h"

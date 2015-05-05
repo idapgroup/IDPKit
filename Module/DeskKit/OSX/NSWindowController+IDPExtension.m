@@ -11,7 +11,7 @@
 @implementation NSWindowController (IDPExtension)
 
 + (id)controllerWithDefaultNib {
-    return [[[self alloc] initWithWindowNibName:NSStringFromClass(self)] autorelease];
+    return [[self alloc] initWithWindowNibName:NSStringFromClass(self)];
 }
 
 @end

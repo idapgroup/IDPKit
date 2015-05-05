@@ -8,8 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface NSViewController (IDPExtension)
+#define IDPViewControllerViewOfClassGetterSynthesize(theClass, getterName) \
+- (theClass *)getterName { \
+    if ([self.view isKindOfClass:[theClass class]]) {\
+        return (theClass *)self.view;\
+    }\
+    return nil;\
+}
 
-+ (id)controllerWithDefaultNib;
+@interface NSViewController (IDPExtension)
 
 @end

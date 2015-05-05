@@ -10,8 +10,4 @@
 
 @implementation NSViewController (IDPExtension)
 
-+ (id)controllerWithDefaultNib {
-    return [[[self alloc] initWithNibName:NSStringFromClass(self) bundle:nil] autorelease];
-}
-
 @end

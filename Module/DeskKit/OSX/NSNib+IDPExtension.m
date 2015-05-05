@@ -50,7 +50,7 @@ static NSString * const IDPNilObjectInNibDescription = @"NSNib object doesn't co
           withOwner:(id)owner
 {
     NSString *name = NSStringFromClass(theClass);
-    NSNib *nib = [[[self alloc] initWithNibNamed:name bundle:bundle] autorelease];
+    NSNib *nib = [[self alloc] initWithNibNamed:name bundle:bundle];
     return [nib instantiateObjectOfClass:theClass objectOwner:owner];
 }
 
@@ -115,7 +115,7 @@ static NSString * const IDPNilObjectInNibDescription = @"NSNib object doesn't co
                    withBundle:(NSBundle *)bundle
                     withOwner:(id)owner
 {
-    return [[[[self alloc] initWithNibNamed:name bundle:bundle] autorelease] instantiateObjectsOfClasses:arrayOfTheClasses objectsOwner:owner];
+    return [[[self alloc] initWithNibNamed:name bundle:bundle] instantiateObjectsOfClasses:arrayOfTheClasses objectsOwner:owner];
 }
 
 - (BOOL)portableInstantiateWithOwner:(id)owner topLevelObjects:(NSArray **)topLevelObjects {
@@ -129,7 +129,7 @@ static NSString * const IDPNilObjectInNibDescription = @"NSNib object doesn't co
         #pragma GCC diagnostic warning "-Wdeprecated-declarations"
         
         for (id<NSObject > object in *topLevelObjects) {
-            [object autorelease];
+            object;
         }
     }
     
