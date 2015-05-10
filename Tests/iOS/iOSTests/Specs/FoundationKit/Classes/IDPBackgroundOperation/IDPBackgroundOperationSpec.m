@@ -133,32 +133,28 @@ describe(@"IDPBackgroundOperation", ^{
         });
     });
     
-    context(@"after another operation being created", ^{
+    context(@"after operation being added to suspended queue", ^{
+        __block NSOperationQueue *queue = nil;
         __block IDPBackgroundOperation *operation = nil;
+        
         beforeAll(^{
             operation = [IDPBackgroundOperation new];
+            queue = [NSOperationQueue new];
+            queue.suspended = YES;
+            [queue addOperation:operation];
         });
         
-        context(@"after operation being added to suspended queue", ^{
-            __block NSOperationQueue *queue = nil;
+        context(@"after queue cancellation", ^{
             beforeAll(^{
-                queue = [NSOperationQueue new];
-                queue.suspended = YES;
-                [queue addOperation:operation];
+                [queue cancelAllOperations];
             });
             
-            context(@"after queue cancellation", ^{
-                beforeAll(^{
-                    [queue cancelAllOperations];
-                });
-                
-                context(@"after queue was resumed", ^{
-                    it(@"should not receive @selector(main)", ^{
-                        [[operation shouldNot] receive:@selector(main)];
-                        [[operation shouldNotEventually] receive:@selector(main)];
-                        
-                        queue.suspended = NO;
-                    });
+            context(@"after queue was resumed", ^{
+                it(@"should not receive @selector(main)", ^{
+                    [[operation shouldNot] receive:@selector(main)];
+                    [[operation shouldNotEventually] receive:@selector(main)];
+                    
+                    queue.suspended = NO;
                 });
             });
         });
