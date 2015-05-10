@@ -13,7 +13,7 @@
 SPEC_BEGIN(IDPBackgroundOperationSpec)
 
 describe(@"IDPBackgroundOperation", ^{
-    context(@"after operation being created", ^{
+    context(@"after being created", ^{
         __block IDPBackgroundOperation *operation = nil;
         beforeAll(^{
             operation = [IDPBackgroundOperation new];
@@ -24,13 +24,13 @@ describe(@"IDPBackgroundOperation", ^{
         });
         
         it(@"shoul be asynchronous", ^{
-            [[theValue(operation.isAsynchronous) should] beYes];
+            [[theValue([operation isAsynchronous]) should] beYes];
         });
         
         it(@"shouldn't be finished", ^{
             [[theValue(operation.isFinished) shouldNot] beYes];
         });
-
+        
         it(@"shouldn't be executed", ^{
             [[theValue(operation.isExecuting) shouldNot] beYes];
         });
@@ -39,10 +39,11 @@ describe(@"IDPBackgroundOperation", ^{
             [[operation should] beKindOfClass:[NSOperation class]];
         });
         
-        context(@"while operation being started", ^{
+        context(@"after was started", ^{
             it(@"should eventually receive @selector(main)", ^{
                 [[operation shouldNot] receive:@selector(main)];
                 [[operation shouldEventually] receive:@selector(main)];
+                
                 [operation start];
             });
         });
@@ -54,31 +55,107 @@ describe(@"IDPBackgroundOperation", ^{
             operation = [IDPBackgroundOperation new];
         });
         
-        context(@"while operation being started", ^{
+        context(@"after was started", ^{
             it(@"should eventually receive @selector(complete)", ^{
                 [[operation shouldNot] receive:@selector(complete)];
                 [[operation shouldEventually] receive:@selector(complete)];
+                
                 [operation start];
             });
         });
     });
     
-    context(@"after another operation being created", ^{
+    context(@"after being created", ^{
+        __block IDPBackgroundOperation *operation = nil;
+        __block NSOperationQueue *queue = nil;
+        
+        beforeAll(^{
+            operation = [IDPBackgroundOperation new];
+            queue = [NSOperationQueue new];
+        });
+        
+        context(@"after being added to queue", ^{
+            it(@"should eventually receive @selector(main)", ^{
+                [[operation shouldNot] receive:@selector(main)];
+                [[operation shouldEventually] receive:@selector(main)];
+                
+                [queue addOperation:operation];
+            });
+        });
+    });
+    
+    context(@"after being created", ^{
         __block IDPBackgroundOperation *operation = nil;
         beforeAll(^{
             operation = [IDPBackgroundOperation new];
         });
         
-        context(@"while operation being added to queue", ^{
+        context(@"after was added to suspended queue", ^{
             __block NSOperationQueue *queue = nil;
             
             beforeAll(^{
                 queue = [NSOperationQueue new];
+                queue.suspended = YES;
+                [queue addOperation:operation];
             });
             
-            it(@"shouldn't eventually receive @selector(complete)", ^{
-                [[operation shouldEventually] receive:@selector(complete)];
+            it(@"shouldn't receive @selector(main)", ^{
+                [[operation shouldNot] receive:@selector(main)];
+                [[operation shouldNotEventually] receive:@selector(main)];
+            });
+            
+            it(@"queue operations should have count of 1", ^{
+                [[queue.operations should] haveCountOf:1];
+            });
+        });
+    });
+    
+    context(@"after being created", ^{
+        __block IDPBackgroundOperation *operation = nil;
+        beforeAll(^{
+            operation = [IDPBackgroundOperation new];
+        });
+        
+        context(@"after was added to suspended queue", ^{
+            __block NSOperationQueue *queue = nil;
+            beforeAll(^{
+                queue = [NSOperationQueue new];
+                queue.suspended = YES;
                 [queue addOperation:operation];
+            });
+            
+            context(@"after queue was canceled", ^{
+                it(@"should receive cancel selector", ^{
+                    [[operation should] receive:@selector(cancel)];
+                    [queue cancelAllOperations];
+                });
+            });
+        });
+    });
+    
+    context(@"after operation being added to suspended queue", ^{
+        __block NSOperationQueue *queue = nil;
+        __block IDPBackgroundOperation *operation = nil;
+        
+        beforeAll(^{
+            operation = [IDPBackgroundOperation new];
+            queue = [NSOperationQueue new];
+            queue.suspended = YES;
+            [queue addOperation:operation];
+        });
+        
+        context(@"after queue cancellation", ^{
+            beforeAll(^{
+                [queue cancelAllOperations];
+            });
+            
+            context(@"after queue was resumed", ^{
+                it(@"should not receive @selector(main)", ^{
+                    [[operation shouldNot] receive:@selector(main)];
+                    [[operation shouldNotEventually] receive:@selector(main)];
+                    
+                    queue.suspended = NO;
+                });
             });
         });
     });
