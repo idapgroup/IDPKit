@@ -17,3 +17,4 @@
 #import "IDPWeakArray.h"
 #import "NSPathUtilities+IDPExtensions.h"
 #import "IDPDispatch.h"
+#import "IDPBackgroundOperation.h"
