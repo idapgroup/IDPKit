@@ -22,6 +22,9 @@
  alpha
  @return NSColor object
  */
-+ (NSColor *)colorWithIntRed:(NSInteger)red green:(NSInteger)green blue:(NSInteger)blue alpha:(NSInteger)alpha;
++ (instancetype)colorWithIntRed:(NSInteger)red
+                          green:(NSInteger)green
+                           blue:(NSInteger)blue
+                          alpha:(NSInteger)alpha;
 
 @end

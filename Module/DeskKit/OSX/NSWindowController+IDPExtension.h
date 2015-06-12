@@ -19,9 +19,10 @@
 @interface NSWindowController (IDPExtension)
 
 /**
+ Instantiate new window controller. The name of controller xib must be the same as controller.
  This method call initWithWindowNibName: based on window controller class name.
- @return Return new autorelease window controller.
+ @return Return new window controller instance.
  */
-+ (instancetype)controllerWithDefaultNib;
++ (instancetype)controller;
 
 @end

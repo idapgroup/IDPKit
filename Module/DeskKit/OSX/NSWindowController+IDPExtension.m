@@ -10,7 +10,7 @@
 
 @implementation NSWindowController (IDPExtension)
 
-+ (id)controllerWithDefaultNib {
++ (instancetype)controller {
     return [[self alloc] initWithWindowNibName:NSStringFromClass(self)];
 }
 

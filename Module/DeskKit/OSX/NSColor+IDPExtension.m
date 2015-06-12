@@ -13,9 +13,16 @@
 #pragma mark -
 #pragma mark Class methods
 
-+ (NSColor *)colorWithIntRed:(NSInteger)red green:(NSInteger)green blue:(NSInteger)blue alpha:(NSInteger)alpha {
++ (instancetype)colorWithIntRed:(NSInteger)red
+                          green:(NSInteger)green
+                           blue:(NSInteger)blue
+                          alpha:(NSInteger)alpha
+{
     CGFloat divider = 255;
-    return [NSColor colorWithRed:(CGFloat)red/divider green:(CGFloat)green/divider blue:(CGFloat)blue/divider alpha:(CGFloat)alpha/divider];
+    return [[self class] colorWithRed:(CGFloat)red/divider
+                                green:(CGFloat)green/divider
+                                 blue:(CGFloat)blue/divider
+                                alpha:(CGFloat)alpha/divider];
 }
 
 @end
