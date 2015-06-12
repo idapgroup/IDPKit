@@ -27,4 +27,22 @@
                            blue:(NSInteger)blue
                           alpha:(NSInteger)alpha;
 
+/**
+ Take color definition in hex format and return NSColor instance.
+ @return NSColor instance.
+ */
++ (instancetype)colorWithHexColorString:(NSString*)hexString;
+
+/**
+ Claculate luminosity of color instance.
+ @return Luminosity of NSColor object.
+ */
+- (CGFloat)luminosity;
+
+/**
+ Calculate luminosity difference between two colors.
+ @return Luminosity difference between two colors.
+ */
+- (CGFloat)luminosityDifference:(NSColor*)otherColor;
+
 @end

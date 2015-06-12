@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		697BBF8D1B2B238500A0EEE5 /* NSImage+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 697BBF8C1B2B238500A0EEE5 /* NSImage+IDPExtension.m */; };
 		69DB0AAF1AF8F7DA004F08DB /* NSNib+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AA81AF8F7DA004F08DB /* NSNib+IDPExtension.m */; };
 		69DB0AB01AF8F7DA004F08DB /* NSView+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AAA1AF8F7DA004F08DB /* NSView+IDPExtension.m */; };
 		69DB0AB11AF8F7DA004F08DB /* NSViewController+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AAC1AF8F7DA004F08DB /* NSViewController+IDPExtension.m */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		6686CE00B6DAD99079F5BCB5 /* Pods-OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.release.xcconfig"; sourceTree = "<group>"; };
 		6970EC27A61B5454971F1F28 /* Pods-OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OSXTests/Pods-OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		697BBF8B1B2B238500A0EEE5 /* NSImage+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+IDPExtension.h"; sourceTree = "<group>"; };
+		697BBF8C1B2B238500A0EEE5 /* NSImage+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+IDPExtension.m"; sourceTree = "<group>"; };
 		69DB0AA51AF8F7DA004F08DB /* DeskKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeskKit.h; sourceTree = "<group>"; };
 		69DB0AA71AF8F7DA004F08DB /* NSNib+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNib+IDPExtension.h"; sourceTree = "<group>"; };
 		69DB0AA81AF8F7DA004F08DB /* NSNib+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNib+IDPExtension.m"; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				69DB0AAC1AF8F7DA004F08DB /* NSViewController+IDPExtension.m */,
 				69DB0AAD1AF8F7DA004F08DB /* NSWindowController+IDPExtension.h */,
 				69DB0AAE1AF8F7DA004F08DB /* NSWindowController+IDPExtension.m */,
+				697BBF8B1B2B238500A0EEE5 /* NSImage+IDPExtension.h */,
+				697BBF8C1B2B238500A0EEE5 /* NSImage+IDPExtension.m */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 			files = (
 				69DB0AB11AF8F7DA004F08DB /* NSViewController+IDPExtension.m in Sources */,
 				69DB0AAF1AF8F7DA004F08DB /* NSNib+IDPExtension.m in Sources */,
+				697BBF8D1B2B238500A0EEE5 /* NSImage+IDPExtension.m in Sources */,
 				69DB0AB01AF8F7DA004F08DB /* NSView+IDPExtension.m in Sources */,
 				D7A6B2951A60870500159A8C /* IDPAppDelegate.m in Sources */,
 				69DB0AB51AF8F80C004F08DB /* NSColor+IDPExtension.m in Sources */,
