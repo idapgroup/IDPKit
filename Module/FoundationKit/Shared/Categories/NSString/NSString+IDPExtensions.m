@@ -8,11 +8,13 @@
 
 #import "NSString+IDPExtensions.h"
 
-static NSString * const kIDPTrueBOOLValueSting  = @"YES";
-static NSString * const kIDPFalseBOOLValueSting = @"NO";
+#define IDPLiteralStringFromValue(value) @#value
 
-OBJC_INLINE NSString *IDPStringifyBOOL(BOOL value) {
-    return YES == value ? kIDPTrueBOOLValueSting : kIDPFalseBOOLValueSting;
+static NSString * const kIDPBoolYesValueString  = IDPLiteralStringFromValue(YES);
+static NSString * const kIDPBoolNoValueString   = IDPLiteralStringFromValue(NO);
+
+FOUNDATION_EXTERN_INLINE NSString *IDPStringifyBOOL(BOOL value) {
+    return YES == value ? kIDPBoolYesValueString : kIDPBoolNoValueString;
 }
 
 @implementation NSString (IDPExtensions)
@@ -21,7 +23,7 @@ OBJC_INLINE NSString *IDPStringifyBOOL(BOOL value) {
 #pragma mark Class Methods
 
 + (instancetype)stringWithBOOL:(BOOL)value {
-    return [self  stringWithString:IDPStringifyBOOL(value)];
+    return [[self alloc] initWithString:IDPStringifyBOOL(value)];
 }
 
 - (NSString *)urlEncodedString {

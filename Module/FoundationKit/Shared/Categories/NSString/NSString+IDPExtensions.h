@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXTERN NSString *IDPStringifyBOOL(BOOL value);
+FOUNDATION_EXPORT NSString *IDPStringifyBOOL(BOOL value);
 
 @interface NSString (IDPExtensions)
 
