@@ -8,7 +8,21 @@
 
 #import "NSString+IDPExtensions.h"
 
+static NSString * const kIDPTrueBOOLValueSting  = @"YES";
+static NSString * const kIDPFalseBOOLValueSting = @"NO";
+
+OBJC_INLINE NSString *IDPStringifyBOOL(BOOL value) {
+    return YES == value ? kIDPTrueBOOLValueSting : kIDPFalseBOOLValueSting;
+}
+
 @implementation NSString (IDPExtensions)
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)stringWithBOOL:(BOOL)value {
+    return [self  stringWithString:IDPStringifyBOOL(value)];
+}
 
 - (NSString *)urlEncodedString {
     CFStringRef stringRef = CFURLCreateStringByAddingPercentEscapes(NULL,
