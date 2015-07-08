@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT NSString *IDPStringifyBOOL(BOOL value);
+
 @interface NSString (IDPExtensions)
+
+/// Returns @"YES" or @"NO" string according the value
++ (instancetype)stringWithBOOL:(BOOL)value;
 
 - (NSString *)urlEncodedString;
 

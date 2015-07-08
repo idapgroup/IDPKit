@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EB0E7824A84819FDD9337AA /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */; };
+		5A6B5CEA1B357B7900C5BC45 /* NSString+IDPExtensionsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6B5CE91B357B7900C5BC45 /* NSString+IDPExtensionsSpec.m */; };
 		5AD62F8C1AE3EA6200491F7D /* IDPBackgroundOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD62F8B1AE3EA6200491F7D /* IDPBackgroundOperation.m */; };
 		5AE676D21AEC06A400089323 /* IDPBackgroundOperationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE676D11AEC06A400089323 /* IDPBackgroundOperationSpec.m */; };
 		D71F66AA1A7BFA3E007EC1CF /* IDPKVOTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */; };
@@ -150,6 +151,7 @@
 
 /* Begin PBXFileReference section */
 		451B88EF011FADEE69B665C9 /* Pods-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		5A6B5CE91B357B7900C5BC45 /* NSString+IDPExtensionsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IDPExtensionsSpec.m"; sourceTree = "<group>"; };
 		5AD62F8A1AE3EA6200491F7D /* IDPBackgroundOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPBackgroundOperation.h; sourceTree = "<group>"; };
 		5AD62F8B1AE3EA6200491F7D /* IDPBackgroundOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBackgroundOperation.m; sourceTree = "<group>"; };
 		5AE676D11AEC06A400089323 /* IDPBackgroundOperationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBackgroundOperationSpec.m; sourceTree = "<group>"; };
@@ -328,6 +330,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A6B5CE81B357B3600C5BC45 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				5A6B5CE91B357B7900C5BC45 /* NSString+IDPExtensionsSpec.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
 		5AD62F891AE3EA1A00491F7D /* IDPBackgroundOperation */ = {
 			isa = PBXGroup;
 			children = (
@@ -899,6 +909,7 @@
 		D7E1DAF21A84CE0F00E929C4 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				5A6B5CE81B357B3600C5BC45 /* NSString */,
 				D7E1DAF31A84CE0F00E929C4 /* NSObject */,
 			);
 			path = Categories;
@@ -1283,6 +1294,7 @@
 				D7E49DF11A69518000C9C38D /* IDPMixinStackSpec.m in Sources */,
 				D7BD80541A64641F004E2041 /* NSManagedObjectContext+IDPExtensions.m in Sources */,
 				D7E229AA1A851A5A0058309E /* NSObject+IDPKVO.m in Sources */,
+				5A6B5CEA1B357B7900C5BC45 /* NSString+IDPExtensionsSpec.m in Sources */,
 				D7BD80B61A64641F004E2041 /* UIView+IDPExtensions.m in Sources */,
 				D7BD80681A64641F004E2041 /* NSFileManager+IDPExtensions.m in Sources */,
 				D7BD80AE1A64641F004E2041 /* UIImage+IDPExtensions.m in Sources */,
