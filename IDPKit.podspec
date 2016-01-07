@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = "IDPKit"
-  s.version   = "0.1.0"
+  s.version   = "0.1.1"
   s.summary   = "Reusable IDAP Group classes and categories"
   s.homepage  = "https://github.com/idapgroup/IDPKit"
   s.license   = { :type => "New BSD", :file => "LICENSE" }
