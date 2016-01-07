@@ -1,6 +1,6 @@
 # IDPKit
 
-Reusable IDAP Group classes and categories
+Reusable IDAP Group classes and categories.
 
 ## License
 
