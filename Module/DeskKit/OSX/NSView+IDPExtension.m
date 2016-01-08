@@ -60,7 +60,7 @@
 }
 
 - (NSImage *)imageFromView {
-    return imageFromViewWithRect(self.bounds);
+    return [self imageFromViewWithRect:self.bounds];
 }
 
 - (NSImage *)imageFromViewWithRect:(NSRect)rect {
