@@ -13,6 +13,7 @@
 		69DB0AB11AF8F7DA004F08DB /* NSViewController+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AAC1AF8F7DA004F08DB /* NSViewController+IDPExtension.m */; };
 		69DB0AB21AF8F7DA004F08DB /* NSWindowController+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AAE1AF8F7DA004F08DB /* NSWindowController+IDPExtension.m */; };
 		69DB0AB51AF8F80C004F08DB /* NSColor+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AB41AF8F80C004F08DB /* NSColor+IDPExtension.m */; };
+		69F55DE41C3FB09500EADBBB /* NSTableView+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F55DE31C3FB09500EADBBB /* NSTableView+IDPExtension.m */; };
 		B44F9B11CFD4F6BD0E6F970E /* libPods-OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF53CD5846A1D04D72F579D /* libPods-OSXTests.a */; };
 		D7A6B2821A60870500159A8C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B2811A60870500159A8C /* Cocoa.framework */; };
 		D7A6B28C1A60870500159A8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7A6B28A1A60870500159A8C /* InfoPlist.strings */; };
@@ -55,6 +56,8 @@
 		69DB0AAE1AF8F7DA004F08DB /* NSWindowController+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+IDPExtension.m"; sourceTree = "<group>"; };
 		69DB0AB31AF8F80C004F08DB /* NSColor+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+IDPExtension.h"; sourceTree = "<group>"; };
 		69DB0AB41AF8F80C004F08DB /* NSColor+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+IDPExtension.m"; sourceTree = "<group>"; };
+		69F55DE21C3FB09500EADBBB /* NSTableView+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTableView+IDPExtension.h"; sourceTree = "<group>"; };
+		69F55DE31C3FB09500EADBBB /* NSTableView+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTableView+IDPExtension.m"; sourceTree = "<group>"; };
 		D7A6B27E1A60870500159A8C /* OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A6B2811A60870500159A8C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D7A6B2841A60870500159A8C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -128,6 +131,8 @@
 				69DB0AAE1AF8F7DA004F08DB /* NSWindowController+IDPExtension.m */,
 				697BBF8B1B2B238500A0EEE5 /* NSImage+IDPExtension.h */,
 				697BBF8C1B2B238500A0EEE5 /* NSImage+IDPExtension.m */,
+				69F55DE21C3FB09500EADBBB /* NSTableView+IDPExtension.h */,
+				69F55DE31C3FB09500EADBBB /* NSTableView+IDPExtension.m */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 				69DB0AB51AF8F80C004F08DB /* NSColor+IDPExtension.m in Sources */,
 				69DB0AB21AF8F7DA004F08DB /* NSWindowController+IDPExtension.m in Sources */,
 				D7A6B28E1A60870500159A8C /* main.m in Sources */,
+				69F55DE41C3FB09500EADBBB /* NSTableView+IDPExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

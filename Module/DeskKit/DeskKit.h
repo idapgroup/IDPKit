@@ -4,3 +4,4 @@
 #import "NSView+IDPExtension.h"
 #import "NSColor+IDPExtension.h"
 #import "NSImage+IDPExtension"
+#import "NSTableView+IDPExtension.h"
