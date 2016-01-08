@@ -71,4 +71,8 @@
     return image;
 }
 
+- (NSPoint)localPointFromEvent:(NSEvent *)event {
+    return [self convertPoint:event.locationInWindow fromView:nil];
+}
+
 @end

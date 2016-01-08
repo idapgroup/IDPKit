@@ -51,4 +51,9 @@ IB_DESIGNABLE
  */
 - (NSImage *)imageFromViewWithRect:(NSRect)rect;
 
+/**
+ Convert event point which in window coordinate system to local view point.
+ */
+- (NSPoint)localPointFromEvent:(NSEvent *)event;
+
 @end
