@@ -59,4 +59,16 @@
     return self.layer.borderColor == NULL ? nil : [NSColor colorWithCGColor:self.layer.borderColor];
 }
 
+- (NSImage *)imageFromView {
+    return imageFromViewWithRect(self.bounds);
+}
+
+- (NSImage *)imageFromViewWithRect:(NSRect)rect {
+    NSBitmapImageRep *bitmapImageRep = [self bitmapImageRepForCachingDisplayInRect:rect];
+    [self cacheDisplayInRect:rect toBitmapImageRep:bitmapImageRep];
+    NSImage *image = [[NSImage alloc] initWithCGImage:[bitmapImageRep CGImage] size:bitmapImageRep.size];
+    [image addRepresentation:bitmapImageRep];
+    return image;
+}
+
 @end

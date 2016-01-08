@@ -41,4 +41,14 @@ IB_DESIGNABLE
  */
 @property (nonatomic, strong) IBInspectable NSColor *borderColor;
 
+/**
+ Return NSImage representation of view.
+ */
+- (NSImage *)imageFromView;
+
+/**
+ Return NSImage representation of view according to rect.
+ */
+- (NSImage *)imageFromViewWithRect:(NSRect)rect;
+
 @end
