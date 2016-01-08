@@ -70,7 +70,5 @@ Pod::Spec.new do |s|
     dks.source_files   = 'Module/DeskKit/**/*.{h,m,c,cpp}'
     dks.platform       = :osx, "10.8"    
     dks.frameworks     = 'AppKit'
-    dks.dependency       'IDPKit/FoundationKit'
-    dks.dependency       'IDPKit/CoreGraphicsKit'
   end
 end
