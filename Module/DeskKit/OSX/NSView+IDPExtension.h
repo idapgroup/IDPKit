@@ -11,11 +11,6 @@
 IB_DESIGNABLE
 @interface NSView (IDPExtension)
 
-@property (nonatomic, assign) IBInspectable CGFloat maxViewWidth;
-@property (nonatomic, assign) IBInspectable CGFloat maxViewHeight;
-@property (nonatomic, assign) IBInspectable CGFloat minViewWidth;
-@property (nonatomic, assign) IBInspectable CGFloat minViewHeight;
-
 /** Sets the background color of the receiver
  if the view is not backed by a layer, creates the layer.
  */
