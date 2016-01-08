@@ -10,7 +10,6 @@
 		697BBF8D1B2B238500A0EEE5 /* NSImage+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 697BBF8C1B2B238500A0EEE5 /* NSImage+IDPExtension.m */; };
 		69DB0AAF1AF8F7DA004F08DB /* NSNib+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AA81AF8F7DA004F08DB /* NSNib+IDPExtension.m */; };
 		69DB0AB01AF8F7DA004F08DB /* NSView+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AAA1AF8F7DA004F08DB /* NSView+IDPExtension.m */; };
-		69DB0AB11AF8F7DA004F08DB /* NSViewController+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AAC1AF8F7DA004F08DB /* NSViewController+IDPExtension.m */; };
 		69DB0AB21AF8F7DA004F08DB /* NSWindowController+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AAE1AF8F7DA004F08DB /* NSWindowController+IDPExtension.m */; };
 		69DB0AB51AF8F80C004F08DB /* NSColor+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DB0AB41AF8F80C004F08DB /* NSColor+IDPExtension.m */; };
 		69F55DE41C3FB09500EADBBB /* NSTableView+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F55DE31C3FB09500EADBBB /* NSTableView+IDPExtension.m */; };
@@ -50,8 +49,6 @@
 		69DB0AA81AF8F7DA004F08DB /* NSNib+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNib+IDPExtension.m"; sourceTree = "<group>"; };
 		69DB0AA91AF8F7DA004F08DB /* NSView+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+IDPExtension.h"; sourceTree = "<group>"; };
 		69DB0AAA1AF8F7DA004F08DB /* NSView+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+IDPExtension.m"; sourceTree = "<group>"; };
-		69DB0AAB1AF8F7DA004F08DB /* NSViewController+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSViewController+IDPExtension.h"; sourceTree = "<group>"; };
-		69DB0AAC1AF8F7DA004F08DB /* NSViewController+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+IDPExtension.m"; sourceTree = "<group>"; };
 		69DB0AAD1AF8F7DA004F08DB /* NSWindowController+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+IDPExtension.h"; sourceTree = "<group>"; };
 		69DB0AAE1AF8F7DA004F08DB /* NSWindowController+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+IDPExtension.m"; sourceTree = "<group>"; };
 		69DB0AB31AF8F80C004F08DB /* NSColor+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+IDPExtension.h"; sourceTree = "<group>"; };
@@ -125,8 +122,6 @@
 				69DB0AA81AF8F7DA004F08DB /* NSNib+IDPExtension.m */,
 				69DB0AA91AF8F7DA004F08DB /* NSView+IDPExtension.h */,
 				69DB0AAA1AF8F7DA004F08DB /* NSView+IDPExtension.m */,
-				69DB0AAB1AF8F7DA004F08DB /* NSViewController+IDPExtension.h */,
-				69DB0AAC1AF8F7DA004F08DB /* NSViewController+IDPExtension.m */,
 				69DB0AAD1AF8F7DA004F08DB /* NSWindowController+IDPExtension.h */,
 				69DB0AAE1AF8F7DA004F08DB /* NSWindowController+IDPExtension.m */,
 				697BBF8B1B2B238500A0EEE5 /* NSImage+IDPExtension.h */,
@@ -375,7 +370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69DB0AB11AF8F7DA004F08DB /* NSViewController+IDPExtension.m in Sources */,
 				69DB0AAF1AF8F7DA004F08DB /* NSNib+IDPExtension.m in Sources */,
 				697BBF8D1B2B238500A0EEE5 /* NSImage+IDPExtension.m in Sources */,
 				69DB0AB01AF8F7DA004F08DB /* NSView+IDPExtension.m in Sources */,
