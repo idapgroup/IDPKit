@@ -39,11 +39,9 @@
 }
 
 - (CGImageRef)CGImage {
-    CGImageSourceRef source;
-    source = CGImageSourceCreateWithData((CFDataRef)[self TIFFRepresentation], NULL);
-    CGImageRef maskRef =  CGImageSourceCreateImageAtIndex(source, 0, NULL);
-    
-    return maskRef;
+    return CGImageSourceCreateImageAtIndex(CGImageSourceCreateWithData((CFDataRef)[self TIFFRepresentation], NULL),
+                                           0,
+                                           NULL);
 }
 
 @end
