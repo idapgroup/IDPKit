@@ -25,13 +25,13 @@
                                 alpha:(CGFloat)alpha/divider];
 }
 
-+ (instancetype)colorWithHexColorString:(NSString*)hexString {
-    NSColor* result = nil;
++ (instancetype)colorWithHexColorString:(NSString *)hexString {
+    NSColor *result = nil;
     unsigned colorCode = 0;
     unsigned char redByte, greenByte, blueByte;
     
     if (nil != hexString) {
-        NSScanner* scanner = [NSScanner scannerWithString:hexString];
+        NSScanner *scanner = [NSScanner scannerWithString:hexString];
         [scanner scanHexInt:&colorCode];
     }
     redByte = (unsigned char)(colorCode >> 16);
@@ -42,6 +42,7 @@
                                             green:(CGFloat)greenByte / 0xff
                                              blue:(CGFloat)blueByte / 0xff
                                             alpha:1.0];
+    
     return result;
 }
 
@@ -59,15 +60,15 @@
     return 0.2126 * pow(red, 2.2f) + 0.7152 * pow(green, 2.2f) + 0.0722 * pow(blue, 2.2f);
 }
 
-- (CGFloat)luminosityDifference:(NSColor*)otherColor {
+- (CGFloat)luminosityDifference:(NSColor *)otherColor {
     CGFloat l1 = [self luminosity];
     CGFloat l2 = [otherColor luminosity];
     
     if (l1 >= 0 && l2 >= 0) {
         if (l1 > l2) {
-            return (l1+0.05f) / (l2+0.05f);
+            return (l1 + 0.05f) / (l2 + 0.05f);
         } else {
-            return (l2+0.05f) / (l1+0.05f);
+            return (l2 + 0.05f) / (l1 + 0.05f);
         }
     }
     
