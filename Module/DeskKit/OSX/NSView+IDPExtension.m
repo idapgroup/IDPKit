@@ -68,6 +68,7 @@
     [self cacheDisplayInRect:rect toBitmapImageRep:bitmapImageRep];
     NSImage *image = [[NSImage alloc] initWithCGImage:[bitmapImageRep CGImage] size:bitmapImageRep.size];
     [image addRepresentation:bitmapImageRep];
+    
     return image;
 }
 

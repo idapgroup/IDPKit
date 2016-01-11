@@ -26,6 +26,7 @@
     if(rgba[3] > 0) {
         CGFloat alpha = ((CGFloat)rgba[3]) / 255.0;
         CGFloat multiplier = alpha / 255.0;
+        
         return [NSColor colorWithRed:((CGFloat)rgba[0]) * multiplier
                                green:((CGFloat)rgba[1]) * multiplier
                                 blue:((CGFloat)rgba[2]) * multiplier

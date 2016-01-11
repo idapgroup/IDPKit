@@ -29,6 +29,7 @@
     if ([self.registeredNibsByIdentifier valueForKey:identifier] == nil) {
         [self registerNib:[[NSNib alloc] initWithNibNamed:nibName bundle:nil] forIdentifier:identifier];
     }
+    
     return [self makeViewWithIdentifier:identifier owner:owner];
 }
 

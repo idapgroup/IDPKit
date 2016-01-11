@@ -19,6 +19,7 @@
                           alpha:(NSInteger)alpha
 {
     CGFloat divider = 255;
+    
     return [[self class] colorWithRed:(CGFloat)red/divider
                                 green:(CGFloat)green/divider
                                  blue:(CGFloat)blue/divider
