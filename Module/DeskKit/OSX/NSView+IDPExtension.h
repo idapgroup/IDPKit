@@ -44,16 +44,16 @@ IB_DESIGNABLE
 /**
  Return NSImage representation of view.
  */
-- (NSImage *)imageFromView;
+- (NSImage *)imageRepresentation;
 
 /**
  Return NSImage representation of view according to rect.
  */
-- (NSImage *)imageFromViewWithRect:(NSRect)rect;
+- (NSImage *)imageRepresentationWithRect:(NSRect)rect;
 
 /**
  Convert event point which in window coordinate system to local view point.
  */
-- (NSPoint)localPointFromEvent:(NSEvent *)event;
+- (NSPoint)pointWithEvent:(NSEvent *)event;
 
 @end

@@ -59,11 +59,11 @@
     return self.layer.borderColor == NULL ? nil : [NSColor colorWithCGColor:self.layer.borderColor];
 }
 
-- (NSImage *)imageFromView {
-    return [self imageFromViewWithRect:self.bounds];
+- (NSImage *)imageRepresentation {
+    return [self imageRepresentationWithRect:self.bounds];
 }
 
-- (NSImage *)imageFromViewWithRect:(NSRect)rect {
+- (NSImage *)imageRepresentationWithRect:(NSRect)rect {
     NSBitmapImageRep *bitmapImageRep = [self bitmapImageRepForCachingDisplayInRect:rect];
     [self cacheDisplayInRect:rect toBitmapImageRep:bitmapImageRep];
     NSImage *image = [[NSImage alloc] initWithCGImage:[bitmapImageRep CGImage] size:bitmapImageRep.size];
@@ -71,7 +71,7 @@
     return image;
 }
 
-- (NSPoint)localPointFromEvent:(NSEvent *)event {
+- (NSPoint)pointWithEvent:(NSEvent *)event {
     return [self convertPoint:event.locationInWindow fromView:nil];
 }
 
