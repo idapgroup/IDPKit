@@ -13,6 +13,7 @@
 #pragma mark -
 #pragma mark Public methods
 
+//averageColor calculation based on http://www.bobbygeorgescu.com/2011/08/finding-average-color-of-uiimage/
 - (NSColor *)averageColor {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     unsigned char rgba[4];
