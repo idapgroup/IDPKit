@@ -27,10 +27,10 @@
     @property (nonatomic, strong, readonly) theViewClass   *propertyName;
 
 #define IDPViewControllerViewProperty(viewControllerClass, theViewClass, propertyName) \
-    @interface viewControllerClass (__##theViewCall##_##propertyName) \
+    @interface viewControllerClass (__##theViewClass##_##propertyName) \
         IDPViewControllerViewPropertyDefinition(theViewClass, propertyName) \
     @end \
     \
-    @implementation viewControllerClass (__##theViewCall##_##propertyName) \
+    @implementation viewControllerClass (__##theViewClass##_##propertyName) \
         IDPViewControllerViewOfClassGetterSynthesize(theViewClass, propertyName) \
     @end
