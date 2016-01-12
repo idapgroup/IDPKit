@@ -11,6 +11,8 @@
 		5A6B5CEA1B357B7900C5BC45 /* NSString+IDPExtensionsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6B5CE91B357B7900C5BC45 /* NSString+IDPExtensionsSpec.m */; };
 		5AD62F8C1AE3EA6200491F7D /* IDPBackgroundOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD62F8B1AE3EA6200491F7D /* IDPBackgroundOperation.m */; };
 		5AE676D21AEC06A400089323 /* IDPBackgroundOperationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE676D11AEC06A400089323 /* IDPBackgroundOperationSpec.m */; };
+		D719AA4E1C454B79002EDCEF /* NSNull+IDPNilSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D719AA4D1C454B79002EDCEF /* NSNull+IDPNilSpec.m */; };
+		D719AA521C454BE2002EDCEF /* NSNull+IDPNil.m in Sources */ = {isa = PBXBuildFile; fileRef = D719AA511C454BE2002EDCEF /* NSNull+IDPNil.m */; };
 		D71F66AA1A7BFA3E007EC1CF /* IDPKVOTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */; };
 		D7A6B0ED1A6084A800159A8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EC1A6084A800159A8C /* Foundation.framework */; };
 		D7A6B0EF1A6084A800159A8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */; };
@@ -158,6 +160,9 @@
 		9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F7B5CDBDB18B157BC098B7 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70BC6AE1A6D3B260053EA92 /* IDPSpecSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSpecSetup.h; sourceTree = "<group>"; };
+		D719AA4D1C454B79002EDCEF /* NSNull+IDPNilSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+IDPNilSpec.m"; sourceTree = "<group>"; };
+		D719AA501C454BE2002EDCEF /* NSNull+IDPNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+IDPNil.h"; sourceTree = "<group>"; };
+		D719AA511C454BE2002EDCEF /* NSNull+IDPNil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+IDPNil.m"; sourceTree = "<group>"; };
 		D71F66A81A7BFA3E007EC1CF /* IDPKVOTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOTestObject.h; sourceTree = "<group>"; };
 		D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOTestObject.m; sourceTree = "<group>"; };
 		D7A6B0E91A6084A800159A8C /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -365,6 +370,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D719AA491C454ADC002EDCEF /* NSNull */ = {
+			isa = PBXGroup;
+			children = (
+				D719AA4D1C454B79002EDCEF /* NSNull+IDPNilSpec.m */,
+			);
+			path = NSNull;
+			sourceTree = "<group>";
+		};
+		D719AA4F1C454BE2002EDCEF /* NSNull */ = {
+			isa = PBXGroup;
+			children = (
+				D719AA501C454BE2002EDCEF /* NSNull+IDPNil.h */,
+				D719AA511C454BE2002EDCEF /* NSNull+IDPNil.m */,
+			);
+			path = NSNull;
+			sourceTree = "<group>";
+		};
 		D71F66A71A7BFA30007EC1CF /* Test Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +564,7 @@
 		D7BD7FB91A64641F004E2041 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D719AA4F1C454BE2002EDCEF /* NSNull */,
 				D7E1DAE41A84CD9700E929C4 /* NSObject */,
 				D7FF6EE41A65527A0049286B /* NSPathUtilities */,
 				D7BD7FBA1A64641F004E2041 /* NSArray */,
@@ -909,6 +932,7 @@
 		D7E1DAF21A84CE0F00E929C4 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D719AA491C454ADC002EDCEF /* NSNull */,
 				5A6B5CE81B357B3600C5BC45 /* NSString */,
 				D7E1DAF31A84CE0F00E929C4 /* NSObject */,
 			);
@@ -1274,6 +1298,7 @@
 				D7BD807E1A64641F004E2041 /* IDPMutableArray.m in Sources */,
 				5AE676D21AEC06A400089323 /* IDPBackgroundOperationSpec.m in Sources */,
 				D7FF6EE81A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */,
+				D719AA4E1C454B79002EDCEF /* NSNull+IDPNilSpec.m in Sources */,
 				D7B035BE1A6D5E0A00116747 /* IDPBlockAsyncRaiseIterativeMatcher.m in Sources */,
 				D7BD80801A64641F004E2041 /* IDPMutableDictionary.m in Sources */,
 				D7E1DB271A84EE8C00E929C4 /* IDPTSProxy.m in Sources */,
@@ -1284,6 +1309,7 @@
 				D7E49DDE1A694ACF00C9C38D /* IDPMixinIMP.m in Sources */,
 				D7E1DAF81A84CE0F00E929C4 /* NSObject+IDPKVOPrivateSpec.m in Sources */,
 				D7E49DDA1A694ACF00C9C38D /* IDPModelMixin.m in Sources */,
+				D719AA521C454BE2002EDCEF /* NSNull+IDPNil.m in Sources */,
 				D7E1DB131A84CF9800E929C4 /* IDPObjCRuntime.m in Sources */,
 				D71F66AA1A7BFA3E007EC1CF /* IDPKVOTestObject.m in Sources */,
 				D7BD80941A64641F004E2041 /* IDPWeakReference.m in Sources */,
