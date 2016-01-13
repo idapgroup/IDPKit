@@ -13,6 +13,7 @@
 
 typedef NSMethodSignature *(*IDPMethodSignatureForSelectorIMP)(id, SEL, SEL);
 typedef void(*IDPForwardInvocationIMP)(id, SEL, id);
+typedef BOOL(*IDPIsEqualIMP)(id, SEL, id);
 
 @interface NSNull (IDPNilPrivate)
 
@@ -24,6 +25,10 @@ typedef void(*IDPForwardInvocationIMP)(id, SEL, id);
 // if NSInvocation methodSignature is unrelated to fakeMetohd. Otherwise it executes NSInvocation with target nil.
 + (void)replaceForwardInvocation;
 
+// Replaces isEqual: imp with imp, that calls original implementation and returns its result,
+// if object is a parameter. Otherwise it returns YES.
++ (void)replaceIsEqual;
+
 - (void)fakeMethod;
 
 @end
@@ -33,6 +38,7 @@ typedef void(*IDPForwardInvocationIMP)(id, SEL, id);
 + (void)load {
     [self replaceMethodSignatureForSelector];
     [self replaceForwardInvocation];
+    [self replaceIsEqual];
 }
 
 @end
@@ -74,6 +80,24 @@ typedef void(*IDPForwardInvocationIMP)(id, SEL, id);
             } else {
                 methodIMP(nullObject, selector, invocation);
             }
+        };
+    };
+    
+    [self setBlock:block forSelector:selector];
+}
+
++ (void)replaceIsEqual {
+    SEL selector = @selector(isEqual:);
+    
+    IDPBlockWithIMP block = ^(IMP implementation) {
+        IDPIsEqualIMP methodIMP = (IDPIsEqualIMP)implementation;
+        
+        return (id)^(NSNull *nullObject, id object) {
+            if (!object) {
+                return YES;
+            }
+            
+            return methodIMP(nullObject, selector, object);
         };
     };
     
