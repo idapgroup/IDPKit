@@ -11,6 +11,7 @@
 #import "NSMethodSignature+IDPExtensions.h"
 
 typedef void(^IDPObjcTypesBlock)(NSString *, NSString *, Class, SEL);
+typedef void(^IDPObjcTypesPropertyBlock)(NSString *, SEL, SEL);
 
 static NSString * const kIDPVoid    = @"void";
 
@@ -46,14 +47,14 @@ describe(@"NSMethodSignature+IDPExtensions", ^{
     context(@"created with objcTypesString result of a signature with", ^{
         Class class = [UIView class];
         
-        objcTypesStringCheck(@"struct", kIDPVoid, class, @selector(frame));
-        objcTypesStringCheck(kIDPVoid, @"struct", class, @selector(setFrame:));
+        IDPObjcTypesPropertyBlock objcTypesStringPropertyCheck = ^(NSString *propertyTypeString, SEL getter, SEL setter) {
+            objcTypesStringCheck(propertyTypeString, kIDPVoid, class, getter);
+            objcTypesStringCheck(kIDPVoid, propertyTypeString, class, setter);
+        };
         
-        objcTypesStringCheck(@"object", kIDPVoid, class, @selector(backgroundColor));
-        objcTypesStringCheck(kIDPVoid, @"object", class, @selector(setBackgroundColor:));
-        
-        objcTypesStringCheck(@"primitive", kIDPVoid, class, @selector(alpha));
-        objcTypesStringCheck(kIDPVoid, @"primitive", class, @selector(setAlpha:));
+        objcTypesStringPropertyCheck(@"struct", @selector(frame), @selector(setFrame:));
+        objcTypesStringPropertyCheck(@"object", @selector(backgroundColor), @selector(setBackgroundColor:));
+        objcTypesStringPropertyCheck(@"primitive", @selector(alpha), @selector(setAlpha:));
         
         objcTypesStringCheck(@"struct", @"struct and primnitives", class, @selector(systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:));
     });
