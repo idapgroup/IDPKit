@@ -8,8 +8,6 @@
 
 #import "NSObject+IDPRuntime.h"
 
-#import <objc/runtime.h>
-
 @implementation NSObject (IDPRuntime)
 
 + (void)setBlock:(IDPBlockWithIMP)block forSelector:(SEL)selector {
@@ -22,6 +20,14 @@
                         selector,
                         blockIMP,
                         method_getTypeEncoding(method));
+}
+
+- (void)setValue:(id)value forPropertyKey:(const NSString *)key associationPolicy:(IDPPropertyPolicy)policy {
+    objc_setAssociatedObject(self, (__bridge const void *)(key), value, (objc_AssociationPolicy)policy);
+}
+
+- (id)valueForPropertyKey:(const NSString *)key {
+        return objc_getAssociatedObject(self, (__bridge const void *)(key));
 }
 
 @end
