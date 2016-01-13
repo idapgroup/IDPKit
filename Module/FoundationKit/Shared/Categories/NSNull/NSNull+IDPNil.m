@@ -11,7 +11,7 @@
 #import <objc/runtime.h>
 
 typedef NSMethodSignature *(*IDPMethodSignatureForSelectorIMP)(id, SEL, SEL);
-typedef id(^IDPBlockWithIMPBlock)(IMP implementation);
+typedef id(^IDPBlockWithIMP)(IMP implementation);
 
 @implementation NSNull (IDPNil)
 
@@ -25,27 +25,27 @@ typedef id(^IDPBlockWithIMPBlock)(IMP implementation);
 + (void)replaceMethodSignatureForSelector {
     SEL methodSignatureForSelectorSEL = @selector(methodSignatureForSelector:);
     
-    IDPBlockWithIMPBlock block = ^(IMP implementation){
+    IDPBlockWithIMP block = ^(IMP implementation){
         IDPMethodSignatureForSelectorIMP methodSignatureForSelectorIMP = (IDPMethodSignatureForSelectorIMP)implementation;
         
         return (id)^(NSNull *null, SEL selector) {
-            id methodSingature = methodSignatureForSelectorIMP(null, methodSignatureForSelectorSEL, selector);
-            if (methodSingature) {
-                return methodSingature;
+            id methodSignature = methodSignatureForSelectorIMP(null, methodSignatureForSelectorSEL, selector);
+            if (methodSignature) {
+                return methodSignature;
             }
             
             return (id)methodSignatureForSelectorIMP(null, methodSignatureForSelectorSEL, @selector(fakeMethod));
         };
     };
     
-    [self setBlock:block forSelector:@selector(methodSignatureForSelector:)];
+    [self setBlock:block forSelector:methodSignatureForSelectorSEL];
 }
 
 + (void)replaceForwardInvocation {
     
 }
 
-+ (void)setBlock:(IDPBlockWithIMPBlock)block forSelector:(SEL)selector {
++ (void)setBlock:(IDPBlockWithIMP)block forSelector:(SEL)selector {
     IMP implementation = [self instanceMethodForSelector:selector];;
     
     IMP blockIMP = imp_implementationWithBlock(block(implementation));
