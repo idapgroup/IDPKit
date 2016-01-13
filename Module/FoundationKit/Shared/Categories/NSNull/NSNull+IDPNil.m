@@ -8,10 +8,9 @@
 
 #import "NSNull+IDPNil.h"
 
-#import <objc/runtime.h>
+#import "NSObject+IDPRuntime.h"
 
 typedef NSMethodSignature *(*IDPMethodSignatureForSelectorIMP)(id, SEL, SEL);
-typedef id(^IDPBlockWithIMP)(IMP implementation);
 
 @implementation NSNull (IDPNil)
 
@@ -43,18 +42,6 @@ typedef id(^IDPBlockWithIMP)(IMP implementation);
 
 + (void)replaceForwardInvocation {
     
-}
-
-+ (void)setBlock:(IDPBlockWithIMP)block forSelector:(SEL)selector {
-    IMP implementation = [self instanceMethodForSelector:selector];;
-    
-    IMP blockIMP = imp_implementationWithBlock(block(implementation));
-    
-    Method method = class_getInstanceMethod(self, selector);
-    class_replaceMethod(self,
-                        selector,
-                        blockIMP,
-                        method_getTypeEncoding(method));
 }
 
 - (void)fakeMethod {

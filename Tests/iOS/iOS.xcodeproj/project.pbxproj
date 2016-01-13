@@ -14,6 +14,7 @@
 		D719AA4E1C454B79002EDCEF /* NSNull+IDPNilSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D719AA4D1C454B79002EDCEF /* NSNull+IDPNilSpec.m */; };
 		D719AA521C454BE2002EDCEF /* NSNull+IDPNil.m in Sources */ = {isa = PBXBuildFile; fileRef = D719AA511C454BE2002EDCEF /* NSNull+IDPNil.m */; };
 		D71F66AA1A7BFA3E007EC1CF /* IDPKVOTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */; };
+		D788E6E91C46A34200DEA380 /* NSObject+IDPRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = D788E6E81C46A34200DEA380 /* NSObject+IDPRuntime.m */; };
 		D7A6B0ED1A6084A800159A8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EC1A6084A800159A8C /* Foundation.framework */; };
 		D7A6B0EF1A6084A800159A8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */; };
 		D7A6B0F11A6084A800159A8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0F01A6084A800159A8C /* UIKit.framework */; };
@@ -165,6 +166,8 @@
 		D719AA511C454BE2002EDCEF /* NSNull+IDPNil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+IDPNil.m"; sourceTree = "<group>"; };
 		D71F66A81A7BFA3E007EC1CF /* IDPKVOTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOTestObject.h; sourceTree = "<group>"; };
 		D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOTestObject.m; sourceTree = "<group>"; };
+		D788E6E71C46A34200DEA380 /* NSObject+IDPRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPRuntime.h"; sourceTree = "<group>"; };
+		D788E6E81C46A34200DEA380 /* NSObject+IDPRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPRuntime.m"; sourceTree = "<group>"; };
 		D7A6B0E91A6084A800159A8C /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A6B0EC1A6084A800159A8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -394,6 +397,15 @@
 				D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */,
 			);
 			path = "Test Objects";
+			sourceTree = "<group>";
+		};
+		D788E6E61C46A32F00DEA380 /* IDPRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				D788E6E71C46A34200DEA380 /* NSObject+IDPRuntime.h */,
+				D788E6E81C46A34200DEA380 /* NSObject+IDPRuntime.m */,
+			);
+			path = IDPRuntime;
 			sourceTree = "<group>";
 		};
 		D7A6B0E01A6084A800159A8C = {
@@ -924,6 +936,7 @@
 		D7E1DAE41A84CD9700E929C4 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
+				D788E6E61C46A32F00DEA380 /* IDPRuntime */,
 				D7E1DAF91A84CF3800E929C4 /* IDPKVO */,
 			);
 			path = NSObject;
@@ -1236,6 +1249,7 @@
 				D7BD80611A64641F004E2041 /* NSArray+IDPExtensions.m in Sources */,
 				D7BD80671A64641F004E2041 /* NSFileManager+IDPExtensions.m in Sources */,
 				D7E1DB051A84CF3800E929C4 /* IDPKVONotification.m in Sources */,
+				D788E6E91C46A34200DEA380 /* NSObject+IDPRuntime.m in Sources */,
 				D7BD80931A64641F004E2041 /* IDPWeakReference.m in Sources */,
 				D7BD80511A64641F004E2041 /* NSManagedObject+IDPExtensions.m in Sources */,
 				D7BD80AD1A64641F004E2041 /* UIImage+IDPExtensions.m in Sources */,
