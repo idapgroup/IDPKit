@@ -65,9 +65,9 @@ typedef void(*IDPForwardInvocationIMP)(id, SEL, id);
     SEL selector = @selector(forwardInvocation:);
     
     IDPBlockWithIMP block = ^(IMP implementation) {
+        IDPForwardInvocationIMP methodIMP = (IDPForwardInvocationIMP)implementation;        
+        
         return (id)^(NSNull *nullObject, NSInvocation *invocation) {
-            IDPForwardInvocationIMP methodIMP = (IDPForwardInvocationIMP)implementation;
-            
             if (invocation.methodSignature.nilForwarded) {
                 invocation.target = nil;
                 [invocation invoke];
