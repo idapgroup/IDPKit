@@ -20,9 +20,9 @@ static const NSString * kIDPMethodSignatureNilForwarded    = @"kIDPMethodSignatu
 #pragma mark Accessors
 
 - (void)setNilForwarded:(BOOL)nilForwarded {
-    [self setValue:@(nilForwarded)
-               forPropertyKey:kIDPMethodSignatureNilForwarded
-            associationPolicy:IDPPropertyNonatomicStrong];
+    [self       setValue:@(nilForwarded)
+          forPropertyKey:kIDPMethodSignatureNilForwarded
+       associationPolicy:IDPPropertyNonatomicStrong];
 }
 
 - (BOOL)isNilForwarded {
