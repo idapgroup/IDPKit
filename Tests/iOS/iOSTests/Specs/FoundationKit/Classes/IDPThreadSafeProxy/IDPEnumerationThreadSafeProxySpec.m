@@ -128,27 +128,6 @@ describe(@"NSMutableArray", ^{
     });
 });
 
-//describe(@"IDPThreadSafeProxy", ^{
-//    context(@"when shadowing IDPThreadUnsafeObject", ^{
-//        beforeEach(^{
-//            object = [IDPThreadSafeProxy proxyWithTarget:[IDPThreadUnsafeObject new]];
-//        });
-//        
-//        afterEach(^{
-//            object = nil;
-//        });
-//        
-//        context(@"when performing operations simultaneously", ^{
-//            it(@"it shouldn't raise", ^{
-//                [[theBlock(^{
-//                    object.value = arc4random();
-//                    object.object = [NSObject new];
-//                }) shouldNot] raiseWithIterationCount:taskCount];
-//            });
-//        });
-//    });
-//});
-
 #endif // IDPMultithreadedSpecTestEnabled == 1
 
 SPEC_END
