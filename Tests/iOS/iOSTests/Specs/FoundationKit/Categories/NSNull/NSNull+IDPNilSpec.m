@@ -8,8 +8,6 @@
 
 #import <Kiwi.h>
 
-#import "IDPObjCRuntime.h"
-
 #import "NSNull+IDPNil.h"
 
 typedef void(^IDPSELBlock)(SEL selector);
