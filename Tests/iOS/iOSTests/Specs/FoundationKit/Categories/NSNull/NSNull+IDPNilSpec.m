@@ -38,7 +38,7 @@ describe(@"NSNull+IDPNil", ^{
             shouldNotRaiseBlock(@selector(view));
             
             it(@"should return nil", ^{
-                [[theValue([value view]) should] beNil];
+                [[[value view] should] beNil];
             });
         });
         
@@ -53,9 +53,9 @@ describe(@"NSNull+IDPNil", ^{
         context(@"with struct value return type", ^{
             shouldNotRaiseBlock(@selector(frame));
             
-            it(@"should return 0", ^{
+            it(@"should return empty struct", ^{
                 CGRect frame = [value frame];
-                [[theValue(CGRectIsNull(frame)) should] beYes];
+                [[theValue(CGRectIsEmpty(frame)) should] beYes];
             });
         });
     });
