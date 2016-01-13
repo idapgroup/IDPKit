@@ -19,10 +19,10 @@ typedef OBJC_ENUM(uintptr_t, IDPPropertyPolicy) {
     // Specifies a nonatomic copy property.
     IDPPropertyNonatomicCopy = OBJC_ASSOCIATION_COPY_NONATOMIC,
 
-    // Specifies a atomic strong property.
+    // Specifies an atomic strong property.
     IDPPropertyAtomicStrong = OBJC_ASSOCIATION_RETAIN,
 
-    // Specifies a atomic copy property.
+    // Specifies an atomic copy property.
     IDPPropertyAtomicCopy = OBJC_ASSOCIATION_COPY
 };
 
@@ -34,5 +34,7 @@ typedef id(^IDPBlockWithIMP)(IMP implementation);
 
 - (void)setValue:(id)value forPropertyKey:(const NSString *)key associationPolicy:(IDPPropertyPolicy)policy;
 - (id)valueForPropertyKey:(const NSString *)key;
+
+// TODO: add value for property name, where key could be not a string without const
 
 @end

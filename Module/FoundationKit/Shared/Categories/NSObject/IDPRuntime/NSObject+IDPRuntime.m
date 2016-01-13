@@ -27,7 +27,7 @@
 }
 
 - (id)valueForPropertyKey:(const NSString *)key {
-        return objc_getAssociatedObject(self, (__bridge const void *)(key));
+    return objc_getAssociatedObject(self, (__bridge const void *)(key));
 }
 
 @end
