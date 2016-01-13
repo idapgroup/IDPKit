@@ -19,6 +19,8 @@
 		D788E6EC1C46B22D00DEA380 /* NSObject+IDPRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = D788E6E81C46A34200DEA380 /* NSObject+IDPRuntime.m */; };
 		D788E6EF1C46B25200DEA380 /* NSMethodSignature+IDPNilPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = D788E6EE1C46B25200DEA380 /* NSMethodSignature+IDPNilPrivate.m */; };
 		D788E6F01C46B25200DEA380 /* NSMethodSignature+IDPNilPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = D788E6EE1C46B25200DEA380 /* NSMethodSignature+IDPNilPrivate.m */; };
+		D788E6F61C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D788E6F51C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.m */; };
+		D788E6F71C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D788E6F51C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.m */; };
 		D788E6F91C46CBD800DEA380 /* NSMethodSignature+IDPExtensionsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D788E6F81C46CBD800DEA380 /* NSMethodSignature+IDPExtensionsSpec.m */; };
 		D788E6FC1C46D55400DEA380 /* NSMutableString+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D788E6FB1C46D55400DEA380 /* NSMutableString+IDPExtensions.m */; };
 		D788E6FD1C46D55400DEA380 /* NSMutableString+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D788E6FB1C46D55400DEA380 /* NSMutableString+IDPExtensions.m */; };
@@ -177,6 +179,8 @@
 		D788E6E81C46A34200DEA380 /* NSObject+IDPRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPRuntime.m"; sourceTree = "<group>"; };
 		D788E6ED1C46B25200DEA380 /* NSMethodSignature+IDPNilPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+IDPNilPrivate.h"; sourceTree = "<group>"; };
 		D788E6EE1C46B25200DEA380 /* NSMethodSignature+IDPNilPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+IDPNilPrivate.m"; sourceTree = "<group>"; };
+		D788E6F41C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+IDPExtensions.h"; sourceTree = "<group>"; };
+		D788E6F51C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+IDPExtensions.m"; sourceTree = "<group>"; };
 		D788E6F81C46CBD800DEA380 /* NSMethodSignature+IDPExtensionsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+IDPExtensionsSpec.m"; sourceTree = "<group>"; };
 		D788E6FA1C46D55400DEA380 /* NSMutableString+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+IDPExtensions.h"; sourceTree = "<group>"; };
 		D788E6FB1C46D55400DEA380 /* NSMutableString+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+IDPExtensions.m"; sourceTree = "<group>"; };
@@ -430,6 +434,15 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		D788E6F21C46CB8600DEA380 /* NSMethodSignature */ = {
+			isa = PBXGroup;
+			children = (
+				D788E6F41C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.h */,
+				D788E6F51C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.m */,
+			);
+			path = NSMethodSignature;
+			sourceTree = "<group>";
+		};
 		D788E6F31C46CBA400DEA380 /* NSMethodSignature */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +619,7 @@
 		D7BD7FB91A64641F004E2041 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D788E6F21C46CB8600DEA380 /* NSMethodSignature */,
 				D719AA4F1C454BE2002EDCEF /* NSNull */,
 				D7E1DAE41A84CD9700E929C4 /* NSObject */,
 				D7FF6EE41A65527A0049286B /* NSPathUtilities */,
@@ -1271,6 +1285,7 @@
 				D7BD80571A64641F004E2041 /* CGGeometry+IDPExtensions.m in Sources */,
 				D7E49DE11A694ACF00C9C38D /* NSObject+IDPMixin.m in Sources */,
 				D7BD806B1A64641F004E2041 /* NSString+IDPExtensions.m in Sources */,
+				D788E6F61C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.m in Sources */,
 				D7BD80A51A64641F004E2041 /* NSBundle+IDPExtensions.m in Sources */,
 				D7BD804F1A64641F004E2041 /* IDPCoreDataManager.m in Sources */,
 				D7BD80B11A64641F004E2041 /* UIStoryboard+IDPExtensions.m in Sources */,
@@ -1338,6 +1353,7 @@
 				D7BD80C01A64641F004E2041 /* IDPView.m in Sources */,
 				D7BD80641A64641F004E2041 /* NSDate+IDPExtensions.m in Sources */,
 				D7BD80A61A64641F004E2041 /* NSBundle+IDPExtensions.m in Sources */,
+				D788E6F71C46CBBD00DEA380 /* NSMethodSignature+IDPExtensions.m in Sources */,
 				D7BD80501A64641F004E2041 /* IDPCoreDataManager.m in Sources */,
 				D7BD80B81A64641F004E2041 /* UIViewController+IDPExtensions.m in Sources */,
 				D7BD80A01A64641F004E2041 /* IDPMath.m in Sources */,
