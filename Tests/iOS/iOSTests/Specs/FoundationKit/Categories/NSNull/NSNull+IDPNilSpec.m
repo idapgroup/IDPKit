@@ -24,7 +24,7 @@ describe(@"NSNull+IDPNil", ^{
         it(@"shouldn't raise", ^{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [[[nullValue performSelector:selector] shouldNot] raise];
+            [[theBlock(^{ [nullValue performSelector:selector]; }) shouldNot] raise];
 #pragma clang diagnostic pop
         });
     };

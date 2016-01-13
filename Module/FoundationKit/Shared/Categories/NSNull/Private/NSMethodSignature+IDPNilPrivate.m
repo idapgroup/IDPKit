@@ -25,7 +25,7 @@ static const NSString * kIDPMethodSignatureNilForwarded    = @"kIDPMethodSignatu
             associationPolicy:IDPPropertyNonatomicStrong];
 }
 
-- (BOOL)nilForwarded {
+- (BOOL)isNilForwarded {
     return [[self valueForPropertyKey:kIDPMethodSignatureNilForwarded] boolValue];
 }
 
