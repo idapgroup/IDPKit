@@ -50,7 +50,7 @@ static NSString * const IDPNilObjectInNibDescription = @"NSNib object doesn't co
           withOwner:(id)owner
 {
     NSString *name = NSStringFromClass(theClass);
-    NSNib *nib = [[[self alloc] initWithNibNamed:name bundle:bundle] autorelease];
+    NSNib *nib = [[self alloc] initWithNibNamed:name bundle:bundle];
     return [nib instantiateObjectOfClass:theClass objectOwner:owner];
 }
 
@@ -115,25 +115,11 @@ static NSString * const IDPNilObjectInNibDescription = @"NSNib object doesn't co
                    withBundle:(NSBundle *)bundle
                     withOwner:(id)owner
 {
-    return [[[[self alloc] initWithNibNamed:name bundle:bundle] autorelease] instantiateObjectsOfClasses:arrayOfTheClasses objectsOwner:owner];
+    return [[[self alloc] initWithNibNamed:name bundle:bundle] instantiateObjectsOfClasses:arrayOfTheClasses objectsOwner:owner];
 }
 
 - (BOOL)portableInstantiateWithOwner:(id)owner topLevelObjects:(NSArray **)topLevelObjects {
-    BOOL result = NO;
-    
-    if ([self respondsToSelector:@selector(instantiateWithOwner: topLevelObjects:)] == YES) {
-        result = [self instantiateWithOwner:owner topLevelObjects:topLevelObjects];
-    } else if ([self respondsToSelector:@selector(instantiateNibWithOwner:topLevelObjects:)] == YES) {
-        #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-        result = [self instantiateNibWithOwner:nil topLevelObjects:topLevelObjects];
-        #pragma GCC diagnostic warning "-Wdeprecated-declarations"
-        
-        for (id<NSObject > object in *topLevelObjects) {
-            [object autorelease];
-        }
-    }
-    
-    return result;
+    return [self instantiateWithOwner:owner topLevelObjects:topLevelObjects];
 }
 
 - (id)instantiateObjectOfClass:(Class)theClass {
@@ -143,19 +129,17 @@ static NSString * const IDPNilObjectInNibDescription = @"NSNib object doesn't co
 
 - (id)instantiateObjectOfClass:(Class)theClass objectOwner:(id)owner {
     NSArray *arrayOfObjects = nil;
-    [self portableInstantiateWithOwner:owner topLevelObjects:&arrayOfObjects];
-    
-    id<NSObject> object = nil;
-    
-    for (object in arrayOfObjects) {
-        
-        if ([object isMemberOfClass:theClass]) {
-            break;
+    id<NSObject> result = nil;
+    if ([self portableInstantiateWithOwner:owner topLevelObjects:&arrayOfObjects]) {
+        for (id object in arrayOfObjects) {
+            if ([object isKindOfClass:theClass]) {
+                result = object;
+                break;
+            }
         }
     }
     
-    return object;
-
+    return result;
 }
 
 - (NSArray *)instantiateObjectsOfClasses:(NSArray *)arrayOfTheClasses {

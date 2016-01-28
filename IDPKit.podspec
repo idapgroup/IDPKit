@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = "IDPKit"
-  s.version   = "0.1.0"
+  s.version   = "0.1.2"
   s.summary   = "Reusable IDAP Group classes and categories"
   s.homepage  = "https://github.com/idapgroup/IDPKit"
   s.license   = { :type => "New BSD", :file => "LICENSE" }
@@ -70,7 +70,5 @@ Pod::Spec.new do |s|
     dks.source_files   = 'Module/DeskKit/**/*.{h,m,c,cpp}'
     dks.platform       = :osx, "10.8"    
     dks.frameworks     = 'AppKit'
-    dks.dependency       'IDPKit/FoundationKit'
-    dks.dependency       'IDPKit/CoreGraphicsKit'
   end
 end
