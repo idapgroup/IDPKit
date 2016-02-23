@@ -8,8 +8,6 @@
 
 #import "IDPObservableObject.h"
 
-#import "IDPWeakArray.h"
-
 @interface IDPObservableObject ()
 @property (nonatomic, strong)	NSHashTable	*mutableObservers;
 
