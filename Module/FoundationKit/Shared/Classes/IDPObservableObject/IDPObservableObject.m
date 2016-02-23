@@ -11,7 +11,7 @@
 #import "IDPWeakArray.h"
 
 @interface IDPObservableObject ()
-@property (nonatomic, strong)	NSMutableArray	*mutableObservers;
+@property (nonatomic, strong)	NSHashTable	*mutableObservers;
 
 @end
 
@@ -30,7 +30,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.mutableObservers = [IDPMutableWeakArray array];
+        self.mutableObservers = [NSHashTable weakObjectsHashTable];
     }
     
     return self;
@@ -40,7 +40,7 @@
 #pragma mark Accessors
 
 - (NSArray *)observers {
-    return [self.mutableObservers copy];
+    return [self.mutableObservers allObjects];
 }
 
 #pragma mark -
