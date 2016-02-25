@@ -12,6 +12,8 @@
 		5AD62F8C1AE3EA6200491F7D /* IDPBackgroundOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD62F8B1AE3EA6200491F7D /* IDPBackgroundOperation.m */; };
 		5AE676D21AEC06A400089323 /* IDPBackgroundOperationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE676D11AEC06A400089323 /* IDPBackgroundOperationSpec.m */; };
 		D71F66AA1A7BFA3E007EC1CF /* IDPKVOTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */; };
+		D756DC671C7F456800476D53 /* IDPObservableObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D756DC661C7F456800476D53 /* IDPObservableObjectSpec.m */; };
+		D756DC6A1C7F5F7200476D53 /* IDPObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = D756DC691C7F5F7200476D53 /* IDPObserver.m */; };
 		D7A6B0ED1A6084A800159A8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EC1A6084A800159A8C /* Foundation.framework */; };
 		D7A6B0EF1A6084A800159A8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */; };
 		D7A6B0F11A6084A800159A8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0F01A6084A800159A8C /* UIKit.framework */; };
@@ -160,6 +162,9 @@
 		D70BC6AE1A6D3B260053EA92 /* IDPSpecSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSpecSetup.h; sourceTree = "<group>"; };
 		D71F66A81A7BFA3E007EC1CF /* IDPKVOTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOTestObject.h; sourceTree = "<group>"; };
 		D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOTestObject.m; sourceTree = "<group>"; };
+		D756DC661C7F456800476D53 /* IDPObservableObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableObjectSpec.m; sourceTree = "<group>"; };
+		D756DC681C7F5F7200476D53 /* IDPObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObserver.h; sourceTree = "<group>"; };
+		D756DC691C7F5F7200476D53 /* IDPObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObserver.m; sourceTree = "<group>"; };
 		D7A6B0E91A6084A800159A8C /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A6B0EC1A6084A800159A8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -372,6 +377,14 @@
 				D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */,
 			);
 			path = "Test Objects";
+			sourceTree = "<group>";
+		};
+		D756DC651C7F454E00476D53 /* IDPObservableObject */ = {
+			isa = PBXGroup;
+			children = (
+				D756DC661C7F456800476D53 /* IDPObservableObjectSpec.m */,
+			);
+			path = IDPObservableObject;
 			sourceTree = "<group>";
 		};
 		D7A6B0E01A6084A800159A8C = {
@@ -652,6 +665,8 @@
 			children = (
 				D7BD7FF91A64641F004E2041 /* IDPObservableObject.h */,
 				D7BD7FFA1A64641F004E2041 /* IDPObservableObject.m */,
+				D756DC681C7F5F7200476D53 /* IDPObserver.h */,
+				D756DC691C7F5F7200476D53 /* IDPObserver.m */,
 			);
 			path = IDPObservableObject;
 			sourceTree = "<group>";
@@ -1015,6 +1030,7 @@
 		D7E49DEE1A69518000C9C38D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D756DC651C7F454E00476D53 /* IDPObservableObject */,
 				5AE676D01AEC063100089323 /* IDPBackgroundOperation */,
 				D7E49DEF1A69518000C9C38D /* IDPMixin */,
 			);
@@ -1245,6 +1261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7E49DE01A694ACF00C9C38D /* IDPMixinStack.m in Sources */,
+				D756DC6A1C7F5F7200476D53 /* IDPObserver.m in Sources */,
 				D7BD80621A64641F004E2041 /* NSArray+IDPExtensions.m in Sources */,
 				D7BD80A41A64641F004E2041 /* IDPNetworkReachability.m in Sources */,
 				D7E1DB061A84CF3800E929C4 /* IDPKVONotification.m in Sources */,
@@ -1280,6 +1297,7 @@
 				D7BD807A1A64641F004E2041 /* IDPModel.m in Sources */,
 				D7BD80741A64641F004E2041 /* IDPKVOContext.m in Sources */,
 				D7E1DAF71A84CE0F00E929C4 /* IDPKVOControllerSpec.m in Sources */,
+				D756DC671C7F456800476D53 /* IDPObservableObjectSpec.m in Sources */,
 				D7BD80521A64641F004E2041 /* NSManagedObject+IDPExtensions.m in Sources */,
 				D7E49DDE1A694ACF00C9C38D /* IDPMixinIMP.m in Sources */,
 				D7E1DAF81A84CE0F00E929C4 /* NSObject+IDPKVOPrivateSpec.m in Sources */,

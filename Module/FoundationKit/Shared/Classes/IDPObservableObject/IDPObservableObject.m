@@ -9,14 +9,20 @@
 #import "IDPObservableObject.h"
 
 @interface IDPObservableObject ()
-@property (nonatomic, strong)	NSHashTable	*mutableObservers;
+@property (nonatomic, weak)     id<NSObject>    target;
+@property (nonatomic, strong)   NSHashTable     *mutableObservers;
 
 @end
 
 @implementation IDPObservableObject
 
-@dynamic observers;
-@dynamic target;
+#pragma mark -
+#pragma mark Class Methods
+
+
++ (instancetype)objectWithTarget:(id<NSObject>)target {
+    return [[self alloc] initWithTarget:target];
+}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -26,10 +32,13 @@
 }
 
 - (id)init {
+    return [self initWithTarget:nil];
+}
+
+- (instancetype)initWithTarget:(id<NSObject>)target {
     self = [super init];
-    if (self) {
-        self.mutableObservers = [NSHashTable weakObjectsHashTable];
-    }
+    self.mutableObservers = [NSHashTable weakObjectsHashTable];
+    self.target = target;
     
     return self;
 }
@@ -37,56 +46,18 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)observers {
-    return [self.mutableObservers allObjects];
+- (NSSet *)observers {
+    return [self.mutableObservers setRepresentation];
 }
 
 #pragma mark -
 #pragma mark Accessors
 
 - (id)target {
-    return self;
+    return _target ? _target : self;
 }
 
 #pragma mark -
 #pragma mark Public
-
-- (void)addObserver:(id)observer {
-    if (![self isObjectAnObserver:observer]) {
-        [self.mutableObservers addObject:observer];
-    }
-}
-
-- (void)removeObserver:(id)observer {
-    [self.mutableObservers removeObject:observer];
-}
-
-- (BOOL)isObjectAnObserver:(id)observer {
-    return [self.mutableObservers containsObject:observer];
-}
-
-#pragma mark -
-#pragma mark Private
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-
-- (void)notifyObserversWithSelector:(SEL)selector {
-    for (id<NSObject> observer in self.observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self.target];
-        }
-    }
-}
-
-- (void)notifyObserversWithSelector:(SEL)selector userInfo:(id)info {
-    for (id<NSObject> observer in self.observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self.target withObject:info];
-        }
-    }
-}
-
-#pragma clang diagnostic pop
 
 @end

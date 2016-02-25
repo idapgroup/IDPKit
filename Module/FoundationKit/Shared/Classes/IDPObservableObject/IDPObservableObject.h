@@ -8,24 +8,41 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IDPObservableObject : NSObject
-@property (nonatomic, readonly)	NSArray			*observers;
+#import "IDPObserver.h"
 
-// Target is the object, that would be notified.
+//IDPObservableObjectSpec
+//  after being deallocated it should remove all observers
+//  when observer starts observing
+//      it should add observer into its observers
+//      it should return IDPObserver object
+//      multiple times it should return multiple unique observer objects
+//  when observer stops observing it should remove observer from its observers
+//  when object changes state
+//      and sends changes in notification it should notify observers sending self and changes as parameters
+//      and doesn't send changes in notification it should notify observers sending self and changes = nil as parameters
+//      when observer pauses observation
+//          it shouldn't send notifications to that observer
+//          it should send notifications to other observers
+//          when observer resumes observation it should send notifications to all unpaused observers
+
+@interface IDPObservableObject : NSObject
+@property (nonatomic, readonly)	NSSet   *observers;
+
+// Target is the object, that notifies. It's weakly stored
 // Returns self by default.
 @property (nonatomic, readonly) id<NSObject>    target;
 
-// Observable object maintains weak links to its observers
-// you are responsible to remove yourself as an observer,
-// when you no longer need to observe the object
-- (void)addObserver:(id)observer;
-- (void)removeObserver:(id)observer;
-- (BOOL)isObjectAnObserver:(id)observer;
+@property (nonatomic, assign)   IDPObjectState	state;
 
-// These methods should only be called in child classes.
-// Call these methods to notify the observers by calling
-// their selectors.
-- (void)notifyObserversWithSelector:(SEL)selector;
-- (void)notifyObserversWithSelector:(SEL)selector userInfo:(id)info;
++ (instancetype)objectWithTarget:(id<NSObject>)target;
+
+- (instancetype)initWithTarget:(id<NSObject>)target NS_DESIGNATED_INITIALIZER;
+
+- (void)setState:(IDPObjectState)state object:(id)object;
+
+- (IDPObserver *)observerWithObject:(id)observer;
+
+- (void)notifyObserversWithState:(IDPObjectState)state;
+- (void)notifyObserversWithState:(IDPObjectState)state object:(id)object;
 
 @end
