@@ -18,6 +18,7 @@
 @property (nonatomic, assign, getter = isPrior)   BOOL  prior;
 
 - (void)fillWithChangesDictionary:(NSDictionary *)dictionary;
+- (id)validateObjectForNull:(id)object;
 
 @end
 
@@ -99,9 +100,14 @@
     NSNumber *changeType = dictionary[NSKeyValueChangeKindKey];
     self.changeType = [changeType unsignedIntegerValue];
 
-    self.value = dictionary[NSKeyValueChangeNewKey];
-    self.oldValue = dictionary[NSKeyValueChangeOldKey];
+    self.value = [self validateObjectForNull:dictionary[NSKeyValueChangeNewKey]];
+    self.oldValue = [self validateObjectForNull:dictionary[NSKeyValueChangeOldKey]];
     self.prior = [dictionary[NSKeyValueChangeNotificationIsPriorKey] boolValue];
+}
+
+#error TODO: Write tests and properly refactor
+- (id)validateObjectForNull:(id)object {
+    return [[NSNull null] isEqual:object] ? nil : object;
 }
 
 @end
