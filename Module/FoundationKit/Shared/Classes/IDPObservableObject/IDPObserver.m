@@ -10,4 +10,23 @@
 
 @implementation IDPObserver
 
+#pragma mark -
+#pragma mark Public
+
+- (void)setBlock:(IDPObserverCallback)block forState:(IDPObjectState)state {
+    
+}
+
+- (IDPObserverCallback)blockForState:(IDPObjectState)state {
+    return nil;
+}
+
+- (id)objectAtIndexedSubscript:(NSUInteger)state {
+    return nil;
+}
+
+- (void)setObject:(id)block atIndexedSubscript:(NSUInteger)state {
+    
+}
+
 @end

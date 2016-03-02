@@ -38,7 +38,6 @@
 - (instancetype)initWithTarget:(id<NSObject>)target {
     self = [super init];
     self.mutableObservers = [NSHashTable weakObjectsHashTable];
-    self.target = target;
     
     return self;
 }
@@ -50,14 +49,27 @@
     return [self.mutableObservers setRepresentation];
 }
 
-#pragma mark -
-#pragma mark Accessors
-
 - (id)target {
     return _target ? _target : self;
 }
 
+- (void)setState:(IDPObjectState)state object:(id)object {
+    
+}
+
 #pragma mark -
 #pragma mark Public
+
+- (IDPObserver *)observerWithObject:(id)observer {
+    return nil;
+}
+
+- (void)notifyObserversWithState:(IDPObjectState)state {
+    
+}
+
+- (void)notifyObserversWithState:(IDPObjectState)state object:(id)object {
+    
+}
 
 @end
