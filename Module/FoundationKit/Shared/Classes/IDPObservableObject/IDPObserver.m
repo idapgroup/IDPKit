@@ -11,6 +11,13 @@
 @implementation IDPObserver
 
 #pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (instancetype)initWithObservingObject:(id)observingObject observableObject:(IDPObservableObject *)observableObject {
+    return nil;
+}
+
+#pragma mark -
 #pragma mark Public
 
 - (void)setBlock:(IDPObserverCallback)block forState:(IDPObjectState)state {
@@ -26,6 +33,10 @@
 }
 
 - (void)setObject:(id)block atIndexedSubscript:(NSUInteger)state {
+    
+}
+
+- (void)executeBlockForState:(IDPObjectState)state object:(id)object {
     
 }
 

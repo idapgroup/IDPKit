@@ -12,13 +12,15 @@
 
 SPEC_BEGIN(IDPObservableObjectSpec)
 
-describe(@"IDPObservableObjectSpec", ^{
+describe(@"IDPObservableObject", ^{
+    const NSUInteger state = 150;
+    
     __block IDPObservableObject *object = nil;
     __block IDPObserver *observer = nil;
 
     beforeEach(^{
         object = [IDPObservableObject new];
-        observer = [object observerWithObject:self];
+        observer = [object observerWithObservingObject:self];
     });
     
     afterEach(^{
@@ -28,7 +30,7 @@ describe(@"IDPObservableObjectSpec", ^{
     
     context(@"when initialized without target", ^{
         it(@"should have target = self", ^{
-            [[object.target should] equal:object];
+            [[object should] equal:object.target];
         });
     });
     
@@ -39,6 +41,11 @@ describe(@"IDPObservableObjectSpec", ^{
         
         it(@"should remove all observers", ^{
             [[theValue(observer.valid) should] beNo];
+        });
+        
+        it(@"should be removed observers of observable object", ^{
+            observer = nil;
+            [[object.observers should] haveCountOf:0];
         });
     });
     
@@ -53,24 +60,15 @@ describe(@"IDPObservableObjectSpec", ^{
         
         context(@"multiple times", ^{
             it(@"should return multiple unique observer objects", ^{
-                id anotherObserver = [object observerWithObject:self];
+                id anotherObserver = [object observerWithObservingObject:self];
                 [[anotherObserver shouldNot] equal:observer];
             });
-        });
-    });
-    
-    context(@"when observer stops observing", ^{
-        it(@"should remove observer from its observers", ^{
-            observer = nil;
-            [[theValue(object.observers.count) should] equal:theValue(0)];
         });
     });
     
     context(@"when object changes state", ^{
         __block id sender = nil;
         __block id receivedNotification = nil;
-        
-        const NSUInteger state = 150;
         
         beforeEach(^{
             id callback = ^(id observableObject, id info) {
@@ -123,22 +121,75 @@ describe(@"IDPObservableObjectSpec", ^{
         });
     });
     
+    context(@"when notifying of state", ^{
+        __block id sender = nil;
+        __block id receivedNotification = nil;
+        
+        beforeEach(^{
+            id callback = ^(id observableObject, id info) {
+                sender = observableObject;
+                receivedNotification = info;
+            };
+            
+            [observer setBlock:callback forState:state];
+        });
+        
+        afterEach(^{
+            sender = nil;
+            receivedNotification = nil;
+        });
+        
+        context(@"and sends changes in notification", ^{
+            __block id notification = nil;
+            
+            beforeEach(^{
+                notification = [NSObject new];
+                
+                [object notifyObserversWithState:state object:object];
+            });
+            
+            afterEach(^{
+                notification = nil;
+            });
+            
+            it(@"should notify observers by sending self", ^{
+                [[sender should] equal:object];
+            });
+            
+            it(@"should notify observers by sending changes", ^{
+                [[receivedNotification should] equal:notification];
+            });
+        });
+        
+        context(@"and doesn't send changes in notification", ^{
+            beforeEach(^{
+                [object notifyObserversWithState:state];
+            });
+            
+            it(@"should notify observers by sending self", ^{
+                [[sender should] equal:object];
+            });
+            
+            it(@"should notify observers by sending changes", ^{
+                [[receivedNotification should] beNil];
+            });
+        });
+    });
+    
     context(@"when initialized with target", ^{
         id target = [NSObject new];
         
         beforeEach(^{
             object = [IDPObservableObject objectWithTarget:target];
-            observer = [object observerWithObject:self];
+            observer = [object observerWithObservingObject:self];
         });
         
         it(@"should have target = target", ^{
-            [[object.target should] equal:target];
+            [[target should] equal:object.target];
         });
         
         context(@"when object changes state", ^{
             __block id sender = nil;
-            
-            const NSUInteger state = 150;
             
             beforeEach(^{
                 id callback = ^(id observableObject, id info) {

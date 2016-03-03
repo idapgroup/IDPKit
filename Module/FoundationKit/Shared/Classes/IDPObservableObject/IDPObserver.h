@@ -15,12 +15,17 @@ typedef void(^IDPObserverCallback)(id observableObject, id info);
 
 @interface IDPObserver : NSObject
 @property (nonatomic, readonly) IDPObservableObject     *observableObject;
+@property (nonatomic, readonly) id                      observingObject;
 @property (nonatomic, readonly, getter=isValid) BOOL    valid;
+
+- (instancetype)initWithObservingObject:(id)observingObject observableObject:(IDPObservableObject *)observableObject;
 
 - (void)setBlock:(IDPObserverCallback)block forState:(IDPObjectState)state;
 - (IDPObserverCallback)blockForState:(IDPObjectState)state;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)state;
 - (void)setObject:(id)block atIndexedSubscript:(NSUInteger)state;
+
+- (void)executeBlockForState:(IDPObjectState)state object:(id)object;
 
 @end

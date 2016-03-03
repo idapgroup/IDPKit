@@ -40,7 +40,7 @@
 
 - (void)setState:(IDPObjectState)state object:(id)object;
 
-- (IDPObserver *)observerWithObject:(id)observer;
+- (IDPObserver *)observerWithObservingObject:(id)observingObject;
 
 - (void)notifyObserversWithState:(IDPObjectState)state;
 - (void)notifyObserversWithState:(IDPObjectState)state object:(id)object;
