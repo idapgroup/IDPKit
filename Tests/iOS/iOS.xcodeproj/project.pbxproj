@@ -139,6 +139,10 @@
 		D7FF6EE81A6552A50049286B /* NSPathUtilities+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF6EE61A6552A50049286B /* NSPathUtilities+IDPExtensions.m */; };
 		D7FF6EEC1A6574F40049286B /* IDPDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF6EEB1A6574F40049286B /* IDPDispatch.m */; };
 		D7FF6EED1A6574F40049286B /* IDPDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF6EEB1A6574F40049286B /* IDPDispatch.m */; };
+		D7FFB26D1C898FBF00BAD9C7 /* IDPReturnMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FFB26C1C898FBF00BAD9C7 /* IDPReturnMacros.m */; };
+		D7FFB2711C8990C800BAD9C7 /* IDPBlockMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FFB2701C8990C800BAD9C7 /* IDPBlockMacros.m */; };
+		D7FFB2731C89933B00BAD9C7 /* IDPLocking.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FFB2721C89933B00BAD9C7 /* IDPLocking.m */; };
+		D7FFB2761C89970F00BAD9C7 /* IDPLockingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FFB2751C89970F00BAD9C7 /* IDPLockingSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,7 +244,6 @@
 		D7BD80111A64641F004E2041 /* IDPWeakArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPWeakArray.m; sourceTree = "<group>"; };
 		D7BD80141A64641F004E2041 /* IDPMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMath.h; sourceTree = "<group>"; };
 		D7BD80151A64641F004E2041 /* IDPMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMath.m; sourceTree = "<group>"; };
-		D7BD80161A64641F004E2041 /* IDPUtilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUtilityMacros.h; sourceTree = "<group>"; };
 		D7BD80181A64641F004E2041 /* QuartzCoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuartzCoreKit.h; sourceTree = "<group>"; };
 		D7BD801A1A64641F004E2041 /* CALayer+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+IDPExtensions.h"; sourceTree = "<group>"; };
 		D7BD801B1A64641F004E2041 /* CALayer+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+IDPExtensions.m"; sourceTree = "<group>"; };
@@ -306,6 +309,14 @@
 		D7FF6EE61A6552A50049286B /* NSPathUtilities+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPathUtilities+IDPExtensions.m"; sourceTree = "<group>"; };
 		D7FF6EEA1A6574F40049286B /* IDPDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPDispatch.h; sourceTree = "<group>"; };
 		D7FF6EEB1A6574F40049286B /* IDPDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPDispatch.m; sourceTree = "<group>"; };
+		D7FFB2551C898C2300BAD9C7 /* IDPLocking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPLocking.h; sourceTree = "<group>"; };
+		D7FFB2661C898E0500BAD9C7 /* IDPUtilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUtilityMacros.h; sourceTree = "<group>"; };
+		D7FFB26B1C898FBF00BAD9C7 /* IDPReturnMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPReturnMacros.h; sourceTree = "<group>"; };
+		D7FFB26C1C898FBF00BAD9C7 /* IDPReturnMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPReturnMacros.m; sourceTree = "<group>"; };
+		D7FFB26F1C8990C800BAD9C7 /* IDPBlockMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPBlockMacros.h; sourceTree = "<group>"; };
+		D7FFB2701C8990C800BAD9C7 /* IDPBlockMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBlockMacros.m; sourceTree = "<group>"; };
+		D7FFB2721C89933B00BAD9C7 /* IDPLocking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPLocking.m; sourceTree = "<group>"; };
+		D7FFB2751C89970F00BAD9C7 /* IDPLockingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPLockingSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -557,6 +568,7 @@
 		D7BD7FB91A64641F004E2041 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D7FFB2541C898C0900BAD9C7 /* NSLock */,
 				D7E1DAE41A84CD9700E929C4 /* NSObject */,
 				D7FF6EE41A65527A0049286B /* NSPathUtilities */,
 				D7BD7FBA1A64641F004E2041 /* NSArray */,
@@ -711,10 +723,10 @@
 		D7BD80121A64641F004E2041 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D7FFB2651C898E0500BAD9C7 /* IDPMacros */,
 				D7E1DB0F1A84CF9800E929C4 /* IDPObjCRuntime */,
 				D7D779DF1A66C59F00B91549 /* IDPMachTimer */,
 				D7BD80131A64641F004E2041 /* IDPMath */,
-				D7BD80161A64641F004E2041 /* IDPUtilityMacros.h */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -926,6 +938,7 @@
 		D7E1DAF21A84CE0F00E929C4 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D7FFB2741C8996FA00BAD9C7 /* NSLock */,
 				5A6B5CE81B357B3600C5BC45 /* NSString */,
 				D7E1DAF31A84CE0F00E929C4 /* NSObject */,
 			);
@@ -1066,6 +1079,51 @@
 			path = IDPDispatch;
 			sourceTree = "<group>";
 		};
+		D7FFB2541C898C0900BAD9C7 /* NSLock */ = {
+			isa = PBXGroup;
+			children = (
+				D7FFB2551C898C2300BAD9C7 /* IDPLocking.h */,
+				D7FFB2721C89933B00BAD9C7 /* IDPLocking.m */,
+			);
+			path = NSLock;
+			sourceTree = "<group>";
+		};
+		D7FFB2651C898E0500BAD9C7 /* IDPMacros */ = {
+			isa = PBXGroup;
+			children = (
+				D7FFB26E1C8990BA00BAD9C7 /* IDPBlockMacros */,
+				D7FFB26A1C898FBF00BAD9C7 /* IDPReturnMacros */,
+				D7FFB2661C898E0500BAD9C7 /* IDPUtilityMacros.h */,
+			);
+			path = IDPMacros;
+			sourceTree = "<group>";
+		};
+		D7FFB26A1C898FBF00BAD9C7 /* IDPReturnMacros */ = {
+			isa = PBXGroup;
+			children = (
+				D7FFB26B1C898FBF00BAD9C7 /* IDPReturnMacros.h */,
+				D7FFB26C1C898FBF00BAD9C7 /* IDPReturnMacros.m */,
+			);
+			path = IDPReturnMacros;
+			sourceTree = "<group>";
+		};
+		D7FFB26E1C8990BA00BAD9C7 /* IDPBlockMacros */ = {
+			isa = PBXGroup;
+			children = (
+				D7FFB26F1C8990C800BAD9C7 /* IDPBlockMacros.h */,
+				D7FFB2701C8990C800BAD9C7 /* IDPBlockMacros.m */,
+			);
+			path = IDPBlockMacros;
+			sourceTree = "<group>";
+		};
+		D7FFB2741C8996FA00BAD9C7 /* NSLock */ = {
+			isa = PBXGroup;
+			children = (
+				D7FFB2751C89970F00BAD9C7 /* IDPLockingSpec.m */,
+			);
+			path = NSLock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1199,6 +1257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7FFB2711C8990C800BAD9C7 /* IDPBlockMacros.m in Sources */,
 				D7D779E21A66C59F00B91549 /* IDPMachTimer.m in Sources */,
 				D7BD80631A64641F004E2041 /* NSDate+IDPExtensions.m in Sources */,
 				D7BD80751A64641F004E2041 /* IDPKVOMutableArray.m in Sources */,
@@ -1214,6 +1273,7 @@
 				D7BD809D1A64641F004E2041 /* IDPWeakArray.m in Sources */,
 				D7E1DB071A84CF3800E929C4 /* IDPKVOController.m in Sources */,
 				D7A6B0F91A6084A800159A8C /* main.m in Sources */,
+				D7FFB2731C89933B00BAD9C7 /* IDPLocking.m in Sources */,
 				D7FF6EEC1A6574F40049286B /* IDPDispatch.m in Sources */,
 				D7E1DB0B1A84CF3800E929C4 /* IDPSafeKVOContext.m in Sources */,
 				D7BD80571A64641F004E2041 /* CGGeometry+IDPExtensions.m in Sources */,
@@ -1252,6 +1312,7 @@
 				D7BD80A31A64641F004E2041 /* IDPNetworkReachability.m in Sources */,
 				D7E49DD91A694ACF00C9C38D /* IDPModelMixin.m in Sources */,
 				D7BD80531A64641F004E2041 /* NSManagedObjectContext+IDPExtensions.m in Sources */,
+				D7FFB26D1C898FBF00BAD9C7 /* IDPReturnMacros.m in Sources */,
 				D7BD80951A64641F004E2041 /* IDPRetainingDictionary.m in Sources */,
 				D7BD80A71A64641F004E2041 /* UIAlertView+IDPExtensions.m in Sources */,
 				D7BD80AF1A64641F004E2041 /* UINib+IDPExtensions.m in Sources */,
@@ -1300,6 +1361,7 @@
 				D7E1DAF71A84CE0F00E929C4 /* IDPKVOControllerSpec.m in Sources */,
 				D756DC671C7F456800476D53 /* IDPObservableObjectSpec.m in Sources */,
 				D7BD80521A64641F004E2041 /* NSManagedObject+IDPExtensions.m in Sources */,
+				D7FFB2761C89970F00BAD9C7 /* IDPLockingSpec.m in Sources */,
 				D7E49DDE1A694ACF00C9C38D /* IDPMixinIMP.m in Sources */,
 				D7E1DAF81A84CE0F00E929C4 /* NSObject+IDPKVOPrivateSpec.m in Sources */,
 				D7E49DDA1A694ACF00C9C38D /* IDPModelMixin.m in Sources */,
