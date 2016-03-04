@@ -16,14 +16,12 @@ SPEC_BEGIN(IDPObserverSpec)
 describe(@"IDPObserver", ^{
     const NSUInteger state = 150;
     
-    id observingObject = [NSObject new];
-    
     __block IDPObservableObject *observableObject = nil;
     __block IDPObserver *observer = nil;
     
     beforeEach(^{
         observableObject = [IDPObservableObject new];
-        observer = [observableObject observerWithObservingObject:observingObject];
+        observer = [[IDPObserver alloc] initWithObservableObject:observableObject];
     });
     
     afterEach(^{
@@ -34,10 +32,6 @@ describe(@"IDPObserver", ^{
     context(@"when created with observing object and observable object as parameter", ^{
         it(@"shouldn't be nil", ^{
             [[observer shouldNot] beNil];
-        });
-        
-        it(@"should contain observing object equal to parameter", ^{
-            [[observer.observingObject should] equal:observingObject];
         });
         
         it(@"should contain observable object", ^{

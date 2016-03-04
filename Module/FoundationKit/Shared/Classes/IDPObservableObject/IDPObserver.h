@@ -14,11 +14,10 @@ typedef NSUInteger IDPObjectState;
 typedef void(^IDPObserverCallback)(id observableObject, id info);
 
 @interface IDPObserver : NSObject
-@property (nonatomic, readonly) IDPObservableObject     *observableObject;
-@property (nonatomic, readonly) id                      observingObject;
+@property (nonatomic, weak, readonly) IDPObservableObject     *observableObject;
 @property (nonatomic, readonly, getter=isValid) BOOL    valid;
 
-- (instancetype)initWithObservingObject:(id)observingObject observableObject:(IDPObservableObject *)observableObject;
+- (instancetype)initWithObservableObject:(IDPObservableObject *)observableObject;
 
 - (void)setBlock:(IDPObserverCallback)block forState:(IDPObjectState)state;
 - (IDPObserverCallback)blockForState:(IDPObjectState)state;
