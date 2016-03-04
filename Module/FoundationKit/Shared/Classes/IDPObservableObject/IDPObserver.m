@@ -15,7 +15,6 @@
 
 @interface IDPObserver ()
 @property (nonatomic, weak)     IDPObservableObject     *observableObject;
-@property (nonatomic, weak)     id                      observingObject;
 @property (nonatomic, strong)   NSMapTable              *mapTable;
 @property (nonatomic, strong)   id<IDPLocking>          lock;
 
@@ -28,10 +27,9 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithObservingObject:(id)observingObject observableObject:(IDPObservableObject *)observableObject {
+- (instancetype)initWithObservableObject:(IDPObservableObject *)observableObject {
     self = [super init];
     self.observableObject = observableObject;
-    self.observingObject = observingObject;
     self.mapTable = [NSMapTable mapTableWithKeyOptions:NSMapTableCopyIn
                                           valueOptions:NSMapTableCopyIn];
     
