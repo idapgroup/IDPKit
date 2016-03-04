@@ -26,7 +26,7 @@
 //          when observer resumes observation it should send notifications to all unpaused observers
 
 @interface IDPObservableObject : NSObject
-@property (nonatomic, readonly)	NSSet   *observers;
+@property (nonatomic, readonly)	NSSet           *observers;
 
 // Target is the object, that notifies. It's weakly stored
 // Returns self by default.
@@ -40,7 +40,7 @@
 
 - (void)setState:(IDPObjectState)state object:(id)object;
 
-- (IDPObserver *)observerWithObservingObject:(id)observingObject;
+- (IDPObserver *)observer;
 
 - (void)notifyObserversWithState:(IDPObjectState)state;
 - (void)notifyObserversWithState:(IDPObjectState)state object:(id)object;

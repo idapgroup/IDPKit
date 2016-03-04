@@ -20,7 +20,7 @@ describe(@"IDPObservableObject", ^{
 
     beforeEach(^{
         object = [IDPObservableObject new];
-        observer = [object observerWithObservingObject:self];
+        observer = [object observer];
     });
     
     afterEach(^{
@@ -43,9 +43,17 @@ describe(@"IDPObservableObject", ^{
             [[theValue(observer.valid) should] beNo];
         });
         
-        it(@"should be removed observers of observable object", ^{
+        it(@"should be removed from observers of observable object", ^{
             observer = nil;
             [[object.observers should] haveCountOf:0];
+        });
+    });
+    
+    context(@"after fetching observer", ^{
+        describe(@"IDPObserver", ^{
+            it(@"should contain observable object in its obsevable object property", ^{
+                [[observer.observableObject should] equal:object];
+            });
         });
     });
     
@@ -60,7 +68,7 @@ describe(@"IDPObservableObject", ^{
         
         context(@"multiple times", ^{
             it(@"should return multiple unique observer objects", ^{
-                id anotherObserver = [object observerWithObservingObject:self];
+                id anotherObserver = [object observer];
                 [[anotherObserver shouldNot] equal:observer];
             });
         });
@@ -181,7 +189,7 @@ describe(@"IDPObservableObject", ^{
         
         beforeEach(^{
             object = [IDPObservableObject objectWithTarget:target];
-            observer = [object observerWithObservingObject:self];
+            observer = [object observer];
         });
         
         it(@"should have target = target", ^{
