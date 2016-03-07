@@ -6,14 +6,18 @@
 //  Copyright © 2016 IDAP Group. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "IDPUtilityMacros.h"
 
-#define __IDPBlockCall(block, ...) \
+#define __IDPBlockCall(result, operation, block, ...) \
     do { \
         typeof(block) expression = block; \
         if (expression) { \
-            expression(__VA_ARGS__); \
+            result operation expression(__VA_ARGS__); \
         } \
     } while(0)
 
-#define IDPBlockCall(...) __IDPBlockCall(__VA_ARGS__)
+#define IDPBlockCall(...) __IDPBlockCall(IDPEmpty, IDPEmpty, __VA_ARGS__)
+
+#define IDPResultBlockCall(result, ...) __IDPBlockCall(result, =, __VA_ARGS__)
+
+#define IDPReturnBlockCall(...) __IDPBlockCall(IDPEmpty, return, __VA_ARGS__)
