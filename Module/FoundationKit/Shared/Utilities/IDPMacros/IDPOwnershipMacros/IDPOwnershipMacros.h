@@ -10,6 +10,10 @@
 #import "IDPUtilityMacros.h"
 #import "IDPReturnMacros.h"
 
+#define IDPWeakify(variable) \
+    __weak __typeof(variable) __IDPWeakified_##variable = variable
+
+// you should only call this method after you called weakify for that same variable
 #define IDPStrongify(variable) \
     IDPClangDiagnosticPushExpression("clang diagnostic ignored \"-Wshadow\"") \
     __strong __typeof(variable) variable = __IDPWeakified_##variable \
@@ -20,7 +24,7 @@
     IDPReturnValueIfNil(variable, value)
 
 #define IDPStrongifyAndReturnIfNil(variable) \
-    IDPStrongifyAndReturnResultIfNil(variable, IDPEmpty)
+    IDPStrongifyAndReturnValueIfNil(variable, IDPEmpty)
 
 #define IDPStrongifyAndReturnNilIfNil(variable) \
-    IDPStrongifyAndReturnResultIfNil(variable, nil)
+    IDPStrongifyAndReturnValueIfNil(variable, nil)
