@@ -25,6 +25,6 @@ typedef void(^IDPObserverCallback)(id observableObject, id info);
 - (id)objectAtIndexedSubscript:(NSUInteger)state;
 - (void)setObject:(id)block atIndexedSubscript:(NSUInteger)state;
 
-- (void)executeBlockForState:(IDPObjectState)state object:(id)object;
+- (void)performBlockForState:(IDPObjectState)state object:(id)object;
 
 @end

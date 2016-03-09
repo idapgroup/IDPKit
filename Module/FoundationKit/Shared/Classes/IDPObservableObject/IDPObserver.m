@@ -11,6 +11,8 @@
 #import "IDPObservableObject.h"
 
 #import "IDPLocking.h"
+
+#import "IDPOwnershipMacros.h"
 #import "IDPBlockMacros.h"
 
 @interface IDPObserver ()
@@ -42,7 +44,7 @@
 #pragma mark Accessors
 
 - (BOOL)isValid {
-    return nil == self.observableObject;
+    return nil != self.observableObject;
 }
 
 #pragma mark -
@@ -62,11 +64,12 @@
 }
 
 - (IDPObserverCallback)blockForState:(IDPObjectState)state {
-    NSMapTable *mapTable = self.mapTable;
-    
     __block id result = nil;
+    IDPWeakify(self);
+    
     [self.lock performBlock:^{
-        result = [mapTable objectForKey:@(state)];
+        IDPStrongifyAndReturnIfNil(self);
+        result = [self.mapTable objectForKey:@(state)];
     }];
     
     return result;
@@ -80,7 +83,7 @@
     [self setBlock:block forState:state];
 }
 
-- (void)executeBlockForState:(IDPObjectState)state object:(id)object {
+- (void)performBlockForState:(IDPObjectState)state object:(id)object {
     IDPObserverCallback block = self[state];
     IDPBlockCall(block, self.observableObject.target, object);
 }

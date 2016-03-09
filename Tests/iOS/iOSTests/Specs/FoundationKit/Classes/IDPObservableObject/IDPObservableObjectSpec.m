@@ -10,6 +10,8 @@
 
 #import "IDPObservableObject.h"
 
+#import "IDPOwnershipMacros.h"
+
 SPEC_BEGIN(IDPObservableObjectSpec)
 
 describe(@"IDPObservableObject", ^{
@@ -19,8 +21,10 @@ describe(@"IDPObservableObject", ^{
     __block IDPObserver *observer = nil;
 
     beforeEach(^{
-        object = [IDPObservableObject new];
-        observer = [object observer];
+        @autoreleasepool {
+            object = [IDPObservableObject new];
+            observer = [object observer];
+        }
     });
     
     afterEach(^{
@@ -42,9 +46,14 @@ describe(@"IDPObservableObject", ^{
         it(@"should remove all observers", ^{
             [[theValue(observer.valid) should] beNo];
         });
+    });
+    
+    context(@"after deallocationg observer", ^{
+        beforeEach(^{
+            observer = nil;            
+        });
         
         it(@"should be removed from observers of observable object", ^{
-            observer = nil;
             [[object.observers should] haveCountOf:0];
         });
     });
@@ -153,7 +162,7 @@ describe(@"IDPObservableObject", ^{
             beforeEach(^{
                 notification = [NSObject new];
                 
-                [object notifyObserversWithState:state object:object];
+                [object notifyObserversWithState:state object:notification];
             });
             
             afterEach(^{
@@ -205,6 +214,8 @@ describe(@"IDPObservableObject", ^{
                 };
                 
                 [observer setBlock:callback forState:state];
+                
+                object.state = state;
             });
             
             afterEach(^{

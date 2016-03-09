@@ -108,7 +108,7 @@ describe(@"IDPObserver", ^{
             
             [observer setBlock:callback forState:state];
             
-            [observer executeBlockForState:state object:notification];
+            [observer performBlockForState:state object:notification];
         });
         
         afterEach(^{
