@@ -19,6 +19,7 @@
 		D71F66AA1A7BFA3E007EC1CF /* IDPKVOTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */; };
 		D756DC671C7F456800476D53 /* IDPObservableObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D756DC661C7F456800476D53 /* IDPObservableObjectSpec.m */; };
 		D77742DC1C885FAC00F38528 /* IDPObserverSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D77742DB1C885FAC00F38528 /* IDPObserverSpec.m */; };
+		D78014D61C91D48600D93AD0 /* IDPBlockTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = D78014D51C91D48600D93AD0 /* IDPBlockTypes.m */; };
 		D7A6B0ED1A6084A800159A8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EC1A6084A800159A8C /* Foundation.framework */; };
 		D7A6B0EF1A6084A800159A8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */; };
 		D7A6B0F11A6084A800159A8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0F01A6084A800159A8C /* UIKit.framework */; };
@@ -175,6 +176,8 @@
 		D756DC681C7F5F7200476D53 /* IDPObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObserver.h; sourceTree = "<group>"; };
 		D756DC691C7F5F7200476D53 /* IDPObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObserver.m; sourceTree = "<group>"; };
 		D77742DB1C885FAC00F38528 /* IDPObserverSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObserverSpec.m; sourceTree = "<group>"; };
+		D78014D41C91D48600D93AD0 /* IDPBlockTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPBlockTypes.h; sourceTree = "<group>"; };
+		D78014D51C91D48600D93AD0 /* IDPBlockTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBlockTypes.m; sourceTree = "<group>"; };
 		D7A6B0E91A6084A800159A8C /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A6B0EC1A6084A800159A8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7A6B0EE1A6084A800159A8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -421,6 +424,15 @@
 				D77742DB1C885FAC00F38528 /* IDPObserverSpec.m */,
 			);
 			path = IDPObservableObject;
+			sourceTree = "<group>";
+		};
+		D78014D31C91D46A00D93AD0 /* IDPTypes */ = {
+			isa = PBXGroup;
+			children = (
+				D78014D41C91D48600D93AD0 /* IDPBlockTypes.h */,
+				D78014D51C91D48600D93AD0 /* IDPBlockTypes.m */,
+			);
+			path = IDPTypes;
 			sourceTree = "<group>";
 		};
 		D7A6B0E01A6084A800159A8C = {
@@ -746,6 +758,7 @@
 		D7BD80121A64641F004E2041 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D78014D31C91D46A00D93AD0 /* IDPTypes */,
 				D7FFB2651C898E0500BAD9C7 /* IDPMacros */,
 				D7E1DB0F1A84CF9800E929C4 /* IDPObjCRuntime */,
 				D7D779DF1A66C59F00B91549 /* IDPMachTimer */,
@@ -1300,6 +1313,7 @@
 				D7A6B0F91A6084A800159A8C /* main.m in Sources */,
 				D7FFB2731C89933B00BAD9C7 /* IDPLocking.m in Sources */,
 				D7FF6EEC1A6574F40049286B /* IDPDispatch.m in Sources */,
+				D78014D61C91D48600D93AD0 /* IDPBlockTypes.m in Sources */,
 				D7E1DB0B1A84CF3800E929C4 /* IDPSafeKVOContext.m in Sources */,
 				D7BD80571A64641F004E2041 /* CGGeometry+IDPExtensions.m in Sources */,
 				D7E49DE11A694ACF00C9C38D /* NSObject+IDPMixin.m in Sources */,

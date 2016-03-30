@@ -11,7 +11,7 @@
 #import "IDPReturnMacros.h"
 
 static
-void IDPPerformBlockWithLock(id<NSLocking> lock, IDPLockedBlock block) {
+void IDPPerformBlockWithLock(id<NSLocking> lock, IDPVoidBlock block) {
     IDPReturnIfNil(block);
     
     [lock lock];
@@ -22,7 +22,7 @@ void IDPPerformBlockWithLock(id<NSLocking> lock, IDPLockedBlock block) {
 #define IDPSynthesizeLockingImplementation(class) \
     @implementation class (__IDPLockingExtensions__##class) \
     \
-    - (void)performBlock:(IDPLockedBlock)block { \
+    - (void)performBlock:(IDPVoidBlock)block { \
         IDPPerformBlockWithLock(self, block); \
     } \
     \

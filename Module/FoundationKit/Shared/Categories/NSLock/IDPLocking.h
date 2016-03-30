@@ -8,11 +8,11 @@
 
 #import <Foundation/NSLock.h>
 
-typedef void(^IDPLockedBlock)(void);
+#import "IDPBlockTypes.h"
 
 @protocol IDPLocking <NSObject, NSLocking>
 
-- (void)performBlock:(IDPLockedBlock)block;
+- (void)performBlock:(IDPVoidBlock)block;
 
 @end
 
