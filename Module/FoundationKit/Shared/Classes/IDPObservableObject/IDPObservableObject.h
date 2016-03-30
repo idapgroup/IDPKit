@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Oleksa Korin. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "IDPObserver.h"
+
+#import "IDPBlockTypes.h"
 
 @interface IDPObservableObject : NSObject
 @property (nonatomic, readonly)	NSSet               *observers;
@@ -29,5 +29,8 @@
 
 - (void)notifyObserversWithState:(IDPObjectState)state;
 - (void)notifyObserversWithState:(IDPObjectState)state object:(id)object;
+
+- (void)performBlockWithNotifications:(IDPVoidBlock)block;
+- (void)performBlockWithoutNotifications:(IDPVoidBlock)block;
 
 @end

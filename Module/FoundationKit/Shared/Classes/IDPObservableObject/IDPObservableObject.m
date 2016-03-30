@@ -8,12 +8,19 @@
 
 #import "IDPObservableObject.h"
 
+#import "IDPBlockMacros.h"
+#import "IDPReturnMacros.h"
+
 #import "IDPLocking.h"
 
 @interface IDPObservableObject ()
 @property (nonatomic, weak)     id<NSObject>    target;
 @property (nonatomic, strong)   NSHashTable     *mutableObservers;
 @property (nonatomic, strong)   id<IDPLocking>  lock;
+
+@property (nonatomic, assign, getter=isNotificationEnabled)   BOOL  notificationEnabled;
+
+- (void)setNotificationEnabled:(BOOL)notificationEnabled forBlock:(IDPVoidBlock)block;
 
 @end
 
@@ -41,6 +48,7 @@
     self.mutableObservers = [NSHashTable weakObjectsHashTable];
     self.target = target ? target : self;
     self.lock = [NSRecursiveLock new];
+    self.notificationEnabled = YES;
     
     return self;
 }
@@ -97,9 +105,31 @@
 - (void)notifyObserversWithState:(IDPObjectState)state object:(id)object {
     NSHashTable *mutableObservers = self.mutableObservers;
     [self.lock performBlock:^{
+        IDPReturnIfNil(self.notificationEnabled);
+        
         for (IDPObserver *observer in mutableObservers) {
             [observer performBlockForState:state object:object];
         }
+    }];
+}
+
+- (void)performBlockWithNotifications:(IDPVoidBlock)block {
+    [self setNotificationEnabled:YES forBlock:block];
+}
+
+- (void)performBlockWithoutNotifications:(IDPVoidBlock)block {
+    [self setNotificationEnabled:NO forBlock:block];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)setNotificationEnabled:(BOOL)enabled forBlock:(IDPVoidBlock)block {
+    [self.lock performBlock:^{
+        BOOL notificationEnabled = self.notificationEnabled;
+        self.notificationEnabled = enabled;
+        IDPBlockCall(block);
+        self.notificationEnabled = notificationEnabled;
     }];
 }
 
