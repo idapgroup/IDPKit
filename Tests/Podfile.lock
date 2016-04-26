@@ -1,10 +1,19 @@
 PODS:
-  - Kiwi (2.3.1)
+  - Kiwi (2.4.0)
 
 DEPENDENCIES:
-  - Kiwi (~> 2.3)
+  - Kiwi (from `https://github.com/idapgroup/Kiwi.git`)
+
+EXTERNAL SOURCES:
+  Kiwi:
+    :git: https://github.com/idapgroup/Kiwi.git
+
+CHECKOUT OPTIONS:
+  Kiwi:
+    :commit: 6097cc903e07bdbb0fdbe5d492c2e9dc0960fd16
+    :git: https://github.com/idapgroup/Kiwi.git
 
 SPEC CHECKSUMS:
-  Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
+  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.39.0
