@@ -19,17 +19,12 @@ describe(@"IDPObservableObject", ^{
     
     __block IDPObservableObject *object = nil;
     __block IDPObserver *observer = nil;
-
+    
     beforeEach(^{
         @autoreleasepool {
             object = [IDPObservableObject new];
             observer = [object observer];
         }
-    });
-    
-    afterEach(^{
-        object = nil;
-        observer = nil;
     });
     
     context(@"when initialized without target", ^{
@@ -83,137 +78,70 @@ describe(@"IDPObservableObject", ^{
         });
     });
     
-    context(@"when object changes state", ^{
-        __block id sender = nil;
-        __block id receivedNotification = nil;
+    context(@"when notifying", ^{
+        id callback = theBlockProxy(^(id observableObject, id info) { });
+        id notification = [NSObject new];
         
         beforeEach(^{
-            id callback = ^(id observableObject, id info) {
-                sender = observableObject;
-                receivedNotification = info;
-            };
-            
             [observer setBlock:callback forState:state];
-        });
-    
-        afterEach(^{
-            sender = nil;
-            receivedNotification = nil;
-        });
-        
-        context(@"and sends changes in notification", ^{
-            __block id notification = nil;
-            
-            beforeEach(^{
-                notification = [NSObject new];
-                
-                [object setState:state object:notification];
-            });
-            
-            afterEach(^{
-                notification = nil;
-            });
-            
-            it(@"should notify observers by sending self", ^{
-                [[sender should] equal:object];
-            });
-            
-            it(@"should notify observers by sending changes", ^{
-                [[receivedNotification should] equal:notification];
-            });
-        });
-        
-        context(@"and doesn't send changes in notification", ^{
-            beforeEach(^{
-                object.state = state;
-            });
-            
-            it(@"should notify observers by sending self", ^{
-                [[sender should] equal:object];
-            });
-            
-            it(@"should notify observers by sending changes", ^{
-                [[receivedNotification should] beNil];
-            });
-        });
-    });
-    
-    context(@"when notifying of state", ^{
-        __block id sender = nil;
-        __block id receivedNotification = nil;
-        
-        beforeEach(^{
-            id callback = ^(id observableObject, id info) {
-                sender = observableObject;
-                receivedNotification = info;
-            };
-            
-            [observer setBlock:callback forState:state];
-        });
-        
-        afterEach(^{
-            sender = nil;
-            receivedNotification = nil;
-        });
-        
-        context(@"and sends changes in notification", ^{
-            __block id notification = nil;
-            
-            beforeEach(^{
-                notification = [NSObject new];
-                
-                [object notifyObserversWithState:state object:notification];
-            });
-            
-            afterEach(^{
-                notification = nil;
-            });
-            
-            it(@"should notify observers by sending self", ^{
-                [[sender should] equal:object];
-            });
-            
-            it(@"should notify observers by sending changes", ^{
-                [[receivedNotification should] equal:notification];
-            });
-        });
-        
-        context(@"and doesn't send changes in notification", ^{
-            beforeEach(^{
-                [object notifyObserversWithState:state];
-            });
-            
-            it(@"should notify observers by sending self", ^{
-                [[sender should] equal:object];
-            });
-            
-            it(@"should notify observers by sending changes", ^{
-                [[receivedNotification should] beNil];
-            });
-        });
-    });
-    
-    context(@"when initialized with target", ^{
-        id target = [NSObject new];
-        
-        beforeEach(^{
-            object = [IDPObservableObject objectWithTarget:target];
-            observer = [object observer];
-        });
-        
-        it(@"should have target = target", ^{
-            [[target should] equal:object.target];
         });
         
         context(@"when object changes state", ^{
-            it(@"should notify observers by sending self", ^{
-                id callback = theBlockProxy(^(id observableObject, id info) { });
-                
-                [[callback should] beEvaluatedWithArguments:target, nil];
+            context(@"and sends changes in notification", ^{
+                it(@"should notify observers by sending self and changes", ^{
+                    [[callback should] beEvaluatedWithArguments:observer, notification];
+                    
+                    [object setState:state object:notification];
+                });
+            });
+            
+            context(@"and doesn't send changes in notification", ^{
+                it(@"should notify observers by sending self and nil", ^{
+                    [[callback should] beEvaluatedWithArguments:observer, nil];
+                    
+                    object.state = state;
+                });
+            });
+        });
+        
+        context(@"when notifying of state", ^{
+            context(@"and sends changes in notification", ^{
+                it(@"should notify observers by sending self and changes", ^{
+                    [[callback should] beEvaluatedWithArguments:observer, notification];
+                    
+                    [object notifyObserversWithState:state object:notification];
+                });
+            });
+            
+            context(@"and doesn't send changes in notification", ^{
+                it(@"should notify observers by sending self and nil", ^{
+                    [[callback should] beEvaluatedWithArguments:observer, nil];
+                    
+                    [object notifyObserversWithState:state];
+                });
+            });
+        });
+        
+        context(@"when initialized with target", ^{
+            id target = [NSObject new];
+            
+            beforeEach(^{
+                object = [IDPObservableObject objectWithTarget:target];
+                observer = [object observer];
                 
                 [observer setBlock:callback forState:state];
-                
-                object.state = state;
+            });
+            
+            it(@"should have target = target", ^{
+                [[target should] equal:object.target];
+            });
+            
+            context(@"when object changes state", ^{
+                it(@"should notify observers by sending self", ^{
+                    [[callback should] beEvaluatedWithArguments:target, nil];
+                    
+                    object.state = state;
+                });
             });
         });
     });
