@@ -206,24 +206,14 @@ describe(@"IDPObservableObject", ^{
         });
         
         context(@"when object changes state", ^{
-            __block id sender = nil;
-            
-            beforeEach(^{
-                id callback = ^(id observableObject, id info) {
-                    sender = observableObject;
-                };
+            it(@"should notify observers by sending self", ^{
+                id callback = theBlockProxy(^(id observableObject, id info) { });
+                
+                [[callback should] beEvaluatedWithArguments:target, nil];
                 
                 [observer setBlock:callback forState:state];
                 
                 object.state = state;
-            });
-            
-            afterEach(^{
-                sender = nil;
-            });
-            
-            it(@"should notify observers by sending self", ^{
-                [[sender should] equal:target];
             });
         });
     });

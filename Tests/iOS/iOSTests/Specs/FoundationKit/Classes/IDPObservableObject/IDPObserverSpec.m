@@ -96,32 +96,14 @@ describe(@"IDPObserver", ^{
    
     context(@"when executing block for state", ^{
         id notification = [NSObject new];
-        
-        __block id sender = nil;
-        __block id receivedNotification = nil;
        
-        beforeEach(^{
-            id callback = ^(id observableObject, id info) {
-                sender = observableObject;
-                receivedNotification = info;
-            };
+        it(@"should notify observers by sending observable object and user info", ^{
+            id callback = theBlockProxy(^(id observableObject, id info) { });
+
+            [[callback should] beEvaluatedWithArguments:observableObject, notification];
             
             [observer setBlock:callback forState:state];
-            
             [observer performBlockForState:state object:notification];
-        });
-        
-        afterEach(^{
-            sender = nil;
-            receivedNotification = nil;
-        });
-        
-        it(@"should notify observers by sending observable object", ^{
-            [[sender should] equal:observableObject];
-        });
-        
-        it(@"should notify observers by sending object parameter", ^{
-            [[notification should] equal:receivedNotification];
         });
     });
 });
