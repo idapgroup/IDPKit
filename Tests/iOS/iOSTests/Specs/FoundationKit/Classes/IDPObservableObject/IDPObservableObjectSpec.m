@@ -144,6 +144,85 @@ describe(@"IDPObservableObject", ^{
                 });
             });
         });
+        
+        context(@"when using performBlockWithNotifications", ^{
+            context(@"when using notify", ^{
+                it(@"should notify", ^{
+                    [[callback should] beEvaluated];
+                    
+                    [object performBlockWithNotifications:^{ [object notifyObserversWithState:state]; }];
+                });
+            });
+            
+            context(@"when state changes", ^{
+                it(@"should notify", ^{
+                    [[callback should] beEvaluated];
+                    
+                    [object performBlockWithNotifications:^{ object.state = state;; }];
+                });
+            });
+        });
+        
+        context(@"when using performBlockWithoutNotifications", ^{
+            context(@"when using notify", ^{
+                it(@"shouldn't notify", ^{
+                    [[callback shouldNot] beEvaluated];
+                    
+                    [object performBlockWithoutNotifications:^{ [object notifyObserversWithState:state]; }];
+                });
+            });
+            
+            context(@"when state changes", ^{
+                it(@"shouldn't notify", ^{
+                    [[callback shouldNot] beEvaluated];
+
+                    [object performBlockWithoutNotifications:^{ object.state = state; }];
+                });
+            });
+        });
+        
+        context(@"when nesting performBlockWithNotifications and performBlockWithoutNotifications", ^{
+            const NSUInteger state1 = state + 1;
+            const NSUInteger state2 = state + 2;
+            const NSUInteger state3 = state + 3;
+            const NSUInteger state4 = state + 4;
+            
+            id callback1 = theBlockProxy(^(id observableObject, id info) { });
+            id callback2 = theBlockProxy(^(id observableObject, id info) { });
+            id callback3 = theBlockProxy(^(id observableObject, id info) { });
+            id callback4 = theBlockProxy(^(id observableObject, id info) { });
+            
+            beforeEach(^{
+                observer[state1] = callback1;
+                observer[state2] = callback2;
+                observer[state3] = callback3;
+                observer[state4] = callback4;
+            });
+            
+            it(@"should notify only states set in performBlockWithNotifications", ^{
+                [[callback should] beEvaluated];
+                [[callback1 shouldNot] beEvaluated];
+                [[callback2 should] beEvaluated];
+                [[callback3 shouldNot] beEvaluated];
+                [[callback4 should] beEvaluated];
+                
+                [object performBlockWithNotifications:^{
+                    object.state = state;
+                    
+                    [object performBlockWithoutNotifications:^{
+                        object.state = state1;
+                        
+                        [object performBlockWithNotifications:^{
+                            object.state = state2;
+                        }];
+                        
+                        object.state = state3;
+                    }];
+                    
+                    object.state = state4;
+                }];
+            });
+        });
     });
 });
 
