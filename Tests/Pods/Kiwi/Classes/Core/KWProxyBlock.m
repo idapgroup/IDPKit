@@ -13,6 +13,7 @@
 #import "KWMessageSpying.h"
 
 #import "NSObject+KiwiStubAdditions.h"
+#import "NSInvocation+KiwiAdditions.h"
 
 @interface NSInvocation (KWPrivateInterface)
 
@@ -53,6 +54,7 @@
 @synthesize descriptor = _descriptor;
 
 @dynamic blockLayout;
+@dynamic methodSignature;
 
 #pragma mark - Deallocating
 
@@ -110,13 +112,19 @@
     return (__bridge KWBlockLayout *)(self.block);
 }
 
-#pragma mark - Forwarding
-
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
+- (NSMethodSignature *)methodSignature {
     return KWBlockLayoutGetMethodSignature(self.blockLayout);
 }
 
+#pragma mark - Forwarding
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
+    return self.methodSignature;
+}
+
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
+    [anInvocation becomeBlockInvocation];
+    
     NSMapTable *spiesMap = self.messageSpies;
     for (KWBlockMessagePattern *messagePattern in spiesMap) {
         if ([messagePattern matchesInvocation:anInvocation]) {

@@ -8,7 +8,8 @@
 
 #import <objc/message.h>
 
-#include "KWBlockLayout.h"
+#import "KWBlockLayout.h"
+#import "KWBlockSignature.h"
 
 kKWBlockOptions KWBlockLayoutGetFlags(KWBlockLayout *block) {
     // refcount is unneeded, as wel, as deallocating, so we filter them out from the flags
@@ -65,11 +66,11 @@ NSMethodSignature *KWBlockLayoutGetMethodSignature(KWBlockLayout *block) {
     const char *UTF8Signature = KWBlockLayoutHasSignature(block) ? KWBlockLayoutGetSignature(block) : @encode(void);
     
     NSString *signature = [NSString stringWithFormat: @"%s", UTF8Signature];
-    NSMethodSignature *result = [NSMethodSignature signatureWithObjCTypes:signature.UTF8String];
+    NSMethodSignature *result = [KWBlockSignature signatureWithObjCTypes:signature.UTF8String];
     
     // If there are not enough arguments, we append them by adding void *, which is valid for both id and SEL
     // Forwarding expects the ObjC signature return(self, _cmd)
-    while (result.numberOfArguments < 2) {
+    if (result.numberOfArguments < 1) {
         signature = [NSString stringWithFormat:@"%@%s", signature, @encode(void *)];
         result = [NSMethodSignature signatureWithObjCTypes:signature.UTF8String];
     }

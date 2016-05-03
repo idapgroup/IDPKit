@@ -23,9 +23,9 @@
 
 @end
 
+// methods in this category are used for inheritance and should not be called directly
 @interface KWMessageTrackerMatcher (KWKWMessageTrackerMatcherPrivate)
 
-// method is used for inheritance and should not be called directly
 - (void)setMessageTrackerWithMessagePattern:(KWMessagePattern *)aMessagePattern
                                   countType:(KWCountType)aCountType
                                       count:(NSUInteger)aCount;

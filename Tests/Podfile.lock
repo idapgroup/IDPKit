@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Kiwi:
-    :commit: 6097cc903e07bdbb0fdbe5d492c2e9dc0960fd16
+    :commit: 1d448fd14b01c86de76187bd638b6b4663811cc0
     :git: https://github.com/idapgroup/Kiwi.git
 
 SPEC CHECKSUMS:

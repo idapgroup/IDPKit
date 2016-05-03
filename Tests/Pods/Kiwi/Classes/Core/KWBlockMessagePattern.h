@@ -8,15 +8,24 @@
 
 #import "KWMessagePattern.h"
 
-// Block signature doesn't have a selector as the second hidden argument, so block message pattern has selector = NULL
-
 @interface KWBlockMessagePattern : KWMessagePattern
 
-- (id)initWithArgumentFilters:(NSArray *)anArray;
-- (id)initWithFirstArgumentFilter:(id)firstArgumentFilter argumentList:(va_list)argumentList;
+#pragma mark - Initializing
 
-+ (id)messagePattern;
-+ (id)messagePatternWithArgumentFilters:(NSArray *)anArray;
-+ (id)messagePatternWithFirstArgumentFilter:(id)firstArgumentFilter argumentList:(va_list)argumentList;
+- (id)initWithSignature:(NSMethodSignature *)signature;
+- (id)initWithSignature:(NSMethodSignature *)signature argumentFilters:(NSArray *)anArray;
+- (id)initWithSignature:(NSMethodSignature *)signature
+    firstArgumentFilter:(id)firstArgumentFilter
+           argumentList:(va_list)argumentList;
+
++ (id)messagePatternWithSignature:(NSMethodSignature *)signature;
++ (id)messagePatternWithSignature:(NSMethodSignature *)signature argumentFilters:(NSArray *)anArray;
++ (id)messagePatternWithSignature:(NSMethodSignature *)signature
+              firstArgumentFilter:(id)firstArgumentFilter
+                     argumentList:(va_list)argumentList;
+
+#pragma mark - Properties
+
+@property (nonatomic, readonly) NSMethodSignature   *signature;
 
 @end

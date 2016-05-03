@@ -16,6 +16,10 @@
 
 - (id)initWithBlock:(id)block;
 
+#pragma mark - Properties
+
+@property (nonatomic, readonly) NSMethodSignature   *methodSignature;
+
 @end
 
 #pragma mark - Creating Blocks

@@ -9,33 +9,56 @@
 #import "KWBlockMessagePattern.h"
 
 #import "KWFormatter.h"
+#import "NSMethodSignature+KiwiAdditions.h"
 
 @implementation KWBlockMessagePattern
 
 #pragma mark - Initializing
 
-- (id)init {
-    return [super initWithSelector:NULL];
+- (id)initWithSignature:(NSMethodSignature *)signature {
+    return [self initWithSignature:signature argumentFilters:nil];
 }
 
-- (id)initWithArgumentFilters:(NSArray *)anArray {
-    return [super initWithSelector:NULL argumentFilters:anArray];
+- (id)initWithSignature:(NSMethodSignature *)signature argumentFilters:(NSArray *)anArray {
+    self = [super initWithArgumentFilters:anArray];
+    if (self) {
+        _signature = signature;
+    }
+    
+    return self;
 }
 
-- (id)initWithFirstArgumentFilter:(id)firstArgumentFilter argumentList:(va_list)argumentList {
-    return [super initWithSelector:NULL firstArgumentFilter:firstArgumentFilter argumentList:argumentList];
+- (id)initWithSignature:(NSMethodSignature *)signature
+    firstArgumentFilter:(id)firstArgumentFilter
+           argumentList:(va_list)argumentList
+{
+    NSUInteger argumentCount = [signature numberOfMessageArguments];
+    NSArray *argumentFilters = [self argumentFiltersWithFirstArgumentFilter:firstArgumentFilter
+                                                               argumentList:argumentList
+                                                              argumentCount:argumentCount];
+    
+    return [self initWithSignature:signature argumentFilters:argumentFilters];
 }
 
-+ (id)messagePattern {
-    return [super messagePatternWithSelector:NULL];
+- (id)initWithInvocation:(NSInvocation *)anInvocation {
+    NSArray *argumentFilters = [self argumentFiltersWithInvocation:anInvocation];
+    
+    return [self initWithSignature:anInvocation.methodSignature argumentFilters:argumentFilters];
 }
 
-+ (id)messagePatternWithArgumentFilters:(NSArray *)anArray {
-    return [super messagePatternWithSelector:NULL argumentFilters:anArray];
++ (id)messagePatternWithSignature:(NSMethodSignature *)signature {
+    return [[self alloc] initWithSignature:signature];
 }
 
-+ (id)messagePatternWithFirstArgumentFilter:(id)firstArgumentFilter argumentList:(va_list)argumentList {
-    return [super messagePatternWithSelector:NULL firstArgumentFilter:firstArgumentFilter argumentList:argumentList];
++ (id)messagePatternWithSignature:(NSMethodSignature *)signature argumentFilters:(NSArray *)anArray {
+    return [[self alloc] initWithSignature:signature argumentFilters:anArray];
+}
+
++ (id)messagePatternWithSignature:(NSMethodSignature *)signature
+              firstArgumentFilter:(id)firstArgumentFilter
+                     argumentList:(va_list)argumentList
+{
+    return [[self alloc] initWithSignature:signature firstArgumentFilter:firstArgumentFilter argumentList:argumentList];
 }
 
 #pragma mark - Properties
@@ -44,27 +67,10 @@
     return NULL;
 }
 
-#pragma mark - Matching Invocations
-
-- (BOOL)matchesInvocation:(NSInvocation *)anInvocation {
-    // additional variable created to suppress NONNULL warning in NSInvocation selector
-    SEL selector = NULL;
-    anInvocation.selector = selector;
-    
-    return [super matchesInvocation:anInvocation];
-}
-
 #pragma mark - Comparing Message Patterns
 
 - (NSUInteger)hash {
-    return [self.argumentFilters hash];
-}
-
-- (BOOL)isEqual:(id)object {
-    if (![object isKindOfClass:[KWBlockMessagePattern class]])
-        return NO;
-    
-    return [self isEqualToMessagePattern:object];
+    return [super hash] ^ [self.signature hash];
 }
 
 #pragma mark - Retrieving String Representations
@@ -90,6 +96,14 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"argumentFilters: %@", self.argumentFilters];
+}
+
+#pragma mark - Invocation Handling
+
+- (NSUInteger)argumentCountWithInvocation:(NSInvocation *)anInvocation {
+    NSMethodSignature *signature = [anInvocation methodSignature];
+    
+    return [signature numberOfMessageArguments];
 }
 
 @end
