@@ -11,7 +11,7 @@
 #import "IDPKVOController.h"
 #import "IDPObjCRuntime.h"
 
-#import "IDPKVOTestObject.h"
+#import "IDPTestObject.h"
 
 #import "NSObject+IDPKVOPrivate.h"
 
@@ -38,12 +38,12 @@ describe(@"IDPKVOController", ^{
     });
     
     context(@"when observing -value of IDPKVOTestObject object with -value = 1", ^{
-        __block IDPKVOTestObject *object = nil;
+        __block IDPTestObject *object = nil;
         __block IDPKVOController *observer = nil;
         __block IDPKVONotification *notification = nil;
         
         beforeAll(^{
-            object = [IDPKVOTestObject new];
+            object = [IDPTestObject new];
             object.value = 1;
             
             observer = [IDPKVOController controllerWithObject:object
@@ -125,7 +125,7 @@ describe(@"IDPKVOController", ^{
         });
         
         context(@"after observed object was deallocated", ^{
-            __block __weak IDPKVOTestObject *weakObject = nil;
+            __block __weak IDPTestObject *weakObject = nil;
             
             beforeAll(^{
                 weakObject = object;

@@ -12,18 +12,24 @@
 
 @interface NSObject (IDPKVO)
 
-- (IDPKVOController *)observeKeyPath:(NSString *)keyPath
-                         handler:(IDPKVONotificationBlock)block;
++ (Class)KVOClass;
+
+- (Class)KVOClass;
+
+- (BOOL)isKVOClassObject;
 
 - (IDPKVOController *)observeKeyPath:(NSString *)keyPath
-                         options:(NSKeyValueObservingOptions)options
-                         handler:(IDPKVONotificationBlock)block;
+                             handler:(IDPKVONotificationBlock)block;
+
+- (IDPKVOController *)observeKeyPath:(NSString *)keyPath
+                             options:(NSKeyValueObservingOptions)options
+                             handler:(IDPKVONotificationBlock)block;
 
 - (IDPKVOController *)observeKeyPaths:(NSArray *)keyPaths
-                          handler:(IDPKVONotificationBlock)block;
+                              handler:(IDPKVONotificationBlock)block;
 
 - (IDPKVOController *)observeKeyPaths:(NSArray *)keyPaths
-                          options:(NSKeyValueObservingOptions)options
-                          handler:(IDPKVONotificationBlock)block;
+                              options:(NSKeyValueObservingOptions)options
+                              handler:(IDPKVONotificationBlock)block;
 
 @end

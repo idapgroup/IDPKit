@@ -8,11 +8,13 @@
 
 #import "IDPSafeKVOContext.h"
 
-#import "IDPKVOController.h"
-
-#import "NSObject+IDPKVOPrivate.h"
-
 #import <objc/runtime.h>
+
+#import "IDPKVOController.h"
+#import "IDPObjCRuntime.h"
+
+#import "NSObject+IDPKVO.h"
+#import "NSObject+IDPKVOPrivate.h"
 
 @interface IDPSafeKVOContext ()
 @property (nonatomic, strong)   NSObject    *object;
@@ -115,8 +117,6 @@
     }
 }
 
-#define __assign __unsafe_unretained
-
 - (void)setupDeallocImplementation {
     NSObject *target = self.object;
     Class class = [target class];
@@ -146,7 +146,5 @@
     [self addClassToSafeClasses:class];
 
 }
-
-#undef __assign
 
 @end

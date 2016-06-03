@@ -15,32 +15,10 @@
 
 static NSString * const IDPKVOControllerProperty    = @"IDPKVOControllerProperty";
 
-NSString *IDPKVONameOfClass(Class cls) {
-    return [NSString stringWithFormat:@"NSKVONotifying_%@", NSStringFromClass(cls)];
-}
-
 @implementation NSObject (IDPKVOPrivate)
 
 @dynamic mutableKVOControllersSet;
 @dynamic KVOControllersSet;
-
-+ (Class)KVOClass {
-    NSString *className = IDPKVONameOfClass(self);
-    
-    return NSClassFromString(className);
-}
-
-- (Class)isa {
-    return object_getClass(self);
-}
-
-- (Class)KVOClass {
-    return [[self class] KVOClass];
-}
-
-- (BOOL)isKVOClassObject {
-    return [self isa] == [self KVOClass];
-}
 
 - (NSMutableSet *)mutableKVOControllersSet {
     const void *key = (__bridge const void *)IDPKVOControllerProperty;
