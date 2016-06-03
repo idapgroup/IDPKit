@@ -237,8 +237,6 @@
 		D7BD7FDA1A64641F004E2041 /* IDPKVOMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOMutableArray.m; sourceTree = "<group>"; };
 		D7BD7FDF1A64641F004E2041 /* IDPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModel.h; sourceTree = "<group>"; };
 		D7BD7FE01A64641F004E2041 /* IDPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModel.m; sourceTree = "<group>"; };
-		D7BD7FE11A64641F004E2041 /* IDPModelObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelObserver.h; sourceTree = "<group>"; };
-		D7BD7FE21A64641F004E2041 /* IDPModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelProtocol.h; sourceTree = "<group>"; };
 		D7BD7FE61A64641F004E2041 /* IDPMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMutableArray.h; sourceTree = "<group>"; };
 		D7BD7FE71A64641F004E2041 /* IDPMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMutableArray.m; sourceTree = "<group>"; };
 		D7BD7FE91A64641F004E2041 /* IDPMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMutableDictionary.h; sourceTree = "<group>"; };
@@ -691,8 +689,6 @@
 			children = (
 				D7BD7FDF1A64641F004E2041 /* IDPModel.h */,
 				D7BD7FE01A64641F004E2041 /* IDPModel.m */,
-				D7BD7FE11A64641F004E2041 /* IDPModelObserver.h */,
-				D7BD7FE21A64641F004E2041 /* IDPModelProtocol.h */,
 			);
 			path = IDPModels;
 			sourceTree = "<group>";
