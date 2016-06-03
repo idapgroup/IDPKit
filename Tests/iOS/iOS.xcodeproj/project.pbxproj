@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EB0E7824A84819FDD9337AA /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */; };
+		D709C1511D020D5100D7DC5E /* IDPModelProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D709C1501D020D5100D7DC5E /* IDPModelProxy.m */; };
 		D7469B591D01CE69000EED10 /* IDPCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469A881D01CE68000EED10 /* IDPCoreDataManager.m */; };
 		D7469B5A1D01CE69000EED10 /* NSManagedObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469A8A1D01CE68000EED10 /* NSManagedObject+IDPExtensions.m */; };
 		D7469B5B1D01CE69000EED10 /* NSManagedObjectContext+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469A8C1D01CE68000EED10 /* NSManagedObjectContext+IDPExtensions.m */; };
@@ -123,6 +124,8 @@
 		451B88EF011FADEE69B665C9 /* Pods-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F7B5CDBDB18B157BC098B7 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D709C14F1D020D5100D7DC5E /* IDPModelProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelProxy.h; sourceTree = "<group>"; };
+		D709C1501D020D5100D7DC5E /* IDPModelProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelProxy.m; sourceTree = "<group>"; };
 		D7469A851D01CE68000EED10 /* ActiveRecordKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveRecordKit.h; sourceTree = "<group>"; };
 		D7469A871D01CE68000EED10 /* IDPCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCoreDataManager.h; sourceTree = "<group>"; };
 		D7469A881D01CE68000EED10 /* IDPCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCoreDataManager.m; sourceTree = "<group>"; };
@@ -609,6 +612,8 @@
 				D7469AE51D01CE68000EED10 /* IDPBackgroundContext.m */,
 				D7469AE61D01CE68000EED10 /* IDPModel.h */,
 				D7469AE71D01CE68000EED10 /* IDPModel.m */,
+				D709C14F1D020D5100D7DC5E /* IDPModelProxy.h */,
+				D709C1501D020D5100D7DC5E /* IDPModelProxy.m */,
 			);
 			path = IDPModels;
 			sourceTree = "<group>";
@@ -1355,6 +1360,7 @@
 				D7469B891D01CE69000EED10 /* IDPThreadSafeProxy.m in Sources */,
 				D7A6B0FD1A6084A800159A8C /* IDPAppDelegate.m in Sources */,
 				D7A6B0F91A6084A800159A8C /* main.m in Sources */,
+				D709C1511D020D5100D7DC5E /* IDPModelProxy.m in Sources */,
 				D7469B9E1D01CE69000EED10 /* UIViewController+IDPExtensions.m in Sources */,
 				D7469B691D01CE69000EED10 /* IDPKVONotification.m in Sources */,
 				D7469B671D01CE69000EED10 /* IDPLocking.m in Sources */,
