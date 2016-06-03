@@ -10,8 +10,6 @@
 
 @class IDPModel;
 
-typedef NSOperation IDPContext;
-
 typedef void(^IDPModelBlock)(IDPModel *model);
 
 @interface IDPModel : IDPObservableObject
@@ -20,9 +18,10 @@ typedef void(^IDPModelBlock)(IDPModel *model);
 + (instancetype)model;
 + (instancetype)modelWithQueue:(NSOperationQueue *)queue;
 
-- (instancetype)initWithQueue:(NSOperationQueue *)queue NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithQueue:(NSOperationQueue *)queue;
+- (instancetype)initWithQueue:(NSOperationQueue *)queue target:(id)target NS_DESIGNATED_INITIALIZER;
 
-- (void)executeContext:(IDPContext *)context;
+- (void)executeOperation:(NSOperation *)oepration;
 
 - (NSBlockOperation *)executeBlock:(IDPModelBlock)block;
 
