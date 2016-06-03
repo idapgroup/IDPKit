@@ -17,6 +17,8 @@
 		D709947D1C8DB3B4009A9E83 /* IDPCompilerMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = D709947C1C8DB3B4009A9E83 /* IDPCompilerMacros.m */; };
 		D70994801C8DB3BF009A9E83 /* IDPOwnershipMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = D709947F1C8DB3BF009A9E83 /* IDPOwnershipMacros.m */; };
 		D71F66AA1A7BFA3E007EC1CF /* IDPKVOTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */; };
+		D74699591D01723F000EED10 /* IDPObjectState.m in Sources */ = {isa = PBXBuildFile; fileRef = D74699581D01723F000EED10 /* IDPObjectState.m */; };
+		D746995B1D017270000EED10 /* IDPObjectStateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D746995A1D017270000EED10 /* IDPObjectStateSpec.m */; };
 		D756DC671C7F456800476D53 /* IDPObservableObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D756DC661C7F456800476D53 /* IDPObservableObjectSpec.m */; };
 		D77742DC1C885FAC00F38528 /* IDPObserverSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D77742DB1C885FAC00F38528 /* IDPObserverSpec.m */; };
 		D78014D61C91D48600D93AD0 /* IDPBlockTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = D78014D51C91D48600D93AD0 /* IDPBlockTypes.m */; };
@@ -172,6 +174,9 @@
 		D70BC6AE1A6D3B260053EA92 /* IDPSpecSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSpecSetup.h; sourceTree = "<group>"; };
 		D71F66A81A7BFA3E007EC1CF /* IDPKVOTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOTestObject.h; sourceTree = "<group>"; };
 		D71F66A91A7BFA3E007EC1CF /* IDPKVOTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOTestObject.m; sourceTree = "<group>"; };
+		D74699571D01723F000EED10 /* IDPObjectState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObjectState.h; sourceTree = "<group>"; };
+		D74699581D01723F000EED10 /* IDPObjectState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObjectState.m; sourceTree = "<group>"; };
+		D746995A1D017270000EED10 /* IDPObjectStateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObjectStateSpec.m; sourceTree = "<group>"; };
 		D756DC661C7F456800476D53 /* IDPObservableObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableObjectSpec.m; sourceTree = "<group>"; };
 		D756DC681C7F5F7200476D53 /* IDPObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObserver.h; sourceTree = "<group>"; };
 		D756DC691C7F5F7200476D53 /* IDPObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObserver.m; sourceTree = "<group>"; };
@@ -422,6 +427,7 @@
 			children = (
 				D756DC661C7F456800476D53 /* IDPObservableObjectSpec.m */,
 				D77742DB1C885FAC00F38528 /* IDPObserverSpec.m */,
+				D746995A1D017270000EED10 /* IDPObjectStateSpec.m */,
 			);
 			path = IDPObservableObject;
 			sourceTree = "<group>";
@@ -716,6 +722,8 @@
 				D7BD7FFA1A64641F004E2041 /* IDPObservableObject.m */,
 				D756DC681C7F5F7200476D53 /* IDPObserver.h */,
 				D756DC691C7F5F7200476D53 /* IDPObserver.m */,
+				D74699571D01723F000EED10 /* IDPObjectState.h */,
+				D74699581D01723F000EED10 /* IDPObjectState.m */,
 			);
 			path = IDPObservableObject;
 			sourceTree = "<group>";
@@ -1343,6 +1351,7 @@
 				D7E1DB261A84EE8C00E929C4 /* IDPTSProxy.m in Sources */,
 				D7BD80A91A64641F004E2041 /* UIColor+IDPExtensions.m in Sources */,
 				D7BD80611A64641F004E2041 /* NSArray+IDPExtensions.m in Sources */,
+				D74699591D01723F000EED10 /* IDPObjectState.m in Sources */,
 				D7BD80671A64641F004E2041 /* NSFileManager+IDPExtensions.m in Sources */,
 				D7E1DB051A84CF3800E929C4 /* IDPKVONotification.m in Sources */,
 				D7BD80931A64641F004E2041 /* IDPWeakReference.m in Sources */,
@@ -1390,6 +1399,7 @@
 				D7BD80A81A64641F004E2041 /* UIAlertView+IDPExtensions.m in Sources */,
 				D7B035C61A6D701000116747 /* IDPUnsafeReference.m in Sources */,
 				D7BD80581A64641F004E2041 /* CGGeometry+IDPExtensions.m in Sources */,
+				D746995B1D017270000EED10 /* IDPObjectStateSpec.m in Sources */,
 				D7E49DE21A694ACF00C9C38D /* NSObject+IDPMixin.m in Sources */,
 				D7BD806C1A64641F004E2041 /* NSString+IDPExtensions.m in Sources */,
 				D7BD80A21A64641F004E2041 /* CALayer+IDPExtensions.m in Sources */,
