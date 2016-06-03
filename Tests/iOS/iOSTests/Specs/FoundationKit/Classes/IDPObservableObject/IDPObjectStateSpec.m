@@ -6,39 +6,19 @@
 //  Copyright © 2016 IDAP Group. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-
 #import "Kiwi.h"
 
 #import "IDPObjectState.h"
 
-typedef enum {
-    IDPTestStateUndefined,
-    
-    IDPTestStateLoading,
-    IDPTestStateLoaded,
-    
-    IDPTestStateEnd,
-    IDPTestStateCount = IDPTestStateEnd - IDPTestStateUndefined - 1
-} IDPTestState;
+IDPObjectState(IDPTestState,
+               IDPTestStateLoading,
+               IDPTestStateLoaded);
 
-typedef enum {
-    IDPTestChildStateStart = IDPTestStateEnd - 1,
-    
-    IDPTestChildStateUploaded,
-    
-    IDPTestChildStateEnd,
-    IDPTestChildStateCount = IDPTestChildStateEnd - IDPTestChildStateStart - 1
-} IDPTestChildState;
+IDPObjectStateChild(IDPTestChildState, IDPTestState,
+                    IDPTestChildStateUploaded);
 
-typedef enum {
-    IDPTestNextChildStateStart = IDPTestChildStateEnd - 1,
-    
-    IDPTestNextChildStateNext,
-    
-    IDPTestNextChildStateEnd,
-    IDPTestNextChildStateCount = IDPTestNextChildStateEnd - IDPTestNextChildStateStart - 1
-} IDPTestNextChildState;
+IDPObjectStateChild(IDPTestNextChildState, IDPTestChildState,
+                    IDPTestNextChildStateNext);
 
 static NSString * const kIDPFirstParentState    = @"kIDPFirstParentState";
 static NSString * const kIDPLastParentState     = @"kIDPLastParentState";
