@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 RedShiftLab. All rights reserved.
 //
 
+#define IDPEmpty
+
 #define IDPStringify(variable) #variable
 #define IDPStringifyExpansion(variable) IDPStringify(variable)
 

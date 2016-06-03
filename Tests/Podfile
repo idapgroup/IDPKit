@@ -20,7 +20,8 @@ target :osx do
   link_with 'OSX'
  
   target 'OSXTests', exclusive: true do
-    pod 'Kiwi', '~>2.3'
+#    pod 'Kiwi', '~>2.3'
+    pod 'Kiwi', :git => 'https://github.com/idapgroup/Kiwi.git'
   end
 end
  
@@ -33,6 +34,7 @@ target :ios, exclusive: true do
   link_with 'iOS'
  
   target 'iOSTests', exclusive: true do
-    pod 'Kiwi', '~>2.3'
+#    pod 'Kiwi', '~>2.3'
+    pod 'Kiwi', :git => 'https://github.com/idapgroup/Kiwi.git'
   end
 end

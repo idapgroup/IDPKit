@@ -6,26 +6,31 @@
 //  Copyright (c) 2013 Oleksa Korin. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "IDPObserver.h"
+
+#import "IDPBlockTypes.h"
 
 @interface IDPObservableObject : NSObject
-@property (nonatomic, readonly)	NSArray			*observers;
+@property (nonatomic, readonly)	NSSet               *observers;
 
-// Target is the object, that would be notified.
+// Target is the object, that notifies. It's weakly stored
 // Returns self by default.
-@property (nonatomic, readonly) id<NSObject>    target;
+@property (nonatomic, weak, readonly) id<NSObject>  target;
 
-// Observable object maintains weak links to its observers
-// you are responsible to remove yourself as an observer,
-// when you no longer need to observe the object
-- (void)addObserver:(id)observer;
-- (void)removeObserver:(id)observer;
-- (BOOL)isObjectAnObserver:(id)observer;
+@property (atomic, assign)  IDPObjectState	state;
+- (void)setState:(IDPObjectState)state object:(id)object;
 
-// These methods should only be called in child classes.
-// Call these methods to notify the observers by calling
-// their selectors.
-- (void)notifyObserversWithSelector:(SEL)selector;
-- (void)notifyObserversWithSelector:(SEL)selector userInfo:(id)info;
+
++ (instancetype)objectWithTarget:(id<NSObject>)target;
+
+- (instancetype)initWithTarget:(id<NSObject>)target NS_DESIGNATED_INITIALIZER;
+
+- (IDPObserver *)observer;
+
+- (void)notifyObserversWithState:(IDPObjectState)state;
+- (void)notifyObserversWithState:(IDPObjectState)state object:(id)object;
+
+- (void)performBlockWithNotifications:(IDPVoidBlock)block;
+- (void)performBlockWithoutNotifications:(IDPVoidBlock)block;
 
 @end

@@ -79,30 +79,30 @@
 #pragma mark Private
 
 - (void)notifyObserversOfSuccessfulLoad {
-    [self notifyObserversWithSelector:@selector(modelDidLoad:)];
+//    [self notifyObserversWithSelector:@selector(modelDidLoad:)];
 }
 
 - (void)notifyObserversOfFailedLoad {
-    [self notifyObserversWithSelector:@selector(modelDidFailToLoad:)];
+//    [self notifyObserversWithSelector:@selector(modelDidFailToLoad:)];
 }
 
 - (void)notifyObserversOfCancelledLoad {
-    [self notifyObserversWithSelector:@selector(modelDidCancelLoading:)];
+//    [self notifyObserversWithSelector:@selector(modelDidCancelLoading:)];
 }
 
 - (void)notifyObserversOfChanges {
-    [self notifyObserversWithSelector:@selector(modelDidChange:)];
+//    [self notifyObserversWithSelector:@selector(modelDidChange:)];
 }
 
 - (void)notifyObserversOfChangesWithMessage:(NSDictionary *)message {
     SEL selector = @selector(modelDidChange:message:);
 
-	[self notifyObserversWithSelector:selector
-							 userInfo:message];
+//	[self notifyObserversWithSelector:selector
+//							 userInfo:message];
 }
 
 - (void)notifyObserversOfUnload {
-    [self notifyObserversWithSelector:@selector(modelDidUnload:)];
+//    [self notifyObserversWithSelector:@selector(modelDidUnload:)];
 }
 
 @end

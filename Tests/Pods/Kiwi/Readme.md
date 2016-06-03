@@ -1,4 +1,6 @@
-# Simple BDD for iOS
+![Kiwi Logo](Kiwi-Logo.png)
+
+# Kiwi: Simple BDD for iOS
 [![Build Status](https://travis-ci.org/kiwi-bdd/Kiwi.svg?branch=master)](https://travis-ci.org/kiwi-bdd/Kiwi)
 
 Kiwi is a Behavior Driven Development library for iOS development.
@@ -14,12 +16,12 @@ Specs look like this:
 ```objective-c
 describe(@"Team", ^{
     context(@"when newly created", ^{
-        it(@"should have a name", ^{
+        it(@"has a name", ^{
             id team = [Team team];
             [[team.name should] equal:@"Black Hawks"];
         });
 
-        it(@"should have 11 players", ^{
+        it(@"has 11 players", ^{
             id team = [Team team];
             [[[team should] have:11] players];
         });
@@ -31,8 +33,19 @@ describe(@"Team", ^{
 The [Kiwi Wiki](https://github.com/kiwi-bdd/Kiwi/wiki) is the official documentation source.
 
 ## Getting it
-The best way to get Kiwi is by using [CocoaPods](https://github.com/cocoapods/cocoapods).
-For all the installation details, check out the [Wiki](https://github.com/kiwi-bdd/Kiwi/wiki)
+
+####
+To install via [CocoaPods](https://github.com/cocoapods/cocoapods), add this to your `Podfile`:
+
+```ruby
+pod "Kiwi"
+```
+
+Or via [Carthage](https://github.com/Carthage/Carthage), add this to `Cartfile.private`:
+
+```
+github "kiwi-bdd/Kiwi"
+```
 
 ## Support
 For all the questions / suggestions you have, that aren't bug reports please use our [Google Group](https://groups.google.com/forum/#!forum/kiwi-bdd)

@@ -8,28 +8,47 @@
 
 #import "IDPObservableObject.h"
 
+#import "IDPBlockMacros.h"
+#import "IDPReturnMacros.h"
+
+#import "IDPLocking.h"
+
 @interface IDPObservableObject ()
-@property (nonatomic, strong)	NSHashTable	*mutableObservers;
+@property (nonatomic, weak)     id<NSObject>    target;
+@property (nonatomic, strong)   NSHashTable     *mutableObservers;
+@property (nonatomic, strong)   id<IDPLocking>  lock;
+
+@property (nonatomic, assign, getter=isNotificationEnabled)   BOOL  notificationEnabled;
+
+- (void)setNotificationEnabled:(BOOL)notificationEnabled forBlock:(IDPVoidBlock)block;
 
 @end
 
 @implementation IDPObservableObject
 
-@dynamic observers;
-@dynamic target;
+@synthesize state   = _state;
+
+#pragma mark -
+#pragma mark Class Methods
+
+
++ (instancetype)objectWithTarget:(id<NSObject>)target {
+    return [[self alloc] initWithTarget:target];
+}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc {
-    self.mutableObservers = nil;
+- (id)init {
+    return [self initWithTarget:nil];
 }
 
-- (id)init {
+- (instancetype)initWithTarget:(id<NSObject>)target {
     self = [super init];
-    if (self) {
-        self.mutableObservers = [NSHashTable weakObjectsHashTable];
-    }
+    self.mutableObservers = [NSHashTable weakObjectsHashTable];
+    self.target = target ? target : self;
+    self.lock = [NSRecursiveLock new];
+    self.notificationEnabled = YES;
     
     return self;
 }
@@ -37,56 +56,81 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)observers {
-    return [self.mutableObservers allObjects];
+- (NSSet *)observers {
+    NSHashTable *mutableObservers = self.mutableObservers;
+    __block NSSet *result = nil;
+    
+    [self.lock performBlock:^{
+        result = [mutableObservers setRepresentation];
+    }];
+    
+    return result;
 }
 
-#pragma mark -
-#pragma mark Accessors
+- (IDPObjectState)state {
+    return _state;
+}
 
-- (id)target {
-    return self;
+- (void)setState:(IDPObjectState)state {
+    [self setState:state object:nil];
+}
+
+- (void)setState:(IDPObjectState)state object:(id)object {
+    [self.lock performBlock:^{
+        if (_state != state) {
+            _state = state;
+            [self notifyObserversWithState:state object:object];
+        }
+    }];
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)addObserver:(id)observer {
-    if (![self isObjectAnObserver:observer]) {
-        [self.mutableObservers addObject:observer];
-    }
+- (IDPObserver *)observer {
+    IDPObserver *observer = [[IDPObserver alloc] initWithObservableObject:self];
+    NSHashTable *mutableObservers = self.mutableObservers;
+    
+    [self.lock performBlock:^{
+        [mutableObservers addObject:observer];
+    }];
+    
+    return observer;
 }
 
-- (void)removeObserver:(id)observer {
-    [self.mutableObservers removeObject:observer];
+- (void)notifyObserversWithState:(IDPObjectState)state {
+    [self notifyObserversWithState:state object:nil];
 }
 
-- (BOOL)isObjectAnObserver:(id)observer {
-    return [self.mutableObservers containsObject:observer];
+- (void)notifyObserversWithState:(IDPObjectState)state object:(id)object {
+    NSHashTable *mutableObservers = self.mutableObservers;
+    [self.lock performBlock:^{
+        IDPReturnIfNil(self.notificationEnabled);
+        
+        for (IDPObserver *observer in mutableObservers) {
+            [observer performBlockForState:state object:object];
+        }
+    }];
+}
+
+- (void)performBlockWithNotifications:(IDPVoidBlock)block {
+    [self setNotificationEnabled:YES forBlock:block];
+}
+
+- (void)performBlockWithoutNotifications:(IDPVoidBlock)block {
+    [self setNotificationEnabled:NO forBlock:block];
 }
 
 #pragma mark -
 #pragma mark Private
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-
-- (void)notifyObserversWithSelector:(SEL)selector {
-    for (id<NSObject> observer in self.observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self.target];
-        }
-    }
+- (void)setNotificationEnabled:(BOOL)enabled forBlock:(IDPVoidBlock)block {
+    [self.lock performBlock:^{
+        BOOL notificationEnabled = self.notificationEnabled;
+        self.notificationEnabled = enabled;
+        IDPBlockCall(block);
+        self.notificationEnabled = notificationEnabled;
+    }];
 }
-
-- (void)notifyObserversWithSelector:(SEL)selector userInfo:(id)info {
-    for (id<NSObject> observer in self.observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self.target withObject:info];
-        }
-    }
-}
-
-#pragma clang diagnostic pop
 
 @end
