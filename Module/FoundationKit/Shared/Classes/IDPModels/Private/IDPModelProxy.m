@@ -21,15 +21,22 @@
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
     IDPModel *model = self.target;
-    
-    [invocation retainArguments];
+
     invocation.target = nil;
     [invocation invoke];
     
+    NSUInteger resultLength = invocation.methodSignature.methodReturnLength;
+    if (resultLength) {
+        void *result = calloc(invocation.methodSignature.methodReturnLength, 1);
+        [invocation setReturnValue:result];
+        free(result);
+    }
+    
+    [invocation retainArguments];
     invocation.target = model;
     
     NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithInvocation:invocation];
-    [model executeContext:operation];
+    [model executeOperation:operation];
 }
 
 @end

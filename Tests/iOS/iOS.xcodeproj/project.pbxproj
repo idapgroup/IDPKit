@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0EB0E7824A84819FDD9337AA /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */; };
 		D709C1551D02114800D7DC5E /* IDPModelProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D709C1541D02114800D7DC5E /* IDPModelProxy.m */; };
+		D709C1581D02120000D7DC5E /* IDPModelProxySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D709C1571D02120000D7DC5E /* IDPModelProxySpec.m */; };
+		D709C15B1D02165700D7DC5E /* IDPTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D709C15A1D02165700D7DC5E /* IDPTestModel.m */; };
 		D7469B591D01CE69000EED10 /* IDPCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469A881D01CE68000EED10 /* IDPCoreDataManager.m */; };
 		D7469B5A1D01CE69000EED10 /* NSManagedObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469A8A1D01CE68000EED10 /* NSManagedObject+IDPExtensions.m */; };
 		D7469B5B1D01CE69000EED10 /* NSManagedObjectContext+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469A8C1D01CE68000EED10 /* NSManagedObjectContext+IDPExtensions.m */; };
@@ -126,6 +128,9 @@
 		D5F7B5CDBDB18B157BC098B7 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D709C1531D02114800D7DC5E /* IDPModelProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelProxy.h; sourceTree = "<group>"; };
 		D709C1541D02114800D7DC5E /* IDPModelProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelProxy.m; sourceTree = "<group>"; };
+		D709C1571D02120000D7DC5E /* IDPModelProxySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelProxySpec.m; sourceTree = "<group>"; };
+		D709C1591D02165700D7DC5E /* IDPTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPTestModel.h; sourceTree = "<group>"; };
+		D709C15A1D02165700D7DC5E /* IDPTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTestModel.m; sourceTree = "<group>"; };
 		D7469A851D01CE68000EED10 /* ActiveRecordKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveRecordKit.h; sourceTree = "<group>"; };
 		D7469A871D01CE68000EED10 /* IDPCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCoreDataManager.h; sourceTree = "<group>"; };
 		D7469A881D01CE68000EED10 /* IDPCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCoreDataManager.m; sourceTree = "<group>"; };
@@ -357,6 +362,7 @@
 		D709C1561D0211A500D7DC5E /* IDPModel */ = {
 			isa = PBXGroup;
 			children = (
+				D709C1571D02120000D7DC5E /* IDPModelProxySpec.m */,
 			);
 			path = IDPModel;
 			sourceTree = "<group>";
@@ -1143,6 +1149,8 @@
 				D7469C0A1D01CF90000EED10 /* IDPTestObject.m */,
 				D7469C0B1D01CF90000EED10 /* IDPThreadUnsafeObject.h */,
 				D7469C0C1D01CF90000EED10 /* IDPThreadUnsafeObject.m */,
+				D709C1591D02165700D7DC5E /* IDPTestModel.h */,
+				D709C15A1D02165700D7DC5E /* IDPTestModel.m */,
 			);
 			path = "Test Objects";
 			sourceTree = "<group>";
@@ -1437,12 +1445,14 @@
 				D7469C1F1D01CF90000EED10 /* IDPTestObject.m in Sources */,
 				D7469C1E1D01CF90000EED10 /* IDPKVOObserver.m in Sources */,
 				D7469C1A1D01CF90000EED10 /* IDPObserverSpec.m in Sources */,
+				D709C1581D02120000D7DC5E /* IDPModelProxySpec.m in Sources */,
 				D7469C171D01CF90000EED10 /* NSObject+IDPMixinSpec.m in Sources */,
 				D7469C111D01CF90000EED10 /* IDPKVOControllerSpec.m in Sources */,
 				D7469C191D01CF90000EED10 /* IDPObservableObjectSpec.m in Sources */,
 				D7469C161D01CF90000EED10 /* IDPMixinStackSpec.m in Sources */,
 				D7469C181D01CF90000EED10 /* IDPObjectStateSpec.m in Sources */,
 				D7469C1C1D01CF90000EED10 /* IDPThreadSafeProxySpec.m in Sources */,
+				D709C15B1D02165700D7DC5E /* IDPTestModel.m in Sources */,
 				D7469C121D01CF90000EED10 /* NSObject+IDPKVOPrivateSpec.m in Sources */,
 				D7469C141D01CF90000EED10 /* NSString+IDPExtensionsSpec.m in Sources */,
 				D7469C151D01CF90000EED10 /* IDPBackgroundOperationSpec.m in Sources */,
