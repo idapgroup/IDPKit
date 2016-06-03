@@ -9,6 +9,7 @@
 #import "IDPModel.h"
 
 @interface IDPModel ()
+@property (nonatomic, strong)   NSOperationQueue    *queue;
 
 @end
 
