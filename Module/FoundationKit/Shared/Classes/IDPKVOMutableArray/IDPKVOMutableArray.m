@@ -9,6 +9,7 @@
 #import "IDPKVOMutableArray.h"
 
 #import "IDPKVOContext.h"
+#import "IDPBlockTypes.h"
 
 #import "NSArray+IDPExtensions.h"
 
@@ -168,7 +169,7 @@ NSString * const kIDPKVOPathArray   = @"array";
                                                                  context:NULL];
     
     __block NSMutableArray *result = [NSMutableArray array];
-    IDPArrayObjectsEnumerationBlock block = ^(id obj, NSUInteger idx, BOOL *stop) {
+    IDPEnumerationBlock block = ^(id obj, NSUInteger idx, BOOL *stop) {
         IDPKVOContext *context = obj;
         if ([context isEqualToContext:comparisonObject]) {
             [result addObject:context];

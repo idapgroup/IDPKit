@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^IDPArrayObjectsEnumerationBlock)(id obj, NSUInteger idx, BOOL *stop);
-
 @interface NSArray (IDPExtensions)
 
 /**

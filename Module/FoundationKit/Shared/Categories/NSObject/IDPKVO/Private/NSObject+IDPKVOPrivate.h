@@ -17,13 +17,6 @@ NSString *IDPKVONameOfClass(Class cls);
 @property (atomic, strong)      NSMutableSet  *mutableKVOControllersSet;
 @property (atomic, readonly)    NSSet         *KVOControllersSet;
 
-+ (Class)KVOClass;
-
-- (Class)isa;
-- (Class)KVOClass;
-
-- (BOOL)isKVOClassObject;
-
 // Thread safe methods for accessing KVOControllers
 - (void)addKVOController:(IDPKVOController *)object;
 - (void)removeKVOController:(IDPKVOController *)object;

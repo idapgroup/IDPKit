@@ -10,14 +10,13 @@
 
 #import "KWBlock.h"
 
-@interface KWBlockRaiseMatcher()
-@property (nonatomic, readwrite, strong) NSException *exception;
-@property (nonatomic, readwrite, strong) NSException *actualException;
-
-@end
-
 @interface IDPBlockAsyncRaiseIterativeMatcher ()
-@property (nonatomic, assign)   NSUInteger  iterationCount;
+@property (nonatomic, assign)   NSUInteger          iterationCount;
+@property (nonatomic, strong)   dispatch_group_t    dispatchGroup;
+@property (nonatomic, strong)   dispatch_queue_t    dispatchQueue;
+
+@property (atomic, readwrite, strong) NSException   *exception;
+@property (atomic, readwrite, strong) NSException   *actualException;
 
 - (BOOL)checkResult;
 - (void)performIterativeAsync;
@@ -43,6 +42,12 @@
     self = [super initWithSubject:anObject];
     if (self) {
         self.iterationCount = 1;
+        self.dispatchGroup = dispatch_group_create();
+        
+        NSString *name = [NSString stringWithFormat:@"com.idpkit.queue.%@",
+                          [NSStringFromClass([self class]) lowercaseString]];
+        self.dispatchQueue = dispatch_queue_create([name cStringUsingEncoding:NSUTF8StringEncoding],
+                                                       DISPATCH_QUEUE_CONCURRENT);
     }
     
     return self;
@@ -81,9 +86,9 @@
                reason:(NSString *)aReason
        iterationCount:(NSUInteger)count
 {
-    [super raiseWithName:aName reason:aReason];
-
     self.iterationCount = count;
+    
+    [super raiseWithName:aName reason:aReason];
 }
 
 #pragma mark -
@@ -112,12 +117,8 @@
 }
 
 - (void)performIterativeAsync {
-    dispatch_group_t group = dispatch_group_create();
-    
-    NSString *name = [NSString stringWithFormat:@"com.idpkit.queue.%@",
-                      [NSStringFromClass([self class]) lowercaseString]];
-    dispatch_queue_t queue = dispatch_queue_create([name cStringUsingEncoding:NSUTF8StringEncoding],
-                                                   DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t queue = self.dispatchQueue;
+    dispatch_group_t group = self.dispatchGroup;
     
     NSUInteger count = self.iterationCount;
     for (NSUInteger i = 0; i < count; i++) {
@@ -125,6 +126,10 @@
                              queue,
                              ^{
                                  @autoreleasepool {
+                                     if (self.actualException) {
+                                         return;
+                                     }
+                                     
                                      @try {
                                          [self.subject call];
                                      }

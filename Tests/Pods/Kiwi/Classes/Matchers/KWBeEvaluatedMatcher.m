@@ -14,6 +14,30 @@
 #import "KWWorkarounds.h"
 #import "KWProxyBlock.h"
 
+#define KWStartVAList(listName, argument) \
+    va_list listName; \
+    va_start(listName, argument);
+
+#define KWMessagePatternWithVAListAndSignature(list, argument, signature) \
+    [KWBlockMessagePattern messagePatternWithSignature:(signature) \
+                                   firstArgumentFilter:argument \
+                                          argumentList:list]
+
+#define KWBeEvaluatedWithCount(argument, type, countValue, signature) \
+    do { \
+        KWStartVAList(args, argument); \
+        [(id)self beEvaluatedWithMessagePattern:KWMessagePatternWithVAListAndSignature(args, argument, (signature))  \
+                                      countType:type \
+                                          count:countValue]; \
+    } while(0)
+
+#define KWBeEvaluatedWithUnspecifiedCount(argument, signature) \
+    do { \
+        KWStartVAList(args, firstArgument) \
+        id pattern = KWMessagePatternWithVAListAndSignature(args, firstArgument, (signature)); \
+        [(id)self beEvaluatedWithUnspecifiedCountOfMessagePattern:pattern]; \
+    } while(0)
+
 @implementation KWBeEvaluatedMatcher
 
 #pragma mark - Getting Matcher Strings
@@ -62,44 +86,26 @@
     [self beEvaluatedWithCountType:countType count:1];
 }
 
-#define KWStartVAListWithVariableName(listName) \
-    va_list listName; \
-    va_start(listName, firstArgument);
-
 - (void)beEvaluatedWithArguments:(id)firstArgument, ... {
-    va_list argumentList;
-    va_start(argumentList, firstArgument);
-
-    id pattern = [KWBlockMessagePattern messagePatternWithSignature:[self subjectSignature]
-                                                firstArgumentFilter:firstArgument
-                                                       argumentList:argumentList];
-
-    [self beEvaluatedWithUnspecifiedCountOfMessagePattern:pattern];
+    KWBeEvaluatedWithUnspecifiedCount(firstArgument, [self subjectSignature]);
 }
 
-#define KWReceiveVAListMessagePatternWithCountType(aCountType) \
-    do { \
-        KWStartVAListWithVariableName(argumentList); \
-        id pattern = [KWBlockMessagePattern messagePatternWithSignature:[self subjectSignature] \
-                                                    firstArgumentFilter:firstArgument \
-                                                           argumentList:argumentList]; \
-        [self beEvaluatedWithMessagePattern:pattern countType:aCountType count:aCount]; \
-    } while(0)
+#define  KWBeEvaluatedWithCountType(type) \
+    KWBeEvaluatedWithCount(firstArgument, type, aCount, [self subjectSignature])
 
 - (void)beEvaluatedWithCount:(NSUInteger)aCount arguments:(id)firstArgument, ... {
-    KWReceiveVAListMessagePatternWithCountType(KWCountTypeExact);
+    KWBeEvaluatedWithCountType(KWCountTypeExact);
 }
 
 - (void)beEvaluatedWithCountAtLeast:(NSUInteger)aCount arguments:(id)firstArgument, ... {
-    KWReceiveVAListMessagePatternWithCountType(KWCountTypeAtLeast);
+    KWBeEvaluatedWithCountType(KWCountTypeAtLeast);
 }
 
 - (void)beEvaluatedWithCountAtMost:(NSUInteger)aCount arguments:(id)firstArgument, ... {
-    KWReceiveVAListMessagePatternWithCountType(KWCountTypeAtMost);
+    KWBeEvaluatedWithCountType(KWCountTypeAtMost);
 }
 
-#undef KWReceiveVAListMessagePatternWithCountType
-#undef KWArgumentList
+#undef KWBeEvaluatedWithCountType
 
 #pragma mark - Message Pattern Receiving
 
@@ -140,43 +146,26 @@
 
 #pragma mark - Verifying
 
-#define KWStartVAListWithVariableName(listName) \
-    va_list listName; \
-    va_start(listName, firstArgument);
-
 - (void)beEvaluatedWithArguments:(id)firstArgument, ... {
-    KWStartVAListWithVariableName(argumentList)
-    
-    id pattern = [KWBlockMessagePattern messagePatternWithSignature:[self beEvaluated_subjectSignature]
-                                                firstArgumentFilter:firstArgument
-                                                       argumentList:argumentList];
-    
-    [(id)self beEvaluatedWithUnspecifiedCountOfMessagePattern:pattern];
+    KWBeEvaluatedWithUnspecifiedCount(firstArgument, [self beEvaluated_subjectSignature]);
 }
 
-#define KWReceiveVAListMessagePatternWithCountType(aCountType) \
-    do { \
-        KWStartVAListWithVariableName(argumentList); \
-        id pattern = [KWBlockMessagePattern messagePatternWithSignature:[self beEvaluated_subjectSignature] \
-        firstArgumentFilter:firstArgument \
-        argumentList:argumentList]; \
-        [(id)self beEvaluatedWithMessagePattern:pattern countType:aCountType count:aCount]; \
-    } while(0)
+#define  KWBeEvaluatedWithCountType(type) \
+    KWBeEvaluatedWithCount(firstArgument, type, aCount, [self beEvaluated_subjectSignature])
 
 - (void)beEvaluatedWithCount:(NSUInteger)aCount arguments:(id)firstArgument, ... {
-    KWReceiveVAListMessagePatternWithCountType(KWCountTypeExact);
+    KWBeEvaluatedWithCountType(KWCountTypeExact);
 }
 
 - (void)beEvaluatedWithCountAtLeast:(NSUInteger)aCount arguments:(id)firstArgument, ... {
-    KWReceiveVAListMessagePatternWithCountType(KWCountTypeAtLeast);
+    KWBeEvaluatedWithCountType(KWCountTypeAtLeast);
 }
 
 - (void)beEvaluatedWithCountAtMost:(NSUInteger)aCount arguments:(id)firstArgument, ... {
-    KWReceiveVAListMessagePatternWithCountType(KWCountTypeAtMost);
+    KWBeEvaluatedWithCountType(KWCountTypeAtMost);
 }
 
-#undef KWReceiveVAListMessagePatternWithCountType
-#undef KWArgumentList
+#undef KWBeEvaluatedWithCountType
 
 - (NSMethodSignature *)beEvaluated_subjectSignature {
     return [self.subject methodSignature];
@@ -184,3 +173,7 @@
 
 @end
 
+#undef KWBeEvaluatedWithUnspecifiedCount
+#undef KWBeEvaluatedWithCount
+#undef KWMessagePatternWithVAListAndSignature
+#undef KWStartVAList

@@ -1,5 +1,5 @@
 //
-//  IDPKVOTestObject.h
+//  IDPTestObject.h
 //  iOS
 //
 //  Created by Oleksa Korin on 30/1/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IDPKVOTestObject : NSObject
+@interface IDPTestObject : NSObject
 @property (nonatomic, assign)   NSUInteger  value;
 @property (nonatomic, strong)   NSObject    *object;
 

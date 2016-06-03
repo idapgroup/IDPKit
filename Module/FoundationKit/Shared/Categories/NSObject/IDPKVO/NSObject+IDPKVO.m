@@ -8,18 +8,36 @@
 
 #import "NSObject+IDPKVO.h"
 
+#import "IDPObjCRuntime.h"
+
+#import "NSObject+IDPRuntime.h"
+
 @implementation NSObject (IDPKVO)
 
++ (Class)KVOClass {
+    NSString *className = IDPKVONameOfClass(self);
+    
+    return NSClassFromString(className);
+}
+
+- (Class)KVOClass {
+    return [[self class] KVOClass];
+}
+
+- (BOOL)isKVOClassObject {
+    return [self isa] == [self KVOClass];
+}
+
 - (IDPKVOController *)observeKeyPath:(NSString *)keyPath
-                         handler:(IDPKVONotificationBlock)block
+                             handler:(IDPKVONotificationBlock)block
 {
     return [self observeKeyPaths:@[keyPath]
                          handler:block];
 }
 
 - (IDPKVOController *)observeKeyPath:(NSString *)keyPath
-                         options:(NSKeyValueObservingOptions)options
-                         handler:(IDPKVONotificationBlock)block
+                             options:(NSKeyValueObservingOptions)options
+                             handler:(IDPKVONotificationBlock)block
 {
     return [self observeKeyPaths:@[keyPath]
                          options:options
@@ -27,7 +45,7 @@
 }
 
 - (IDPKVOController *)observeKeyPaths:(NSArray *)keyPaths
-                          handler:(IDPKVONotificationBlock)block
+                              handler:(IDPKVONotificationBlock)block
 {
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew
     | NSKeyValueObservingOptionOld
@@ -39,13 +57,13 @@
 }
 
 - (IDPKVOController *)observeKeyPaths:(NSArray *)keyPaths
-                          options:(NSKeyValueObservingOptions)options
-                          handler:(IDPKVONotificationBlock)block
+                              options:(NSKeyValueObservingOptions)options
+                              handler:(IDPKVONotificationBlock)block
 {
     IDPKVOController *result = [[IDPKVOController alloc] initWithObject:self
-                                                       keyPaths:keyPaths
-                                                        options:options
-                                                        handler:block];
+                                                               keyPaths:keyPaths
+                                                                options:options
+                                                                handler:block];
     result.observing = YES;
     
     return result;
