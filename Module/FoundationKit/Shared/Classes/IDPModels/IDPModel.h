@@ -17,8 +17,12 @@ typedef void(^IDPModelBlock)(IDPModel *model);
 + (instancetype)model;
 + (instancetype)modelWithQueue:(NSOperationQueue *)queue;
 
-- (instancetype)initWithQueue:(NSOperationQueue *)queue;
-- (instancetype)initWithQueue:(NSOperationQueue *)queue target:(id)target NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithQueue:(NSOperationQueue *)queue NS_REPLACES_RECEIVER;
+- (instancetype)initWithQueue:(NSOperationQueue *)queue target:(id)target NS_DESIGNATED_INITIALIZER NS_REPLACES_RECEIVER;
+
+// you shouldn't call this method directly
+// should be used for subclassing purposes
+- (NSOperationQueue *)defaultQueue;
 
 - (void)executeOperation:(NSOperation *)operation;
 

@@ -8,6 +8,11 @@
 
 #import "IDPModel.h"
 
+#import "IDPModelProxy.h"
+
+#import "IDPOwnershipMacros.h"
+#import "IDPReturnMacros.h"
+
 @interface IDPModel ()
 @property (nonatomic, strong)   NSOperationQueue    *queue;
 
@@ -19,24 +24,33 @@
 #pragma mark Class Methods
 
 + (instancetype)model {
-    return nil;
+    return [self modelWithQueue:nil];
 }
 
 + (instancetype)modelWithQueue:(NSOperationQueue *)queue {
-    return nil;
+    return [[self alloc] initWithQueue:queue];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+    self.queue = nil;
+}
+
+- (instancetype)init {
+    return [self initWithQueue:nil];
+}
+
 - (instancetype)initWithQueue:(NSOperationQueue *)queue {
-    return [self initWithQueue:queue target:self];
+    return [self initWithQueue:queue target:nil];
 }
 
 - (instancetype)initWithQueue:(NSOperationQueue *)queue target:(id)target {
-    self = [super initWithTarget:self];
+    self = [super initWithTarget:target];
+    self.queue = queue ? queue : [self defaultQueue];
     
-    return self;
+    return [IDPModelProxy proxyWithTarget:self];
 }
 
 - (instancetype)initWithTarget:(id<NSObject>)target {
@@ -44,14 +58,43 @@
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (void)setQueue:(NSOperationQueue *)queue {
+    if (queue != _queue) {
+        [_queue cancelAllOperations];
+        _queue = queue;
+    }
+}
+
+#pragma mark -
 #pragma mark Public
 
-- (void)executeOperation:(NSOperation *)oepration {
+- (NSOperationQueue *)defaultQueue {
+    NSOperationQueue *queue = [NSOperationQueue new];
+    queue.maxConcurrentOperationCount = 1;
+    queue.qualityOfService = NSQualityOfServiceUtility;
     
+    return queue;
+}
+
+- (void)executeOperation:(NSOperation *)operation {
+    [self.queue addOperation:operation];
 }
 
 - (NSBlockOperation *)executeBlock:(IDPModelBlock)block {
-    return nil;
+    IDPReturnNilIfNil(block);
+
+    IDPWeakify(self);
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+        IDPStrongify(self);
+        
+        block(self);
+    }];
+    
+    [self executeOperation:operation];
+    
+    return operation;
 }
 
 @end
