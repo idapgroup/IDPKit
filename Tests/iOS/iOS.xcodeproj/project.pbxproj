@@ -111,6 +111,7 @@
 		D7A6B2701A60867900159A8C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B26F1A60867900159A8C /* SystemConfiguration.framework */; };
 		D7A6B2721A60868300159A8C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B2711A60868300159A8C /* CoreData.framework */; };
 		D7A6B2741A60869300159A8C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B2731A60869300159A8C /* QuartzCore.framework */; };
+		D7FEF9131D071D7A0036D3AA /* IDPModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FEF9121D071D7A0036D3AA /* IDPModelSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -313,6 +314,7 @@
 		D7A6B26F1A60867900159A8C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D7A6B2711A60868300159A8C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D7A6B2731A60869300159A8C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D7FEF9121D071D7A0036D3AA /* IDPModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				D709C1571D02120000D7DC5E /* IDPModelProxySpec.m */,
+				D7FEF9121D071D7A0036D3AA /* IDPModelSpec.m */,
 			);
 			path = IDPModel;
 			sourceTree = "<group>";
@@ -1465,6 +1468,7 @@
 				D7469C1F1D01CF90000EED10 /* IDPTestObject.m in Sources */,
 				D7469C1E1D01CF90000EED10 /* IDPKVOObserver.m in Sources */,
 				D7469C1A1D01CF90000EED10 /* IDPObserverSpec.m in Sources */,
+				D7FEF9131D071D7A0036D3AA /* IDPModelSpec.m in Sources */,
 				D709C1581D02120000D7DC5E /* IDPModelProxySpec.m in Sources */,
 				D7469C171D01CF90000EED10 /* NSObject+IDPMixinSpec.m in Sources */,
 				D7469C111D01CF90000EED10 /* IDPKVOControllerSpec.m in Sources */,

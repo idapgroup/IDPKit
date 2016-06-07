@@ -117,4 +117,3 @@ describe(@"IDPModelProxy", ^{
 });
 
 SPEC_END
-
