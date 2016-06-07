@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0EB0E7824A84819FDD9337AA /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C066E7BCFABB4FF8213701C /* libPods-iOSTests.a */; };
 		D7005BBD1D06C41000563609 /* IDPSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = D7005BBC1D06C41000563609 /* IDPSelector.m */; };
+		D7005BC11D06D8B400563609 /* IDPSelectorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7005BC01D06D8B400563609 /* IDPSelectorSpec.m */; };
 		D709C1551D02114800D7DC5E /* IDPModelProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D709C1541D02114800D7DC5E /* IDPModelProxy.m */; };
 		D709C1581D02120000D7DC5E /* IDPModelProxySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D709C1571D02120000D7DC5E /* IDPModelProxySpec.m */; };
 		D709C15B1D02165700D7DC5E /* IDPTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D709C15A1D02165700D7DC5E /* IDPTestModel.m */; };
@@ -129,6 +130,7 @@
 		D5F7B5CDBDB18B157BC098B7 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D7005BBB1D06C41000563609 /* IDPSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSelector.h; sourceTree = "<group>"; };
 		D7005BBC1D06C41000563609 /* IDPSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSelector.m; sourceTree = "<group>"; };
+		D7005BC01D06D8B400563609 /* IDPSelectorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSelectorSpec.m; sourceTree = "<group>"; };
 		D709C1531D02114800D7DC5E /* IDPModelProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelProxy.h; sourceTree = "<group>"; };
 		D709C1541D02114800D7DC5E /* IDPModelProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelProxy.m; sourceTree = "<group>"; };
 		D709C1571D02120000D7DC5E /* IDPModelProxySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelProxySpec.m; sourceTree = "<group>"; };
@@ -351,6 +353,23 @@
 				451B88EF011FADEE69B665C9 /* Pods-iOSTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D7005BBE1D06D88800563609 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D7005BBF1D06D88800563609 /* IDPObjCRuntime */,
+			);
+			name = Utilities;
+			path = iOSTests/Specs/FoundationKit/Utilities;
+			sourceTree = SOURCE_ROOT;
+		};
+		D7005BBF1D06D88800563609 /* IDPObjCRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				D7005BC01D06D8B400563609 /* IDPSelectorSpec.m */,
+			);
+			path = IDPObjCRuntime;
 			sourceTree = "<group>";
 		};
 		D709C1521D02114800D7DC5E /* Private */ = {
@@ -1039,6 +1058,7 @@
 			children = (
 				D7469BEB1D01CF90000EED10 /* Categories */,
 				D7469BF61D01CF90000EED10 /* Classes */,
+				D7005BBE1D06D88800563609 /* Utilities */,
 			);
 			path = FoundationKit;
 			sourceTree = "<group>";
@@ -1462,6 +1482,7 @@
 				D7469C121D01CF90000EED10 /* NSObject+IDPKVOPrivateSpec.m in Sources */,
 				D7469C141D01CF90000EED10 /* NSString+IDPExtensionsSpec.m in Sources */,
 				D7469C151D01CF90000EED10 /* IDPBackgroundOperationSpec.m in Sources */,
+				D7005BC11D06D8B400563609 /* IDPSelectorSpec.m in Sources */,
 				D7469C1B1D01CF90000EED10 /* IDPEnumerationThreadSafeProxySpec.m in Sources */,
 				D7469C101D01CF90000EED10 /* IDPLockingSpec.m in Sources */,
 				D7469C1D1D01CF90000EED10 /* IDPInheritanceTestObject.m in Sources */,

@@ -29,6 +29,10 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (instancetype)init {
+    return [self initWithSelector:NULL];
+}
+
 - (instancetype)initWithSelector:(SEL)selector {
     self = [super init];
     self.value = selector;
@@ -44,7 +48,8 @@
 }
 
 - (BOOL)isEqual:(id)object {
-    IDPReturnValueIfNil(!object || ![self isMemberOfClass:[object class]], NO);
+    IDPReturnValueIfNil(object || [self isMemberOfClass:[object class]], NO);
+    IDPReturnValueIfNil(object != self, YES);
     
     return [self isEqualToSelector:object];
 }

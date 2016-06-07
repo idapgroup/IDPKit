@@ -15,7 +15,7 @@
 
 + (instancetype)objectWithSelector:(SEL)selector;
 
-- (instancetype)initWithSelector:(SEL)selector;
+- (instancetype)initWithSelector:(SEL)selector NS_DESIGNATED_INITIALIZER;
 
 - (BOOL)isEqualToSelector:(IDPSelector *)selector;
 - (BOOL)isEqualToSEL:(SEL)selector;

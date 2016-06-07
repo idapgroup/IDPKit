@@ -67,4 +67,3 @@ describe(@"IDPObjectState", ^{
 });
 
 SPEC_END
-
