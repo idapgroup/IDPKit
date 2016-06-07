@@ -11,6 +11,8 @@
 #import "IDPTestModel.h"
 #import "IDPModelProxy.h"
 
+#import "IDPObjCRuntime.h"
+
 SPEC_BEGIN(IDPModelSpec)
 
 describe(@"IDPModel", ^{
@@ -24,6 +26,26 @@ describe(@"IDPModel", ^{
         
         it(@"should contain IDPTestModel as target", ^{
             [[[model target] should] beMemberOfClass:[IDPTestModel class]];
+        });
+        
+        context(@"proxyClass", ^{
+            it(@"should return IDPModelProxy", ^{
+                [[theValue(IDPClassIsEqualToClass([target proxyClass], [IDPModelProxy class])) should] beTrue];
+            });
+        });
+        
+        context(@"defaultQueue", ^{
+            let(queue, ^id{
+                return [target defaultQueue];
+            });
+            
+            it(@"should be serial", ^{
+                [[theValue([queue maxConcurrentOperationCount]) should] equal:@(1)];
+            });
+            
+            it(@"should be utility QOS", ^{
+                [[theValue([queue qualityOfService]) should] equal:@(NSQualityOfServiceUtility)];
+            });
         });
         
         context(@"executeOperation:", ^{
@@ -78,11 +100,14 @@ describe(@"IDPModel", ^{
     });
     
     context(@"when created with proxyClass = nil", ^{
-        it(@"should be of IDPTestModel class", ^{
+        let(model, ^id{
             id model = [IDPTestModel alloc];
             [model stub:@selector(proxyClass) andReturn:nil];
-            model = [model init];
-            
+
+            return [model init];
+        });
+        
+        it(@"should be of IDPTestModel class", ^{
             [[model should] beMemberOfClass:[IDPTestModel class]];
         });
     });
