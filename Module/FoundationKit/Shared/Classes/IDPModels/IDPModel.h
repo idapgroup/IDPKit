@@ -13,7 +13,6 @@
 typedef void(^IDPModelBlock)(IDPModel *model);
 
 @interface IDPModel : IDPObservableObject
-@property (nonatomic, readonly) NSArray     *contexts;
 
 + (instancetype)model;
 + (instancetype)modelWithQueue:(NSOperationQueue *)queue;
@@ -21,7 +20,7 @@ typedef void(^IDPModelBlock)(IDPModel *model);
 - (instancetype)initWithQueue:(NSOperationQueue *)queue;
 - (instancetype)initWithQueue:(NSOperationQueue *)queue target:(id)target NS_DESIGNATED_INITIALIZER;
 
-- (void)executeOperation:(NSOperation *)oepration;
+- (void)executeOperation:(NSOperation *)operation;
 
 - (NSBlockOperation *)executeBlock:(IDPModelBlock)block;
 
