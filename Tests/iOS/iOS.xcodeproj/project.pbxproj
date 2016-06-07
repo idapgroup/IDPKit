@@ -39,7 +39,6 @@
 		D7469B761D01CE69000EED10 /* IDPMixinStack.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469ADC1D01CE68000EED10 /* IDPMixinStack.m */; };
 		D7469B781D01CE69000EED10 /* NSObject+IDPMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469AE01D01CE68000EED10 /* NSObject+IDPMixin.m */; };
 		D7469B791D01CE69000EED10 /* NSObject+IDPMixinPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469AE21D01CE68000EED10 /* NSObject+IDPMixinPrivate.m */; };
-		D7469B7A1D01CE69000EED10 /* IDPBackgroundContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469AE51D01CE68000EED10 /* IDPBackgroundContext.m */; };
 		D7469B7B1D01CE69000EED10 /* IDPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469AE71D01CE68000EED10 /* IDPModel.m */; };
 		D7469B7C1D01CE69000EED10 /* IDPMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469AEA1D01CE68000EED10 /* IDPMutableArray.m */; };
 		D7469B7D1D01CE69000EED10 /* IDPMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469AED1D01CE68000EED10 /* IDPMutableDictionary.m */; };
@@ -191,8 +190,6 @@
 		D7469AE01D01CE68000EED10 /* NSObject+IDPMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPMixin.m"; sourceTree = "<group>"; };
 		D7469AE11D01CE68000EED10 /* NSObject+IDPMixinPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPMixinPrivate.h"; sourceTree = "<group>"; };
 		D7469AE21D01CE68000EED10 /* NSObject+IDPMixinPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPMixinPrivate.m"; sourceTree = "<group>"; };
-		D7469AE41D01CE68000EED10 /* IDPBackgroundContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPBackgroundContext.h; sourceTree = "<group>"; };
-		D7469AE51D01CE68000EED10 /* IDPBackgroundContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBackgroundContext.m; sourceTree = "<group>"; };
 		D7469AE61D01CE68000EED10 /* IDPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModel.h; sourceTree = "<group>"; };
 		D7469AE71D01CE68000EED10 /* IDPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModel.m; sourceTree = "<group>"; };
 		D7469AE91D01CE68000EED10 /* IDPMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMutableArray.h; sourceTree = "<group>"; };
@@ -653,8 +650,6 @@
 			isa = PBXGroup;
 			children = (
 				D709C1521D02114800D7DC5E /* Private */,
-				D7469AE41D01CE68000EED10 /* IDPBackgroundContext.h */,
-				D7469AE51D01CE68000EED10 /* IDPBackgroundContext.m */,
 				D7469AE61D01CE68000EED10 /* IDPModel.h */,
 				D7469AE71D01CE68000EED10 /* IDPModel.m */,
 			);
@@ -1432,7 +1427,6 @@
 				D7469B811D01CE69000EED10 /* IDPProxy.m in Sources */,
 				D7469B791D01CE69000EED10 /* NSObject+IDPMixinPrivate.m in Sources */,
 				D7469B951D01CE69000EED10 /* NSBundle+IDPExtensions.m in Sources */,
-				D7469B7A1D01CE69000EED10 /* IDPBackgroundContext.m in Sources */,
 				D7469B7F1D01CE69000EED10 /* IDPObservableObject.m in Sources */,
 				D7469B731D01CE69000EED10 /* IDPKVOMutableArray.m in Sources */,
 				D7469B931D01CE69000EED10 /* CALayer+IDPExtensions.m in Sources */,
