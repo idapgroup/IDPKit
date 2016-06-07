@@ -8,6 +8,8 @@
 
 #import "IDPProxy.h"
 
+#import "IDPObjCRuntime.h"
+
 @interface IDPProxy ()
 @property (nonatomic, strong) id    target;
 
@@ -48,20 +50,17 @@
 #pragma mark Target Mimicking
 
 - (BOOL)isMemberOfClass:(Class)aClass {
-    return [self.target isMemberOfClass:aClass]
-            || [super isMemberOfClass:aClass];
+    return [super isMemberOfClass:aClass]
+            || IDPClassIsEqualToClass(IDPIsaOfObject(self), aClass);
 }
 
 - (BOOL)isKindOfClass:(Class)aClass {
-    return [self.target isKindOfClass:aClass]
-            || [super isKindOfClass:aClass];
+    return [super isKindOfClass:aClass]
+            || IDPClassIsKindOfClass(IDPIsaOfObject(self), aClass);
 }
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
-    BOOL result = [super respondsToSelector:aSelector];
-    result = result || [self.target respondsToSelector:aSelector];
-    
-    return result;
+    return [super respondsToSelector:aSelector] || [self.target respondsToSelector:aSelector];
 }
 
 - (BOOL)isProxy {
