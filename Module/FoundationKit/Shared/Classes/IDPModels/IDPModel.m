@@ -50,7 +50,9 @@
     self = [super initWithTarget:target];
     self.queue = queue ? queue : [self defaultQueue];
     
-    return [IDPModelProxy proxyWithTarget:self];
+    Class proxyClass = [self proxyClass];
+    
+    return proxyClass ? [proxyClass proxyWithTarget:self] : self;
 }
 
 - (instancetype)initWithTarget:(id<NSObject>)target {
@@ -69,6 +71,10 @@
 
 #pragma mark -
 #pragma mark Public
+
+- (Class)proxyClass {
+    return [IDPModelProxy class];
+}
 
 - (NSOperationQueue *)defaultQueue {
     NSOperationQueue *queue = [NSOperationQueue new];

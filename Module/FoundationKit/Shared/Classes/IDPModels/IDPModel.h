@@ -24,6 +24,11 @@ typedef void(^IDPModelBlock)(IDPModel *model);
 // should be used for subclassing purposes
 - (NSOperationQueue *)defaultQueue;
 
+// you shouldn't call this method directly
+// should be used for subclassing purposes
+// should be descendant of IDPProxy
+- (Class)proxyClass;
+
 - (void)executeOperation:(NSOperation *)operation;
 
 - (NSBlockOperation *)executeBlock:(IDPModelBlock)block;
