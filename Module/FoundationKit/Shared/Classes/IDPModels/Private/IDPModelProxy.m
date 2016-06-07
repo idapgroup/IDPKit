@@ -39,4 +39,15 @@
     [model executeOperation:operation];
 }
 
+#pragma mark -
+#pragma mark IDPModel Shortcut Methods
+
+- (void)executeOperation:(NSOperation *)operation {
+    [self.target executeOperation:operation];
+}
+
+- (NSBlockOperation *)executeBlock:(id)block {
+    return [self.target executeBlock:block];
+}
+
 @end

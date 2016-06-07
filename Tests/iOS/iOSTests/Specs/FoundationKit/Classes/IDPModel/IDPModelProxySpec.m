@@ -11,7 +11,43 @@
 #import "IDPTestModel.h"
 #import "IDPModelProxy.h"
 
+#import "IDPSelector.h"
+
+#import "IDPCompilerMacros.h"
+
 typedef id(^IDPMethodStubBlock)(NSArray *parameters);
+
+static NSString * const kIDPShortcutSelector                = @"kIDPShortcutSelector";
+static NSString * const kIDPModelProxy                      = @"kIDPModelProxy";
+static NSString * const kIDPShortcutSelectorSharedExample   = @"shortcut selector";
+
+SHARED_EXAMPLES_BEGIN(IDPModelProxyShortcutMethod)
+
+sharedExamplesFor(kIDPShortcutSelectorSharedExample, ^(NSDictionary *data) {
+    SEL selector = [(IDPSelector *)data[kIDPShortcutSelector] value];
+    IDPModelProxy *proxy = data[kIDPModelProxy];
+    IDPModel *model = proxy.target;
+    
+    it(@"should call targets shortcut method", ^{
+        id parameter = [NSObject new];
+        
+        [[model should] receive:selector andReturn:nil withArguments:parameter];
+        
+        IDPClangIgnorePerformSelectorWarning({
+            [proxy performSelector:selector withObject:parameter];
+        });
+    });
+    
+    it(@"shouldn't call the forwarding", ^{
+        [[proxy shouldNot] receive:@selector(forwardInvocation:)];
+
+        IDPClangIgnorePerformSelectorWarning({
+            [proxy performSelector:selector withObject:nil];
+        });
+    });
+});
+
+SHARED_EXAMPLES_END
 
 SPEC_BEGIN(IDPModelProxySpec)
 
@@ -61,6 +97,21 @@ describe(@"IDPModelProxy", ^{
             [proxy setObject:object];
             
             [[proxy.object should] equal:object];
+        });
+    });
+    
+    context(@"when sending shortcut method", ^{
+        model = [IDPTestModel new];
+        proxy = [IDPModelProxy proxyWithTarget:model];
+        
+        context(@"executeOperation:", ^{
+            itBehavesLike(kIDPShortcutSelectorSharedExample, @{ kIDPShortcutSelector : IDPSEL(executeOperation:),
+                                                                kIDPModelProxy : proxy});
+        });
+        
+        context(@"executeBlock:", ^{
+            itBehavesLike(kIDPShortcutSelectorSharedExample, @{ kIDPShortcutSelector : IDPSEL(executeBlock:),
+                                                                kIDPModelProxy : proxy});
         });
     });
 });

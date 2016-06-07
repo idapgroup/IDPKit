@@ -10,4 +10,8 @@
 
 @interface IDPModelProxy : IDPProxy
 
+- (void)executeOperation:(NSOperation *)operation;
+
+- (NSBlockOperation *)executeBlock:(id)block;
+
 @end
