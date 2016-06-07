@@ -70,7 +70,7 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@ proxy for target:\n%@",
-            self,
+            [super description],
             self.target];
 }
 

@@ -13,6 +13,6 @@
 
 + (id)proxyWithTarget:(id)target;
 
-- (id)initWithTarget:(id)target;
+- (id)initWithTarget:(id)target NS_DESIGNATED_INITIALIZER;
 
 @end
