@@ -14,3 +14,10 @@
     _Pragma(key);
 
 #define IDPClangDiagnosticPopExpression IDPClangDiagnosticPop
+
+#define IDPClangIgnorePerformSelectorWarning(code) \
+    do { \
+        IDPClangDiagnosticPushExpression("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+        code \
+        IDPClangDiagnosticPopExpression \
+    } while(0)
