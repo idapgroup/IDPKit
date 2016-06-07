@@ -8,8 +8,6 @@
 
 #import "NSObject+IDPRuntime.h"
 
-#import <objc/runtime.h>
-
 #import "IDPObjCRuntime.h"
 
 @implementation NSObject (IDPRuntime)
@@ -19,7 +17,7 @@
 }
 
 - (Class)isa {
-    return object_getClass(self);
+    return IDPIsaOfObject(self);
 }
 
 @end

@@ -37,3 +37,15 @@ NSSet *IDPClassSet();
 
 extern
 NSSet *IDPSubclassesOfClassSet(__assign Class cls);
+
+extern
+Class IDPIsaOfObject(id object);
+
+extern
+BOOL IDPClassIsEqualToClass(__assign Class cls, __assign Class subject);
+
+extern
+BOOL IDPClassIsSubclassOfClass(__assign Class cls, __assign Class parentClass);
+
+extern
+BOOL IDPClassIsKindOfClass(__assign Class cls, __assign Class parentClass);

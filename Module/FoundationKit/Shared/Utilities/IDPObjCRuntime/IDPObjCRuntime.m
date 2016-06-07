@@ -92,3 +92,26 @@ NSSet *IDPSubclassesOfClassSet(__assign Class class) {
     
     return (0 != [result count]) ? result : nil;
 }
+
+Class IDPIsaOfObject(id object) {
+    return object_getClass(object);
+}
+
+BOOL IDPClassIsEqualToClass(__assign Class class, __assign Class subject) {
+    return class == subject;
+}
+
+BOOL IDPClassIsSubclassOfClass(__assign Class class, __assign Class parentClass) {
+    return !IDPClassIsEqualToClass(class, parentClass) && IDPClassIsKindOfClass(class, parentClass);
+}
+
+BOOL IDPClassIsKindOfClass(__assign Class class, __assign Class parentClass) {
+    __block BOOL result = NO;
+    IDPEnumerateClassHierarchy(class, ^BOOL(__assign Class hierarchyClass) {
+        result = IDPClassIsEqualToClass(hierarchyClass, parentClass);
+        
+        return result;
+    });
+    
+    return result;
+}
