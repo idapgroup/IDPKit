@@ -67,6 +67,82 @@ describe(@"NSArray+IDPExtensions", ^{
             itBehavesLike(kIDPObjectArrayFactorySharedExample, @{ kIDPArrayClass : [NSMutableArray class] });
         });
     });
+    
+    context(@"-randomObject", ^{
+        context(@"when array is empty", ^{
+            it(@"should return nil", ^{
+                [[[[NSArray new] randomObject] should] beNil];
+            });
+        });
+        
+        context(@"when array has 1 object", ^{
+            it(@"should return object from array", ^{
+                id array = @[[NSObject new]];
+                id object = [array randomObject];
+                
+                [[array should] contain:object];
+            });
+        });
+        
+        context(@"when array has 2 objects", ^{
+            it(@"should return object from array", ^{
+                id array = @[[NSObject new], [NSObject new]];
+                id object = [array randomObject];
+                
+                [[array should] contain:object];
+            });
+        });
+    });
+    
+    context(@"-shuffledArray", ^{
+        context(@"when array is empty", ^{
+            it(@"should return new empty array", ^{
+                id array = [NSArray new];
+                id shuffledArray = [array shuffledArray];
+                
+                [[shuffledArray should] haveCountOf:[array count]];
+            });
+        });
+        
+        context(@"when array has 1 object", ^{
+            it(@"should return new array with same object", ^{
+                id array = @[[NSObject new]];
+                id shuffledArray = [array shuffledArray];
+                
+                [[shuffledArray should] haveCountOf:[array count]];
+                [[array[0] should] equal:shuffledArray[0]];
+            });
+        });
+        
+        context(@"when array has 3 objects", ^{
+            it(@"should return shuffled array", ^{
+                id array = @[[NSObject new], [NSObject new], [NSObject new], [NSObject new]];
+                NSUInteger count = [array count];
+                
+                id shuffledArray = [array shuffledArray];
+                
+                [[shuffledArray should] haveCountOf:count];
+                [[array shouldNot] equal:shuffledArray];
+                
+                NSUInteger sameObjectsCount = 0;
+                NSUInteger shuffleObjectsCount = 0;
+                for (NSUInteger i = 0; i < [array count]; i++) {
+                    id object = array[i];
+                    NSUInteger shuffleIndex = [shuffledArray indexOfObject:object];
+                    if (shuffleIndex != NSNotFound) {
+                        sameObjectsCount += 1;
+                    }
+                    
+                    if (i != shuffleIndex) {
+                        shuffleObjectsCount += 1;
+                    }
+                }
+                
+                [[shuffledArray should] haveCountOf:sameObjectsCount];
+                [[theValue(shuffleObjectsCount) should] beGreaterThan:theValue(0)];
+            });
+        });
+    });
 });
 
 SPEC_END
