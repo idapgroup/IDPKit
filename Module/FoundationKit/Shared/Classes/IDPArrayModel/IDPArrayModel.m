@@ -90,7 +90,7 @@
 }
 
 - (id)objectAtIndex:(NSUInteger)index {
-    IDPReturnValueIfNil(index >= self.count, nil);
+    IDPReturnValueIfNil(index < self.count, nil);
     
     return self.mutableObjects[index];
 }
@@ -99,7 +99,7 @@
     NSUInteger count = self.count;
     NSMutableArray *objects = self.mutableObjects;
     
-    IDPReturnIfNil(object || index > count);
+    IDPReturnIfNil(object && index <= count);
     
     if (index == count) {
         [objects addObject:object];
@@ -109,13 +109,13 @@
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
-    IDPReturnIfNil(index >= self.count);
+    IDPReturnIfNil(index < self.count);
     
     [self.mutableObjects removeObjectAtIndex:index];
 }
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)object {
-    IDPReturnIfNil(object || index >= self.count);
+    IDPReturnIfNil(object && index < self.count);
     
     [self.mutableObjects replaceObjectAtIndex:index withObject:object];
 }
@@ -123,7 +123,7 @@
 - (void)moveObjectAtIndex:(NSUInteger)index toIndex:(NSUInteger)toIndex {
     NSUInteger count = self.count;
     
-    IDPReturnIfNil(toIndex >= count || index >= count);
+    IDPReturnIfNil(toIndex < count && index < count);
     
     [self.mutableObjects moveObjectAtIndex:index toIndex:toIndex];
 }
@@ -133,20 +133,20 @@
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
-    IDPReturnValueIfNil(index >= self.count, nil);
-    
-    return self.mutableObjects[index];
+    return [self objectAtIndex:index];
 }
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
     NSUInteger count = self.count;
     
-    IDPReturnIfNil(object || index > count);
+    IDPReturnIfNil(index <= count);
     
     if (index == count) {
         [self addObject:object];
+    } else if (object) {
+        [self replaceObjectAtIndex:index withObject:object];
     } else {
-        self.mutableObjects[index] = object;
+        [self removeObjectAtIndex:index];
     }
 }
 
