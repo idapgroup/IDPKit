@@ -28,13 +28,13 @@ describe(@"IDPModel", ^{
             [[[model target] should] beMemberOfClass:[IDPTestModel class]];
         });
         
-        context(@"proxyClass", ^{
+        context(@"-proxyClass", ^{
             it(@"should return IDPModelProxy", ^{
                 [[theValue(IDPClassIsEqualToClass([target proxyClass], [IDPModelProxy class])) should] beTrue];
             });
         });
         
-        context(@"defaultQueue", ^{
+        context(@"-defaultQueue", ^{
             let(queue, ^id{
                 return [target defaultQueue];
             });
@@ -48,8 +48,7 @@ describe(@"IDPModel", ^{
             });
         });
         
-        context(@"executeOperation:", ^{
-            
+        context(@"-executeOperation:", ^{
             it(@"should start the operation in background thread", ^{
                 __block NSThread *currentThread = nil;
                 
@@ -65,26 +64,31 @@ describe(@"IDPModel", ^{
             });
         });
         
-        context(@"executeBlock:", ^{
+        context(@"block execution method", ^{
             id block = ^(IDPModel *model) { };
-
-            it(@"should call targets executeBlock:", ^{
-                [[target should] receive:@selector(executeBlock:)];
+            
+            context(@"-executeBlock:", ^{
+                it(@"should return NSBlockOperation", ^{
+                    id operation = [model executeBlock:block];
+                    
+                    [[operation should] beKindOfClass:[NSBlockOperation class]];
+                });
                 
-                [model executeBlock:block];
+                it(@"should evaluate block with target parameter", ^{
+                    id callback = theBlockProxy(block);
+                    [[callback shouldEventually] beEvaluatedWithArguments:target];
+                    
+                    [model executeBlock:callback];
+                });
             });
             
-            it(@"should return NSBlockOperation", ^{
-                id operation = [model executeBlock:block];
-                
-                [[operation should] beKindOfClass:[NSBlockOperation class]];
-            });
-            
-            it(@"should evaluate block with target parameter", ^{
-                id callback = theBlockProxy(block);
-                [[callback shouldEventually] beEvaluatedWithArguments:target];
-                
-                [model executeBlock:callback];
+            context(@"-executeSyncBlock:", ^{
+                it(@"should evaluate block with target parameter", ^{
+                    id callback = theBlockProxy(block);
+                    [[callback should] beEvaluatedWithArguments:target];
+                    
+                    [model executeSyncBlock:callback];
+                });
             });
         });
     });

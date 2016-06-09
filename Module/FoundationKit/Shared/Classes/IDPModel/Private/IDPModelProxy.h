@@ -17,6 +17,6 @@
 
 - (NSBlockOperation *)executeBlock:(id)block;
 
-- (NSBlockOperation *)executeSyncBlock:(id)block;
+- (void)executeSyncBlock:(id)block;
 
 @end

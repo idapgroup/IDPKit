@@ -57,8 +57,8 @@
     return [self.target executeBlock:block];
 }
 
-- (NSBlockOperation *)executeSyncBlock:(id)block {
-    return [self.target executeSyncBlock:block];
+- (void)executeSyncBlock:(id)block {
+    [self.target executeSyncBlock:block];
 }
 
 @end

@@ -100,8 +100,8 @@
     return [self executeBlock:block waitUntilDone:NO];
 }
 
-- (NSBlockOperation *)executeSyncBlock:(IDPModelBlock)block {
-    return [self executeBlock:block waitUntilDone:YES];
+- (void)executeSyncBlock:(IDPModelBlock)block {
+    [self executeBlock:block waitUntilDone:YES];
 }
 
 #pragma mark -

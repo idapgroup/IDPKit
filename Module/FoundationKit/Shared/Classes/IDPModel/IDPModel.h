@@ -32,6 +32,6 @@ typedef void(^IDPModelBlock)(id model);
 - (void)executeOperation:(NSOperation *)operation;
 
 - (NSBlockOperation *)executeBlock:(IDPModelBlock)block;
-- (NSBlockOperation *)executeSyncBlock:(IDPModelBlock)block;
+- (void)executeSyncBlock:(IDPModelBlock)block;
 
 @end
