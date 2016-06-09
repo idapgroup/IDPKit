@@ -24,6 +24,6 @@
  This method shuffle array.
  @return a new shuffled array.
  */
-- (NSArray *)shuffledArray;
+- (instancetype)shuffledArray;
 
 @end

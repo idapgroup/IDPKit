@@ -44,7 +44,7 @@
     return self[IDPRandomNumber(count)];
 }
 
-- (NSArray *)shuffledArray {
+- (instancetype)shuffledArray {
     NSUInteger count = [self count];
     
     NSMutableArray *array = [NSMutableArray arrayWithArray:self];
@@ -57,7 +57,7 @@
         count--;
     }
     
-    return shuffle;
+    return [[self class] arrayWithArray:shuffle];
 }
 
 @end
