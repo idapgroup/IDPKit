@@ -71,6 +71,12 @@ describe(@"IDPModel", ^{
         
         context(@"executeBlock:", ^{
             id block = ^(IDPModel *model) { };
+
+            it(@"should call targets executeBlock:", ^{
+                [[target should] receive:@selector(executeBlock:)];
+                
+                [model executeBlock:block];
+            });
             
             it(@"should return NSBlockOperation", ^{
                 id operation = [model executeBlock:block];
@@ -83,12 +89,6 @@ describe(@"IDPModel", ^{
                 [[callback shouldEventually] beEvaluatedWithArguments:target];
                 
                 [model executeBlock:callback];
-            });
-            
-            it(@"should call targets executeBlock:", ^{
-                [[target should] receive:@selector(executeBlock:)];
-                
-                [model executeBlock:block];
             });
             
             it(@"should execute block operation using executeOperation:", ^{
