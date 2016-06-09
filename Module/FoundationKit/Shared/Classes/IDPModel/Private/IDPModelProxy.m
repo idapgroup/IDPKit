@@ -17,6 +17,13 @@
 @implementation IDPModelProxy
 
 #pragma mark -
+#pragma mark Public
+
+- (instancetype)unsafeSelf {
+    return self.target;
+}
+
+#pragma mark -
 #pragma mark Message Forwarding
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
@@ -48,6 +55,10 @@
 
 - (NSBlockOperation *)executeBlock:(id)block {
     return [self.target executeBlock:block];
+}
+
+- (NSBlockOperation *)executeSyncBlock:(id)block {
+    return [self.target executeSyncBlock:block];
 }
 
 @end
