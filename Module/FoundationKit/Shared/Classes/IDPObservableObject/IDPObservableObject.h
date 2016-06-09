@@ -15,15 +15,15 @@
 
 // Target is the object, that notifies. It's weakly stored
 // Returns self by default.
-@property (nonatomic, weak, readonly) id<NSObject>  target;
+@property (nonatomic, weak, readonly) id  target;
 
 @property (atomic, assign)  IDPObjectState	state;
 - (void)setState:(IDPObjectState)state object:(id)object;
 
 
-+ (instancetype)objectWithTarget:(id<NSObject>)target;
++ (instancetype)objectWithTarget:(id)target;
 
-- (instancetype)initWithTarget:(id<NSObject>)target NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithTarget:(id)target NS_DESIGNATED_INITIALIZER;
 
 - (IDPObserver *)observer;
 
