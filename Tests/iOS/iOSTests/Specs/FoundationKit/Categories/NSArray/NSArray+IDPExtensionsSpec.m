@@ -76,9 +76,9 @@ sharedExamplesFor(kIDPShuffledArraySharedExample, ^(NSDictionary *data) {
         });
     });
     
-    context(@"when array has 3 objects", ^{
+    context(@"when array has 100 objects", ^{
         let(array, ^id{
-            return [class arrayWithArray:@[[NSObject new], [NSObject new], [NSObject new], [NSObject new]]];
+            return [class arrayWithCount:100 factoryBlock:^{ return [NSObject new]; }];
         });
         
         it([NSString stringWithFormat:@"should be %@", NSStringFromClass(class)], ^{
