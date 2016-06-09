@@ -10,9 +10,6 @@
 
 @interface IDPModelProxy : IDPProxy
 
-// returns target
-- (instancetype)unsafeSelf;
-
 - (void)executeOperation:(NSOperation *)operation;
 
 - (NSBlockOperation *)executeBlock:(id)block;

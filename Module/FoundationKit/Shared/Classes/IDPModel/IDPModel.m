@@ -80,10 +80,6 @@
     return [IDPModelProxy class];
 }
 
-- (instancetype)unsafeSelf {
-    return self;
-}
-
 - (NSOperationQueue *)defaultQueue {
     NSOperationQueue *queue = [NSOperationQueue new];
     queue.maxConcurrentOperationCount = 1;
