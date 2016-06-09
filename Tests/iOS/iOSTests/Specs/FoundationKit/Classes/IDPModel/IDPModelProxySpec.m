@@ -19,6 +19,7 @@ typedef id(^IDPMethodStubBlock)(NSArray *parameters);
 
 static NSString * const kIDPShortcutSelector                = @"kIDPShortcutSelector";
 static NSString * const kIDPModelProxy                      = @"kIDPModelProxy";
+static NSString * const kIDPParameter                       = @"kIDPParameter";
 static NSString * const kIDPShortcutSelectorSharedExample   = @"shortcut selector";
 
 SHARED_EXAMPLES_BEGIN(IDPModelProxyShortcutMethod)
@@ -27,10 +28,9 @@ sharedExamplesFor(kIDPShortcutSelectorSharedExample, ^(NSDictionary *data) {
     SEL selector = [(IDPSelector *)data[kIDPShortcutSelector] value];
     IDPModelProxy *proxy = data[kIDPModelProxy];
     IDPModel *model = proxy.target;
+    id parameter = data[kIDPParameter];
     
     it(@"should call targets shortcut method", ^{
-        id parameter = [NSObject new];
-        
         [[model should] receive:selector andReturn:nil withArguments:parameter];
         
         IDPClangIgnorePerformSelectorWarning({
@@ -42,7 +42,7 @@ sharedExamplesFor(kIDPShortcutSelectorSharedExample, ^(NSDictionary *data) {
         [[proxy shouldNot] receive:@selector(forwardInvocation:)];
 
         IDPClangIgnorePerformSelectorWarning({
-            [proxy performSelector:selector withObject:nil];
+            [proxy performSelector:selector withObject:parameter];
         });
     });
 });
@@ -96,22 +96,31 @@ describe(@"IDPModelProxy", ^{
             
             [proxy setObject:object];
             
-            [[proxy.object should] equal:object];
+            [[proxy.object shouldEventually] equal:object];
         });
     });
     
     context(@"when sending shortcut method", ^{
-        model = [IDPTestModel new];
+        model = [IDPTestModel nullMock];
         proxy = [IDPModelProxy proxyWithTarget:model];
+        id block = ^(id object) {};
         
-        context(@"executeOperation:", ^{
+        context(@"-executeOperation:", ^{
             itBehavesLike(kIDPShortcutSelectorSharedExample, @{ kIDPShortcutSelector : IDPSEL(executeOperation:),
-                                                                kIDPModelProxy : proxy});
+                                                                kIDPModelProxy : proxy,
+                                                                kIDPParameter : [NSOperation new] });
         });
         
-        context(@"executeBlock:", ^{
+        context(@"-executeBlock:", ^{
             itBehavesLike(kIDPShortcutSelectorSharedExample, @{ kIDPShortcutSelector : IDPSEL(executeBlock:),
-                                                                kIDPModelProxy : proxy});
+                                                                kIDPModelProxy : proxy,
+                                                                kIDPParameter : block });
+        });
+        
+        context(@"-executeSyncBlock:", ^{
+            itBehavesLike(kIDPShortcutSelectorSharedExample, @{ kIDPShortcutSelector : IDPSEL(executeSyncBlock:),
+                                                                kIDPModelProxy : proxy,
+                                                                kIDPParameter : block });
         });
     });
 });
