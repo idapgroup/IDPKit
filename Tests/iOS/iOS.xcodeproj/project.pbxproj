@@ -12,6 +12,7 @@
 		D7005BC11D06D8B400563609 /* IDPSelectorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7005BC01D06D8B400563609 /* IDPSelectorSpec.m */; };
 		D700CCE61D0969E800275205 /* IDPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D700CCE21D0969E800275205 /* IDPModel.m */; };
 		D700CCE71D0969E800275205 /* IDPModelProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D700CCE51D0969E800275205 /* IDPModelProxy.m */; };
+		D700CCFB1D097CD900275205 /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D700CCFA1D097CD900275205 /* NSObject+IDPExtensions.m */; };
 		D700CD001D0980F700275205 /* NSArray+IDPExtensionsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D700CCFF1D0980F700275205 /* NSArray+IDPExtensionsSpec.m */; };
 		D709C1581D02120000D7DC5E /* IDPModelProxySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D709C1571D02120000D7DC5E /* IDPModelProxySpec.m */; };
 		D709C15B1D02165700D7DC5E /* IDPTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D709C15A1D02165700D7DC5E /* IDPTestModel.m */; };
@@ -136,6 +137,8 @@
 		D700CCE21D0969E800275205 /* IDPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModel.m; sourceTree = "<group>"; };
 		D700CCE41D0969E800275205 /* IDPModelProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelProxy.h; sourceTree = "<group>"; };
 		D700CCE51D0969E800275205 /* IDPModelProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelProxy.m; sourceTree = "<group>"; };
+		D700CCF91D097CD900275205 /* NSObject+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPExtensions.h"; sourceTree = "<group>"; };
+		D700CCFA1D097CD900275205 /* NSObject+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPExtensions.m"; sourceTree = "<group>"; };
 		D700CCFF1D0980F700275205 /* NSArray+IDPExtensionsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPExtensionsSpec.m"; sourceTree = "<group>"; };
 		D709C1571D02120000D7DC5E /* IDPModelProxySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelProxySpec.m; sourceTree = "<group>"; };
 		D709C1591D02165700D7DC5E /* IDPTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPTestModel.h; sourceTree = "<group>"; };
@@ -400,6 +403,15 @@
 			path = NSArray;
 			sourceTree = "<group>";
 		};
+		D700CCF81D097CB100275205 /* IDPExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				D700CCF91D097CD900275205 /* NSObject+IDPExtensions.h */,
+				D700CCFA1D097CD900275205 /* NSObject+IDPExtensions.m */,
+			);
+			path = IDPExtensions;
+			sourceTree = "<group>";
+		};
 		D709C1561D0211A500D7DC5E /* IDPModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +557,7 @@
 		D7469AB41D01CE68000EED10 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
+				D700CCF81D097CB100275205 /* IDPExtensions */,
 				D7469AB51D01CE68000EED10 /* IDPKVO */,
 				D7469AC11D01CE68000EED10 /* IDPRuntime */,
 			);
@@ -1426,6 +1439,7 @@
 				D700CCE71D0969E800275205 /* IDPModelProxy.m in Sources */,
 				D7469B971D01CE69000EED10 /* UIColor+IDPExtensions.m in Sources */,
 				D7469B751D01CE69000EED10 /* IDPMixinIMP.m in Sources */,
+				D700CCFB1D097CD900275205 /* NSObject+IDPExtensions.m in Sources */,
 				D7469B651D01CE69000EED10 /* NSDate+IDPExtensions.m in Sources */,
 				D7469B6E1D01CE69000EED10 /* NSPathUtilities+IDPExtensions.m in Sources */,
 				D7469B801D01CE69000EED10 /* IDPObserver.m in Sources */,
