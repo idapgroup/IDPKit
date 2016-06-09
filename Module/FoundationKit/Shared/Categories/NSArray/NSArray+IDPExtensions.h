@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "IDPBlockTypes.h"
+
 @interface NSArray (IDPExtensions)
+
++ (instancetype)arrayWithCount:(NSUInteger)count factoryBlock:(IDPFactoryBlock)factoryBlock;
 
 /**
  This method returns a random object from this array.

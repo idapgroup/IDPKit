@@ -9,12 +9,30 @@
 #import "NSArray+IDPExtensions.h"
 
 #import "IDPMath.h"
+#import "IDPReturnMacros.h"
 
 @interface NSArray (IDPPrivateExtensions)
 
 @end
 
 @implementation NSArray (IDPExtensions)
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)arrayWithCount:(NSUInteger)count factoryBlock:(IDPFactoryBlock)factoryBlock {
+    IDPReturnNilIfNil(factoryBlock);
+    
+    NSMutableArray *array = [NSMutableArray new];
+    for (NSUInteger i = 0; i < count; i++) {
+        [array addObject:factoryBlock()];
+    }
+    
+    return [[self class] arrayWithArray:array];
+}
+
+#pragma mark -
+#pragma mark Public
 
 - (id)randomObject {
     NSUInteger count = [self count];
