@@ -16,6 +16,10 @@
 @interface IDPModel ()
 @property (nonatomic, strong)   NSOperationQueue    *queue;
 
+- (NSBlockOperation *)operationWithBlock:(IDPModelBlock)block;
+- (NSBlockOperation *)executeBlock:(IDPModelBlock)block waitUntilDone:(BOOL)waitUntilDone;
+- (void)executeOperation:(NSOperation *)operation waitUntilDone:(BOOL)waitUntilDone;
+
 @end
 
 @implementation IDPModel
@@ -76,6 +80,10 @@
     return [IDPModelProxy class];
 }
 
+- (instancetype)unsafeSelf {
+    return self;
+}
+
 - (NSOperationQueue *)defaultQueue {
     NSOperationQueue *queue = [NSOperationQueue new];
     queue.maxConcurrentOperationCount = 1;
@@ -85,21 +93,43 @@
 }
 
 - (void)executeOperation:(NSOperation *)operation {
-    [self.queue addOperation:operation];
+    [self executeOperation:operation waitUntilDone:NO];
 }
 
 - (NSBlockOperation *)executeBlock:(IDPModelBlock)block {
-    IDPReturnNilIfNil(block);
+    return [self executeBlock:block waitUntilDone:NO];
+}
 
+- (NSBlockOperation *)executeSyncBlock:(IDPModelBlock)block {
+    return [self executeBlock:block waitUntilDone:YES];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)executeOperation:(NSOperation *)operation waitUntilDone:(BOOL)waitUntilDone {
+    IDPReturnIfNil(operation);
+    
+    [self.queue addOperations:@[operation] waitUntilFinished:waitUntilDone];
+}
+
+- (NSBlockOperation *)executeBlock:(IDPModelBlock)block waitUntilDone:(BOOL)waitUntilDone {
+    NSBlockOperation *operation = [self operationWithBlock:block];
+    [self executeOperation:operation waitUntilDone:waitUntilDone];
+    
+    return operation;
+}
+
+- (NSBlockOperation *)operationWithBlock:(IDPModelBlock)block {
+    IDPReturnNilIfNil(block);
+    
     IDPWeakify(self);
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         IDPStrongify(self);
         
         block(self);
     }];
-    
-    [self executeOperation:operation];
-    
+
     return operation;
 }
 

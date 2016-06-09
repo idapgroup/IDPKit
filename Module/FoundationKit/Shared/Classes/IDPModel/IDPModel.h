@@ -10,7 +10,7 @@
 
 @class IDPModel;
 
-typedef void(^IDPModelBlock)(IDPModel *model);
+typedef void(^IDPModelBlock)(id model);
 
 @interface IDPModel : IDPObservableObject
 
@@ -32,5 +32,6 @@ typedef void(^IDPModelBlock)(IDPModel *model);
 - (void)executeOperation:(NSOperation *)operation;
 
 - (NSBlockOperation *)executeBlock:(IDPModelBlock)block;
+- (NSBlockOperation *)executeSyncBlock:(IDPModelBlock)block;
 
 @end
