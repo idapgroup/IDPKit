@@ -14,7 +14,8 @@
 
 static NSString * const kIDPArrayClass    = @"kIDPArrayClass";
 
-static NSString * const kIDPObjectArrayFactorySharedExample   = @"kIDPObjectArrayFactorySharedExample";
+static NSString * const kIDPObjectArrayFactorySharedExample     = @"kIDPObjectArrayFactorySharedExample";
+static NSString * const kIDPShuffledArraySharedExample          = @"kIDPShuffledArraySharedExample";
 
 SHARED_EXAMPLES_BEGIN(IDPObjectArrayFactorySharedExample)
 
@@ -52,6 +53,67 @@ sharedExamplesFor(kIDPObjectArrayFactorySharedExample, ^(NSDictionary *data) {
         }
     });
 });
+
+sharedExamplesFor(kIDPShuffledArraySharedExample, ^(NSDictionary *data) {
+    Class class = data[kIDPArrayClass];
+    
+    context(@"when array is empty", ^{
+        it(@"should return new empty array", ^{
+            id array = [class new];
+            id shuffledArray = [array shuffledArray];
+            
+            [[shuffledArray should] haveCountOf:[array count]];
+        });
+    });
+    
+    context(@"when array has 1 object", ^{
+        it(@"should return new array with same object", ^{
+            id array = [class arrayWithArray:@[[NSObject new]]];
+            id shuffledArray = [array shuffledArray];
+            
+            [[shuffledArray should] haveCountOf:[array count]];
+            [[array[0] should] equal:shuffledArray[0]];
+        });
+    });
+    
+    context(@"when array has 3 objects", ^{
+        let(array, ^id{
+            return [class arrayWithArray:@[[NSObject new], [NSObject new], [NSObject new], [NSObject new]]];
+        });
+        
+        it([NSString stringWithFormat:@"should be %@", NSStringFromClass(class)], ^{
+            [[array should] beKindOfClass:class];
+        });
+        
+        it(@"should return shuffled array", ^{
+            NSUInteger count = [array count];
+            
+            id shuffledArray = [array shuffledArray];
+            
+            [[shuffledArray should] haveCountOf:count];
+            [[array shouldNot] equal:shuffledArray];
+            
+            NSUInteger sameObjectsCount = 0;
+            NSUInteger shuffleObjectsCount = 0;
+            for (NSUInteger i = 0; i < [array count]; i++) {
+                id object = array[i];
+                NSUInteger shuffleIndex = [shuffledArray indexOfObject:object];
+                if (shuffleIndex != NSNotFound) {
+                    sameObjectsCount += 1;
+                }
+                
+                if (i != shuffleIndex) {
+                    shuffleObjectsCount += 1;
+                }
+            }
+            
+            [[shuffledArray should] haveCountOf:sameObjectsCount];
+            [[theValue(shuffleObjectsCount) should] beGreaterThan:theValue(0)];
+        });
+    });
+
+});
+
 
 SHARED_EXAMPLES_END
 
@@ -95,52 +157,12 @@ describe(@"NSArray+IDPExtensions", ^{
     });
     
     context(@"-shuffledArray", ^{
-        context(@"when array is empty", ^{
-            it(@"should return new empty array", ^{
-                id array = [NSArray new];
-                id shuffledArray = [array shuffledArray];
-                
-                [[shuffledArray should] haveCountOf:[array count]];
-            });
+        context(@"NSArray", ^{
+            itBehavesLike(kIDPShuffledArraySharedExample, @{ kIDPArrayClass : [NSArray class] });
         });
         
-        context(@"when array has 1 object", ^{
-            it(@"should return new array with same object", ^{
-                id array = @[[NSObject new]];
-                id shuffledArray = [array shuffledArray];
-                
-                [[shuffledArray should] haveCountOf:[array count]];
-                [[array[0] should] equal:shuffledArray[0]];
-            });
-        });
-        
-        context(@"when array has 3 objects", ^{
-            it(@"should return shuffled array", ^{
-                id array = @[[NSObject new], [NSObject new], [NSObject new], [NSObject new]];
-                NSUInteger count = [array count];
-                
-                id shuffledArray = [array shuffledArray];
-                
-                [[shuffledArray should] haveCountOf:count];
-                [[array shouldNot] equal:shuffledArray];
-                
-                NSUInteger sameObjectsCount = 0;
-                NSUInteger shuffleObjectsCount = 0;
-                for (NSUInteger i = 0; i < [array count]; i++) {
-                    id object = array[i];
-                    NSUInteger shuffleIndex = [shuffledArray indexOfObject:object];
-                    if (shuffleIndex != NSNotFound) {
-                        sameObjectsCount += 1;
-                    }
-                    
-                    if (i != shuffleIndex) {
-                        shuffleObjectsCount += 1;
-                    }
-                }
-                
-                [[shuffledArray should] haveCountOf:sameObjectsCount];
-                [[theValue(shuffleObjectsCount) should] beGreaterThan:theValue(0)];
-            });
+        context(@"NSMutableArray", ^{
+            itBehavesLike(kIDPShuffledArraySharedExample, @{ kIDPArrayClass : [NSMutableArray class] });
         });
     });
 });
