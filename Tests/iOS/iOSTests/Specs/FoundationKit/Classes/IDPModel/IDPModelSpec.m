@@ -17,8 +17,8 @@ SPEC_BEGIN(IDPModelSpec)
 
 describe(@"IDPModel", ^{
     context(@"when created with proxyClass = IDPModelProxy", ^{
-        let(model, ^id{ return [IDPTestModel new]; });
-        let(target, ^id{ return [model target]; });
+        let(model, ^{ return [IDPTestModel new]; });
+        let(target, ^{ return [model target]; });
         
         it(@"should be wrapped in IDPModelProxy", ^{
             [[model should] beMemberOfClass:[IDPModelProxy class]];
@@ -49,11 +49,6 @@ describe(@"IDPModel", ^{
         });
         
         context(@"executeOperation:", ^{
-            it(@"should call targets executeOperation:", ^{
-                [[target should] receive:@selector(executeOperation:)];
-                
-                [model executeOperation:[NSBlockOperation blockOperationWithBlock:^{ }]];
-            });
             
             it(@"should start the operation in background thread", ^{
                 __block NSThread *currentThread = nil;
@@ -64,6 +59,7 @@ describe(@"IDPModel", ^{
                 
                 [[operation shouldEventually] receive:@selector(start)];
                 [[currentThread shouldNotEventually] equal:[NSThread currentThread]];
+                [[currentThread shouldNotEventually] equal:[NSThread mainThread]];
                 
                 [model executeOperation:operation];
             });
@@ -89,12 +85,6 @@ describe(@"IDPModel", ^{
                 [[callback shouldEventually] beEvaluatedWithArguments:target];
                 
                 [model executeBlock:callback];
-            });
-            
-            it(@"should execute block operation using executeOperation:", ^{
-                [[target should] receive:@selector(executeOperation:)];
-                
-                [model executeBlock:block];
             });
         });
     });
