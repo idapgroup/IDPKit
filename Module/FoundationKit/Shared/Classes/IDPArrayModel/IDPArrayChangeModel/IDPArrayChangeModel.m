@@ -8,6 +8,8 @@
 
 #import "IDPArrayChangeModel.h"
 
+#import "IDPReturnMacros.h"
+
 @interface IDPArrayChangeModel ()
 @property (nonatomic, weak) id  array;
 
@@ -34,6 +36,24 @@
     self.array = array;
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (NSUInteger)hash {
+    return (NSUInteger)self.array;
+}
+
+- (BOOL)isEqual:(IDPArrayChangeModel *)object {
+    IDPReturnValueIfNil(object || [self isMemberOfClass:[object class]], NO);
+    IDPReturnValueIfNil(object != self, YES);
+    
+    return [self isEqualToChangeModel:object];
+}
+
+- (BOOL)isEqualToChangeModel:(IDPArrayChangeModel *)changeModel {
+    return self.array == changeModel.array;
 }
 
 @end

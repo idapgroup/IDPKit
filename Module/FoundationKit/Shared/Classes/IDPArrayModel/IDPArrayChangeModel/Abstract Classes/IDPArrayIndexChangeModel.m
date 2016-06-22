@@ -8,6 +8,8 @@
 
 #import "IDPArrayIndexChangeModel.h"
 
+#import "IDPComparison.h"
+
 @interface IDPArrayIndexChangeModel ()
 @property (nonatomic, assign)   NSUInteger  index;
 
@@ -34,6 +36,17 @@
     self.index = index;
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (NSUInteger)hash {
+    return [super hash] ^ NSUIntegerBitRotate(self.index, 1);
+}
+
+- (BOOL)isEqualToChangeModel:(IDPArrayIndexChangeModel *)changeModel {
+    return [super isEqualToChangeModel:changeModel] && self.index == changeModel.index;
 }
 
 @end

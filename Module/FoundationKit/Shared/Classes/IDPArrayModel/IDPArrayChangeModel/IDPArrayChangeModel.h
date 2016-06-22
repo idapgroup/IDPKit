@@ -15,4 +15,6 @@
 
 - (instancetype)initWithArray:(id)array NS_DESIGNATED_INITIALIZER;
 
+- (BOOL)isEqualToChangeModel:(IDPArrayChangeModel *)changeModel;
+
 @end

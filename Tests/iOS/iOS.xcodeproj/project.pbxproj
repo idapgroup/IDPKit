@@ -444,10 +444,11 @@
 		D700CCEB1D096DA300275205 /* IDPArrayModel */ = {
 			isa = PBXGroup;
 			children = (
+				D7CC06E21D1AA02800D67423 /* IDPArrayChangeModel */,
 				D700CCEC1D096DA300275205 /* IDPArrayModel.h */,
 				D700CCED1D096DA300275205 /* IDPArrayModel.m */,
-				D7CC06E21D1AA02800D67423 /* IDPArrayChangeModel */,
 				D7CC070A1D1AAC8C00D67423 /* IDPArrayModelState.h */,
+				D7CC070B1D1AAC8C00D67423 /* IDPArrayModelState.m */,
 			);
 			path = IDPArrayModel;
 			sourceTree = "<group>";
