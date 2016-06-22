@@ -128,6 +128,7 @@
 		D7CC07061D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC07051D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m */; };
 		D7CC070C1D1AAC8C00D67423 /* IDPArrayModelState.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC070B1D1AAC8C00D67423 /* IDPArrayModelState.m */; };
 		D7CC07171D1AB63D00D67423 /* NSIndexPath+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC07161D1AB63D00D67423 /* NSIndexPath+IDPExtensions.m */; };
+		D7CC071B1D1AC0D500D67423 /* IDPComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC071A1D1AC0D500D67423 /* IDPComparison.m */; };
 		D7FEF9131D071D7A0036D3AA /* IDPModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FEF9121D071D7A0036D3AA /* IDPModelSpec.m */; };
 /* End PBXBuildFile section */
 
@@ -362,6 +363,8 @@
 		D7CC070B1D1AAC8C00D67423 /* IDPArrayModelState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayModelState.m; sourceTree = "<group>"; };
 		D7CC07151D1AB63D00D67423 /* NSIndexPath+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+IDPExtensions.h"; sourceTree = "<group>"; };
 		D7CC07161D1AB63D00D67423 /* NSIndexPath+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+IDPExtensions.m"; sourceTree = "<group>"; };
+		D7CC07191D1AC0D500D67423 /* IDPComparison.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPComparison.h; sourceTree = "<group>"; };
+		D7CC071A1D1AC0D500D67423 /* IDPComparison.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPComparison.m; sourceTree = "<group>"; };
 		D7FEF9121D071D7A0036D3AA /* IDPModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -839,6 +842,7 @@
 		D7469B0E1D01CE68000EED10 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D7CC07181D1AC0BE00D67423 /* IDPComparison */,
 				D7469B0F1D01CE68000EED10 /* IDPMachTimer */,
 				D7469B121D01CE68000EED10 /* IDPMacros */,
 				D7469B201D01CE68000EED10 /* IDPMath */,
@@ -1382,6 +1386,15 @@
 			path = NSIndexPath;
 			sourceTree = "<group>";
 		};
+		D7CC07181D1AC0BE00D67423 /* IDPComparison */ = {
+			isa = PBXGroup;
+			children = (
+				D7CC07191D1AC0D500D67423 /* IDPComparison.h */,
+				D7CC071A1D1AC0D500D67423 /* IDPComparison.m */,
+			);
+			path = IDPComparison;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1568,6 +1581,7 @@
 				D7469B6E1D01CE69000EED10 /* NSPathUtilities+IDPExtensions.m in Sources */,
 				D7469B801D01CE69000EED10 /* IDPObserver.m in Sources */,
 				D7469B781D01CE69000EED10 /* NSObject+IDPMixin.m in Sources */,
+				D7CC071B1D1AC0D500D67423 /* IDPComparison.m in Sources */,
 				D7469B871D01CE69000EED10 /* IDPRetainingDictionary.m in Sources */,
 				D7469B841D01CE69000EED10 /* IDPStrongReference.m in Sources */,
 				D7CC07031D1AA38300D67423 /* IDPArrayMoveChangeModel.m in Sources */,
