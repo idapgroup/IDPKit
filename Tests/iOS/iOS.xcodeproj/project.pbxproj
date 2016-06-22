@@ -117,6 +117,15 @@
 		D7A6B2701A60867900159A8C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B26F1A60867900159A8C /* SystemConfiguration.framework */; };
 		D7A6B2721A60868300159A8C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B2711A60868300159A8C /* CoreData.framework */; };
 		D7A6B2741A60869300159A8C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B2731A60869300159A8C /* QuartzCore.framework */; };
+		D7CC06E51D1AA0AF00D67423 /* IDPArrayChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC06E41D1AA0AF00D67423 /* IDPArrayChangeModel.m */; };
+		D7CC06EF1D1AA22300D67423 /* IDPArrayCompoundChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC06EE1D1AA22300D67423 /* IDPArrayCompoundChangeModel.m */; };
+		D7CC06F61D1AA2F500D67423 /* IDPArrayIndexChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC06F21D1AA2F500D67423 /* IDPArrayIndexChangeModel.m */; };
+		D7CC06F71D1AA2F500D67423 /* IDPArrayTwoIndexChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC06F41D1AA2F500D67423 /* IDPArrayTwoIndexChangeModel.m */; };
+		D7CC06FA1D1AA32300D67423 /* IDPArrayInsertChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC06F91D1AA32300D67423 /* IDPArrayInsertChangeModel.m */; };
+		D7CC06FD1D1AA34200D67423 /* IDPArrayRemoveChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC06FC1D1AA34200D67423 /* IDPArrayRemoveChangeModel.m */; };
+		D7CC07001D1AA35B00D67423 /* IDPArrayReplaceChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC06FF1D1AA35B00D67423 /* IDPArrayReplaceChangeModel.m */; };
+		D7CC07031D1AA38300D67423 /* IDPArrayMoveChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC07021D1AA38300D67423 /* IDPArrayMoveChangeModel.m */; };
+		D7CC07061D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC07051D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m */; };
 		D7FEF9131D071D7A0036D3AA /* IDPModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FEF9121D071D7A0036D3AA /* IDPModelSpec.m */; };
 /* End PBXBuildFile section */
 
@@ -329,6 +338,24 @@
 		D7A6B26F1A60867900159A8C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D7A6B2711A60868300159A8C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D7A6B2731A60869300159A8C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D7CC06E31D1AA0AF00D67423 /* IDPArrayChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayChangeModel.h; sourceTree = "<group>"; };
+		D7CC06E41D1AA0AF00D67423 /* IDPArrayChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayChangeModel.m; sourceTree = "<group>"; };
+		D7CC06ED1D1AA22300D67423 /* IDPArrayCompoundChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayCompoundChangeModel.h; sourceTree = "<group>"; };
+		D7CC06EE1D1AA22300D67423 /* IDPArrayCompoundChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayCompoundChangeModel.m; sourceTree = "<group>"; };
+		D7CC06F11D1AA2F500D67423 /* IDPArrayIndexChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayIndexChangeModel.h; sourceTree = "<group>"; };
+		D7CC06F21D1AA2F500D67423 /* IDPArrayIndexChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayIndexChangeModel.m; sourceTree = "<group>"; };
+		D7CC06F31D1AA2F500D67423 /* IDPArrayTwoIndexChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayTwoIndexChangeModel.h; sourceTree = "<group>"; };
+		D7CC06F41D1AA2F500D67423 /* IDPArrayTwoIndexChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayTwoIndexChangeModel.m; sourceTree = "<group>"; };
+		D7CC06F81D1AA32300D67423 /* IDPArrayInsertChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayInsertChangeModel.h; sourceTree = "<group>"; };
+		D7CC06F91D1AA32300D67423 /* IDPArrayInsertChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayInsertChangeModel.m; sourceTree = "<group>"; };
+		D7CC06FB1D1AA34200D67423 /* IDPArrayRemoveChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayRemoveChangeModel.h; sourceTree = "<group>"; };
+		D7CC06FC1D1AA34200D67423 /* IDPArrayRemoveChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayRemoveChangeModel.m; sourceTree = "<group>"; };
+		D7CC06FE1D1AA35B00D67423 /* IDPArrayReplaceChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayReplaceChangeModel.h; sourceTree = "<group>"; };
+		D7CC06FF1D1AA35B00D67423 /* IDPArrayReplaceChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayReplaceChangeModel.m; sourceTree = "<group>"; };
+		D7CC07011D1AA38300D67423 /* IDPArrayMoveChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayMoveChangeModel.h; sourceTree = "<group>"; };
+		D7CC07021D1AA38300D67423 /* IDPArrayMoveChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayMoveChangeModel.m; sourceTree = "<group>"; };
+		D7CC07041D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDPArrayChangeModel+IDPClusterClass.h"; sourceTree = "<group>"; };
+		D7CC07051D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDPArrayChangeModel+IDPClusterClass.m"; sourceTree = "<group>"; };
 		D7FEF9121D071D7A0036D3AA /* IDPModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -410,6 +437,7 @@
 			children = (
 				D700CCEC1D096DA300275205 /* IDPArrayModel.h */,
 				D700CCED1D096DA300275205 /* IDPArrayModel.m */,
+				D7CC06E21D1AA02800D67423 /* IDPArrayChangeModel */,
 			);
 			path = IDPArrayModel;
 			sourceTree = "<group>";
@@ -1296,6 +1324,47 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D7CC06E21D1AA02800D67423 /* IDPArrayChangeModel */ = {
+			isa = PBXGroup;
+			children = (
+				D7CC06F01D1AA2F500D67423 /* Abstract Classes */,
+				D7CC06F51D1AA2F500D67423 /* Concrete Changes */,
+				D7CC06E31D1AA0AF00D67423 /* IDPArrayChangeModel.h */,
+				D7CC06E41D1AA0AF00D67423 /* IDPArrayChangeModel.m */,
+				D7CC07041D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.h */,
+				D7CC07051D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m */,
+				D7CC06ED1D1AA22300D67423 /* IDPArrayCompoundChangeModel.h */,
+				D7CC06EE1D1AA22300D67423 /* IDPArrayCompoundChangeModel.m */,
+			);
+			path = IDPArrayChangeModel;
+			sourceTree = "<group>";
+		};
+		D7CC06F01D1AA2F500D67423 /* Abstract Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D7CC06F11D1AA2F500D67423 /* IDPArrayIndexChangeModel.h */,
+				D7CC06F21D1AA2F500D67423 /* IDPArrayIndexChangeModel.m */,
+				D7CC06F31D1AA2F500D67423 /* IDPArrayTwoIndexChangeModel.h */,
+				D7CC06F41D1AA2F500D67423 /* IDPArrayTwoIndexChangeModel.m */,
+			);
+			path = "Abstract Classes";
+			sourceTree = "<group>";
+		};
+		D7CC06F51D1AA2F500D67423 /* Concrete Changes */ = {
+			isa = PBXGroup;
+			children = (
+				D7CC06F81D1AA32300D67423 /* IDPArrayInsertChangeModel.h */,
+				D7CC06F91D1AA32300D67423 /* IDPArrayInsertChangeModel.m */,
+				D7CC06FB1D1AA34200D67423 /* IDPArrayRemoveChangeModel.h */,
+				D7CC06FC1D1AA34200D67423 /* IDPArrayRemoveChangeModel.m */,
+				D7CC06FE1D1AA35B00D67423 /* IDPArrayReplaceChangeModel.h */,
+				D7CC06FF1D1AA35B00D67423 /* IDPArrayReplaceChangeModel.m */,
+				D7CC07011D1AA38300D67423 /* IDPArrayMoveChangeModel.h */,
+				D7CC07021D1AA38300D67423 /* IDPArrayMoveChangeModel.m */,
+			);
+			path = "Concrete Changes";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1464,12 +1533,16 @@
 				D7469B891D01CE69000EED10 /* IDPThreadSafeProxy.m in Sources */,
 				D7A6B0FD1A6084A800159A8C /* IDPAppDelegate.m in Sources */,
 				D7A6B0F91A6084A800159A8C /* main.m in Sources */,
+				D7CC06FA1D1AA32300D67423 /* IDPArrayInsertChangeModel.m in Sources */,
+				D7CC06F61D1AA2F500D67423 /* IDPArrayIndexChangeModel.m in Sources */,
 				D7469B9E1D01CE69000EED10 /* UIViewController+IDPExtensions.m in Sources */,
 				D7469B691D01CE69000EED10 /* IDPKVONotification.m in Sources */,
 				D7469B671D01CE69000EED10 /* IDPLocking.m in Sources */,
 				D7469B8D1D01CE69000EED10 /* IDPCompilerMacros.m in Sources */,
 				D7469B5D1D01CE69000EED10 /* CGGeometry+IDPExtensions.m in Sources */,
+				D7CC06EF1D1AA22300D67423 /* IDPArrayCompoundChangeModel.m in Sources */,
 				D700CCE71D0969E800275205 /* IDPModelProxy.m in Sources */,
+				D7CC06E51D1AA0AF00D67423 /* IDPArrayChangeModel.m in Sources */,
 				D7469B971D01CE69000EED10 /* UIColor+IDPExtensions.m in Sources */,
 				D700CCEE1D096DA300275205 /* IDPArrayModel.m in Sources */,
 				D7469B751D01CE69000EED10 /* IDPMixinIMP.m in Sources */,
@@ -1480,6 +1553,7 @@
 				D7469B781D01CE69000EED10 /* NSObject+IDPMixin.m in Sources */,
 				D7469B871D01CE69000EED10 /* IDPRetainingDictionary.m in Sources */,
 				D7469B841D01CE69000EED10 /* IDPStrongReference.m in Sources */,
+				D7CC07031D1AA38300D67423 /* IDPArrayMoveChangeModel.m in Sources */,
 				D7469B591D01CE69000EED10 /* IDPCoreDataManager.m in Sources */,
 				D7469B9F1D01CE69000EED10 /* IDPView.m in Sources */,
 				D7A6B1031A6084A800159A8C /* IDPViewController.m in Sources */,
@@ -1487,6 +1561,8 @@
 				D7469B681D01CE69000EED10 /* IDPKVOController.m in Sources */,
 				D7469B741D01CE69000EED10 /* IDPMixinContext.m in Sources */,
 				D7469B811D01CE69000EED10 /* IDPProxy.m in Sources */,
+				D7CC06F71D1AA2F500D67423 /* IDPArrayTwoIndexChangeModel.m in Sources */,
+				D7CC07001D1AA35B00D67423 /* IDPArrayReplaceChangeModel.m in Sources */,
 				D7469B791D01CE69000EED10 /* NSObject+IDPMixinPrivate.m in Sources */,
 				D7469B951D01CE69000EED10 /* NSBundle+IDPExtensions.m in Sources */,
 				D7469B7F1D01CE69000EED10 /* IDPObservableObject.m in Sources */,
@@ -1508,10 +1584,12 @@
 				D7469B711D01CE69000EED10 /* IDPDispatch.m in Sources */,
 				D7469B5B1D01CE69000EED10 /* NSManagedObjectContext+IDPExtensions.m in Sources */,
 				D7469B8C1D01CE69000EED10 /* IDPBlockMacros.m in Sources */,
+				D7CC06FD1D1AA34200D67423 /* IDPArrayRemoveChangeModel.m in Sources */,
 				D7469B7C1D01CE69000EED10 /* IDPMutableArray.m in Sources */,
 				D7469B821D01CE69000EED10 /* IDPCopyReference.m in Sources */,
 				D7469B941D01CE69000EED10 /* IDPNetworkReachability.m in Sources */,
 				D7469B851D01CE69000EED10 /* IDPUnsafeReference.m in Sources */,
+				D7CC07061D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m in Sources */,
 				D7469B7E1D01CE69000EED10 /* IDPObjectState.m in Sources */,
 				D7469B921D01CE69000EED10 /* IDPBlockTypes.m in Sources */,
 				D7469B6A1D01CE69000EED10 /* NSObject+IDPKVO.m in Sources */,
