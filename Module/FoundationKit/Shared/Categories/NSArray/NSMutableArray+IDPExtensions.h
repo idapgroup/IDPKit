@@ -12,4 +12,7 @@
 
 - (void)moveObjectAtIndex:(NSUInteger)index toIndex:(NSUInteger)toIndex;
 
+- (NSIndexSet *)indexesOfObject:(id)object;
+- (NSIndexSet *)indexesOfObjects:(NSArray *)objects;
+
 @end
