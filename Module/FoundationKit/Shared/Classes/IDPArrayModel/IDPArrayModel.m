@@ -9,11 +9,14 @@
 #import "IDPArrayModel.h"
 
 #import "NSMutableArray+IDPExtensions.h"
+#import "IDPArrayChangeModel+IDPClusterClass.h"
 
 #import "IDPReturnMacros.h"
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableObjects;
+
+- (void)notifyWithChangeModel:(IDPArrayChangeModel *)changeModel;
 
 @end
 
@@ -77,12 +80,24 @@
 
 - (void)addObject:(id)object {
     IDPReturnIfNil(object);
-    
     [self.mutableObjects addObject:object];
+    
+    [self notifyWithChangeModel:[IDPArrayChangeModel insertModelWithArray:self index:self.count]];
 }
 
 - (void)removeObject:(id)object {
-    [self.mutableObjects removeObject:object];
+    IDPReturnIfNil(object);
+
+    NSMutableArray *objects = self.mutableObjects;
+    NSIndexSet *indexSet = [objects indexesOfObject:object];
+    NSMutableArray *changeModels = [NSMutableArray arrayWithCapacity:indexSet.count];
+    [indexSet enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
+        [changeModels addObject:[IDPArrayChangeModel removeModelWithArray:self index:index]];
+    }];
+
+    [objects removeObject:object];
+    
+    [self notifyWithChangeModel:[IDPArrayChangeModel compoundModelWithArray:self changeModels:changeModels]];
 }
 
 - (NSUInteger)indexOfObject:(id)object {
@@ -97,14 +112,15 @@
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     NSUInteger count = self.count;
-    NSMutableArray *objects = self.mutableObjects;
     
     IDPReturnIfNil(object && index <= count);
     
     if (index == count) {
-        [objects addObject:object];
+        [self addObject:object];
     } else {
-        [objects insertObject:object atIndex:index];
+        [self.mutableObjects insertObject:object atIndex:index];
+        
+        [self notifyWithChangeModel:[IDPArrayChangeModel insertModelWithArray:self index:index]];
     }
 }
 
@@ -112,12 +128,15 @@
     IDPReturnIfNil(index < self.count);
     
     [self.mutableObjects removeObjectAtIndex:index];
+    [self notifyWithChangeModel:[IDPArrayChangeModel removeModelWithArray:self index:index]];
 }
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)object {
     IDPReturnIfNil(object && index < self.count);
     
     [self.mutableObjects replaceObjectAtIndex:index withObject:object];
+    
+    [self notifyWithChangeModel:[IDPArrayChangeModel replaceModelWithArray:self index:index]];
 }
 
 - (void)moveObjectAtIndex:(NSUInteger)index toIndex:(NSUInteger)toIndex {
@@ -126,6 +145,8 @@
     IDPReturnIfNil(toIndex < count && index < count);
     
     [self.mutableObjects moveObjectAtIndex:index toIndex:toIndex];
+    
+    [self notifyWithChangeModel:[IDPArrayChangeModel moveModelWithArray:self index:toIndex fromIndex:index]];
 }
 
 - (BOOL)containsObject:(id)object {
@@ -148,6 +169,13 @@
     } else {
         [self removeObjectAtIndex:index];
     }
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)notifyWithChangeModel:(IDPArrayChangeModel *)changeModel {
+    [self notifyObserversWithState:IDPArrayModelDidChange object:changeModel];
 }
 
 @end

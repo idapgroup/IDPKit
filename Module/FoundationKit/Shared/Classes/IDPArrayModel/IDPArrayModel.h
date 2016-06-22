@@ -8,6 +8,8 @@
 
 #import "IDPModel.h"
 
+#import "IDPArrayModelState.h"
+
 @interface IDPArrayModel : IDPModel
 @property (nonatomic, readonly)         NSUInteger  count;
 @property (nonatomic, copy, readonly)   NSArray     *objects;

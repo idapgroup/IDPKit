@@ -126,6 +126,7 @@
 		D7CC07001D1AA35B00D67423 /* IDPArrayReplaceChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC06FF1D1AA35B00D67423 /* IDPArrayReplaceChangeModel.m */; };
 		D7CC07031D1AA38300D67423 /* IDPArrayMoveChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC07021D1AA38300D67423 /* IDPArrayMoveChangeModel.m */; };
 		D7CC07061D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC07051D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m */; };
+		D7CC070C1D1AAC8C00D67423 /* IDPArrayModelState.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CC070B1D1AAC8C00D67423 /* IDPArrayModelState.m */; };
 		D7FEF9131D071D7A0036D3AA /* IDPModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FEF9121D071D7A0036D3AA /* IDPModelSpec.m */; };
 /* End PBXBuildFile section */
 
@@ -356,6 +357,8 @@
 		D7CC07021D1AA38300D67423 /* IDPArrayMoveChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayMoveChangeModel.m; sourceTree = "<group>"; };
 		D7CC07041D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDPArrayChangeModel+IDPClusterClass.h"; sourceTree = "<group>"; };
 		D7CC07051D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDPArrayChangeModel+IDPClusterClass.m"; sourceTree = "<group>"; };
+		D7CC070A1D1AAC8C00D67423 /* IDPArrayModelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayModelState.h; sourceTree = "<group>"; };
+		D7CC070B1D1AAC8C00D67423 /* IDPArrayModelState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayModelState.m; sourceTree = "<group>"; };
 		D7FEF9121D071D7A0036D3AA /* IDPModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModelSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -438,6 +441,7 @@
 				D700CCEC1D096DA300275205 /* IDPArrayModel.h */,
 				D700CCED1D096DA300275205 /* IDPArrayModel.m */,
 				D7CC06E21D1AA02800D67423 /* IDPArrayChangeModel */,
+				D7CC070A1D1AAC8C00D67423 /* IDPArrayModelState.h */,
 			);
 			path = IDPArrayModel;
 			sourceTree = "<group>";
@@ -1592,6 +1596,7 @@
 				D7CC07061D1AAB3C00D67423 /* IDPArrayChangeModel+IDPClusterClass.m in Sources */,
 				D7469B7E1D01CE69000EED10 /* IDPObjectState.m in Sources */,
 				D7469B921D01CE69000EED10 /* IDPBlockTypes.m in Sources */,
+				D7CC070C1D1AAC8C00D67423 /* IDPArrayModelState.m in Sources */,
 				D7469B6A1D01CE69000EED10 /* NSObject+IDPKVO.m in Sources */,
 				D7469B8A1D01CE69000EED10 /* IDPWeakArray.m in Sources */,
 			);
