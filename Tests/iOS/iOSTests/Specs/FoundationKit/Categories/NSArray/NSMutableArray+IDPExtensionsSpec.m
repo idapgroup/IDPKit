@@ -57,7 +57,7 @@ sharedExamplesFor(kIDPMutableArrayMoveSharedExample, ^(NSDictionary *data) {
             [[array[toIndex] should] equal:object];
         });
         
-        it([NSString stringWithFormat:@"should have object at toIndex = %lu", index], ^{
+        it([NSString stringWithFormat:@"should have object at index = %lu", index], ^{
             [[array[index] shouldNot] equal:object];
         });
         
@@ -129,6 +129,10 @@ describe(@"NSMutableArray+IDPExtensions", ^{
             itBehavesLike(kIDPMutableArrayMoveSharedExample, @{ kIDPArrayFactory : factory,
                                                                 kIDPMoveIndex : theValue(3),
                                                                 kIDPMoveToIndex : theValue(2) });
+
+            itBehavesLike(kIDPMutableArrayMoveSharedExample, @{ kIDPArrayFactory : factory,
+                                                                kIDPMoveIndex : theValue(2),
+                                                                kIDPMoveToIndex : theValue(3) });
         });
     });
 });
