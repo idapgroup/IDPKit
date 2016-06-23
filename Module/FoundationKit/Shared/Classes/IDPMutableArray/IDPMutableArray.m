@@ -65,4 +65,16 @@
     [self.array replaceObjectAtIndex:index withObject:anObject];
 }
 
+- (void)insertObjects:(NSArray *)objects atIndexes:(NSIndexSet *)indexes {
+    [self.array insertObjects:objects atIndexes:indexes];
+}
+
+- (void)removeObjectsAtIndexes:(NSIndexSet *)indexes {
+    [self.array objectsAtIndexes:indexes];
+}
+
+- (void)replaceObjectsAtIndexes:(NSIndexSet *)indexes withObjects:(NSArray *)objects {
+    [self.array replaceObjectsAtIndexes:indexes withObjects:objects];
+}
+
 @end
