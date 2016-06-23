@@ -1,25 +1,16 @@
 //
 //  IDPKVOMutableArray.h
-//  IDPKit
+//  iOS
 //
-//  Created by Oleksa 'trimm' Korin on 5/20/13.
-//  Copyright (c) 2013 IDAP Group. All rights reserved.
+//  Created by Oleksa 'trimm' Korin on 6/23/16.
+//  Copyright © 2016 IDAP Group. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "IDPMutableArray.h"
 
-extern NSString * const kIDPKVOPathCount;
+FOUNDATION_EXPORT
+NSString * const kIDPMutableArrayChangesKeyPath;
 
-// A proxy object used, when KVO is needed
-// if you want to KVO to work, observe the key @"count",
-// but modify the array only through the methods of IDPKVOMutableArray
-
-@interface IDPKVOMutableArray : NSObject
-
-// creates array
-+ (NSMutableArray *)array;
-
-// if you pass nil works the same, as creating + (NSMutableArray *)array
-+ (NSMutableArray *)arrayWithArray:(NSArray *)array;
+@interface IDPKVOMutableArray : IDPMutableArray
 
 @end

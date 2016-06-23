@@ -47,7 +47,7 @@
 }
 
 - (NSUInteger)hash {
-    return [self.observer hash] ^ [self.keyPath hash] ^ (NSUInteger)self.context;
+    return [self.observer hash] ^ [self.keyPath hash] ^ (NSUInteger)self.context ^ self.options;
 }
 
 @end
