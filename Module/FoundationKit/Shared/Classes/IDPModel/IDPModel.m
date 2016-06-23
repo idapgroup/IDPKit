@@ -16,8 +16,8 @@
 @interface IDPModel ()
 @property (nonatomic, strong)   NSOperationQueue    *queue;
 
-- (NSBlockOperation *)operationWithBlock:(IDPModelBlock)block;
-- (NSBlockOperation *)executeBlock:(IDPModelBlock)block waitUntilDone:(BOOL)waitUntilDone;
+- (NSBlockOperation *)operationWithBlock:(IDPObjectBlock)block;
+- (NSBlockOperation *)executeBlock:(IDPObjectBlock)block waitUntilDone:(BOOL)waitUntilDone;
 - (void)executeOperation:(NSOperation *)operation waitUntilDone:(BOOL)waitUntilDone;
 
 @end
@@ -92,11 +92,11 @@
     [self executeOperation:operation waitUntilDone:NO];
 }
 
-- (NSBlockOperation *)executeBlock:(IDPModelBlock)block {
+- (NSBlockOperation *)executeBlock:(IDPObjectBlock)block {
     return [self executeBlock:block waitUntilDone:NO];
 }
 
-- (void)executeSyncBlock:(IDPModelBlock)block {
+- (void)executeSyncBlock:(IDPObjectBlock)block {
     [self executeBlock:block waitUntilDone:YES];
 }
 
@@ -109,14 +109,14 @@
     [self.queue addOperations:@[operation] waitUntilFinished:waitUntilDone];
 }
 
-- (NSBlockOperation *)executeBlock:(IDPModelBlock)block waitUntilDone:(BOOL)waitUntilDone {
+- (NSBlockOperation *)executeBlock:(IDPObjectBlock)block waitUntilDone:(BOOL)waitUntilDone {
     NSBlockOperation *operation = [self operationWithBlock:block];
     [self executeOperation:operation waitUntilDone:waitUntilDone];
     
     return operation;
 }
 
-- (NSBlockOperation *)operationWithBlock:(IDPModelBlock)block {
+- (NSBlockOperation *)operationWithBlock:(IDPObjectBlock)block {
     IDPReturnNilIfNil(block);
     
     IDPWeakify(self);

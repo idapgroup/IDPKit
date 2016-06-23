@@ -8,9 +8,7 @@
 
 #import "IDPObservableObject.h"
 
-@class IDPModel;
-
-typedef void(^IDPModelBlock)(id model);
+#import "IDPBlockTypes.h"
 
 @interface IDPModel : IDPObservableObject
 
@@ -31,7 +29,7 @@ typedef void(^IDPModelBlock)(id model);
 
 - (void)executeOperation:(NSOperation *)operation;
 
-- (NSBlockOperation *)executeBlock:(IDPModelBlock)block;
-- (void)executeSyncBlock:(IDPModelBlock)block;
+- (NSBlockOperation *)executeBlock:(IDPObjectBlock)block;
+- (void)executeSyncBlock:(IDPObjectBlock)block;
 
 @end
