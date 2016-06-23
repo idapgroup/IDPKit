@@ -10,9 +10,12 @@
 
 // A mutable proxy array intended for subclassing
 @interface IDPMutableArray : NSMutableArray
+@property (nonatomic, readonly)   NSMutableArray      *array;
 
 // methods intended for overloading, if you intend to change
 // the class behaviour in subclasses
+
+- (instancetype)initWithCapacity:(NSUInteger)count NS_DESIGNATED_INITIALIZER;
 
 - (NSUInteger)count;
 - (id)objectAtIndex:(NSUInteger)index;

@@ -18,14 +18,14 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (id)init {
+- (instancetype)init {
     return [self initWithCapacity:1];
 }
 
-- (id)initWithCapacity:(NSUInteger)numItems {
+- (instancetype)initWithCapacity:(NSUInteger)count {
     self = [super init];
     if (self) {
-        self.array = [NSMutableArray arrayWithCapacity:numItems];
+        self.array = [NSMutableArray arrayWithCapacity:count];
     }
     
     return self;
