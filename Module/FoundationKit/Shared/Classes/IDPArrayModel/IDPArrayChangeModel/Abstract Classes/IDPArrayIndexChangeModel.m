@@ -42,7 +42,7 @@
 #pragma mark Public
 
 - (NSUInteger)hash {
-    return [super hash] ^ NSUIntegerBitRotate(self.index, 1);
+    return self.index ^ NSUIntegerBitRotate([super hash], 1);
 }
 
 - (BOOL)isEqualToChangeModel:(IDPArrayIndexChangeModel *)changeModel {
