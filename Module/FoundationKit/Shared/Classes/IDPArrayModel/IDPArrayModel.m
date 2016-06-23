@@ -162,10 +162,12 @@
     
     IDPReturnIfNil(index <= count);
     
-    if (index == count) {
-        [self addObject:object];
-    } else if (object) {
-        [self replaceObjectAtIndex:index withObject:object];
+    if (object) {
+        if (index == count) {
+            [self addObject:object];
+        } else {
+            [self replaceObjectAtIndex:index withObject:object];
+        }
     } else {
         [self removeObjectAtIndex:index];
     }
