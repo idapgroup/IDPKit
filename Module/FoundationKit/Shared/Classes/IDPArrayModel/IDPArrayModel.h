@@ -9,6 +9,7 @@
 #import "IDPModel.h"
 
 #import "IDPArrayModelState.h"
+#import "IDPBlockTypes.h"
 
 @interface IDPArrayModel : IDPModel
 @property (nonatomic, readonly)         NSUInteger  count;
@@ -35,5 +36,7 @@
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
+
+- (void)performBatchBlock:(IDPObjectBlock)block;
 
 @end

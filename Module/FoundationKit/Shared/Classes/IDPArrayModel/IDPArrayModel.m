@@ -173,6 +173,14 @@
     }
 }
 
+- (void)performBatchBlock:(IDPObjectBlock)block {
+    IDPReturnIfNil(block);
+    
+    [self performBlockWithoutNotifications:^{
+
+    }];
+}
+
 #pragma mark -
 #pragma mark Private
 
