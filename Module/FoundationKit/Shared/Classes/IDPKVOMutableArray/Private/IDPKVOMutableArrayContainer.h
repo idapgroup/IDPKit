@@ -13,7 +13,12 @@
 @class IDPKVOMutableArray;
 
 @interface IDPKVOMutableArrayContainer : NSObject
-@property (nonatomic, weak) IDPKVOMutableArray *array;
+@property (nonatomic, weak, readonly)   IDPKVOMutableArray  *array;
+@property (nonatomic, readonly)         NSUInteger          count;
+
++ (instancetype)containerWithArray:(IDPKVOMutableArray *)array;
+
+- (instancetype)initWithArray:(IDPKVOMutableArray *)array NS_DESIGNATED_INITIALIZER;
 
 - (NSUInteger)countOfArray;
 - (id)objectInArrayAtIndex:(NSUInteger)index;

@@ -8,9 +8,15 @@
 
 #import "IDPKVOMutableArray.h"
 
-#import "IDPKVOMutableArray+IDPPrivateExtension.h"
+#import "IDPKVOMutableArrayContainer.h"
 
-NSString * const kIDPMutableArrayChangesKeyPath     = @"self";
+NSString * const kIDPMutableArrayObjects     = @"objects";
+NSString * const kIDPMutableArrayCount       = @"count";
+
+@interface IDPKVOMutableArray ()
+@property (nonatomic, strong)   IDPKVOMutableArrayContainer *container;
+
+@end
 
 @implementation IDPKVOMutableArray
 
@@ -19,10 +25,7 @@ NSString * const kIDPMutableArrayChangesKeyPath     = @"self";
 
 - (instancetype)initWithCapacity:(NSUInteger)count {
     self = [super initWithCapacity:count];
-    
-    IDPKVOMutableArrayContainer *container = [IDPKVOMutableArrayContainer new];
-    self.container = container;
-    container.array = self;
+    self.container = [IDPKVOMutableArrayContainer containerWithArray:self];
     
     return self;
 }

@@ -11,7 +11,10 @@
 #import "IDPObjCRuntime.h"
 
 FOUNDATION_EXPORT
-NSString * const kIDPMutableArrayChangesKeyPath;
+NSString * const kIDPMutableArrayObjects;
+
+FOUNDATION_EXPORT
+NSString * const kIDPMutableArrayCount;
 
 @interface IDPKVOMutableArray : IDPMutableArray
 
@@ -19,15 +22,18 @@ NSString * const kIDPMutableArrayChangesKeyPath;
 
 @interface IDPKVOMutableArray (IDPKVCCompliance)
 
-- (void)insertObject:(id)object inArrayAtIndex:(NSUInteger)index;
-- (void)insertArray:(NSArray *)array atIndexes:(NSIndexSet *)indexes;
-- (void)removeObjectFromArrayAtIndex:(NSUInteger)index;
-- (void)removeArrayAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInArrayAtIndex:(NSUInteger)index withObject:(id)object;
-- (void)replaceArrayAtIndexes:(NSIndexSet *)indexes withArray:(NSArray *)array;
 - (NSUInteger)countOfArray;
+
 - (id)objectInArrayAtIndex:(NSUInteger)index;
 - (NSArray *)arrayAtIndexes:(NSIndexSet *)indexes;
 - (void)getArray:(id __assign *)buffer range:(NSRange)range;
+
+- (void)insertObject:(id)object inArrayAtIndex:(NSUInteger)index;
+- (void)insertArray:(NSArray *)array atIndexes:(NSIndexSet *)indexes;
+- (void)removeObjectFromArrayAtIndex:(NSUInteger)index;
+
+- (void)removeArrayAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInArrayAtIndex:(NSUInteger)index withObject:(id)object;
+- (void)replaceArrayAtIndexes:(NSIndexSet *)indexes withArray:(NSArray *)array;
 
 @end

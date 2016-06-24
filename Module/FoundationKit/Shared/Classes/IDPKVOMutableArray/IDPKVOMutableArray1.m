@@ -8,7 +8,7 @@
 
 #import "IDPKVOMutableArray1.h"
 
-#import "IDPKVOContext.h"
+#import "IDPKVOKeyPathBinding.h"
 #import "IDPBlockTypes.h"
 
 #import "NSArray+IDPExtensions.h"
@@ -27,7 +27,7 @@ NSString * const kIDPKVOPathArray   = @"array";
 - (NSArray *)contextsWithObserver:(NSObject *)observer
                           keyPath:(NSString *)keyPath;
 
-- (IDPKVOContext *)contextWithObserver:(NSObject *)observer
+- (IDPKVOKeyPathBinding *)contextWithObserver:(NSObject *)observer
                                keyPath:(NSString *)keyPath
                                context:(void *)context;
 
@@ -99,7 +99,7 @@ NSString * const kIDPKVOPathArray   = @"array";
             options:(NSKeyValueObservingOptions)options
             context:(void *)context
 {
-    IDPKVOContext *contextObject = [self contextWithObserver:anObserver
+    IDPKVOKeyPathBinding *contextObject = [self contextWithObserver:anObserver
                                                      keyPath:keyPath
                                                      context:context];
     contextObject.options = options;
@@ -126,7 +126,7 @@ NSString * const kIDPKVOPathArray   = @"array";
             forKeyPath:(NSString *)keyPath
                context:(void *)context
 {
-    IDPKVOContext *contextObject = [self contextWithObserver:observer
+    IDPKVOKeyPathBinding *contextObject = [self contextWithObserver:observer
                                                      keyPath:keyPath
                                                      context:context];
 
@@ -150,7 +150,7 @@ NSString * const kIDPKVOPathArray   = @"array";
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-    IDPKVOContext *contextObject = (__bridge IDPKVOContext *)context;
+    IDPKVOKeyPathBinding *contextObject = (__bridge IDPKVOKeyPathBinding *)context;
     [contextObject.observer observeValueForKeyPath:contextObject.keyPath
                                           ofObject:self
                                             change:change
@@ -163,14 +163,14 @@ NSString * const kIDPKVOPathArray   = @"array";
 - (NSArray *)contextsWithObserver:(NSObject *)observer
                           keyPath:(NSString *)keyPath
 {
-    IDPKVOContext *comparisonObject = [IDPKVOContext contextWithObserver:observer
+    IDPKVOKeyPathBinding *comparisonObject = [IDPKVOKeyPathBinding contextWithObserver:observer
                                                                  keyPath:keyPath
                                                                  options:0
                                                                  context:NULL];
     
     __block NSMutableArray *result = [NSMutableArray array];
     IDPEnumerationBlock block = ^(id obj, NSUInteger idx, BOOL *stop) {
-        IDPKVOContext *context = obj;
+        IDPKVOKeyPathBinding *context = obj;
         if ([context isEqualToContext:comparisonObject]) {
             [result addObject:context];
         }
@@ -181,11 +181,11 @@ NSString * const kIDPKVOPathArray   = @"array";
     return [NSArray arrayWithArray:result];
 }
 
-- (IDPKVOContext *)contextWithObserver:(NSObject *)observer
+- (IDPKVOKeyPathBinding *)contextWithObserver:(NSObject *)observer
                                keyPath:(NSString *)keyPath
                                context:(void *)context
 {
-    IDPKVOContext *comparisonObject = [IDPKVOContext contextWithObserver:observer
+    IDPKVOKeyPathBinding *comparisonObject = [IDPKVOKeyPathBinding contextWithObserver:observer
                                                                  keyPath:keyPath
                                                                  options:0
                                                                  context:context];

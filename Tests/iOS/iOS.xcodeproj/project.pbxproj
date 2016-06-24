@@ -101,8 +101,9 @@
 		D7469C1E1D01CF90000EED10 /* IDPKVOObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469C081D01CF90000EED10 /* IDPKVOObserver.m */; };
 		D7469C1F1D01CF90000EED10 /* IDPTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469C0A1D01CF90000EED10 /* IDPTestObject.m */; };
 		D7469C201D01CF90000EED10 /* IDPThreadUnsafeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D7469C0C1D01CF90000EED10 /* IDPThreadUnsafeObject.m */; };
+		D76639A21D1D5391004C1A82 /* IDPKVOKeyPathBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = D76639A11D1D5391004C1A82 /* IDPKVOKeyPathBindings.m */; };
 		D78C6B7C1D1C194800FEF01C /* IDPKVOMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D78C6B7B1D1C194800FEF01C /* IDPKVOMutableArray.m */; };
-		D78C6B801D1C234500FEF01C /* IDPKVOContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D78C6B7F1D1C234500FEF01C /* IDPKVOContext.m */; };
+		D78C6B801D1C234500FEF01C /* IDPKVOKeyPathBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = D78C6B7F1D1C234500FEF01C /* IDPKVOKeyPathBinding.m */; };
 		D78C6B841D1C266E00FEF01C /* IDPKVOMutableArraySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D78C6B831D1C266E00FEF01C /* IDPKVOMutableArraySpec.m */; };
 		D78C6B8B1D1C7C1700FEF01C /* IDPKVOMutableArrayContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = D78C6B861D1C7B8100FEF01C /* IDPKVOMutableArrayContainer.m */; };
 		D7A6B0ED1A6084A800159A8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6B0EC1A6084A800159A8C /* Foundation.framework */; };
@@ -323,10 +324,12 @@
 		D7469C0A1D01CF90000EED10 /* IDPTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTestObject.m; sourceTree = "<group>"; };
 		D7469C0B1D01CF90000EED10 /* IDPThreadUnsafeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPThreadUnsafeObject.h; sourceTree = "<group>"; };
 		D7469C0C1D01CF90000EED10 /* IDPThreadUnsafeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPThreadUnsafeObject.m; sourceTree = "<group>"; };
+		D76639A01D1D5391004C1A82 /* IDPKVOKeyPathBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOKeyPathBindings.h; sourceTree = "<group>"; };
+		D76639A11D1D5391004C1A82 /* IDPKVOKeyPathBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOKeyPathBindings.m; sourceTree = "<group>"; };
 		D78C6B7A1D1C194800FEF01C /* IDPKVOMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOMutableArray.h; sourceTree = "<group>"; };
 		D78C6B7B1D1C194800FEF01C /* IDPKVOMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOMutableArray.m; sourceTree = "<group>"; };
-		D78C6B7E1D1C234500FEF01C /* IDPKVOContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOContext.h; sourceTree = "<group>"; };
-		D78C6B7F1D1C234500FEF01C /* IDPKVOContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOContext.m; sourceTree = "<group>"; };
+		D78C6B7E1D1C234500FEF01C /* IDPKVOKeyPathBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOKeyPathBinding.h; sourceTree = "<group>"; };
+		D78C6B7F1D1C234500FEF01C /* IDPKVOKeyPathBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOKeyPathBinding.m; sourceTree = "<group>"; };
 		D78C6B831D1C266E00FEF01C /* IDPKVOMutableArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOMutableArraySpec.m; sourceTree = "<group>"; };
 		D78C6B851D1C7B8100FEF01C /* IDPKVOMutableArrayContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOMutableArrayContainer.h; sourceTree = "<group>"; };
 		D78C6B861D1C7B8100FEF01C /* IDPKVOMutableArrayContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOMutableArrayContainer.m; sourceTree = "<group>"; };
@@ -1289,10 +1292,12 @@
 		D78C6B7D1D1C234500FEF01C /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				D78C6B7E1D1C234500FEF01C /* IDPKVOContext.h */,
-				D78C6B7F1D1C234500FEF01C /* IDPKVOContext.m */,
+				D78C6B7E1D1C234500FEF01C /* IDPKVOKeyPathBinding.h */,
+				D78C6B7F1D1C234500FEF01C /* IDPKVOKeyPathBinding.m */,
 				D78C6B851D1C7B8100FEF01C /* IDPKVOMutableArrayContainer.h */,
 				D78C6B861D1C7B8100FEF01C /* IDPKVOMutableArrayContainer.m */,
+				D76639A01D1D5391004C1A82 /* IDPKVOKeyPathBindings.h */,
+				D76639A11D1D5391004C1A82 /* IDPKVOKeyPathBindings.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -1596,6 +1601,7 @@
 				D7CC06FA1D1AA32300D67423 /* IDPArrayInsertChangeModel.m in Sources */,
 				D7CC06F61D1AA2F500D67423 /* IDPArrayIndexChangeModel.m in Sources */,
 				D7469B9E1D01CE69000EED10 /* UIViewController+IDPExtensions.m in Sources */,
+				D76639A21D1D5391004C1A82 /* IDPKVOKeyPathBindings.m in Sources */,
 				D7469B691D01CE69000EED10 /* IDPKVONotification.m in Sources */,
 				D7469B671D01CE69000EED10 /* IDPLocking.m in Sources */,
 				D7469B8D1D01CE69000EED10 /* IDPCompilerMacros.m in Sources */,
@@ -1636,7 +1642,7 @@
 				D7469B861D01CE69000EED10 /* IDPWeakReference.m in Sources */,
 				D7469B901D01CE69000EED10 /* IDPMath.m in Sources */,
 				D7469B991D01CE69000EED10 /* UIImage+IDPExtensions.m in Sources */,
-				D78C6B801D1C234500FEF01C /* IDPKVOContext.m in Sources */,
+				D78C6B801D1C234500FEF01C /* IDPKVOKeyPathBinding.m in Sources */,
 				D7469B8F1D01CE69000EED10 /* IDPReturnMacros.m in Sources */,
 				D78C6B8B1D1C7C1700FEF01C /* IDPKVOMutableArrayContainer.m in Sources */,
 				D7005BBD1D06C41000563609 /* IDPSelector.m in Sources */,

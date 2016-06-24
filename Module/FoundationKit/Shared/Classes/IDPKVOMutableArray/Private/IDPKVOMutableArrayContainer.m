@@ -10,7 +10,39 @@
 
 #import "IDPKVOMutableArray.h"
 
+@interface IDPKVOMutableArrayContainer ()
+@property (nonatomic, weak) IDPKVOMutableArray *array;
+
+@end
+
 @implementation IDPKVOMutableArrayContainer
+
+@dynamic count;
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
++ (instancetype)containerWithArray:(IDPKVOMutableArray *)array {
+    return [[self alloc] initWithArray:array];
+}
+
+- (instancetype)init {
+    return [self initWithArray:nil];
+}
+
+- (instancetype)initWithArray:(IDPKVOMutableArray *)array {
+    self = [super init];
+    self.array = array;
+    
+    return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSUInteger)count {
+    return [self countOfArray];
+}
 
 #pragma mark -
 #pragma mark KVO Getters

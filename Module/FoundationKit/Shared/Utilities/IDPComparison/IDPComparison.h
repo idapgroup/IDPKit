@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-static
+FOUNDATION_STATIC_INLINE
 NSUInteger NSUIntegerBitRotate(NSUInteger value, NSUInteger rotation) {
+    if (!rotation) {
+        return value;
+    }
+    
     NSUInteger bitCount = CHAR_BIT * sizeof(bitCount);
+    rotation %= bitCount;
     
     return value << rotation | value >> (bitCount - rotation);
 }

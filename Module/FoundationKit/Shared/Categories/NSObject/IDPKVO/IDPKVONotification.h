@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface IDPKVONotification : NSObject
+@property (nonatomic, readonly)         NSDictionary        *changesDictionary;
 @property (nonatomic, weak, readonly)   id                  object;
 @property (nonatomic, copy, readonly)   NSString            *keyPath;
 @property (nonatomic, readonly)         NSKeyValueChange    changeType;

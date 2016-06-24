@@ -9,6 +9,7 @@
 #import "IDPKVONotification.h"
 
 @interface IDPKVONotification ()
+@property (nonatomic, strong)   NSDictionary        *changesDictionary;
 @property (nonatomic, weak)     id                  object;
 @property (nonatomic, copy)     NSString            *keyPath;
 @property (nonatomic, assign)   NSKeyValueChange    changeType;
@@ -43,12 +44,11 @@
              changesDictionary:(NSDictionary *)changesDictionary
 {
     self = [super init];
-    if (self) {
-        self.object = observedObject;
-        self.keyPath = keyPath;
-        
-        [self fillWithChangesDictionary:changesDictionary];
-    }
+    self.object = observedObject;
+    self.keyPath = keyPath;
+    self.changesDictionary = changesDictionary;
+    
+    [self fillWithChangesDictionary:changesDictionary];
     
     return self;
 }
