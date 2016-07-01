@@ -13,35 +13,31 @@
 @interface IDPKVOKeyPathBindings : NSObject
 
 // object, that delegates the KVO
-@property (nonatomic, readonly, weak) id      bridge;
+@property (nonatomic, readonly, weak)   id      bridge;
 
 // actual object being KVOed
-@property (nonatomic, readonly, weak) id      object;
+@property (nonatomic, readonly, weak)   id      object;
 
-+ (instancetype)setWithBridge:(id)bridge object:(id)object;
+@property (nonatomic, readonly) NSDictionary    *keyPathBindings;
 
-- (instancetype)initWithBridge:(id)bridge object:(id)object NS_DESIGNATED_INITIALIZER;
++ (instancetype)bindingsWithBridge:(id)bridge
+                            object:(id)object
+                   keyPathBindings:(NSDictionary *)keyPathBindings;
 
-- (void)bindObjectKeyPath:(NSString *)objectKeyPath
-          toBridgeKeyPath:(NSString *)bridgeKeyPath
-              forObserver:(NSObject *)observer
-                  options:(NSKeyValueObservingOptions)options
-                  context:(void *)context;
+- (instancetype)initWithBridge:(id)bridge
+                        object:(id)object
+               keyPathBindings:(NSDictionary *)keyPathBindings NS_DESIGNATED_INITIALIZER;
 
-- (void)bindObjectKeyPath:(NSString *)objectKeyPath
-          toBridgeKeyPath:(NSString *)bridgeKeyPath
-              forObserver:(NSObject *)observer
-                  options:(NSKeyValueObservingOptions)options
-                  context:(void *)context
-                    block:(IDPKVOKeyPathBindingBlock)block;
+- (IDPKVOKeyPathBinding *)bindKeyPath:(NSString *)keyPath
+                          forObserver:(NSObject *)observer
+                              options:(NSKeyValueObservingOptions)options
+                              context:(void *)context;
 
-- (void)unbindObjectKeyPath:(NSString *)objectKeyPath
-            toBridgeKeyPath:(NSString *)bridgeKeyPath
-                forObserver:(NSObject *)observer;
+- (void)unbindKeyPath:(NSString *)keyPath
+          forObserver:(NSObject *)observer;
 
-- (void)unbindObjectKeyPath:(NSString *)objectKeyPath
-            toBridgeKeyPath:(NSString *)bridgeKeyPath
-                forObserver:(NSObject *)observer
-                    context:(void *)context;
+- (void)unbindKeyPath:(NSString *)keyPath
+          forObserver:(NSObject *)observer
+              context:(void *)context;
 
 @end

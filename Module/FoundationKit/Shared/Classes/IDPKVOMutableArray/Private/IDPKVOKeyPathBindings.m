@@ -16,13 +16,7 @@
 @property (nonatomic, weak)     id              object;
 @property (nonatomic, strong)   NSMutableSet    *bindings;
 @property (nonatomic, strong)   id<IDPLocking>  lock;
-
-- (IDPKVOKeyPathBinding *)bindingWithObjectKeyPath:(NSString *)objectKeyPath
-                                     bridgeKeyPath:(NSString *)bridgeKeyPath
-                                          observer:(NSObject *)observer
-                                           options:(NSKeyValueObservingOptions)options
-                                           context:(void *)context
-                                             block:(IDPKVOKeyPathBindingBlock)block;
+@property (nonatomic, strong)   NSDictionary    *keyPathBindings;
 
 @end
 
@@ -31,23 +25,30 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)setWithBridge:(id)bridge object:(id)object {
-    return [[self alloc] initWithBridge:bridge object:object];
++ (instancetype)bindingsWithBridge:(id)bridge
+                            object:(id)object
+                   keyPathBindings:(NSDictionary *)keyPathBindings
+{
+    return [[self alloc] initWithBridge:bridge object:object keyPathBindings:keyPathBindings];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (instancetype)init {
-    return [self initWithBridge:nil object:nil];
+    return [self initWithBridge:nil object:nil keyPathBindings:nil];
 }
 
-- (instancetype)initWithBridge:(id)bridge object:(id)object {
+- (instancetype)initWithBridge:(id)bridge
+                        object:(id)object
+               keyPathBindings:(NSDictionary *)keyPathBindings
+{
     self = [super init];
     self.bindings = [NSMutableSet set];
     self.lock = [NSLock new];
     self.bridge = bridge;
     self.object = object;
+    self.keyPathBindings = keyPathBindings;
     
     return self;
 }
@@ -55,79 +56,47 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)bindObjectKeyPath:(NSString *)objectKeyPath
-          toBridgeKeyPath:(NSString *)bridgeKeyPath
-              forObserver:(NSObject *)observer
-                  options:(NSKeyValueObservingOptions)options
-                  context:(void *)context
+- (IDPKVOKeyPathBinding *)bindKeyPath:(NSString *)keyPath
+                          forObserver:(NSObject *)observer
+                              options:(NSKeyValueObservingOptions)options
+                              context:(void *)context
 {
-    id binding = [self bindingWithObjectKeyPath:objectKeyPath
-                                  bridgeKeyPath:bridgeKeyPath
-                                       observer:observer
-                                        options:options
-                                        context:context
-                                          block:nil];
+    [self unbindKeyPath:keyPath forObserver:observer context:context];
+    
+    id binding = [[IDPKVOKeyPathBinding alloc] initWithBindings:self
+                                                        keyPath:keyPath
+                                                       observer:observer
+                                                        options:options
+                                                        context:context];
     
     [self.lock performBlock:^{
         [self.bindings addObject:binding];
     }];
 }
 
-- (void)unbindObjectKeyPath:(NSString *)objectKeyPath
-            toBridgeKeyPath:(NSString *)bridgeKeyPath
-                forObserver:(NSObject *)observer
-{
-    id binding = [self bindingWithObjectKeyPath:objectKeyPath
-                                  bridgeKeyPath:bridgeKeyPath
-                                       observer:observer
-                                        options:0
-                                        context:NULL
-                                          block:nil];
-    
+- (void)unbindKeyPath:(NSString *)keyPath forObserver:(NSObject *)observer {
     [self.lock performBlock:^{
         id predicate = [NSPredicate predicateWithBlock:^BOOL(IDPKVOKeyPathBinding *object, NSDictionary *bindings) {
-            return ![object isEqualToBinding:binding];
+            return !([object.keyPath isEqualToString:keyPath] && object.observer == observer);
         }];
         
         [self.bindings filterUsingPredicate:predicate];
     }];
 }
 
-- (void)unbindObjectKeyPath:(NSString *)objectKeyPath
-            toBridgeKeyPath:(NSString *)bridgeKeyPath
-                forObserver:(NSObject *)observer
-                    context:(void *)context
+- (void)unbindKeyPath:(NSString *)objectKeyPath
+          forObserver:(NSObject *)observer
+              context:(void *)context
 {
-    id binding = [self bindingWithObjectKeyPath:objectKeyPath
-                                  bridgeKeyPath:bridgeKeyPath
-                                       observer:observer
-                                        options:0
-                                        context:context
-                                          block:nil];
+    id binding = [[IDPKVOKeyPathBinding alloc] initWithBindings:self
+                                                        keyPath:keyPath
+                                                       observer:observer
+                                                        options:0
+                                                        context:context];
     
     [self.lock performBlock:^{
         [self.bindings removeObject:binding];
     }];
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (IDPKVOKeyPathBinding *)bindingWithObjectKeyPath:(NSString *)objectKeyPath
-                                     bridgeKeyPath:(NSString *)bridgeKeyPath
-                                          observer:(NSObject *)observer
-                                           options:(NSKeyValueObservingOptions)options
-                                           context:(void *)context
-                                             block:(IDPKVOKeyPathBindingBlock)block
-{
-    return [[IDPKVOKeyPathBinding alloc] initWithObject:self.object
-                                                 bridge:self.bridge
-                                          objectKeyPath:objectKeyPath
-                                          bridgeKeyPath:bridgeKeyPath
-                                               observer:observer
-                                                options:options
-                                                context:context
-                                                  block:block];
 }
 
 @end
