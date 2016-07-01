@@ -9,22 +9,21 @@
 #import "IDPKVOKeyPathBinding.h"
 
 #import "IDPComparison.h"
+#import "IDPKVOKeyPathBindings.h"
 
 #import "NSObject+IDPKVO.h"
 
 #import "IDPOwnershipMacros.h"
 
 @interface IDPKVOKeyPathBinding ()
-@property (nonatomic, weak)     NSObject                    *object;
-@property (nonatomic, weak)     NSObject                    *bridge;
+@property (nonatomic, weak)     IDPKVOKeyPathBindings       *bindings;
 @property (nonatomic, weak)     NSObject                    *observer;
-@property (nonatomic, copy)     NSString                    *objectKeyPath;
-@property (nonatomic, copy)     NSString                    *bridgeKeyPath;
+@property (nonatomic, copy)     NSString                    *keyPath;
 @property (nonatomic, assign)   NSKeyValueObservingOptions  options;
 @property (nonatomic, assign)   void                        *context;
 @property (nonatomic, strong)   IDPKVOController            *kvoController;
 
-- (IDPKVOController *)kvoControllerForBindingBlock:(IDPKVOKeyPathBindingBlock)block;
+- (IDPKVOController *)bindingKvoController;
 
 @end
 
@@ -33,52 +32,19 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)init {
-    return [self initWithObject:nil
-                         bridge:nil
-                  objectKeyPath:nil
-                  bridgeKeyPath:nil
-                       observer:nil
-                        options:0
-                        context:NULL];
-}
-
-- (instancetype)initWithObject:(NSObject *)object
-                        bridge:(NSObject *)bridge
-                 objectKeyPath:(NSString *)objectKeyPath
-                 bridgeKeyPath:(NSString *)bridgeKeyPath
-                      observer:(NSObject *)observer
-                       options:(NSKeyValueObservingOptions)options
-                       context:(void *)context
-{
-    return [self initWithObject:object
-                         bridge:bridge
-                  objectKeyPath:objectKeyPath
-                  bridgeKeyPath:bridgeKeyPath
-                       observer:observer
-                        options:options
-                        context:context
-                          block:nil];
-}
-
-- (instancetype)initWithObject:(NSObject *)object
-                        bridge:(NSObject *)bridge
-                 objectKeyPath:(NSString *)objectKeyPath
-                 bridgeKeyPath:(NSString *)bridgeKeyPath
-                      observer:(NSObject *)observer
-                       options:(NSKeyValueObservingOptions)options
-                       context:(void *)context
-                         block:(IDPKVOKeyPathBindingBlock)block
+- (instancetype)initWithBindings:(IDPKVOKeyPathBindings *)bindings
+                         keyPath:(NSString *)keyPath
+                        observer:(NSObject *)observer
+                         options:(NSKeyValueObservingOptions)options
+                         context:(void *)context NS_DESIGNATED_INITIALIZER
 {
     self = [super init];
-    self.object = object;
-    self.bridge = bridge;
-    self.objectKeyPath = objectKeyPath;
-    self.bridgeKeyPath = bridgeKeyPath;
+    self.bindings = bindings;
+    self.keyPath = keyPath;
     self.observer = observer;
     self.options = options;
     self.context = context;
-    self.kvoController = [self kvoControllerForBindingBlock:block];
+    self.kvoController = [self bindingKvoController];
     
     return self;
 }
@@ -87,12 +53,9 @@
 #pragma mark Comparison
 
 - (NSUInteger)hash {
-    return [self.observer hash]
-            ^ NSUIntegerBitRotate([self.objectKeyPath hash], 1)
-            ^ NSUIntegerBitRotate([self.bridgeKeyPath hash], 2)
-            ^ NSUIntegerBitRotate([self.object hash], 3)
-            ^ NSUIntegerBitRotate([self.bridge hash], 4)
-            ^ NSUIntegerBitRotate([self.observer hash], 5);
+    return (NSUInteger)self.bindings.object
+            ^ NSUIntegerBitRotate([self.keyPath hash], 1)
+            ^ NSUIntegerBitRotate((NSUInteger)self.observer, 2);
 }
 
 - (BOOL)isEqual:(id)object {
@@ -107,42 +70,39 @@
     return [self isEqualToBinding:object];
 }
 
-- (BOOL)isEqualToBindingWithoutContext:(IDPKVOKeyPathBinding *)object {
-    return self.object == object.object
-            && self.bridge == object.bridge
+- (BOOL)isEqualToBinding:(IDPKVOKeyPathBinding *)object {
+    return self.bindings == object.bindings
             && self.observer == object.observer
-            && [self.objectKeyPath isEqualToString:object.objectKeyPath]
-            && [self.bridgeKeyPath isEqualToString:object.bridgeKeyPath]
+            && [self.keyPath isEqualToString:object.keyPath]
             && (self.context == object.context || self.context == NULL || object.context == NULL)
             && (self.options == object.options || self.options == 0 || object.options == 0);
-}
-
-- (BOOL)isEqualToBinding:(IDPKVOKeyPathBinding *)object {
-    return [self isEqualToBindingWithoutContext:object] && self.context == object.context;
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (IDPKVOController *)kvoControllerForBindingBlock:(IDPKVOKeyPathBindingBlock)block {
-    block = block ? block : [self defaultBinding];
+- (IDPKVOController *)bindingKvoController {
+    NSString *keyPath = self.keyPath;
+    IDPKVOKeyPathBindings *bindings = self.bindings;
+    IDPWeakify(bindings);
     
-    IDPWeakify(self);
-    
-    return [self.object observeKeyPath:self.objectKeyPath handler:^(IDPKVONotification *notification) {
+    return [self.object observeKeyPath:bindings.keyPathBindings[keyPath]
+                               handler:^(IDPKVONotification *notification)
+    {
         IDPStrongifyAndReturnIfNil(self);
+        IDPStrongifyAndReturnIfNil(bindings);
         
-        block(self, notification);
+        IDPKVONotificationMappingBlock block = self.notificationMappingBlock;
+        
+        notification = !block ? notification : block(notification);
+        
+        if (notification) {
+            [self.observer observeValueForKeyPath:keyPath
+                                         ofObject:bindings.bridge
+                                           change:notification.changesDictionary
+                                          context:self.context];
+        }
     }];
-}
-
-- (IDPKVOKeyPathBindingBlock)defaultBinding {
-    return ^(IDPKVOKeyPathBinding *binding, IDPKVONotification *notification) {
-        [binding.observer observeValueForKeyPath:binding.bridgeKeyPath
-                                        ofObject:binding.bridge
-                                          change:notification.changesDictionary
-                                         context:binding.context];
-    };
 }
 
 @end
