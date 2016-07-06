@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-#import "IDPObjCRuntime.h"
+#import "IDPSelector.h"
 #import "IDPTestObject.h"
 #import "IDPKVOObserver.h"
 
