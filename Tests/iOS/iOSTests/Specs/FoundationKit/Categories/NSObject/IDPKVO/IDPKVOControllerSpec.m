@@ -9,7 +9,7 @@
 #import "Kiwi.h"
 
 #import "IDPKVOController.h"
-#import "IDPObjCRuntime.h"
+#import "IDPSelector.h"
 
 #import "IDPTestObject.h"
 

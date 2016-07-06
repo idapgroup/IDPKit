@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define IDPStringFromSEL(value) NSStringFromSelector(@selector(value))
 #define IDPSEL(value) [IDPSelector objectWithSelector:@selector(value)]
 
 @interface IDPSelector : NSObject
