@@ -36,7 +36,7 @@
                          keyPath:(NSString *)keyPath
                         observer:(NSObject *)observer
                          options:(NSKeyValueObservingOptions)options
-                         context:(void *)context NS_DESIGNATED_INITIALIZER
+                         context:(void *)context
 {
     self = [super init];
     self.bindings = bindings;
@@ -47,6 +47,10 @@
     self.kvoController = [self bindingKvoController];
     
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithBindings:nil keyPath:nil observer:nil options:0 context:NULL];
 }
 
 #pragma mark -
@@ -82,27 +86,30 @@
 #pragma mark Private
 
 - (IDPKVOController *)bindingKvoController {
-    NSString *keyPath = self.keyPath;
     IDPKVOKeyPathBindings *bindings = self.bindings;
+    
+    NSString *keyPath = self.keyPath;
+    NSString *bindingKeyPath = bindings.keyPathBindings[keyPath];
+    
     IDPWeakify(bindings);
     
-    return [self.object observeKeyPath:bindings.keyPathBindings[keyPath]
-                               handler:^(IDPKVONotification *notification)
-    {
-        IDPStrongifyAndReturnIfNil(self);
-        IDPStrongifyAndReturnIfNil(bindings);
-        
-        IDPKVONotificationMappingBlock block = self.notificationMappingBlock;
-        
-        notification = !block ? notification : block(notification);
-        
-        if (notification) {
-            [self.observer observeValueForKeyPath:keyPath
-                                         ofObject:bindings.bridge
-                                           change:notification.changesDictionary
-                                          context:self.context];
-        }
-    }];
+    return [bindings.object observeKeyPath:bindingKeyPath ? bindingKeyPath : keyPath
+                                   options:self.options
+                                   handler:^(IDPKVONotification *notification)
+            {
+                IDPStrongifyAndReturnIfNil(bindings);
+                
+                IDPKVONotificationMappingBlock block = self.notificationMappingBlock;
+                
+                notification = !block ? notification : block(notification);
+                
+                if (notification) {
+                    [self.observer observeValueForKeyPath:keyPath
+                                                 ofObject:bindings.bridge
+                                                   change:notification.changesDictionary
+                                                  context:self.context];
+                }
+            }];
 }
 
 @end

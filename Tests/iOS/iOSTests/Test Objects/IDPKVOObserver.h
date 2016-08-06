@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class IDPKVONotification;
+
 @interface IDPKVOObserver : NSObject
+@property (nonatomic, readonly) IDPKVONotification  *notification;
+@property (nonatomic, readonly) void                *context;
 
 @end

@@ -72,8 +72,11 @@
     [self.lock performBlock:^{
         [self.bindings addObject:binding];
     }];
+    
+    return binding;
 }
 
+// TODO: Remove duplication
 - (void)unbindKeyPath:(NSString *)keyPath forObserver:(NSObject *)observer {
     [self.lock performBlock:^{
         id predicate = [NSPredicate predicateWithBlock:^BOOL(IDPKVOKeyPathBinding *object, NSDictionary *bindings) {
@@ -84,18 +87,18 @@
     }];
 }
 
-- (void)unbindKeyPath:(NSString *)objectKeyPath
+- (void)unbindKeyPath:(NSString *)keyPath
           forObserver:(NSObject *)observer
               context:(void *)context
 {
-    id binding = [[IDPKVOKeyPathBinding alloc] initWithBindings:self
-                                                        keyPath:keyPath
-                                                       observer:observer
-                                                        options:0
-                                                        context:context];
-    
     [self.lock performBlock:^{
-        [self.bindings removeObject:binding];
+        id predicate = [NSPredicate predicateWithBlock:^BOOL(IDPKVOKeyPathBinding *object, NSDictionary *bindings) {
+            return !([object.keyPath isEqualToString:keyPath]
+                     && object.observer == observer
+                     && object.context == context);
+        }];
+        
+        [self.bindings filterUsingPredicate:predicate];
     }];
 }
 

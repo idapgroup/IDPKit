@@ -12,3 +12,4 @@ typedef void(^IDPVoidBlock)(void);
 typedef void(^IDPObjectBlock)(id object);
 typedef void (^IDPEnumerationBlock)(id obj, NSUInteger idx, BOOL *stop);
 typedef id(^IDPFactoryBlock)(void);
+typedef BOOL(^IDPPredicateBlock)(id object, NSDictionary *bindings);

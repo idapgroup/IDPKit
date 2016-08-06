@@ -13,7 +13,7 @@
 @class IDPKVOKeyPathBindings;
 
 typedef void(^IDPKVOKeyPathBindingBlock)(IDPKVOKeyPathBinding *binding, IDPKVONotification *notification);
-typedef void(^IDPKVONotificationMappingBlock)(IDPKVONotification *notification);
+typedef IDPKVONotification *(^IDPKVONotificationMappingBlock)(IDPKVONotification *notification);
 
 @interface IDPKVOKeyPathBinding : NSObject
 @property (nonatomic, weak, readonly)   IDPKVOKeyPathBindings       *bindings;
