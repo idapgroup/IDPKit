@@ -30,25 +30,31 @@ describe(@"KVO", ^{
     void *nullContext = NULL;
     void *valueContext = &nullContext;
     
-//    context(@"when observer starts observing IDPTestObject with context = NULL", ^{
-//        it(@"should call the observeValueForKeyPath:ofObject:change:context:", ^{
-//            [[block should] beEvaluated];
-//            
-//            [object addObserver:observer
-//                     forKeyPath:keyPath
-//                        options:options
-//                        context:nullContext];
-//        });
-//        
-//        context(@"when observer stops observing IDPTestObject with context = NULL", ^{
-//            it(@"shouldn't call the observeValueForKeyPath:ofObject:change:context:", ^{
-//                [[block shouldNot] beEvaluated];
-//                
-//                [object removeObserver:observer forKeyPath:keyPath context:nullContext];
-//                object.value += 1;
-//            });
-//        });
-//    });
+    context(@"when observer starts observing IDPTestObject with context = NULL", ^{
+        it(@"should call the observeValueForKeyPath:ofObject:change:context:", ^{
+            [[block should] beEvaluated];
+            
+            [object addObserver:observer
+                     forKeyPath:keyPath
+                        options:options
+                        context:nullContext];
+        });
+        
+        context(@"when updating options", ^{
+            it(@"should observe keypath with new options", ^{
+                
+            });
+        });
+        
+        context(@"when observer stops observing IDPTestObject with context = NULL", ^{
+            it(@"shouldn't call the observeValueForKeyPath:ofObject:change:context:", ^{
+                [[block shouldNot] beEvaluated];
+                
+                [object removeObserver:observer forKeyPath:keyPath context:nullContext];
+                object.value += 1;
+            });
+        });
+    });
     
     context(@"when observer starts observing IDPTestObject with 2 contexts", ^{
         it(@"it should call the observeValueForKeyPath:ofObject:change:context: twice", ^{
@@ -99,21 +105,12 @@ describe(@"KVO", ^{
                         context:valueContext];
         });
         
-        context(@"when observer stops observing IDPTestObject with context = NULL", ^{
-            it(@"should call the observeValueForKeyPath:ofObject:change:context: once", ^{
+        context(@"when observer stops observing IDPTestObject without context", ^{
+            it(@"should remove random observer from observation", ^{
                 [[block should] beEvaluated];
                 
                 [object removeObserver:observer forKeyPath:keyPath];
                 object.value += 1;
-            });
-            
-            context(@"when observer stops observing IDPTestObject with context = value", ^{
-                it(@"shouldn't call the observeValueForKeyPath:ofObject:change:context:", ^{
-                    [[block shouldNot] beEvaluated];
-                    
-                    [object removeObserver:observer forKeyPath:keyPath];
-                    object.value += 1;
-                });
             });
         });
     });

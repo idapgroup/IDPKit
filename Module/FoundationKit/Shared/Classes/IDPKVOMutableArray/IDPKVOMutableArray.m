@@ -77,7 +77,7 @@ NSString * const kIDPMutableArrayCount       = @"count";
             options:(NSKeyValueObservingOptions)options
             context:(void *)context
 {
-    
+    [self.container addObserver:observer forKeyPath:keyPath options:options context:context];
 }
 
 - (void)removeObserver:(NSObject *)observer

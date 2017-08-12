@@ -22,12 +22,12 @@ describe(@"IDPKVOMutableArray", ^{
         it(@"should notify, when object was added", ^{
             id block = theBlockProxy(^(id object) {});
             
-            [array.container observeKeyPath:@"array" handler:^(IDPKVONotification *notification) {
-                NSLog(@"");
-            }];
-            
-            NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 2)];
-            [array insertObjects:@[object, object] atIndexes:indexSet];
+//            [array.container observeKeyPath:@"array" handler:^(IDPKVONotification *notification) {
+//                NSLog(@"");
+//            }];
+//            
+//            NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 2)];
+//            [array insertObjects:@[object, object] atIndexes:indexSet];
         });
     });
 });
